@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Lux Automations — We’ll Be With You Shortly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/lucide.min.js"></script>
+    <style>
+      :root {
+        --bg: #f3eee3;
+        --bg-2: #ece5d4;
+        --ink: #211c12;
+        --ink-soft: #6a6046;
+        --card: #fffdf6;
+        --line: rgba(94, 74, 32, 0.18);
+        --gold: #a87c26;
+        --gold-deep: #8a641c;
+        --gold-bright: #e9b558;
+        --gold-pale: #f6d489;
+        --night: #060b11;
+        --stage-ink: #f6efdd;
+        --stage-ink-soft: rgba(246, 239, 221, 0.72);
+        --serif: "Marcellus", "Georgia", serif;
+        --sans: "Sora", "Segoe UI", system-ui, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #070d14;
+          --bg-2: #0a121c;
+          --ink: #f3ecdb;
+          --ink-soft: #b3ab97;
+          --card: #0d1621;
+          --line: rgba(240, 220, 170, 0.15);
+          --gold: #e9b558;
+          --gold-deep: #c99b3f;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection { background: var(--gold-bright); color: #231a05; }
+      a { color: inherit; }
+      button { font-family: inherit; cursor: pointer; }
+      .lucide { stroke-width: 1.75; }
+
+      /* ============ THE STAGE — diagonal front door ============ */
+      .stage {
+        --d: 0%;
+        position: relative;
+        height: 100svh;
+        min-height: 660px;
+        overflow: hidden;
+        background: var(--night);
+        color: var(--stage-ink);
+        isolation: isolate;
+      }
+      .half { position: absolute; inset: 0; overflow: hidden; }
+      .half .bg, .half .bgvideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .half .veil { position: absolute; inset: 0; transition: opacity 0.9s ease; }
+
+      .half-cinema {
+        z-index: 1;
+        clip-path: polygon(0 0, calc(100% + var(--d)) 0, 0 calc(100% + var(--d)));
+        transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.25, 1);
+      }
+      .half-cinema .bg {
+        background: url("assets/poster-cliff.webp") center 30% / cover no-repeat;
+        transform: scale(1.07);
+        animation: kenburns 46s ease-in-out infinite alternate;
+      }
+      .half-cinema .veil {
+        background:
+          linear-gradient(200deg, rgba(5, 10, 15, 0.12) 30%, rgba(5, 10, 15, 0.55) 88%),
+          linear-gradient(115deg, rgba(5, 10, 15, 0.34), rgba(5, 10, 15, 0.05) 55%);
+      }
+      .half-auto {
+        z-index: 2;
+        clip-path: polygon(calc(100% + var(--d)) 0, 100% 100%, 0 calc(100% + var(--d)));
+        transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.25, 1);
+      }
+      .half-auto .veil {
+        background:
+          linear-gradient(340deg, rgba(4, 9, 13, 0.78) 8%, rgba(4, 9, 13, 0.18) 52%),
+          linear-gradient(160deg, rgba(4, 9, 13, 0.1), rgba(4, 9, 13, 0.42));
+      }
+      .stage[data-focus="cinema"] { --d: 3.4%; }
+      .stage[data-focus="auto"] { --d: -3.4%; }
+      .stage[data-focus="cinema"] .half-auto .veil { opacity: 1; background:
+          linear-gradient(340deg, rgba(4, 9, 13, 0.9) 8%, rgba(4, 9, 13, 0.45) 55%),
+          linear-gradient(160deg, rgba(4, 9, 13, 0.3), rgba(4, 9, 13, 0.6)); }
+      .stage[data-focus="auto"] .half-cinema .veil { background:
+          linear-gradient(200deg, rgba(5, 10, 15, 0.4) 30%, rgba(5, 10, 15, 0.78) 88%),
+          linear-gradient(115deg, rgba(5, 10, 15, 0.55), rgba(5, 10, 15, 0.2) 55%); }
+
+      @keyframes kenburns {
+        from { transform: scale(1.07) translate(0, 0); }
+        to { transform: scale(1.14) translate(-1.2%, 1.6%); }
+      }
+
+      /* the seam of light */
+      .seam { position: absolute; left: 50%; top: 50%; z-index: 4; pointer-events: none; }
+      .seam .glow, .seam .core {
+        position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+        border-radius: 999px;
+      }
+      .seam .glow {
+        height: 26px;
+        background: linear-gradient(90deg, transparent, rgba(255, 190, 84, 0.5) 22%, rgba(255, 214, 130, 0.75) 50%, rgba(255, 190, 84, 0.5) 78%, transparent);
+        filter: blur(13px);
+        animation: seamPulse 6.5s ease-in-out infinite;
+      }
+      .seam .core {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(255, 205, 110, 0.85) 20%, #ffe9b8 50%, rgba(255, 205, 110, 0.85) 80%, transparent);
+      }
+      @keyframes seamPulse { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+      .bloom {
+        position: absolute; left: 50%; top: 50%; z-index: 3; width: 62vmin; height: 62vmin;
+        translate: -50% -50%; pointer-events: none;
+        background: radial-gradient(circle, rgba(255, 196, 92, 0.22), rgba(255, 196, 92, 0.05) 45%, transparent 68%);
+        animation: seamPulse 7.5s ease-in-out infinite;
+      }
+      .dust { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+      .dust i {
+        position: absolute; bottom: 38%; width: 3px; height: 3px; border-radius: 50%;
+        background: rgba(255, 216, 140, 0.85); box-shadow: 0 0 8px 2px rgba(255, 196, 92, 0.5);
+        animation: drift linear infinite; opacity: 0;
+      }
+      @keyframes drift {
+        0% { transform: translate(0, 0); opacity: 0; }
+        12% { opacity: 0.9; }
+        85% { opacity: 0.55; }
+        100% { transform: translate(3.5rem, -46vh); opacity: 0; }
+      }
+
+      /* slim top nav over the stage */
+      .topnav {
+        position: absolute; top: 0; left: 0; right: 0; z-index: 9;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px clamp(20px, 4vw, 60px);
+      }
+      .brand {
+        display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+        font-family: var(--serif); font-size: 20px; letter-spacing: 0.14em; color: var(--stage-ink);
+      }
+      .brand .lucide { color: var(--gold-bright); width: 20px; height: 20px; }
+      .brand small { font-family: var(--sans); font-size: 10px; letter-spacing: 0.3em; color: var(--stage-ink-soft); font-weight: 500; }
+      .topnav nav { display: flex; gap: 28px; }
+      .topnav nav a {
+        text-decoration: none; font-size: 12px; letter-spacing: 0.22em; font-weight: 500;
+        color: var(--stage-ink-soft); text-transform: uppercase; transition: color 0.3s;
+      }
+      .topnav nav a:hover { color: var(--gold-pale); }
+
+      /* ---- cinema content (upper-left) ---- */
+      .cinema-content {
+        position: absolute; z-index: 5;
+        top: clamp(76px, 11svh, 118px); left: clamp(20px, 4vw, 60px);
+        width: min(500px, 43vw);
+      }
+      .side-tag {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 11px; letter-spacing: 0.32em; font-weight: 600; text-transform: uppercase;
+        color: var(--gold-pale);
+        padding: 7px 13px; border: 1px solid rgba(233, 181, 88, 0.45); border-radius: 999px;
+        background: rgba(6, 11, 17, 0.45); backdrop-filter: blur(6px);
+      }
+      .side-tag .lucide { width: 14px; height: 14px; }
+      .screen {
+        margin-top: 18px;
+        border-radius: 16px; padding: 12px 12px 10px;
+        background: linear-gradient(180deg, rgba(18, 27, 38, 0.88), rgba(7, 12, 18, 0.94));
+        border: 1px solid rgba(233, 181, 88, 0.38);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.35), 0 0 44px rgba(233, 181, 88, 0.1);
+        backdrop-filter: blur(8px);
+        transition: box-shadow 0.6s ease;
+      }
+      .screen.flash { box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 2px rgba(255, 214, 130, .8), 0 0 64px rgba(233, 181, 88, 0.4); }
+      .marquee {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 1px 4px 9px; font-size: 10px; letter-spacing: 0.3em; font-weight: 600;
+        color: var(--gold-pale); text-transform: uppercase;
+      }
+      .marquee .now { display: inline-flex; align-items: center; gap: 8px; }
+      .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff5d43; box-shadow: 0 0 10px 2px rgba(255, 93, 67, 0.55); animation: seamPulse 2.2s ease-in-out infinite; }
+      .frame { position: relative; border-radius: 9px; overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
+      .frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .frame::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        box-shadow: inset 0 0 0 1px rgba(255, 233, 184, 0.14), inset 0 -46px 46px -30px rgba(0, 0, 0, 0.75);
+      }
+      .big-play {
+        position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 3;
+        width: 76px; height: 76px; border-radius: 50%;
+        border: 1px solid rgba(255, 233, 184, 0.75);
+        background: rgba(8, 12, 17, 0.55); backdrop-filter: blur(4px);
+        color: #ffe9b8; display: grid; place-items: center;
+        transition: transform 0.35s ease, background 0.35s ease, opacity 0.35s ease;
+      }
+      .big-play:hover { transform: scale(1.07); background: rgba(30, 22, 8, 0.72); }
+      .big-play .lucide { width: 30px; height: 30px; margin-left: 3px; }
+      .big-play.hidden { display: none; }
+      .controls {
+        display: flex; align-items: center; gap: 12px; padding: 10px 4px 2px;
+      }
+      .ctl-btn {
+        flex: none; width: 34px; height: 34px; border-radius: 50%;
+        border: 1px solid rgba(246, 239, 221, 0.25); background: rgba(255, 255, 255, 0.05);
+        color: var(--stage-ink); display: grid; place-items: center; transition: border-color 0.3s, background 0.3s;
+      }
+      .ctl-btn:hover { border-color: rgba(233, 181, 88, 0.7); background: rgba(233, 181, 88, 0.12); }
+      .ctl-btn .lucide { width: 16px; height: 16px; }
+      .ctl-btn .off { display: none; }
+      .ctl-btn.toggled .on { display: none; }
+      .ctl-btn.toggled .off { display: block; }
+      .track { flex: 1; height: 22px; display: flex; align-items: center; cursor: pointer; }
+      .track .rail { position: relative; width: 100%; height: 3px; border-radius: 99px; background: rgba(246, 239, 221, 0.22); }
+      .track .fill { position: absolute; inset: 0 auto 0 0; width: 0%; border-radius: 99px; background: linear-gradient(90deg, var(--gold-deep), var(--gold-pale)); }
+      .track .fill::after { content: ""; position: absolute; right: -5px; top: 50%; translate: 0 -50%; width: 10px; height: 10px; border-radius: 50%; background: var(--gold-pale); box-shadow: 0 0 8px rgba(233, 181, 88, 0.8); }
+      .time { font-size: 11px; letter-spacing: 0.08em; color: var(--stage-ink-soft); font-variant-numeric: tabular-nums; flex: none; }
+      .series-title { margin-top: 20px; }
+      .series-title h2 {
+        margin: 0; font-family: var(--serif); font-weight: 400;
+        font-size: clamp(30px, 3.2vw, 44px); line-height: 1.08; letter-spacing: 0.015em;
+        text-shadow: 0 3px 26px rgba(0, 0, 0, 0.65);
+      }
+      .series-title h2 em { font-style: normal; color: var(--gold-pale); }
+      .series-title p { margin: 8px 0 0; font-size: 14.5px; color: var(--stage-ink-soft); max-width: 40ch; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+
+      /* ---- automation content (lower-right) ---- */
+      .auto-content {
+        position: absolute; z-index: 5;
+        right: clamp(20px, 4vw, 60px); bottom: clamp(22px, 5svh, 54px);
+        width: min(470px, 42vw);
+      }
+      .auto-content .side-tag { color: #ffd98c; }
+      .auto-content h2 {
+        margin: 16px 0 0; font-weight: 700; letter-spacing: -0.01em;
+        font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1;
+        text-shadow: 0 3px 26px rgba(0, 0, 0, 0.7);
+      }
+      .auto-content h2 em { font-style: normal; color: var(--gold-pale); }
+      .auto-content > p { margin: 10px 0 0; font-size: 14.5px; color: var(--stage-ink-soft); max-width: 42ch; text-shadow: 0 2px 14px rgba(0,0,0,.75); }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+      .chip {
+        display: inline-flex; align-items: center; gap: 7px;
+        font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+        padding: 8px 13px; border-radius: 999px;
+        border: 1px solid rgba(246, 239, 221, 0.22); background: rgba(6, 11, 17, 0.52);
+        backdrop-filter: blur(6px); color: var(--stage-ink);
+      }
+      .chip .lucide { width: 14px; height: 14px; color: var(--gold-bright); }
+      .enter-link {
+        display: inline-flex; align-items: center; gap: 9px; margin-top: 22px;
+        font-size: 12.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--gold-pale); text-decoration: none;
+      }
+      .enter-link .lucide { width: 16px; height: 16px; transition: transform 0.35s ease; }
+      .enter-link:hover .lucide { transform: translate(2px, 2px); }
+
+      /* ---- Aimée, standing on the seam ---- */
+      .host {
+        position: absolute; z-index: 6; left: 50%; top: 54%;
+        transform: translate(-50%, -100%);
+        display: flex; flex-direction: column; align-items: center;
+        pointer-events: none; will-change: transform;
+      }
+      .host .halo {
+        position: absolute; left: 50%; top: 44%; translate: -50% -50%;
+        width: 460px; height: 460px; border-radius: 50%; pointer-events: none;
+        background: radial-gradient(circle, rgba(255, 203, 106, 0.34), rgba(255, 203, 106, 0.08) 52%, transparent 70%);
+        animation: seamPulse 8s ease-in-out infinite;
+      }
+      .host figure { margin: 0; position: relative; animation: floaty 7.5s ease-in-out infinite; }
+      .host img {
+        display: block; height: min(49svh, 495px); width: auto;
+        filter: drop-shadow(0 22px 42px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 26px rgba(255, 196, 92, 0.16));
+        -webkit-mask-image: radial-gradient(118% 96% at 50% 42%, #000 63%, transparent 97%);
+        mask-image: radial-gradient(118% 96% at 50% 42%, #000 63%, transparent 97%);
+      }
+      @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+      .host .pool {
+        width: 320px; height: 62px; margin-top: -34px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(255, 205, 110, 0.55), rgba(255, 205, 110, 0.12) 55%, transparent 72%);
+        filter: blur(5px);
+      }
+      .hosttag {
+        position: absolute; z-index: 6; left: 50%; top: calc(54% + 16px); transform: translateX(-50%);
+        text-align: center; pointer-events: none; white-space: nowrap;
+      }
+      .hosttag .name { font-family: var(--serif); font-size: 21px; letter-spacing: 0.34em; color: #ffe9b8; text-shadow: 0 2px 18px rgba(0,0,0,.8); }
+      .hosttag .role { margin-top: 3px; font-size: 10.5px; letter-spacing: 0.3em; font-weight: 500; text-transform: uppercase; color: var(--stage-ink-soft); }
+
+      /* greeting card */
+      .greet {
+        position: absolute; z-index: 7; left: calc(50% + 148px); top: 19.5%;
+        width: min(348px, 34vw);
+        background: linear-gradient(165deg, rgba(24, 33, 45, 0.88), rgba(9, 14, 21, 0.92));
+        border: 1px solid rgba(233, 181, 88, 0.42); border-radius: 18px;
+        padding: 22px 22px 18px;
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(233, 181, 88, 0.08);
+        backdrop-filter: blur(10px);
+      }
+      .greet::before {
+        content: ""; position: absolute; left: -9px; top: 64px; width: 18px; height: 18px;
+        background: inherit; border-left: 1px solid rgba(233, 181, 88, 0.42); border-bottom: 1px solid rgba(233, 181, 88, 0.42);
+        transform: rotate(45deg); border-bottom-left-radius: 4px;
+      }
+      .greet .hello { display: flex; align-items: baseline; gap: 10px; }
+      .greet .hello .who { font-family: var(--serif); font-size: 19px; color: #ffe9b8; letter-spacing: 0.04em; }
+      .greet .hello .dot { flex: 1; border-bottom: 1px dotted rgba(233, 181, 88, 0.4); transform: translateY(-4px); }
+      .greet .hello .live { font-size: 9.5px; letter-spacing: 0.26em; font-weight: 600; color: #9fe8b1; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+      .greet .hello .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #57d977; box-shadow: 0 0 8px 2px rgba(87, 217, 119, 0.5); animation: seamPulse 2.6s ease-in-out infinite; }
+      .greet h1 {
+        margin: 10px 0 2px; font-family: var(--serif); font-weight: 400;
+        font-size: clamp(24px, 2vw, 29px); line-height: 1.22; color: var(--stage-ink);
+      }
+      .greet .sub { margin: 0 0 16px; font-size: 13px; color: var(--stage-ink-soft); }
+      .choice {
+        display: flex; align-items: center; gap: 13px; width: 100%; text-align: left;
+        padding: 12px 13px; margin-top: 9px; border-radius: 13px; color: var(--stage-ink);
+        border: 1px solid rgba(246, 239, 221, 0.16); background: rgba(255, 255, 255, 0.04);
+        transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+      }
+      .choice:hover, .choice:focus-visible { border-color: rgba(233, 181, 88, 0.75); background: rgba(233, 181, 88, 0.1); transform: translateX(3px); }
+      .choice .arr {
+        flex: none; width: 38px; height: 38px; border-radius: 50%;
+        border: 1px solid rgba(233, 181, 88, 0.55); color: var(--gold-pale);
+        display: grid; place-items: center; background: rgba(233, 181, 88, 0.08);
+      }
+      .choice .arr .lucide { width: 17px; height: 17px; }
+      .choice .t1 { display: block; font-size: 10px; letter-spacing: 0.26em; font-weight: 600; text-transform: uppercase; color: var(--gold-pale); }
+      .choice .t2 { display: block; font-size: 14.5px; font-weight: 500; margin-top: 1px; }
+      .stage-tip {
+        position: absolute; z-index: 5; left: clamp(20px, 4vw, 60px); bottom: clamp(20px, 4.5svh, 44px);
+        font-size: 12.5px; letter-spacing: 0.05em; color: rgba(246, 239, 221, 0.55); max-width: 24ch;
+      }
+
+      /* ============ sections below the door ============ */
+      .section { padding: clamp(72px, 10vw, 128px) clamp(20px, 6vw, 84px); }
+      .section-inner { max-width: 1240px; margin: 0 auto; }
+      .kicker {
+        display: inline-flex; align-items: center; gap: 9px;
+        font-size: 11px; letter-spacing: 0.32em; font-weight: 600; text-transform: uppercase; color: var(--gold);
+      }
+      .kicker .lucide { width: 15px; height: 15px; }
+      .section h2.big {
+        margin: 14px 0 0; font-family: var(--serif); font-weight: 400;
+        font-size: clamp(34px, 4.4vw, 56px); line-height: 1.1; letter-spacing: 0.01em;
+      }
+      .section .lede { margin: 16px 0 0; font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; }
+      .sans-title { font-family: var(--sans) !important; font-weight: 700 !important; letter-spacing: -0.015em !important; }
+
+      .moments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 46px; }
+      .moment {
+        position: relative; border-radius: 16px; overflow: hidden; margin: 0;
+        aspect-ratio: 4 / 4.6; background: #0a1119; color: #f6efdd;
+        box-shadow: 0 24px 50px rgba(10, 12, 6, 0.25);
+      }
+      .moment img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1); }
+      .moment:hover img { transform: scale(1.055); }
+      .moment figcaption {
+        position: absolute; inset: auto 0 0 0; padding: 64px 22px 20px;
+        background: linear-gradient(transparent, rgba(4, 8, 12, 0.88) 62%);
+      }
+      .moment .m-tag { font-size: 10px; letter-spacing: 0.3em; font-weight: 600; text-transform: uppercase; color: var(--gold-pale); }
+      .moment h3 { margin: 7px 0 4px; font-family: var(--serif); font-weight: 400; font-size: 25px; }
+      .moment p { margin: 0; font-size: 13.5px; color: rgba(246, 239, 221, 0.75); max-width: 30ch; }
+      .moment .m-play {
+        position: absolute; top: 16px; right: 16px; width: 46px; height: 46px; border-radius: 50%;
+        border: 1px solid rgba(255, 233, 184, 0.6); background: rgba(8, 12, 17, 0.5); backdrop-filter: blur(4px);
+        color: #ffe9b8; display: grid; place-items: center; transition: transform 0.3s ease, background 0.3s ease;
+      }
+      .moment .m-play:hover { transform: scale(1.1); background: rgba(30, 22, 8, 0.7); }
+      .moment .m-play .lucide { width: 19px; height: 19px; margin-left: 2px; }
+
+      .workshop-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+      .workshop-fig { margin: 0; border-radius: 18px; overflow: hidden; position: relative; box-shadow: 0 30px 60px rgba(10, 12, 6, 0.3); }
+      .workshop-fig img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 4.4; }
+      .workshop-fig figcaption {
+        position: absolute; left: 18px; bottom: 16px; right: 18px;
+        display: flex; align-items: center; gap: 10px; color: #ffe9b8;
+        font-size: 11px; letter-spacing: 0.26em; font-weight: 600; text-transform: uppercase;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+      }
+      .services { margin-top: 34px; border-top: 1px solid var(--line); }
+      .service { display: flex; gap: 18px; padding: 20px 2px; border-bottom: 1px solid var(--line); align-items: flex-start; }
+      .service .s-ico {
+        flex: none; width: 46px; height: 46px; border-radius: 13px;
+        border: 1px solid var(--line); background: var(--card);
+        display: grid; place-items: center; color: var(--gold);
+      }
+      .service .s-ico .lucide { width: 21px; height: 21px; }
+      .service h3 { margin: 2px 0 3px; font-size: 17px; font-weight: 600; letter-spacing: 0.005em; }
+      .service p { margin: 0; font-size: 14px; color: var(--ink-soft); max-width: 52ch; }
+
+      .door-band {
+        position: relative; overflow: hidden; text-align: center; color: #f6efdd;
+        padding: clamp(84px, 12vw, 150px) clamp(20px, 6vw, 84px);
+        background:
+          radial-gradient(58% 90% at 50% 108%, rgba(255, 183, 71, 0.5), transparent 62%),
+          radial-gradient(80% 120% at 50% -30%, rgba(38, 84, 110, 0.55), transparent 60%),
+          linear-gradient(180deg, #08111a, #05090f);
+      }
+      .door-band .lucide.sun { width: 34px; height: 34px; color: var(--gold-pale); }
+      .door-band h2 { margin: 18px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5vw, 62px); line-height: 1.12; }
+      .door-band p { margin: 16px auto 0; max-width: 56ch; font-size: 16px; color: rgba(246, 239, 221, 0.78); }
+      .door-band .row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+        padding: 14px 24px; border-radius: 999px; font-size: 13px; font-weight: 600;
+        letter-spacing: 0.14em; text-transform: uppercase; transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s;
+      }
+      .btn .lucide { width: 16px; height: 16px; }
+      .btn-gold { background: linear-gradient(180deg, #f3c96b, #dfa93f); color: #2a1e05; border: 1px solid rgba(255, 233, 184, 0.7); box-shadow: 0 14px 34px rgba(223, 169, 63, 0.3); }
+      .btn-gold:hover { transform: translateY(-2px); }
+      .btn-ghost { border: 1px solid rgba(246, 239, 221, 0.35); color: #f6efdd; background: rgba(255, 255, 255, 0.04); }
+      .btn-ghost:hover { border-color: rgba(233, 181, 88, 0.8); transform: translateY(-2px); }
+      footer {
+        padding: 26px clamp(20px, 6vw, 84px); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+        font-size: 12px; letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase;
+        border-top: 1px solid var(--line); background: var(--bg-2);
+      }
+
+      .rv { transform: translateY(18px); transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1); }
+      .rv.in { transform: none; }
+      .rv.d1 { transition-delay: 0.12s; } .rv.d2 { transition-delay: 0.24s; } .rv.d3 { transition-delay: 0.36s; }
+
+      /* ============ mobile: stack the two houses, slant stays ============ */
+      @media (max-width: 920px) {
+        .stage { height: auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+        .seam, .bloom, .dust, .stage-tip { display: none; }
+        .topnav { position: absolute; padding: 16px 20px; }
+        .topnav .brand { font-size: 17px; }
+        .topnav nav { gap: 16px; }
+        .topnav nav a { font-size: 10.5px; letter-spacing: 0.16em; }
+        .half { position: relative; inset: auto; clip-path: none; transition: none; }
+        .half-cinema { order: 1; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 26px), 0 100%); padding: 78px 20px 190px; }
+        .half-auto { order: 5; clip-path: polygon(0 26px, 100% 0, 100% 100%, 0 100%); margin-top: -26px; padding: 92px 20px 54px; }
+        .cinema-content, .auto-content { position: relative; top: auto; left: auto; right: auto; bottom: auto; width: 100%; }
+        .series-title h2 { font-size: 32px; }
+        .host { order: 2; position: relative; left: auto; top: auto; transform: none; margin: -182px 0 -4px; z-index: 6; }
+        .host img { height: 262px; }
+        .host .halo { width: 330px; height: 330px; }
+        .hosttag { display: none; }
+        .greet { order: 4; position: relative; left: auto; top: auto; width: auto; margin: -72px 20px 42px; z-index: 7; padding: 18px 18px 14px; }
+        .greet h1 { font-size: 23px; }
+        .greet::before { display: none; }
+        .moments { grid-template-columns: 1fr; }
+        .moment { aspect-ratio: 16 / 11; }
+        .workshop-grid { grid-template-columns: 1fr; }
+        .workshop-fig img { aspect-ratio: 16 / 10; }
+      }
+      @media (max-height: 780px) and (min-width: 921px) {
+        .cinema-content { width: min(440px, 40vw); top: 84px; }
+        .host img { height: min(46svh, 440px); }
+        .greet { top: 15%; }
+        .series-title h2 { font-size: 32px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        html { scroll-behavior: auto; }
+        .rv { opacity: 1; transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+<div style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:9999;background:rgba(24,10,44,.72);border:1.5px solid #ffcf6e;border-radius:999px;padding:9px 22px;font-family:'Avenir Next','Segoe UI',system-ui,sans-serif;color:#ffcf6e;letter-spacing:.24em;text-transform:uppercase;font-size:.72rem;font-weight:700;box-shadow:0 0 26px rgba(255,200,100,.40);backdrop-filter:blur(6px);white-space:nowrap;">🚧 Under Construction — We’ll Be Up &amp; Running Soon</div>
+    <!-- ================= THE FRONT DOOR ================= -->
+    <div class="stage" id="stage" data-focus="">
+      <!-- cinematic half -->
+      <div class="half half-cinema" aria-label="The cinema — A Million Times Better, the series">
+        <div class="bg" role="img" aria-label="A lone figure on a cliff above a cove at dawn"></div>
+        <div class="veil"></div>
+      <!-- cinema content -->
+      <div class="cinema-content">
+        <span class="side-tag"><i data-lucide="clapperboard"></i>The Cinema</span>
+        <div class="screen" id="screen">
+          <div class="marquee">
+            <span class="now"><span class="pulse-dot"></span>Now Showing</span>
+            <span>Feature Presentation</span>
+          </div>
+          <div class="frame">
+            <video id="feature" poster="assets/poster-cliff.webp" autoplay muted loop playsinline preload="auto">
+              <source src="assets/series-feature.mp4" type="video/mp4" />
+            </video>
+            <button class="big-play hidden" id="bigPlay" aria-label="Play the feature presentation">
+              <i data-lucide="play"></i>
+            </button>
+          </div>
+          <div class="controls">
+            <button class="ctl-btn" id="playBtn" aria-label="Pause the feature">
+              <span class="on"><i data-lucide="pause"></i></span>
+              <span class="off"><i data-lucide="play"></i></span>
+            </button>
+            <div class="track" id="track" role="slider" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="rail"><div class="fill" id="fill"></div></div>
+            </div>
+            <span class="time" id="time">0:00 / 0:10</span>
+            <button class="ctl-btn toggled" id="soundBtn" aria-label="Turn the sound on">
+              <span class="on"><i data-lucide="volume-x"></i></span>
+              <span class="off"><i data-lucide="volume-2"></i></span>
+            </button>
+          </div>
+        </div>
+        <div class="series-title">
+          <h2>A Million Times <em>Better</em></h2>
+          <p>The series. A true story — the night he died, the light he saw, and the life that followed.</p>
+        </div>
+      </div>
+
+      </div>
+
+      <!-- automation half -->
+      <div class="half half-auto" aria-label="The workshop — Lux Automations">
+        <video class="bgvideo" id="autoVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="assets/automation-flow.mp4" type="video/mp4" />
+        </video>
+        <div class="veil"></div>
+      <!-- automation content -->
+      <div class="auto-content">
+        <span class="side-tag"><i data-lucide="cpu"></i>The Workshop</span>
+        <h2>Lux <em>Automations</em></h2>
+        <p>AI, automation and animation for the modern age — systems that carry the work, built for humans.</p>
+        <div class="chips">
+          <span class="chip"><i data-lucide="workflow"></i>Workflow automation</span>
+          <span class="chip"><i data-lucide="film"></i>AI film &amp; animation</span>
+          <span class="chip"><i data-lucide="music"></i>Music &amp; media</span>
+          <span class="chip"><i data-lucide="bot"></i>Always-on helpers</span>
+        </div>
+        <a class="enter-link" href="#automation">Step into the workshop <i data-lucide="arrow-down-right"></i></a>
+      </div>
+
+      </div>
+
+      <div class="bloom" aria-hidden="true"></div>
+      <div class="seam" id="seam" aria-hidden="true"><div class="glow"></div><div class="core"></div></div>
+      <div class="dust" id="dust" aria-hidden="true"></div>
+
+      <header class="topnav">
+        <a class="brand" href="#stage" aria-label="ailux dot ca — home">
+          <i data-lucide="sun"></i><span>AILUX<small>.CA</small></span>
+        </a>
+        <nav>
+          <a href="#series">The Series</a>
+          <a href="#automation">Automations</a>
+        </nav>
+      </header>
+
+      <p class="stage-tip">Two crafts. One house of light.</p>
+
+      <!-- Aimée, standing on the seam -->
+      <div class="host" id="host">
+        <div class="halo" aria-hidden="true"></div>
+        <figure>
+          <img src="assets/aimee.webp" alt="Aimée, the host of the house — a smiling woman in a navy dress with a gold scarf, one hand raised in welcome" />
+        </figure>
+        <div class="pool" aria-hidden="true"></div>
+      </div>
+      <div class="hosttag" aria-hidden="true">
+        <div class="name">AIMÉE</div>
+        <div class="role">Your host · Front desk of the house</div>
+      </div>
+
+      <!-- her greeting -->
+      <div class="greet" role="group" aria-label="Aimée greets you">
+        <div class="hello">
+          <span class="who">Aimée</span><span class="dot"></span><span class="live">At the desk</span>
+        </div>
+        <h1>Welcome in. What are you looking for?</h1>
+        <p class="sub">Two doors, one house — I&rsquo;ll point you to the right one.</p>
+        <button class="choice" id="choiceStory" data-side="cinema">
+          <span class="arr"><i data-lucide="arrow-up-left"></i></span>
+          <span><span class="t1">The Cinema</span><span class="t2">Watch the story unfold</span></span>
+        </button>
+        <button class="choice" id="choiceTools" data-side="auto">
+          <span class="arr"><i data-lucide="arrow-down-right"></i></span>
+          <span><span class="t1">The Workshop</span><span class="t2">Put automation to work</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= THE CINEMA ================= -->
+    <section class="section" id="series">
+      <div class="section-inner">
+        <span class="kicker rv"><i data-lucide="clapperboard"></i>The Cinema</span>
+        <h2 class="big rv d1">A Million Times Better — the series</h2>
+        <p class="lede rv d2">
+          He died in intensive care, and he came back — with a memory of light that has never left him.
+          This is his story, told as cinema: the night itself, the place he went, and the quieter,
+          stronger life on the other side of it.
+        </p>
+        <div class="moments">
+          <figure class="moment rv">
+            <img src="assets/teaser-icu.webp" alt="An intensive care room at dawn, golden light falling across an empty bed" />
+            <button class="m-play" data-goto-film aria-label="Play the feature presentation"><i data-lucide="play"></i></button>
+            <figcaption>
+              <span class="m-tag">Moment One</span>
+              <h3>Intensive Care</h3>
+              <p>The night everything stopped — and started again.</p>
+            </figcaption>
+          </figure>
+          <figure class="moment rv d1">
+            <img src="assets/teaser-light.webp" alt="A tunnel of warm golden light with rays converging toward a radiant centre" />
+            <button class="m-play" data-goto-film aria-label="Play the feature presentation"><i data-lucide="play"></i></button>
+            <figcaption>
+              <span class="m-tag">Moment Two</span>
+              <h3>The Light</h3>
+              <p>What he saw on the other side, and why it sent him back.</p>
+            </figcaption>
+          </figure>
+          <figure class="moment rv d2">
+            <img src="assets/teaser-ashes.webp" alt="Hands releasing ashes into golden sunrise light above a cove" />
+            <button class="m-play" data-goto-film aria-label="Play the feature presentation"><i data-lucide="play"></i></button>
+            <figcaption>
+              <span class="m-tag">Moment Three</span>
+              <h3>The Cove</h3>
+              <p>A promise, kept on the wind over the water.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE WORKSHOP ================= -->
+    <section class="section" id="automation" style="background: var(--bg-2)">
+      <div class="section-inner workshop-grid">
+        <figure class="workshop-fig rv">
+          <img src="assets/automation-scene.webp" alt="A robotic arm working over dark panels traced with glowing golden circuits" />
+          <figcaption><i data-lucide="sparkles" style="width:15px;height:15px"></i>Inside the workshop</figcaption>
+        </figure>
+        <div>
+          <span class="kicker rv"><i data-lucide="cpu"></i>The Workshop</span>
+          <h2 class="big sans-title rv d1">Lux Automations</h2>
+          <p class="lede rv d2">
+            The next tier isn&rsquo;t humans replaced — it&rsquo;s humans carried. Lux builds the quiet
+            machinery underneath a business: the films, the music, the follow-ups, the front desk —
+            so the people can do the part only people can do.
+          </p>
+          <div class="services">
+            <div class="service rv">
+              <span class="s-ico"><i data-lucide="workflow"></i></span>
+              <div><h3>Workflow automation</h3><p>The repetitive work — intake, follow-up, filing, posting — handled quietly in the background.</p></div>
+            </div>
+            <div class="service rv d1">
+              <span class="s-ico"><i data-lucide="clapperboard"></i></span>
+              <div><h3>AI film &amp; animation</h3><p>Series, teasers and shorts produced end-to-end — the same craft you see on the cinema side of the house.</p></div>
+            </div>
+            <div class="service rv d2">
+              <span class="s-ico"><i data-lucide="music"></i></span>
+              <div><h3>Music &amp; media</h3><p>Songs and albums with a video for every track, released under one roof and easy to find.</p></div>
+            </div>
+            <div class="service rv d3">
+              <span class="s-ico"><i data-lucide="bot"></i></span>
+              <div><h3>Always-on helpers</h3><p>Front-desk hosts like Aimée — greeting every visitor, day or night, and pointing them the right way.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ONE ROOF ================= -->
+    <section class="door-band">
+      <i data-lucide="sun" class="sun"></i>
+      <h2 class="rv">One house. Two doors.</h2>
+      <p class="rv d1">
+        However you arrive — for the story, or for the tools — you&rsquo;re greeted the same way:
+        warmly, and by name. Join our adventure, and don&rsquo;t miss an episode or a new release.
+      </p>
+      <div class="row rv d2">
+        <a class="btn btn-gold" href="#series"><i data-lucide="clapperboard"></i>Watch the series</a>
+        <a class="btn btn-ghost" href="#automation"><i data-lucide="cpu"></i>Meet the workshop</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Lux Automations · A Million Times Better</span>
+      <span>ailux.ca — Edmonton, Alberta</span>
+    </footer>
+
+    <script>
+      if (window.lucide) lucide.createIcons();
+
+      var stage = document.getElementById("stage");
+      var seam = document.getElementById("seam");
+      var host = document.getElementById("host");
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---- seam geometry: corner to corner, whatever the screen ---- */
+      function fitSeam() {
+        var r = stage.getBoundingClientRect();
+        var len = Math.sqrt(r.width * r.width + r.height * r.height) + 60;
+        var ang = Math.atan2(r.height, r.width) * 180 / Math.PI;
+        seam.style.width = len + "px";
+        seam.style.height = "0px";
+        seam.style.transform = "translate(-50%, -50%) rotate(" + (-ang) + "deg)";
+        seam.querySelector(".glow").style.width = len + "px";
+        seam.querySelector(".core").style.width = len + "px";
+      }
+      fitSeam();
+      window.addEventListener("resize", fitSeam);
+
+      /* ---- gold dust rising along the seam ---- */
+      (function () {
+        if (reduced) return;
+        var dust = document.getElementById("dust");
+        for (var i = 0; i < 11; i++) {
+          var p = document.createElement("i");
+          p.style.left = (34 + Math.random() * 34) + "%";
+          p.style.animationDuration = (9 + Math.random() * 9) + "s";
+          p.style.animationDelay = (Math.random() * 10) + "s";
+          p.style.width = p.style.height = (2 + Math.random() * 2.5) + "px";
+          dust.appendChild(p);
+        }
+      })();
+
+      /* ---- Aimée leans toward whichever door you consider ---- */
+      function setFocus(side) { stage.setAttribute("data-focus", side || ""); }
+      ["choiceStory", "choiceTools"].forEach(function (id) {
+        var b = document.getElementById(id);
+        b.addEventListener("mouseenter", function () { setFocus(b.getAttribute("data-side")); });
+        b.addEventListener("focus", function () { setFocus(b.getAttribute("data-side")); });
+        b.addEventListener("mouseleave", function () { setFocus(""); });
+        b.addEventListener("blur", function () { setFocus(""); });
+        b.addEventListener("click", function () {
+          var target = b.getAttribute("data-side") === "cinema" ? "#series" : "#automation";
+          document.querySelector(target).scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+        });
+      });
+      document.querySelectorAll(".half").forEach(function (h) {
+        h.addEventListener("mouseenter", function () {
+          setFocus(h.classList.contains("half-cinema") ? "cinema" : "auto");
+        });
+        h.addEventListener("mouseleave", function () { setFocus(""); });
+      });
+
+      /* ---- calm parallax: Aimée follows the room, barely ---- */
+      if (!reduced && window.matchMedia("(pointer: fine)").matches) {
+        var tx = 0, ty = 0, cx = 0, cy = 0;
+        stage.addEventListener("mousemove", function (e) {
+          var r = stage.getBoundingClientRect();
+          tx = ((e.clientX - r.left) / r.width - 0.5) * 10;
+          ty = ((e.clientY - r.top) / r.height - 0.5) * 6;
+        });
+        (function loop() {
+          cx += (tx - cx) * 0.045; cy += (ty - cy) * 0.045;
+          if (window.innerWidth > 920) {
+            host.style.transform = "translate(calc(-50% + " + cx.toFixed(2) + "px), calc(-100% + " + cy.toFixed(2) + "px))";
+          }
+          requestAnimationFrame(loop);
+        })();
+      }
+
+      /* ---- the feature presentation ---- */
+      var video = document.getElementById("feature");
+      var autoVideo = document.getElementById("autoVideo");
+      var bigPlay = document.getElementById("bigPlay");
+      var playBtn = document.getElementById("playBtn");
+      var soundBtn = document.getElementById("soundBtn");
+      var fill = document.getElementById("fill");
+      var track = document.getElementById("track");
+      var timeEl = document.getElementById("time");
+      var screen = document.getElementById("screen");
+
+      function fmt(s) {
+        s = Math.max(0, Math.floor(s || 0));
+        return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2);
+      }
+      function syncPlayUI() {
+        var playing = !video.paused && !video.ended;
+        bigPlay.classList.toggle("hidden", playing);
+        playBtn.classList.toggle("toggled", !playing);
+        playBtn.setAttribute("aria-label", playing ? "Pause the feature" : "Play the feature");
+      }
+      function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+
+      video.addEventListener("play", syncPlayUI);
+      video.addEventListener("pause", syncPlayUI);
+      video.addEventListener("timeupdate", function () {
+        if (video.duration) {
+          var pct = (video.currentTime / video.duration) * 100;
+          fill.style.width = pct + "%";
+          track.setAttribute("aria-valuenow", Math.round(pct));
+          timeEl.textContent = fmt(video.currentTime) + " / " + fmt(video.duration);
+        }
+      });
+      video.addEventListener("loadedmetadata", function () {
+        timeEl.textContent = "0:00 / " + fmt(video.duration);
+      });
+      function togglePlay() { if (video.paused) tryPlay(video); else video.pause(); }
+      bigPlay.addEventListener("click", togglePlay);
+      playBtn.addEventListener("click", togglePlay);
+      video.addEventListener("click", togglePlay);
+      soundBtn.addEventListener("click", function () {
+        video.muted = !video.muted;
+        soundBtn.classList.toggle("toggled", video.muted);
+        soundBtn.setAttribute("aria-label", video.muted ? "Turn the sound on" : "Turn the sound off");
+        if (!video.muted && video.paused) tryPlay(video);
+      });
+      track.addEventListener("click", function (e) {
+        var r = track.getBoundingClientRect();
+        if (video.duration) video.currentTime = ((e.clientX - r.left) / r.width) * video.duration;
+      });
+
+      if (reduced) { video.pause(); autoVideo.pause(); syncPlayUI(); }
+
+      /* play the house only while it is on screen */
+      var stageIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (reduced) return;
+          if (en.isIntersecting) { tryPlay(video); tryPlay(autoVideo); }
+          else { video.pause(); autoVideo.pause(); }
+        });
+      }, { threshold: 0.12 });
+      stageIO.observe(stage);
+
+      /* moment cards send you to the big screen */
+      document.querySelectorAll("[data-goto-film]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          stage.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+          setTimeout(function () {
+            tryPlay(video);
+            screen.classList.add("flash");
+            setTimeout(function () { screen.classList.remove("flash"); }, 1400);
+          }, reduced ? 0 : 650);
+        });
+      });
+
+      /* ---- reveal on scroll ---- */
+      var rvIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("in"); rvIO.unobserve(en.target); }
+        });
+      }, { threshold: 0.14 });
+      document.querySelectorAll(".rv").forEach(function (el) { rvIO.observe(el); });
+
+      syncPlayUI();
+    </script>
+  </body>
+</html>
