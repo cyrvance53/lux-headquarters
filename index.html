@@ -852,5 +852,14 @@
 
       syncPlayUI();
     </script>
-  </body>
+  
+<button id="lux-share" aria-label="Share Lux Automations" style="position:fixed;right:16px;bottom:16px;z-index:9999;background:rgba(24,10,44,.78);border:1.5px solid #ffcf6e;border-radius:999px;padding:10px 20px;font-family:'Avenir Next','Segoe UI',system-ui,sans-serif;color:#ffcf6e;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;font-weight:700;box-shadow:0 0 22px rgba(255,200,100,.35);backdrop-filter:blur(6px);cursor:pointer;">&#8599; Share</button>
+<script>
+document.getElementById('lux-share').addEventListener('click', async function(){
+  var data = {title: 'Lux Automations', text: 'A house of light is being built — films, music, and AI automation. Come see.', url: 'https://ailux.ca/'};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { try { await navigator.clipboard.writeText(data.url); this.textContent = 'Link Copied \u2713'; var b=this; setTimeout(function(){ b.innerHTML = '&#8599; Share'; }, 2200); } catch(e) {} }
+});
+</script>
+</body>
 </html>
