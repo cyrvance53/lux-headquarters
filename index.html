@@ -16,13 +16,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lux Automations" />
     <meta property="og:title" content="Lux Automations — A House of Light Is Being Built" />
-    <meta property="og:description" content="Films, original music, and AI automation under one roof. The Cinema and the Workshop — under construction, and we’ll be with you shortly. Join our adventure." />
+    <meta property="og:description" content="First this Christmas: a harbour of lights at the Cinema. Plus A Million Times Better, original music, and AI automation — the Cinema and the Workshop under one roof. Join our adventure." />
     <meta property="og:url" content="https://ailux.ca/" />
     <meta property="og:image" content="https://ailux.ca/assets/poster-cliff.webp" />
     <meta property="og:locale" content="en_CA" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Lux Automations — A House of Light Is Being Built" />
-    <meta name="twitter:description" content="Films, original music, and AI automation under one roof. Under construction — we’ll be with you shortly. Join our adventure." />
+    <meta name="twitter:description" content="Christmas leads at the Cinema — a harbour of lights, this December. Films, original music, and AI automation under one roof. Join our adventure." />
     <meta name="twitter:image" content="https://ailux.ca/assets/poster-cliff.webp" />
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"Lux Automations","url":"https://ailux.ca/","logo":"https://ailux.ca/icon.webp","description":"Edmonton studio for AI films, original music, and AI automation for homes and businesses.","address":{"@type":"PostalAddress","addressLocality":"Edmonton","addressRegion":"AB","addressCountry":"CA"}}
@@ -459,6 +459,76 @@
         border-top: 1px solid var(--line); background: var(--bg-2);
       }
 
+      /* ===== module: soundtrack stamps ===== */
+      .stamp {
+        display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+        font-size: 12px; letter-spacing: 0.06em; color: var(--gold-pale);
+      }
+      .stamp .lucide { width: 14px; height: 14px; flex: none; }
+      .stamp a { color: var(--gold-pale); font-weight: 600; text-decoration: none; border-bottom: 1px dotted rgba(233,181,88,.55); }
+      .stamp a:hover { color: #ffe9b8; }
+      .screen .stamp { padding: 9px 4px 1px; justify-content: space-between; }
+      .stamp-band {
+        margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);
+        display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      }
+      .stamp-band .stamp { color: var(--gold-deep); }
+      .stamp-band .stamp a { color: var(--gold-deep); }
+      .stamp-band .close-note { font-size: 13px; color: var(--ink-soft); }
+      .stamp-band .close-note a { color: var(--gold-deep); font-weight: 600; text-decoration: none; border-bottom: 1px dotted rgba(138,100,28,.55); }
+
+      /* ===== module: christmas lead block ===== */
+      .xmas-block { margin-bottom: clamp(56px, 7vw, 88px); }
+      .xmas-card {
+        position: relative; border-radius: 18px; overflow: hidden; color: #f6efdd;
+        padding: clamp(30px, 4.5vw, 52px);
+        background:
+          radial-gradient(70% 120% at 85% -10%, rgba(255, 183, 71, 0.35), transparent 55%),
+          radial-gradient(60% 100% at 0% 110%, rgba(38, 84, 110, 0.5), transparent 60%),
+          linear-gradient(160deg, #0c1622, #060b11);
+        box-shadow: 0 30px 60px rgba(10, 12, 6, 0.3);
+      }
+      .xmas-card .kicker { color: var(--gold-pale); }
+      .xmas-card h3 {
+        margin: 12px 0 0; font-family: var(--serif); font-weight: 400;
+        font-size: clamp(30px, 3.6vw, 46px); line-height: 1.12; max-width: 20ch;
+      }
+      .xmas-card p { margin: 14px 0 0; font-size: 15.5px; color: rgba(246, 239, 221, 0.82); max-width: 58ch; }
+      .xmas-card .stamp { margin-top: 22px; }
+      .section h2.big-sm { font-size: clamp(28px, 3.4vw, 42px); }
+
+      /* ===== module: join strip (lead capture) ===== */
+      .join-strip { background: var(--bg); border-top: 1px solid var(--line); }
+      .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: start; }
+      .join-form { display: grid; gap: 12px; }
+      .join-form label { display: grid; gap: 6px; font-size: 11px; letter-spacing: 0.22em; font-weight: 600; text-transform: uppercase; color: var(--ink-soft); }
+      .join-form input[type="text"], .join-form input[type="email"] {
+        font: inherit; font-size: 15px; letter-spacing: normal; text-transform: none;
+        padding: 13px 15px; border-radius: 12px; border: 1px solid var(--line);
+        background: var(--card); color: var(--ink); width: 100%;
+      }
+      .join-form input:focus { outline: 2px solid rgba(233, 181, 88, 0.65); outline-offset: 1px; }
+      .join-choices { display: flex; gap: 8px; flex-wrap: wrap; }
+      .join-choices label {
+        display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+        font-size: 12.5px; letter-spacing: 0.06em; text-transform: none; font-weight: 500; color: var(--ink);
+        padding: 10px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+      }
+      .join-choices input { accent-color: var(--gold-deep); margin: 0; }
+      .join-choices label:has(input:checked) { border-color: rgba(233, 181, 88, 0.85); background: rgba(233, 181, 88, 0.14); }
+      .join-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+      .join-btn {
+        justify-self: start; border: 1px solid rgba(255, 233, 184, 0.7); cursor: pointer;
+        background: linear-gradient(180deg, #f3c96b, #dfa93f); color: #2a1e05;
+        padding: 14px 26px; border-radius: 999px; font-size: 13px; font-weight: 600;
+        letter-spacing: 0.14em; text-transform: uppercase; transition: transform 0.3s ease;
+      }
+      .join-btn:hover { transform: translateY(-2px); }
+      .join-note { font-size: 12.5px; color: var(--ink-soft); margin: 2px 0 0; }
+      .join-status { font-size: 14px; margin: 4px 0 0; min-height: 1.2em; }
+      .join-status.ok { color: #2e7d46; } .join-status.err { color: #b03a2e; }
+      @media (max-width: 920px) { .join-grid { grid-template-columns: 1fr; } }
+
       .rv { transform: translateY(18px); transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1); }
       .rv.in { transform: none; }
       .rv.d1 { transition-delay: 0.12s; } .rv.d2 { transition-delay: 0.24s; } .rv.d3 { transition-delay: 0.36s; }
@@ -539,10 +609,11 @@
               <span class="off"><i data-lucide="volume-2"></i></span>
             </button>
           </div>
+          <div class="stamp"><span><i data-lucide="music"></i> Now playing: &ldquo;A Million Times Better&rdquo; — on the Haven soundtrack &middot; ailux.ca</span><a href="#join">Join our adventure</a></div>
         </div>
         <div class="series-title">
-          <h2>A Million Times <em>Better</em></h2>
-          <p>The series. A true story — the night he died, the light he saw, and the life that followed.</p>
+          <h2>Christmas at the <em>Harbour of Lights</em></h2>
+          <p>Our first series is coming this Christmas — a harbour town where every light comes home. And behind it, the story that started it all: A Million Times Better.</p>
         </div>
       </div>
 
@@ -620,8 +691,21 @@
     <!-- ================= THE CINEMA ================= -->
     <section class="section" id="series">
       <div class="section-inner">
-        <span class="kicker rv"><i data-lucide="clapperboard"></i>The Cinema</span>
-        <h2 class="big rv d1">A Million Times Better — the series</h2>
+        <div class="xmas-block">
+          <span class="kicker rv"><i data-lucide="clapperboard"></i>The Cinema &middot; Coming This Christmas</span>
+          <div class="xmas-card rv d1">
+            <h3>Christmas at the Harbour of Lights</h3>
+            <p>
+              Our first series arrives this December. A small harbour town folded into a dark cove,
+              where the windows light one by one — candle-gold, never electric — and every tradition
+              that travels by light finds its way home. One harbour, every light welcome.
+              The lights come on December 13.
+            </p>
+            <div class="stamp"><span><i data-lucide="music"></i> &ldquo;Harbour of Lights&rdquo; — the Christmas theme, on the Haven soundtrack &middot; ailux.ca</span></div>
+          </div>
+        </div>
+        <span class="kicker rv"><i data-lucide="clapperboard"></i>The Cinema &middot; The Story That Started It All</span>
+        <h2 class="big big-sm rv d1">A Million Times Better — the series</h2>
         <p class="lede rv d2">
           He died in intensive care, and he came back — with a memory of light that has never left him.
           This is his story, told as cinema: the night itself, the place he went, and the quieter,
@@ -655,6 +739,10 @@
               <p>A promise, kept on the wind over the water.</p>
             </figcaption>
           </figure>
+        </div>
+        <div class="stamp-band rv">
+          <span class="stamp"><i data-lucide="music"></i> The sound of the series: &ldquo;The Light That Came Home&rdquo; &middot; &ldquo;Heaven on Earth&rdquo; — on the Haven soundtrack &middot; ailux.ca</span>
+          <span class="close-note"><a href="#join">Join our adventure</a> — and don&rsquo;t miss an episode or a new release.</span>
         </div>
       </div>
     </section>
@@ -709,6 +797,78 @@
         <a class="btn btn-ghost" href="#automation"><i data-lucide="cpu"></i>Meet the workshop</a>
       </div>
     </section>
+
+    <!-- ================= JOIN OUR ADVENTURE (lead capture module) ================= -->
+    <section class="section join-strip" id="join">
+      <div class="section-inner join-grid">
+        <div>
+          <span class="kicker rv"><i data-lucide="mail"></i>The Guest Book</span>
+          <h2 class="big rv d1">Join our adventure.</h2>
+          <p class="lede rv d2">
+            Leave your name in the guest book and we&rsquo;ll write when there&rsquo;s something
+            new to see — an episode, a song, a door opening in the house. One short letter,
+            only when it matters. No noise, ever.
+          </p>
+          <p class="join-note rv d2">Your name and email stay in the house — never sold, never shared.</p>
+        </div>
+        <form class="join-form rv d1" id="joinForm" novalidate>
+          <label>Your name
+            <input type="text" name="name" id="joinName" autocomplete="name" required placeholder="What should we call you?" />
+          </label>
+          <label>Email
+            <input type="email" name="email" id="joinEmail" autocomplete="email" required placeholder="you@example.com" />
+          </label>
+          <span style="font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase;color:var(--ink-soft)">I&rsquo;m here for</span>
+          <div class="join-choices" role="radiogroup" aria-label="I am here for">
+            <label><input type="radio" name="choice" value="Films" /> Films</label>
+            <label><input type="radio" name="choice" value="Automation" /> Automation</label>
+            <label><input type="radio" name="choice" value="Both" checked /> Both</label>
+          </div>
+          <span class="join-hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></span>
+          <button class="join-btn" type="submit" id="joinBtn">Join our adventure</button>
+          <p class="join-status" id="joinStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+    <script>
+      (function () {
+        var form = document.getElementById("joinForm");
+        if (!form) return;
+        var status = document.getElementById("joinStatus");
+        var btn = document.getElementById("joinBtn");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("joinName").value.trim();
+          var email = document.getElementById("joinEmail").value.trim();
+          var choice = (form.querySelector('input[name="choice"]:checked') || {}).value || "Both";
+          var trap = form.querySelector('input[name="company"]').value;
+          status.className = "join-status"; status.textContent = "";
+          if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            status.classList.add("err");
+            status.textContent = "A name and a valid email are all we need — try again?";
+            return;
+          }
+          btn.disabled = true; btn.textContent = "One moment…";
+          fetch("/api/join", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ name: name, email: email, choice: choice, company: trap })
+          }).then(function (r) {
+            if (!r.ok) throw new Error("send");
+            form.innerHTML = "";
+            var p = document.createElement("p");
+            p.className = "join-status ok";
+            p.style.fontSize = "17px";
+            p.textContent = "You\u2019re in, " + name.split(" ")[0] + ". Welcome to the house — watch your inbox for the first letter.";
+            form.appendChild(p);
+          }).catch(function () {
+            btn.disabled = false; btn.textContent = "Join our adventure";
+            status.classList.add("err");
+            status.innerHTML = "The guest book wouldn\u2019t open just now — write to us at <a href=\"mailto:hello@ailux.ca\">hello@ailux.ca</a> and we\u2019ll add you by hand.";
+          });
+        });
+      })();
+    </script>
 
     <footer>
       <span>Lux Automations · A Million Times Better</span>
