@@ -588,9 +588,9 @@
             <span>Feature Presentation</span>
           </div>
           <div class="frame">
-            <video id="feature" poster="assets/poster-cliff.webp" autoplay muted loop playsinline preload="auto">
-              <source src="assets/series-feature.mp4" type="video/mp4" />
-            </video>
+            <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.18);">
+              <iframe id="feature" src="https://www.youtube.com/embed/9Z3xTjJn10A" title="The Morning Call — a LuxAI feeder" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
             <button class="big-play hidden" id="bigPlay" aria-label="Play the feature presentation">
               <i data-lucide="play"></i>
             </button>
@@ -609,7 +609,7 @@
               <span class="off"><i data-lucide="volume-2"></i></span>
             </button>
           </div>
-          <div class="stamp"><span><i data-lucide="music"></i> Now playing: &ldquo;A Million Times Better&rdquo; — on the Haven soundtrack &middot; ailux.ca</span><a href="#join">Join our adventure</a></div>
+          <div class="stamp"><span><i data-lucide="music"></i> Now playing: &ldquo;The Morning Call&rdquo; — a first taste of the future &middot; ailux.ca</span><a href="#join">Join our adventure</a></div>
         </div>
         <div class="series-title">
           <h2>Christmas at the <em>Harbour of Lights</em></h2>
@@ -799,7 +799,7 @@
     </section>
 
     <!-- ================= JOIN OUR ADVENTURE (lead capture module) ================= -->
-    <section style="max-width:880px;margin:3rem auto;padding:0 1.25rem;text-align:center;"> <h2 style="font-family:Georgia,serif;font-weight:600;">A First Taste of the Future</h2> <p style="opacity:.85;">A morning in our world — the first feeder from the house of Lux. We're building in public; more is coming.</p> <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.18);"> <iframe src="https://www.youtube.com/embed/9Z3xTjJn10A" title="The Morning Call — a LuxAI feeder" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> </div> </section> <p style="text-align:center;opacity:.9;">Doors open December 1 — join the list and be here when they do.</p> <section class="section join-strip" id="join">
+    <section style="max-width:880px;margin:3rem auto;padding:0 1.25rem;text-align:center;"> <h2 style="font-family:Georgia,serif;font-weight:600;">A First Taste of the Future</h2> <p style="opacity:.85;">A morning in our world — the first feeder from the house of Lux. We're building in public; more is coming.</p> <!-- removed duplicate --> </section> <p style="text-align:center;opacity:.9;">Doors open December 1 — join the list and be here when they do.</p> <section class="section join-strip" id="join">
       <div class="section-inner join-grid">
         <div>
           <span class="kicker rv"><i data-lucide="mail"></i>The Guest Book</span>
@@ -969,7 +969,7 @@
         playBtn.classList.toggle("toggled", !playing);
         playBtn.setAttribute("aria-label", playing ? "Pause the feature" : "Play the feature");
       }
-      function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      function tryPlay(v) { if (typeof v.play !== "function") return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
       video.addEventListener("play", syncPlayUI);
       video.addEventListener("pause", syncPlayUI);
@@ -984,7 +984,7 @@
       video.addEventListener("loadedmetadata", function () {
         timeEl.textContent = "0:00 / " + fmt(video.duration);
       });
-      function togglePlay() { if (video.paused) tryPlay(video); else video.pause(); }
+      function togglePlay() { if (video.paused) tryPlay(video); else if (typeof video.pause === "function") video.pause(); }
       bigPlay.addEventListener("click", togglePlay);
       playBtn.addEventListener("click", togglePlay);
       video.addEventListener("click", togglePlay);
@@ -999,14 +999,14 @@
         if (video.duration) video.currentTime = ((e.clientX - r.left) / r.width) * video.duration;
       });
 
-      if (reduced) { video.pause(); autoVideo.pause(); syncPlayUI(); }
+      if (reduced) { if (typeof video.pause === "function") video.pause(); autoVideo.pause(); syncPlayUI(); }
 
       /* play the house only while it is on screen */
       var stageIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (reduced) return;
           if (en.isIntersecting) { tryPlay(video); tryPlay(autoVideo); }
-          else { video.pause(); autoVideo.pause(); }
+          else { if (typeof video.pause === "function") video.pause(); autoVideo.pause(); }
         });
       }, { threshold: 0.12 });
       stageIO.observe(stage);
