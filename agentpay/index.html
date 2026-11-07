@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>AgentPay — by Lux Automations</title>
+    <meta name="description" content="AgentPay is the settlement layer for agent work, by Lux Automations: an AI Deal Clerk drafts fair terms, the money is held by the rail — never by us — and the Clerk can only release or refund. Any amount. Any rail. Our layer adds a check, not a wait." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#180a2c" />
+    <link rel="icon" type="image/webp" href="/icon.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/assets/lucide.min.js"></script>
+    <style>
+      :root {
+        --bg: #f3eee3;
+        --bg-2: #ece5d4;
+        --ink: #211c12;
+        --ink-soft: #6a6046;
+        --card: #fffdf6;
+        --line: rgba(94, 74, 32, 0.18);
+        --gold: #a87c26;
+        --gold-deep: #8a641c;
+        --gold-bright: #e9b558;
+        --gold-pale: #f6d489;
+        --night: #060b11;
+        --stage-ink: #f6efdd;
+        --stage-ink-soft: rgba(246, 239, 221, 0.72);
+        --serif: "Marcellus", "Georgia", serif;
+        --sans: "Sora", "Segoe UI", system-ui, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #070d14;
+          --bg-2: #0a121c;
+          --ink: #f3ecdb;
+          --ink-soft: #b3ab97;
+          --card: #0d1621;
+          --line: rgba(240, 220, 170, 0.15);
+          --gold: #e9b558;
+          --gold-deep: #c99b3f;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection { background: var(--gold-bright); color: #231a05; }
+      a { color: inherit; }
+      button { font-family: inherit; cursor: pointer; }
+      .lucide { stroke-width: 1.75; }
+
+      /* slim top nav */
+      .topnav {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px clamp(20px, 4vw, 60px);
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+        font-family: var(--serif); font-size: 20px; letter-spacing: 0.14em;
+      }
+      .brand .lucide { color: var(--gold); width: 20px; height: 20px; }
+      .brand small { font-family: var(--sans); font-size: 10px; letter-spacing: 0.3em; color: var(--ink-soft); font-weight: 500; }
+      .topnav nav a {
+        text-decoration: none; font-size: 12px; letter-spacing: 0.22em; font-weight: 500;
+        color: var(--ink-soft); text-transform: uppercase; transition: color 0.3s;
+      }
+      .topnav nav a:hover { color: var(--gold-deep); }
+
+      .section { padding: clamp(56px, 8vw, 104px) clamp(20px, 6vw, 84px); }
+      .section-inner { max-width: 1240px; margin: 0 auto; }
+      .kicker {
+        display: inline-flex; align-items: center; gap: 9px;
+        font-size: 11px; letter-spacing: 0.32em; font-weight: 600; text-transform: uppercase; color: var(--gold);
+      }
+      .kicker .lucide { width: 15px; height: 15px; }
+      .section h1.big, .section h2.big {
+        margin: 14px 0 0; font-family: var(--serif); font-weight: 400;
+        font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: 0.01em;
+      }
+      .section h1.big em, .section h2.big em { font-style: normal; color: var(--gold-deep); }
+      .section .lede { margin: 16px 0 0; font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; }
+
+      /* the three connect doors */
+      .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 46px; align-items: start; }
+      .door {
+        border: 1px solid var(--line); border-radius: 16px; background: var(--card);
+        padding: 26px 24px; box-shadow: 0 18px 40px rgba(10, 12, 6, 0.08);
+      }
+      .door .d-ico {
+        width: 46px; height: 46px; border-radius: 13px; border: 1px solid var(--line);
+        display: grid; place-items: center; color: var(--gold);
+      }
+      .door .d-ico .lucide { width: 21px; height: 21px; }
+      .door h3 { margin: 14px 0 4px; font-size: 18px; font-weight: 600; }
+      .door p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+      .door .door-state {
+        display: inline-block; margin-top: 16px; font-size: 11px; letter-spacing: 0.22em; font-weight: 600;
+        text-transform: uppercase; color: var(--ink-soft);
+        padding: 8px 13px; border: 1px dashed var(--line); border-radius: 999px;
+      }
+      .door-btn-off {
+        margin-top: 16px; padding: 13px 22px; border-radius: 999px; border: 1px solid var(--line);
+        background: var(--bg-2); color: var(--ink-soft); font-size: 12.5px; font-weight: 600;
+        letter-spacing: 0.14em; text-transform: uppercase; cursor: not-allowed; width: 100%;
+      }
+
+      /* builder form — the house join form's pattern */
+      .join-form { display: grid; gap: 12px; margin-top: 18px; }
+      .join-form label { display: grid; gap: 6px; font-size: 11px; letter-spacing: 0.22em; font-weight: 600; text-transform: uppercase; color: var(--ink-soft); }
+      .join-form input[type="text"], .join-form input[type="email"] {
+        font: inherit; font-size: 15px; letter-spacing: normal; text-transform: none;
+        padding: 13px 15px; border-radius: 12px; border: 1px solid var(--line);
+        background: var(--bg); color: var(--ink); width: 100%;
+      }
+      .join-form input:focus { outline: 2px solid rgba(233, 181, 88, 0.65); outline-offset: 1px; }
+      .join-choices { display: flex; gap: 8px; flex-wrap: wrap; }
+      .join-choices label {
+        display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+        font-size: 12.5px; letter-spacing: 0.06em; text-transform: none; font-weight: 500; color: var(--ink);
+        padding: 10px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg);
+      }
+      .join-choices input { accent-color: var(--gold-deep); margin: 0; }
+      .join-choices label:has(input:checked) { border-color: rgba(233, 181, 88, 0.85); background: rgba(233, 181, 88, 0.14); }
+      .join-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+      .join-btn {
+        justify-self: start; border: 1px solid rgba(255, 233, 184, 0.7); cursor: pointer;
+        background: linear-gradient(180deg, #f3c96b, #dfa93f); color: #2a1e05;
+        padding: 14px 26px; border-radius: 999px; font-size: 13px; font-weight: 600;
+        letter-spacing: 0.14em; text-transform: uppercase; transition: transform 0.3s ease;
+      }
+      .join-btn:hover { transform: translateY(-2px); }
+      .join-note { font-size: 12.5px; color: var(--ink-soft); margin: 2px 0 0; }
+      .join-status { font-size: 14px; margin: 4px 0 0; min-height: 1.2em; }
+      .join-status.ok { color: #2e7d46; } .join-status.err { color: #b03a2e; }
+
+      /* the demo frame */
+      .demo-band { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .sim-strip {
+        display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 30px;
+        font-size: 13px; letter-spacing: 0.04em; color: var(--ink);
+      }
+      .sim-badge {
+        display: inline-block; background: #ffe9a8; border: 1px solid #c9a227; border-radius: 4px;
+        padding: 2px 9px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #4a3805;
+      }
+      .demo-frame {
+        margin-top: 18px; border-radius: 16px; overflow: hidden; background: #fffdf6;
+        border: 1px solid rgba(233, 181, 88, 0.45);
+        box-shadow: 0 30px 70px rgba(10, 12, 6, 0.18), 0 0 44px rgba(233, 181, 88, 0.08);
+      }
+      .demo-frame iframe { display: block; width: 100%; border: 0; height: 940px; }
+
+      /* doctrine rows — the workshop services pattern */
+      .services { margin-top: 34px; border-top: 1px solid var(--line); }
+      .service { display: flex; gap: 18px; padding: 20px 2px; border-bottom: 1px solid var(--line); align-items: flex-start; }
+      .service .s-ico {
+        flex: none; width: 46px; height: 46px; border-radius: 13px;
+        border: 1px solid var(--line); background: var(--card);
+        display: grid; place-items: center; color: var(--gold);
+      }
+      .service .s-ico .lucide { width: 21px; height: 21px; }
+      .service h3 { margin: 2px 0 3px; font-size: 17px; font-weight: 600; letter-spacing: 0.005em; }
+      .service p { margin: 0; font-size: 14px; color: var(--ink-soft); max-width: 62ch; }
+
+      footer {
+        padding: 26px clamp(20px, 6vw, 84px); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+        font-size: 12px; letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase;
+        border-top: 1px solid var(--line); background: var(--bg-2);
+      }
+      footer .brought { text-transform: none; letter-spacing: 0.04em; font-size: 13.5px; }
+      footer .brought a { color: var(--gold-deep); font-weight: 600; text-decoration: none; border-bottom: 1px dotted rgba(138, 100, 28, 0.55); }
+      footer .brought a:hover { color: var(--gold); }
+
+      .rv { transform: translateY(18px); transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1); }
+      .rv.in { transform: none; }
+      .rv.d1 { transition-delay: 0.12s; } .rv.d2 { transition-delay: 0.24s; }
+
+      @media (max-width: 920px) {
+        .doors { grid-template-columns: 1fr; }
+        .demo-frame iframe { height: 1080px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        html { scroll-behavior: auto; }
+        .rv { transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topnav">
+      <a class="brand" href="/" aria-label="ailux dot ca — home">
+        <i data-lucide="sun"></i><span>AILUX<small>.CA</small></span>
+      </a>
+      <nav>
+        <a href="/">Back to the house</a>
+      </nav>
+    </header>
+
+    <!-- ================= AGENTPAY ================= -->
+    <section class="section" style="padding-bottom: clamp(40px, 6vw, 72px)">
+      <div class="section-inner">
+        <span class="kicker rv"><i data-lucide="scale"></i>AgentPay · By Lux Automations</span>
+        <h1 class="big rv d1">Any amount. Any rail.<br />Our layer adds a <em>check</em>, not a wait.</h1>
+        <p class="lede rv d2">
+          AgentPay is the settlement layer for work done by agents and people. One side describes
+          the job in plain language; an AI Deal Clerk drafts fair terms and checks them before any
+          money moves; the rail holds the funds; delivery is verified against the agreed terms;
+          and the Clerk can only ever release the money to the worker or refund it to the poster.
+          It connects to the rails that already exist — wallets and PayPal first.
+        </p>
+
+        <!-- ============ THE THREE CONNECT DOORS ============ -->
+        <div class="doors">
+          <div class="door rv">
+            <span class="d-ico"><i data-lucide="wallet"></i></span>
+            <h3>Connect Wallet</h3>
+            <p>For work settled on-chain: connect a wallet and let the escrow hold the funds under the agreed terms — released on verified delivery, refunded on a fair ruling.</p>
+            <button class="door-btn-off" type="button" disabled aria-disabled="true">Connect Wallet</button>
+            <span class="door-state">Opens at launch</span>
+          </div>
+
+          <div class="door rv d1">
+            <span class="d-ico"><i data-lucide="landmark"></i></span>
+            <h3>Connect PayPal</h3>
+            <p>For work settled on the rail people already have: PayPal holds the money under an authorization hold while the Clerk checks the delivery against the terms.</p>
+            <button class="door-btn-off" type="button" disabled aria-disabled="true">Connect PayPal</button>
+            <span class="door-state">Opens at launch</span>
+          </div>
+
+          <div class="door rv d2">
+            <span class="d-ico"><i data-lucide="code"></i></span>
+            <h3>Connect as a Builder</h3>
+            <p>Building agents, tools or a marketplace that needs trusted settlement? Raise your hand now and we&rsquo;ll write when the builder door opens.</p>
+            <form class="join-form" id="builderForm" novalidate>
+              <label>Your name
+                <input type="text" name="name" id="builderName" autocomplete="name" required placeholder="What should we call you?" />
+              </label>
+              <label>Email
+                <input type="email" name="email" id="builderEmail" autocomplete="email" required placeholder="you@example.com" />
+              </label>
+              <span style="font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase;color:var(--ink-soft)">I want to connect</span>
+              <div class="join-choices" role="radiogroup" aria-label="I want to connect">
+                <label><input type="radio" name="choice" value="Wallet" /> Wallet</label>
+                <label><input type="radio" name="choice" value="PayPal" /> PayPal</label>
+                <label><input type="radio" name="choice" value="Builder API" checked /> Builder API</label>
+              </div>
+              <span class="join-hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></span>
+              <button class="join-btn" type="submit" id="builderBtn">Raise your hand</button>
+              <p class="join-note">Your name and email stay in the house — never sold, never shared.</p>
+              <p class="join-status" id="builderStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE DEMO IS THE DOOR ================= -->
+    <section class="section demo-band">
+      <div class="section-inner">
+        <span class="kicker rv"><i data-lucide="mouse-pointer-click"></i>Try It · The Deal Clerk</span>
+        <h2 class="big rv d1">Don&rsquo;t take our word for it. <em>Run a deal.</em></h2>
+        <p class="lede rv d2">
+          This is the Deal Clerk, live in your browser: describe a job, watch the Clerk draft the
+          terms, fund the escrow, deliver the work, and settle — or dispute it and let the arbiter rule.
+        </p>
+        <div class="sim-strip rv">
+          <span class="sim-badge">SIMULATED</span>
+          <span>The demo runs on a simulator, end to end. No real money moves — ever. Every record it prints is stamped SIMULATED.</span>
+        </div>
+        <div class="demo-frame rv d1">
+          <iframe id="demoFrame" src="demo.html" title="AgentPay Deal Clerk demo — simulated, no real money" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS, IN PLAIN WORDS ================= -->
+    <section class="section">
+      <div class="section-inner">
+        <span class="kicker rv"><i data-lucide="shield-check"></i>The Rules, In Plain Words</span>
+        <h2 class="big rv d1">Built so you never have to trust us with the money.</h2>
+        <div class="services">
+          <div class="service rv">
+            <span class="s-ico"><i data-lucide="shield-check"></i></span>
+            <div><h3>We never hold your money</h3><p>AgentPay is non-custodial. Funds sit with the rail — a PayPal authorization hold, or an escrow contract on-chain — from the moment a job is funded until it settles. No Lux account ever holds them.</p></div>
+          </div>
+          <div class="service rv">
+            <span class="s-ico"><i data-lucide="scale"></i></span>
+            <div><h3>The Clerk can only release or refund</h3><p>The Deal Clerk drafts terms, checks them for fairness, and verifies delivery. Then it does exactly one of two things: release the funds to the worker, or refund them to the poster. There is no third door, and the Clerk cannot pay itself or anyone else.</p></div>
+          </div>
+          <div class="service rv">
+            <span class="s-ico"><i data-lucide="receipt"></i></span>
+            <div><h3>Fees, disclosed up front</h3><p>Two parts, both stated before a job is funded: the rail&rsquo;s own network fees, passed through at cost, plus the AgentPay toll of 0.05% of the settled amount. Nothing else, and nothing hidden.</p></div>
+          </div>
+          <div class="service rv">
+            <span class="s-ico"><i data-lucide="users"></i></span>
+            <div><h3>A disputed deal splits the toll</h3><p>When a deal settles cleanly, the poster pays the toll. When a deal is disputed and both sides acted honestly, the toll is split between them — half each — so neither side is punished for a disagreement neither caused.</p></div>
+          </div>
+          <div class="service rv">
+            <span class="s-ico"><i data-lucide="lock"></i></span>
+            <div><h3>Identity is verified at the gate</h3><p>Nobody connects anonymously. Every wallet, account and builder is identity-verified at the door before they can post, work or settle through AgentPay — that check is part of the layer, not an extra.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="brought">Brought to you by <a href="/">Lux Automations</a></span>
+      <span>Lux Automations · Edmonton, Alberta</span>
+    </footer>
+
+    <script>
+      (function () {
+        if (window.lucide) lucide.createIcons();
+        // gentle reveal, same as the house
+        var els = document.querySelectorAll(".rv");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+          }, { threshold: 0.12 });
+          els.forEach(function (el) { io.observe(el); });
+        } else {
+          els.forEach(function (el) { el.classList.add("in"); });
+        }
+        // keep the demo frame as tall as the demo needs (same-origin)
+        var frame = document.getElementById("demoFrame");
+        function fit() {
+          try {
+            var doc = frame.contentDocument;
+            if (doc && doc.body) frame.style.height = Math.max(640, doc.body.scrollHeight + 24) + "px";
+          } catch (e) { /* keep the CSS height */ }
+        }
+        frame.addEventListener("load", function () { fit(); setTimeout(fit, 400); setInterval(fit, 1500); });
+      })();
+    </script>
+    <script>
+      (function () {
+        var form = document.getElementById("builderForm");
+        if (!form) return;
+        var status = document.getElementById("builderStatus");
+        var btn = document.getElementById("builderBtn");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("builderName").value.trim();
+          var email = document.getElementById("builderEmail").value.trim();
+          var choice = (form.querySelector('input[name="choice"]:checked') || {}).value || "Builder API";
+          var trap = form.querySelector('input[name="company"]').value;
+          status.className = "join-status"; status.textContent = "";
+          if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            status.classList.add("err");
+            status.textContent = "A name and a valid email are all we need — try again?";
+            return;
+          }
+          btn.disabled = true; btn.textContent = "One moment…";
+          fetch("/api/builders", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ name: name, email: email, choice: choice, company: trap })
+          }).then(function (r) {
+            if (!r.ok) throw new Error("send");
+            form.innerHTML = "";
+            var p = document.createElement("p");
+            p.className = "join-status ok";
+            p.style.fontSize = "16px";
+            p.textContent = "Hand raised, " + name.split(" ")[0] + ". We\u2019ll write when the builder door opens.";
+            form.appendChild(p);
+          }).catch(function () {
+            btn.disabled = false; btn.textContent = "Raise your hand";
+            status.classList.add("err");
+            status.innerHTML = "The door wouldn\u2019t open just now — write to us at <a href=\"mailto:hello@ailux.ca\">hello@ailux.ca</a> and we\u2019ll add you by hand.";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

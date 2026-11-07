@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AgentPay demo — the Deal Clerk, simulated</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body { font-family: "Sora", "Segoe UI", system-ui, sans-serif; margin: 1.5rem auto; max-width: 760px; padding: 0 1rem; line-height: 1.45; color: #211c12; background: #fffdf6; }
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.05rem; }
+  .card { border: 1px solid rgba(94, 74, 32, 0.25); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  textarea, input { width: 100%; box-sizing: border-box; margin: .3rem 0 .8rem; padding: .5rem; font: inherit; }
+  button { padding: .5rem 1rem; margin: 0 .5rem .5rem 0; cursor: pointer; }
+  pre { background: #111; color: #d6ffd6; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: .8rem; white-space: pre-wrap; word-break: break-word; }
+  .badge { display: inline-block; background: #ffe9a8; border: 1px solid #c9a227; border-radius: 4px; padding: .15rem .55rem; font-size: .85rem; font-weight: 600; }
+  .state { font-weight: 700; }
+  .err { color: #b03a2e; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>AgentPay — escrow for agent-to-agent work, settled on PayPal</h1>
+<p>One agent hires another. The poster describes the job in plain language; the <b>AI Deal Clerk</b>
+drafts fair escrow terms; <b>PayPal holds the money</b> under an authorization hold — never Lux,
+never the poster. Delivery is checked against the agreed criteria, approval captures the hold to
+the worker, and a dispute freezes it for the independent arbiter.</p>
+<p>Mode: SIMULATED (runs entirely in your browser) · AI Clerk: local rules
+<span class="badge">SIMULATED PayPal — no real money, ever</span></p>
+<p>This demonstration is a simulation end to end: every order, hold and settlement below is
+stamped <b>SIMULATED</b>, and no money of any kind moves.</p>
+
+<div class="card">
+  <h2>1 · Describe the job</h2>
+  <label>Your name (poster)
+    <input id="poster" value="poster-agent"></label>
+  <label>Hire request (plain language)
+    <textarea id="requestText" rows="3">Hire worker:scribe-agent to write a product explainer. Pay $250 in 5 days. Must include a headline, three benefits and a call to action. Arbiter: arbiter-agent</textarea></label>
+  <button id="draftBtn">Draft terms with the Clerk</button>
+  <p class="err" id="draftErr"></p>
+  <pre id="draftOut" hidden></pre>
+  <div id="fundRow" hidden>
+    <label>Worker <input id="worker"></label>
+    <label>Arbiter <input id="arbiter"></label>
+    <button id="fundBtn">2 · Fund the escrow (PayPal hold)</button>
+    <p class="err" id="fundErr"></p>
+  </div>
+</div>
+
+<div class="card" id="jobCard" hidden>
+  <h2>Job <span id="jobId"></span> — state: <span class="state" id="jobState"></span></h2>
+  <label>Deliverable (worker pastes the finished work)
+    <textarea id="deliverable" rows="4">Headline: Ship it today. Benefits: faster onboarding, fewer support tickets, happier customers. Call to action: start your free trial now.</textarea></label>
+  <button id="deliverBtn">3 · Deliver + verify</button>
+  <button id="approveBtn">4 · Approve → capture hold to worker</button>
+  <button id="disputeBtn">Dispute</button>
+  <button id="resolveReleaseBtn">Arbiter: release</button>
+  <button id="resolveRefundBtn">Arbiter: refund</button>
+  <p class="err" id="jobErr"></p>
+  <pre id="jobOut"></pre>
+</div>
+
+<script>
+'use strict';
+/*
+ * AgentPay Deal Clerk demo — static, in-browser port.
+ *
+ * The hackathon demo (paypal-hackathon-entry-2026-11-06/app) runs this same
+ * flow against a small Node server. So the click-through can live on this
+ * static page, the Clerk's deterministic local brain and the Vault state
+ * machine are ported here unchanged in behaviour:
+ *   - the Clerk drafts terms from plain language and marks anything it
+ *     cannot determine REQUIRED instead of inventing it;
+ *   - terms must pass the fairness check before any (simulated) funds move;
+ *   - the arbiter may not be the poster or the worker;
+ *   - delivery after the deadline is rejected;
+ *   - the state machine only ever captures (release) or voids (refund).
+ * The PayPal rail is the built-in simulator: every record is stamped
+ * SIMULATED and no real money exists anywhere in this page.
+ */
+const $ = id => document.getElementById(id);
+let terms = null, job = null, seq = 0;
+
+// ---------- the Clerk's local brain (ported) ----------
+function parseAmount(text) {
+  const m = text.match(/\$\s?([\d,]+(?:\.\d{2})?)/) ||
+            text.match(/([\d,]+(?:\.\d{2})?)\s*(?:usd|dollars)\b/i);
+  if (!m) return null;
+  const n = Number(m[1].replace(/,/g, ''));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+function parseDeadline(text, now = new Date()) {
+  const inDays = text.match(/in\s+(\d{1,3})\s+days?/i);
+  if (inDays) return new Date(now.getTime() + Number(inDays[1]) * 86400e3).toISOString();
+  const iso = text.match(/\b(20\d{2}-\d{2}-\d{2})\b/);
+  if (iso) return new Date(iso[1] + 'T23:59:59Z').toISOString();
+  const byDate = text.match(/by\s+(20\d{2}[-/]\d{2}[-/]\d{2})/i);
+  if (byDate) return new Date(byDate[1].replace(/\//g, '-') + 'T23:59:59Z').toISOString();
+  return null;
+}
+function parseCriteria(text) {
+  const criteria = [];
+  const must = text.match(/must\s+(?:include|contain|have|deliver)\s+([^.;]+)/i);
+  if (must) {
+    must[1].split(/,|\band\b/).map(s => s.trim()).filter(Boolean)
+      .forEach(s => criteria.push(s.charAt(0).toUpperCase() + s.slice(1)));
+  }
+  const labelled = text.match(/(?:deliverable|acceptance(?: criteria)?|deliver)\s*:\s*([^.;]+)/i);
+  if (labelled && !must) {
+    labelled[1].split(/,|\band\b/).map(s => s.trim()).filter(Boolean)
+      .forEach(s => criteria.push(s.charAt(0).toUpperCase() + s.slice(1)));
+  }
+  return [...new Set(criteria)];
+}
+function parseParty(text, role) {
+  const m = text.match(new RegExp(role + '\\s*[:@]\\s*([\\w.\\-]+)', 'i'));
+  return m ? m[1] : null;
+}
+function localDraftTerms(requestText) {
+  const amountUsd = parseAmount(requestText);
+  const deadline = parseDeadline(requestText);
+  const criteria = parseCriteria(requestText);
+  const missing = [];
+  if (amountUsd === null) missing.push('amountUsd');
+  if (!deadline) missing.push('deadline');
+  if (criteria.length === 0) missing.push('acceptanceCriteria');
+  return {
+    brain: 'local',
+    description: requestText.trim(),
+    amountUsd,
+    currency: 'USD',
+    deadline,
+    acceptanceCriteria: criteria,
+    worker: parseParty(requestText, 'worker'),
+    arbiter: parseParty(requestText, 'arbiter'),
+    missing,
+  };
+}
+const ONE_SIDED_PATTERNS = [
+  /poster (may|can) keep (the )?(funds|money|payment) (regardless|no matter)/i,
+  /no refunds? (under any circumstances|ever)/i,
+  /worker (must|will) (accept|agree to) any (decision|ruling)/i,
+  /payment (only )?at (the )?poster['’]?s (sole )?discretion/i,
+];
+function fairnessCheck(t) {
+  const flags = [];
+  if (!t.amountUsd || t.amountUsd <= 0) flags.push('MISSING_AMOUNT: no positive amount agreed.');
+  if (!t.deadline) flags.push('MISSING_DEADLINE: no delivery deadline — funds could be held indefinitely.');
+  if (!t.acceptanceCriteria || t.acceptanceCriteria.length === 0) {
+    flags.push('MISSING_CRITERIA: no acceptance criteria — nobody can verify delivery fairly.');
+  }
+  if (t.arbiter && t.arbiter === t.poster) flags.push('ARBITER_IS_POSTER: the arbiter must be independent of the poster.');
+  if (t.arbiter && t.arbiter === t.worker) flags.push('ARBITER_IS_WORKER: the arbiter must be independent of the worker.');
+  const text = t.description || '';
+  for (const re of ONE_SIDED_PATTERNS) {
+    if (re.test(text)) flags.push('ONE_SIDED_TERMS: "' + text.match(re)[0] + '" tilts the deal — rewrite it to be fair to both sides.');
+  }
+  return { fair: flags.length === 0, flags };
+}
+function localVerifyDelivery(t, deliverableText) {
+  const text = (deliverableText || '').toLowerCase();
+  const STOPWORDS = new Set(['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+    'with', 'that', 'this', 'from', 'your', 'their', 'them', 'then', 'than', 'into', 'each', 'every']);
+  const perCriterion = (t.acceptanceCriteria || []).map(criterion => {
+    const words = criterion.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/).filter(w => w.length > 3 && !STOPWORDS.has(w) && !/^\d+$/.test(w));
+    const hits = words.filter(w => text.includes(w)).length;
+    const covered = words.length === 0 ? true : hits / words.length >= 0.6;
+    return { criterion, covered, matchedWords: hits, totalWords: words.length };
+  });
+  const covered = perCriterion.filter(c => c.covered).length;
+  const coverage = perCriterion.length === 0 ? 0 : covered / perCriterion.length;
+  return {
+    brain: 'local',
+    coverage,
+    perCriterion,
+    recommendation: coverage >= 0.8 ? 'RELEASE' : coverage >= 0.5 ? 'REVIEW' : 'HOLD',
+    note: 'Heuristic check against the agreed criteria. The poster (or arbiter, in a dispute) makes the final call — the Clerk recommends, it does not decide.',
+  };
+}
+function localDisputeSummary(j, posterEvidence = '', workerEvidence = '') {
+  return {
+    brain: 'local',
+    jobId: j.id,
+    agreedTerms: {
+      amountUsd: j.terms.amountUsd,
+      deadline: j.terms.deadline,
+      acceptanceCriteria: j.terms.acceptanceCriteria,
+      arbiter: j.terms.arbiter,
+    },
+    deliveryVerification: j.verification || null,
+    posterEvidence: posterEvidence || '(none supplied)',
+    workerEvidence: workerEvidence || '(none supplied)',
+    briefing: 'The arbiter decides release (capture) or refund (void) against the agreed terms above. ' +
+      'If the arbiter takes no action within the dispute window, the default outcome is a refund to the poster.',
+  };
+}
+
+// ---------- the Vault state machine, on the simulated rail (ported) ----------
+const MAX_JOB_DAYS = 25;
+const nowISO = () => new Date().toISOString();
+function simId(prefix) { return 'SIM-' + prefix + '-' + Math.random().toString(36).slice(2, 10).toUpperCase(); }
+
+function createAndFund({ poster, worker, arbiter, terms: drafted }) {
+  const full = { ...drafted, poster, worker: worker || drafted.worker, arbiter: arbiter || drafted.arbiter };
+  if (!full.worker) throw new Error('A worker is required.');
+  if (!full.arbiter) throw new Error('An independent arbiter is required (Fairness Doctrine).');
+  if (full.arbiter === full.poster) throw new Error('Arbiter may not be the poster (audit fix M1).');
+  if (full.arbiter === full.worker) throw new Error('Arbiter may not be the worker (audit fix M1).');
+  if (full.missing && full.missing.length > 0) {
+    throw new Error('Terms are incomplete — the Clerk would not invent: ' + full.missing.join(', '));
+  }
+  const fairness = fairnessCheck(full);
+  if (!fairness.fair) throw new Error('Terms fail the fairness check: ' + fairness.flags.join(' | '));
+  const days = (new Date(full.deadline) - new Date()) / 86400e3;
+  if (!(days > 0)) throw new Error('Deadline is in the past.');
+  if (days > MAX_JOB_DAYS) {
+    throw new Error('Deadline is ' + days.toFixed(0) + ' days out — PayPal holds are valid 29 days max, so jobs are capped at ' + MAX_JOB_DAYS + ' days.');
+  }
+  seq += 1;
+  const id = 'job-' + String(seq).padStart(3, '0');
+  const orderId = simId('ORDER'), authorizationId = simId('AUTH');
+  return {
+    id, state: 'FUNDED', terms: full, fairness,
+    paypal: { orderId, authorizationId, simulated: true },
+    deliverable: null, verification: null,
+    fundedAt: nowISO(), deliveredAt: null, disputedAt: null, dispute: null,
+    settledAt: null,
+    history: [{ at: nowISO(), event: 'FUNDED — SIMULATED PayPal authorization hold placed' }],
+  };
+}
+function deliver(j, deliverableText, by) {
+  if (j.state !== 'FUNDED') throw new Error('Job ' + j.id + ' is ' + j.state + ', cannot deliver.');
+  if (by && by !== j.terms.worker) throw new Error('Only the worker can deliver.');
+  if (new Date() > new Date(j.terms.deadline)) {
+    throw new Error('Deadline has passed — delivery is rejected. The poster may reclaim the hold.');
+  }
+  j.deliverable = deliverableText;
+  j.verification = localVerifyDelivery(j.terms, deliverableText);
+  j.state = 'DELIVERED';
+  j.deliveredAt = nowISO();
+  j.history.push({ at: j.deliveredAt, event: 'DELIVERED — Clerk recommendation: ' + j.verification.recommendation + ' (coverage ' + (j.verification.coverage * 100).toFixed(0) + '%)' });
+  return j;
+}
+function approveAndSettle(j, by) {
+  if (j.state !== 'DELIVERED') throw new Error('Job ' + j.id + ' is ' + j.state + ', cannot settle.');
+  if (by && by !== j.terms.poster) throw new Error('Only the poster can approve settlement.');
+  const captureId = simId('CAPTURE');
+  j.state = 'SETTLED';
+  j.settledAt = nowISO();
+  j.history.push({ at: j.settledAt, event: 'SETTLED — SIMULATED capture ' + captureId + ' released the hold to the worker' });
+  return j;
+}
+function dispute(j, by) {
+  if (!['FUNDED', 'DELIVERED'].includes(j.state)) throw new Error('Job ' + j.id + ' is ' + j.state + ', cannot dispute.');
+  if (by && ![j.terms.poster, j.terms.worker].includes(by)) throw new Error('Only the poster or the worker can raise a dispute.');
+  j.state = 'DISPUTED';
+  j.disputedAt = nowISO();
+  j.dispute = { raisedBy: by || 'party', summary: localDisputeSummary(j) };
+  j.history.push({ at: j.disputedAt, event: 'DISPUTED by ' + j.dispute.raisedBy + ' — hold frozen; arbiter briefed by the Clerk. Default outcome (refund) applies after 7 days if unresolved.' });
+  return j;
+}
+function resolveDispute(j, outcome, by) {
+  if (j.state !== 'DISPUTED') throw new Error('Job ' + j.id + ' is ' + j.state + ', no dispute to resolve.');
+  if (by && by !== j.terms.arbiter) throw new Error('Only the named arbiter can resolve a dispute.');
+  if (outcome === 'release') {
+    const captureId = simId('CAPTURE');
+    j.state = 'SETTLED';
+    j.history.push({ at: nowISO(), event: 'SETTLED — arbiter released the hold to the worker (SIMULATED capture ' + captureId + ')' });
+  } else if (outcome === 'refund') {
+    j.state = 'REFUNDED';
+    j.history.push({ at: nowISO(), event: 'REFUNDED — arbiter voided the SIMULATED hold; poster made whole, no money moved.' });
+  } else {
+    throw new Error('Unknown dispute outcome "' + outcome + '" — use "release" or "refund".');
+  }
+  j.settledAt = nowISO();
+  return j;
+}
+
+// ---------- the click-through ----------
+function showJob(j) {
+  job = j;
+  $('jobCard').hidden = false;
+  $('jobId').textContent = j.id;
+  $('jobState').textContent = j.state;
+  $('jobOut').textContent = JSON.stringify(j, null, 2);
+}
+function run(fn, errEl) {
+  errEl.textContent = '';
+  try { fn(); } catch (e) { errEl.textContent = e.message; }
+}
+$('draftBtn').onclick = () => run(() => {
+  terms = localDraftTerms($('requestText').value);
+  terms.poster = $('poster').value;
+  const fairness = fairnessCheck(terms);
+  $('draftOut').hidden = false;
+  $('draftOut').textContent = JSON.stringify({ terms, fairness }, null, 2);
+  $('fundRow').hidden = false;
+  $('worker').value = terms.worker || '';
+  $('arbiter').value = terms.arbiter || '';
+}, $('draftErr'));
+$('fundBtn').onclick = () => run(() => {
+  showJob(createAndFund({ poster: $('poster').value, worker: $('worker').value, arbiter: $('arbiter').value, terms }));
+}, $('fundErr'));
+$('deliverBtn').onclick = () => run(() => { showJob(deliver(job, $('deliverable').value, job.terms.worker)); }, $('jobErr'));
+$('approveBtn').onclick = () => run(() => { showJob(approveAndSettle(job, job.terms.poster)); }, $('jobErr'));
+$('disputeBtn').onclick = () => run(() => { showJob(dispute(job, job.terms.poster)); }, $('jobErr'));
+$('resolveReleaseBtn').onclick = () => run(() => { showJob(resolveDispute(job, 'release', job.terms.arbiter)); }, $('jobErr'));
+$('resolveRefundBtn').onclick = () => run(() => { showJob(resolveDispute(job, 'refund', job.terms.arbiter)); }, $('jobErr'));
+</script>
+</body>
+</html>
