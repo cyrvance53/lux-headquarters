@@ -1,0 +1,1 @@
+{"description":"The Dream Maker — MCP server for the LibreChat staging desk (wraps dreamer.py). Dependencies resolve via the node_modules symlink to the LibreChat install; no separate install.","main":"server.mjs","name":"dream-maker-mcp","private":true,"type":"module","version":"0.1.0"}

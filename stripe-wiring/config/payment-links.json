@@ -1,0 +1,515 @@
+{
+  "_about": "Lux Automations — Stripe Payment Link slots for every own-site surface. STAGING ONLY — nothing here is live. Each slot holds the Payment Link URL created in the Stripe dashboard (Lux Automations account, payments + payouts verified active 2026-11-09). A null url means the link does not exist yet: the page renders the buy button in its honest 'opens December 1' state. NEVER put any API key (secret or publishable) in this file or anywhere in staging — Payment Links need no keys in page code.",
+  "_how": "When a link is created in the dashboard, paste its https://buy.stripe.com/... URL into the matching slot, set status to LIVE-LINK-SET, and re-run ../verify.sh. See ../README.md and ../../stripe-everywhere-tap-list-2026-11-09.md.",
+  "_merch_note": "MERCH STORE (Lux Visuals on ailux.ca) — added 2026-11-09 on Vance's direct order 'put it up for sale asap'. Buying stays ON our site: products display on ailux.ca, checkout runs through these Stripe Payment Link slots (our own Stripe), and the printer (Fourthwall/Printify) fulfils invisibly out back — the buyer is never sent to the Fourthwall storefront. All 12 products, names, prices and variants are copied from the Fourthwall build record (2026-10-29 + 2026-11-07 logs and the Nov 7 merch picture page) — nothing invented. ALL 16 LINKS SET 2026-11-10 (the Stripe link-creation task completed overnight): every slot below is LIVE-LINK-SET and the merch shelf renders live buy buttons for all 12 products. Link count at full wiring: 16 (10 single-price products × 1 + 2 mugs × 3 sizes). See merch-store/README.md for the exact creation steps and the variant law.",
+  "account": {
+    "checkout_rule": "Every checkout must show familiar payment options up front (cards, Google Pay, Apple Pay) — Stripe Payment Links do this by default; do not disable wallet options when creating links.",
+    "descriptor": "LUX AUTOMATIONS",
+    "name": "Lux Automations",
+    "status": "payments Active, payouts Active (verified 2026-11-09)"
+  },
+  "catalog": {
+    "_note": "Catalog-preview (First Light, 21 products): merch tiles correctly route to the Fourthwall shop (Fourthwall runs its own checkout; its Stripe payout side is a PROVIDER tap, not site code). Digital tiles (music, wallpaper pack, scene pack, ringtones) route to the music_store / digital Payment Link slots above once created. Prices in the preview are placeholders — links must not be created at placeholder prices without Vance's price word per item."
+  },
+  "crypto": {
+    "_note": "CRYPTO RAIL — PUBLIC receive-only addresses from ~/workspace/user/wallet-addresses.md (Trust Wallet, collected 2026-10-31, verified character-by-character at collection; re-verified against that file by ../verify.sh on every run). An address can only receive — it cannot spend. No seed phrase or private key exists in any Lux file and none ever will. Addresses live ONLY in this config: never in page code, logs, or reports (reports use chain + last-4 only). STAGING ONLY — nothing renders on any live surface until Vance stamps it.",
+    "chains": [
+      {
+        "address": "0xf87cA92df9c18d3f9caE8FBd2545d929dCb1c8f7",
+        "assets": "ETH, BNB, MATIC, and stablecoins (USDT / USDC) on any listed network",
+        "chain": "Ethereum & EVM networks",
+        "enabled": true,
+        "id": "evm",
+        "networks": "One address receives on Ethereum, BNB Chain, Base, Arbitrum, Polygon, Avalanche, Optimism, zkSync, HashKey, Somnia, Arc"
+      },
+      {
+        "address": "bc1qqcdvpe02fd0u27qfwt3ndk49svpn3hlw9hh05f",
+        "assets": "BTC",
+        "chain": "Bitcoin",
+        "enabled": true,
+        "id": "btc",
+        "networks": "Bitcoin mainnet (native SegWit)"
+      },
+      {
+        "address": "9d4yozLdYf2Ft5ef3QywmriKfhaZWsXmGqfSx1oA14d4",
+        "assets": "SOL, USDC (Solana)",
+        "chain": "Solana",
+        "enabled": true,
+        "id": "sol",
+        "networks": "Solana mainnet"
+      },
+      {
+        "address": "a3571a7b172b34338579c6b9a25ca9863b3a243068d5d874e2c8e711922f6e85",
+        "assets": "NEAR",
+        "chain": "NEAR",
+        "enabled": true,
+        "id": "near",
+        "networks": "NEAR mainnet (implicit account)"
+      },
+      {
+        "address": "GB3TFOYBFMEPKLOJHST74GMMHIJPNJJMR4JCEZ6KD7J2D2GID5TW5K2C",
+        "assets": "XLM",
+        "chain": "Stellar",
+        "disabled_reason": "A Stellar account must hold a ~1 XLM reserve before it can receive anything; this account is not yet funded, so XLM is NOT offered as a payment option anywhere. Enable only after the reserve is funded and a test receipt is verified.",
+        "enabled": false,
+        "id": "xlm",
+        "networks": "Stellar public network"
+      },
+      {
+        "address": null,
+        "assets": "XRP",
+        "chain": "XRP",
+        "destination_tag": null,
+        "disabled_reason": "No XRP address on file yet — XRP is on the 'still to collect' list in ~/workspace/user/wallet-addresses.md (Vance's Oct 31 Trust Wallet setup). XRP is NOT offered as a payment option anywhere until it is enabled. Enable path, all three required, in order: (1) at a rested sitting Vance reads his XRP receive address out of his Trust Wallet and it is recorded in the wallet file after character-by-character read-back verification with him (sitting script in ../CRYPTO.md); (2) the account's base reserve is funded — per xrpl.org the XRP Ledger base reserve is 1 XRP (lowered from 10 XRP on 2024-12-02) and an account cannot receive before it holds that reserve, so until funded XRP has the same cannot-receive problem as XLM; (3) a small test receipt is verified on a public explorer — then flip enabled to true, mirroring the XLM path. Self-custody only: a payment to his own Trust Wallet address needs NO destination tag (tags exist for hosted/exchange accounts that share one address across customers — xrpl.org, Source and Destination Tags). The exchange-address-plus-tag route is rejected for this checkout: a buyer who forgets or mistypes the tag sends funds that cannot be matched to them.",
+        "enabled": false,
+        "id": "xrp",
+        "networks": "XRP Ledger mainnet (self-custody, Trust Wallet)"
+      }
+    ],
+    "confirmation": {
+      "how": "MANUAL / watch-based — unlike Stripe, no webhook auto-confirms a crypto payment. Buyer sends, then gives the desk: chain + amount + transaction hash. The desk checks the receiving address on a public block explorer; when the payment shows with enough confirmations AND matches the deal record (chain + exact amount + buyer identity/sender where visible), the desk marks it CONFIRMED and only then does work or delivery start (GET-PAID-FIRST, same as the card rail).",
+      "minimum_confirmations": {
+        "bitcoin": "1 (3 for large amounts)",
+        "evm": "12",
+        "near": "final",
+        "solana": "finalized"
+      }
+    },
+    "custom_deal_rule": "Same law as the Stripe rail: 50% down starts the work; balance paid AND confirmed before the final files are released. Prices are fiat (CAD/USD); the desk agrees the exact crypto amount with the buyer in writing BEFORE they send (rate at payment time) and records it per stage — the buyer never guesses an amount."
+  },
+  "merch_store": [
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-tee-gold-lockup",
+      "image": "../../../../../goals/fiverr-ai-services-shop/files/logo-concepts/lux-logo-lockup-transparent.png",
+      "image_kind": "design-art (gold lockup) — product mockup is a named gap",
+      "image_status": "NAMED GAP — no standalone product image in the house record. The printed design art is on file (logo-concepts/lux-logo-lockup-transparent.png); the product shot used on the Nov 7 merch picture page was a shared template render, not this product's own mockup. Page renders the design art until a per-product mockup is pulled from the Fourthwall admin.",
+      "label": "Lamp Line Tee — Gold Lockup",
+      "price": 23.0,
+      "price_currency": "USD",
+      "price_display": "US$23.00 — as built on Fourthwall 2026-10-29 (base $9.50)",
+      "product_type": "Classic tee",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/cNiaEWaA392S3UlbSd2B201",
+      "variant_note": "Payment Link collects size + colour at checkout via custom fields (v1) — one link covers all variants; the desk matches the buyer's choices to the print job by hand.",
+      "variants": {
+        "colours": [
+          "Black",
+          "Navy"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ]
+      }
+    },
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-tee-navy-lockup",
+      "image": "assets/lamp-line-tee-navy-lockup.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Lamp Line Tee — Navy Lockup",
+      "price": 23.0,
+      "price_currency": "USD",
+      "price_display": "US$23.00 — as built on Fourthwall 2026-10-29 (base $9.50)",
+      "product_type": "Classic tee",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/bJeeVc8rVbb03Ul1dz2B202",
+      "variant_note": "Payment Link collects size + colour at checkout via custom fields (v1) — one link covers all variants.",
+      "variants": {
+        "colours": [
+          "Sport Grey",
+          "White"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ]
+      }
+    },
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-hoodie-emblem",
+      "image": "assets/lamp-line-hoodie-emblem.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Lamp Line Hoodie — Emblem",
+      "price": 45.0,
+      "price_currency": "USD",
+      "price_display": "US$45.00 — as built on Fourthwall 2026-10-29 (base $27.29)",
+      "product_type": "Hoodie — lamp emblem chest print",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/cNl14m7nR1AqOI95tP2B205",
+      "variant_note": "Payment Link collects size at checkout via a custom field (v1) — one link covers all sizes.",
+      "variants": {
+        "colours": [
+          "Black"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL"
+        ]
+      }
+    },
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-tee-3d",
+      "image": "assets/lamp-line-tee-3d-lamp.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Lamp Line Tee — 3D Lamp",
+      "price": 23.0,
+      "price_currency": "USD",
+      "price_display": "US$23.00 — as built on Fourthwall 2026-10-29",
+      "product_type": "Classic tee — 3D lamp character",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/aFaaEWfUn7YO3Ul09v2B203",
+      "variant_note": "Payment Link collects size at checkout via a custom field (v1). Record flag: Fourthwall showed a low-resolution warning on this design at build time — high-res merch-first redesign is the standing fix before heavy promotion.",
+      "variants": {
+        "colours": [
+          "Black"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ]
+      }
+    },
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-sticker-pack",
+      "image": "assets/lamp-line-sticker-pack.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Lamp Line Sticker Pack — Lamp Badge",
+      "price": 12.99,
+      "price_currency": "USD",
+      "price_display": "US$12.99 — as built on Fourthwall 2026-10-29 (base $2.29)",
+      "product_type": "Sticker pack — lamp badge + 3D lamp",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/eVq9AS8rVencbmN6xT2B20h",
+      "variant_note": "Payment Link collects sticker size at checkout via a custom field (v1). Only 3\" and 4\" kept at build — larger sizes were flagged bad quality on Fourthwall.",
+      "variants": {
+        "sizes": [
+          "3\" × 3\"",
+          "4\" × 4\""
+        ]
+      }
+    },
+    {
+      "collection": "The Lamp Line",
+      "id": "merch-lamp-mug",
+      "image": "assets/lamp-line-mug.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Lamp Line Mug — Lamp Badge",
+      "price": 19.0,
+      "price_currency": "USD",
+      "price_display": "US$19.00 (11 oz) — 15 oz $22.00 / 20 oz $24.00 on Fourthwall",
+      "price_variants": {
+        "11 oz": 19.0,
+        "15 oz": 22.0,
+        "20 oz": 24.0
+      },
+      "product_type": "Mug — lamp badge",
+      "status": "LIVE-LINK-SET",
+      "url": null,
+      "variant_note": "VARIANT PRICE SPLIT: this is the one product whose price changes by variant. v1 = THREE links, one per mug size (11/15/20 oz), buyer picks their size button. Do not flatten to one price — the record prices differ.",
+      "variant_urls": {
+        "11-oz": "https://buy.stripe.com/dRm00igYr3IybmN5tP2B20b",
+        "15-oz": "https://buy.stripe.com/aFa6oG5fJ4MC9eFf4p2B20c",
+        "20-oz": "https://buy.stripe.com/6oU9AS37Ba6WbmNe0l2B20d"
+      },
+      "variants": {
+        "sizes": [
+          "11 oz",
+          "15 oz",
+          "20 oz"
+        ]
+      }
+    },
+    {
+      "collection": "Friendly Ghost",
+      "id": "merch-ghost-tee",
+      "image": "assets/friendly-ghost-tee.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Friendly Ghost Tee",
+      "price": 23.0,
+      "price_currency": "USD",
+      "price_display": "US$23.00 — as built on Fourthwall 2026-10-29",
+      "product_type": "Classic tee — the Friendly Ghost (Vance-approved art, 2026-10-29)",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/14A28q7nR7YO4Yp6xT2B206",
+      "variant_note": "Payment Link collects size at checkout via a custom field (v1). Record flag: Fourthwall showed a low-resolution warning on this design at build time — high-res merch-first redesign is the standing fix before heavy promotion.",
+      "variants": {
+        "colours": [
+          "Black"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ]
+      }
+    },
+    {
+      "collection": "Friendly Ghost",
+      "id": "merch-ghost-hoodie",
+      "image": "assets/friendly-ghost-hoodie.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Friendly Ghost Hoodie",
+      "price": 45.0,
+      "price_currency": "USD",
+      "price_display": "US$45.00 — as built on Fourthwall 2026-10-29",
+      "product_type": "Hoodie — the Friendly Ghost",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/bJe00iaA30wmfD39K52B207",
+      "variant_note": "Payment Link collects size at checkout via a custom field (v1). Record flag: low-resolution warning on this design at build time (same standing fix as the ghost tee).",
+      "variants": {
+        "colours": [
+          "Black"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL"
+        ]
+      }
+    },
+    {
+      "collection": "Friendly Ghost",
+      "id": "merch-ghost-mug",
+      "image": "assets/friendly-ghost-mug.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Friendly Ghost Mug",
+      "price": 19.0,
+      "price_currency": "USD",
+      "price_display": "US$19.00 (11 oz) — 15 oz $22.00 / 20 oz $24.00 on Fourthwall",
+      "price_variants": {
+        "11 oz": 19.0,
+        "15 oz": 22.0,
+        "20 oz": 24.0
+      },
+      "product_type": "Mug — the Friendly Ghost",
+      "status": "LIVE-LINK-SET",
+      "url": null,
+      "variant_note": "VARIANT PRICE SPLIT: three links, one per mug size, like the Lamp Line mug.",
+      "variant_urls": {
+        "11-oz": "https://buy.stripe.com/14A8wOcIb4MCcqRbSd2B20e",
+        "15-oz": "https://buy.stripe.com/14A6oG0Zt2EuduVg8t2B20f",
+        "20-oz": "https://buy.stripe.com/aFa4gy4bFfrgeyZ6xT2B20g"
+      },
+      "variants": {
+        "sizes": [
+          "11 oz",
+          "15 oz",
+          "20 oz"
+        ]
+      }
+    },
+    {
+      "collection": "Art Prints",
+      "id": "merch-living-light-print",
+      "image": "assets/living-light-art-print.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Living Light Art Print",
+      "price": 19.0,
+      "price_currency": "USD",
+      "price_display": "US$19.00 — as built on Fourthwall 2026-10-29 (base $5.50, Enhanced Matte Paper Poster via Printful)",
+      "product_type": "Art print — Living Light artwork",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/4gM14m7nR6UK9eFCwh2B20a",
+      "variant_note": "No variant problem: only the 5\"×7\" size was kept at build (bigger sizes were not enabled). One link.",
+      "variants": {
+        "sizes": [
+          "5\" × 7\""
+        ]
+      }
+    },
+    {
+      "collection": "Art Prints",
+      "id": "merch-hammer-poster-print",
+      "image": "assets/forging-heaven-hammer-poster-print.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "Forging Heaven — Hammer Poster Print",
+      "price": 19.0,
+      "price_currency": "USD",
+      "price_display": "US$19.00 — as built on Fourthwall 2026-11-07 (Enhanced Matte Paper Poster via Printful, $13.50 profit/sale)",
+      "product_type": "Poster print — the Forging Heaven hammer",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/fZu9AS4bFenc2Qh2hD2B209",
+      "variant_note": "No variant problem: 5\"×7\" only, mirrors the Living Light print. One link. Bigger/framed sizes are build-day work per the Nov 7 design plan — not offered until built.",
+      "variants": {
+        "sizes": [
+          "5\" × 7\""
+        ]
+      }
+    },
+    {
+      "collection": "Art Prints",
+      "id": "merch-amtb-cover-print",
+      "image": "assets/amtb-cover-art-print.webp",
+      "image_kind": "store product mockup (Fourthwall preview, via the Nov 7 merch picture page)",
+      "label": "A Million Times Better — Cover Art Print",
+      "price": 19.0,
+      "price_currency": "USD",
+      "price_display": "US$19.00 — as built on Fourthwall 2026-11-07 (Enhanced Matte Paper Poster via Printful, $13.50 profit/sale)",
+      "product_type": "Art print — the single's approved FINAL2 cover art (square art placed 5\"×5\" inside the 5\"×7\" print)",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/6oU7sK5fJgvkaiJ09v2B208",
+      "variant_note": "No variant problem: 5\"×7\" only. One link. The cover art itself is never altered — credit lives in page text only.",
+      "variants": {
+        "sizes": [
+          "5\" × 7\""
+        ]
+      }
+    }
+  ],
+  "music_store": [
+    {
+      "id": "amtb-single-bundle",
+      "label": "A Million Times Better — single bundle (song + music video + cover)",
+      "price": 4.99,
+      "price_currency": "USD",
+      "price_decision": "Muse's recommendation (US$4.99 for the song+video+cover bundle), accepted by Vance 2026-11-09 ~21:49 CST: 'I just want to get it up.'",
+      "price_display": "US$4.99 — VANCE-APPROVED 2026-11-09",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/6oU00icIb0wm0I9f4p2B200"
+    },
+    {
+      "id": "amtb-single-song-cover",
+      "label": "A Million Times Better — Single (Song + Cover)",
+      "offer": "Song + cover art ONLY — no music video. The video is exclusive to the $4.99 bundle (amtb-single-bundle). Never promise the video at this tier.",
+      "payment_link_id": "plink_1Ua70vCLxE84gUkLg9HesHNt",
+      "price": 1.29,
+      "price_currency": "USD",
+      "price_decision": "Vance's settled offer lineup, 2026-11-09: US$1.29 = song + cover, no video; US$4.99 bundle = song + cover + video. Link created in the Stripe dashboard 2026-11-09 ~21:50 MST; checkout page verified live (product name, price, description and required email field all correct).",
+      "price_display": "US$1.29 — VANCE-APPROVED 2026-11-09",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/28EcN4eQj2Eu9eF09v2B204"
+    },
+    {
+      "id": "light-single-bundle",
+      "label": "The Light That Came Home — single bundle (song + music video + cover)",
+      "price_display": "PRICE PLACEHOLDER — ships only after Vance's A/B ear verdict on the release master",
+      "status": "AWAITING_TAP_AND_EAR_VERDICT",
+      "url": null
+    },
+    {
+      "id": "haven-album",
+      "label": "Haven — The Soundtrack (album, when released per the release ladder)",
+      "price_display": "PRICE PLACEHOLDER",
+      "status": "AWAITING_TAP",
+      "url": null
+    }
+  ],
+  "membership": [
+    {
+      "billing": "subscription",
+      "id": "founding-member",
+      "label": "Lux Automations — Founding Membership",
+      "price_display": "BEING SET — founding terms (incl. price) are not stamped yet; Vance's stamp pending. The membership page shows 'being set' and this slot renders the honest Opens December 1 state.",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    }
+  ],
+  "playground_credits": [
+    {
+      "id": "credits-starter",
+      "label": "Playground Credits — starter pack",
+      "price_display": "UNSTAMPED — no credit-pack prices on record; Vance's call",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    },
+    {
+      "id": "credits-maker",
+      "label": "Playground Credits — maker pack",
+      "price_display": "UNSTAMPED — no credit-pack prices on record; Vance's call",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    }
+  ],
+  "quote_and_pay": {
+    "_note": "Fixed-price service deposits/products get one link each. CUSTOM off-catalog deals get a FRESH one-off Payment Link per deal (amount set at creation, link named after the client + project). See quote-and-pay/README.md for the 50%-down flow.",
+    "custom_deal_pattern": {
+      "amount": "set per deal at link creation; never reuse another client's link",
+      "collect": "customer name + email (Stripe collects at checkout; match payer name/email to the deal record before work starts)",
+      "confirmation": "work starts ONLY when the payment shows as succeeded in the Stripe dashboard under the matching payer identity (GET-PAID-FIRST)",
+      "link_name_format": "Lux — <Client Name> — <Project> — <Deposit|Balance|Full>"
+    },
+    "fixed": [
+      {
+        "id": "service-deposit-50",
+        "label": "Custom project — 50% deposit (generic slot; per-deal links preferred)",
+        "status": "AWAITING_TAP",
+        "url": null
+      },
+      {
+        "id": "service-balance",
+        "label": "Custom project — balance before final release (per-deal links preferred)",
+        "status": "AWAITING_TAP",
+        "url": null
+      }
+    ]
+  },
+  "research_subscription": [
+    {
+      "billing": "subscription",
+      "id": "research-reader",
+      "label": "Lux Research Briefings — Reader (monthly)",
+      "price_display": "UNSTAMPED — Muse recommendation US$10/mo, NOT Vance-approved",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    },
+    {
+      "billing": "subscription",
+      "id": "research-pro",
+      "label": "Lux Research Briefings — Pro (monthly)",
+      "price_display": "UNSTAMPED — Muse recommendation US$20/mo, NOT Vance-approved",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    },
+    {
+      "billing": "one_time",
+      "id": "research-oneoff",
+      "label": "Lux Research Briefings — single one-off briefing",
+      "price_display": "UNSTAMPED — Muse recommendation US$15, NOT Vance-approved",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    },
+    {
+      "billing": "one_time",
+      "id": "research-custom",
+      "label": "Lux Research Briefings — private custom-topic briefing",
+      "price_display": "UNSTAMPED — Muse recommendation US$59, NOT Vance-approved",
+      "status": "AWAITING_PRICE_STAMP_THEN_TAP",
+      "url": null
+    }
+  ]
+}

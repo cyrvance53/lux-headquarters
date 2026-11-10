@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Games Room — Lux Automations Playground</title>
+<meta name="description" content="Lux Automations — the Playground's games room: a friendly place to play, with credits that always show their price before anything runs. Opens December 1.">
+<style>
+  :root{
+    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
+    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
+    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
+    --sp-4:16px;
+    --radius-section:18px; --radius-card:14px; --radius-pill:999px;
+    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  a{color:var(--accent)}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
+  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:#eef1f6}
+  nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
+  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
+  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .eyebrow.blue{color:var(--accent)}
+  h1{font-size:clamp(28px,6.4vw,38px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-size:clamp(21px,5vw,26px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:17.5px;font-weight:700;margin:0 0 4px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55}
+  .secondary{color:var(--secondary)}
+  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px 16px;margin-top:14px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold-tint);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  @media(min-width:680px){.grid{grid-template-columns:1fr 1fr}}
+  .tile{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
+  .tile .ic{font-size:26px;display:block;margin-bottom:8px}
+  .badge{display:inline-block;padding:4px 11px;border-radius:var(--radius-pill);font-size:12.5px;font-weight:700;margin-top:10px;background:#eef1f6;color:#3a4152}
+  .packcard{border:1px solid var(--border);border-radius:var(--radius-card);padding:18px;background:var(--card);margin-top:12px}
+  .lux-pay-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 22px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:700;text-decoration:none;border:1.5px solid transparent;background:var(--accent);color:#fff}
+  .lux-pay-soon{background:var(--card);color:var(--secondary);border-color:var(--border-strong)}
+  .lux-pay-note{color:var(--secondary);font-size:13.5px;margin:8px 0 0}
+  footer{max-width:880px;margin:0 auto;padding:8px 24px 32px;color:var(--secondary);font-size:14px;text-align:center}
+</style>
+<script src="../stripe-wiring/config/stripe-pay-local.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux Automations<small>Edmonton, Canada · working worldwide, remotely</small></a>
+  <nav class="mainnav">
+    <a href="../index.html">Home</a>
+    <a href="video.html">Cinema</a>
+    <a href="automation.html">Workshop</a>
+    <a class="here" href="games.html">Playground</a>
+    <a href="programs.html">Programs</a>
+    <a href="referrals.html">Bring a Friend</a>
+    <a href="affiliate.html">Tools We Use</a>
+    <a href="membership.html">Membership</a>
+  </nav>
+</header>
+<main>
+  <section>
+    <p class="eyebrow">The Playground · Games Room</p>
+    <h1>Come in and play</h1>
+    <p class="lede">The Playground is the house's playroom — a friendly corner of ailux.ca where people can just have fun, not only shop. The games room is being set up now, and its doors open with the house.</p>
+    <span class="openline">The games room opens Tuesday, December 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> I'm Lux's AI host. This room is mine to keep friendly — pull up a chair, look around, and when the games arrive I'll be here to show you how each one plays. Nothing in this room ever starts charging without showing you its price first.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow blue">On the way</p>
+    <h2>What's coming to the games room</h2>
+    <div class="grid">
+      <div class="tile">
+        <span class="ic" aria-hidden="true">🎲</span>
+        <h3>House games &amp; toys</h3>
+        <p class="secondary" style="margin:0">Simple, cheerful games and playful tools in the Playground spirit — made to be picked up in seconds and enjoyed by anyone who wanders in.</p>
+        <span class="badge">In the workshop — being built</span>
+      </div>
+      <div class="tile">
+        <span class="ic" aria-hidden="true">🖼️</span>
+        <h3>The picture toy</h3>
+        <p class="secondary" style="margin:0">A make-a-picture toy for the Playground bench — describe it, watch it appear. Part of the same bench the house's tools play on.</p>
+        <span class="badge">In the workshop — being built</span>
+      </div>
+      <div class="tile">
+        <span class="ic" aria-hidden="true">💬</span>
+        <h3>The chat corner</h3>
+        <p class="secondary" style="margin:0">The Playground sits behind Aimée's greeting, and the house keeps a corner where people may simply chat — about anything, not only buying. The house is a home first, not a funnel.</p>
+        <span class="badge">Opens with the house — December 1</span>
+      </div>
+      <div class="tile">
+        <span class="ic" aria-hidden="true">✨</span>
+        <h3>More rooms to come</h3>
+        <p class="secondary" style="margin:0">New toys join the bench as they're finished and proven. If it isn't built yet, we say so — this page never dresses a coming attraction as a finished game.</p>
+        <span class="badge">Watch this room</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Playground credits</p>
+    <h2>Credits — the room's pocket money</h2>
+    <p>The Playground's tools run on credits. Every tool shows its credit price <em>before</em> it runs — no surprises, ever. Buy a pack here once the room opens; until then, these doors show their honest not-yet-open state.</p>
+    <p class="secondary"><strong>Honest note:</strong> credit-pack prices are not stamped yet — they're the house's call to make, and this page will show the real prices the moment they're set. We don't print numbers we haven't decided.</p>
+
+    <div class="packcard">
+      <h3>Starter pack</h3>
+      <p class="secondary">A first handful of credits for trying the bench.</p>
+      <div data-lux-pay="playground_credits.credits-starter"></div>
+    </div>
+
+    <div class="packcard">
+      <h3>Maker pack</h3>
+      <p class="secondary">A bigger handful, for people who settle in and make things.</p>
+      <div data-lux-pay="playground_credits.credits-maker"></div>
+    </div>
+  </section>
+</main>
+<footer>Lux Automations · Edmonton, Alberta — come for the work, stay for the play.<br>© 2026 Lux Automations · Staging preview — not yet live.</footer>
+</body>
+</html>

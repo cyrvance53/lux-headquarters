@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools We Use &amp; Recommend — Lux Automations</title>
+<meta name="description" content="Lux Automations — the tools we actually use and recommend, with every payout term printed plainly before any link goes live. The shelf opens December 1.">
+<style>
+  :root{
+    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
+    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
+    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
+    --warn:#b3261e; --warn-tint:#fdf0ef;
+    --sp-4:16px; --sp-5:24px;
+    --radius-section:18px; --radius-card:14px; --radius-pill:999px;
+    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  a{color:var(--accent)}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
+  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:#eef1f6}
+  nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
+  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
+  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .eyebrow.blue{color:var(--accent)}
+  .eyebrow.warn{color:var(--warn)}
+  h1{font-size:clamp(28px,6.4vw,38px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-size:clamp(21px,5vw,26px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:17.5px;font-weight:700;margin:0 0 4px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55}
+  .secondary{color:var(--secondary)}
+  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px 16px;margin-top:14px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold-tint);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  @media(min-width:680px){.grid{grid-template-columns:1fr 1fr}}
+  .toolcard{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
+  .toolcard .rate{font-size:19px;font-weight:700}
+  .toolcard .cat{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .toolcard .terms{font-size:14.5px;color:var(--secondary);line-height:1.5;margin:6px 0 0}
+  .badge{display:inline-block;padding:4px 11px;border-radius:var(--radius-pill);font-size:12.5px;font-weight:700;margin-top:10px;background:#eef1f6;color:#3a4152}
+  .badge.door{background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10}
+  .caution{background:var(--warn-tint);border:1px solid #f0cfcc;border-radius:var(--radius-card);padding:16px 18px;margin-top:12px}
+  .caution h3{color:var(--warn)}
+  .rulebox{border:1.5px solid var(--gold-soft);background:var(--gold-tint);border-radius:var(--radius-card);padding:16px 18px}
+  .rulebox p{margin:0}
+  footer{max-width:880px;margin:0 auto;padding:8px 24px 32px;color:var(--secondary);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux Automations<small>Edmonton, Canada · working worldwide, remotely</small></a>
+  <nav class="mainnav">
+    <a href="../index.html">Home</a>
+    <a href="video.html">Cinema</a>
+    <a href="automation.html">Workshop</a>
+    <a href="games.html">Playground</a>
+    <a href="programs.html">Programs</a>
+    <a href="referrals.html">Bring a Friend</a>
+    <a class="here" href="affiliate.html">Tools We Use</a>
+    <a href="membership.html">Membership</a>
+  </nav>
+</header>
+<main>
+  <section>
+    <p class="eyebrow">The Toolbox Shelf</p>
+    <h1>Tools we use &amp; recommend</h1>
+    <p class="lede">These are the tools this house actually builds and runs on — the same shelf we'd hand a customer. If you sign up through our link when the shelf opens, the tool pays us a commission. It never costs you extra.</p>
+    <span class="openline">The shelf opens Tuesday, December 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> I'm Lux's AI host, and this shelf is my pride — every tool on it passed our own vetting before it earned a place. If a term is missing below, I say so out loud rather than gloss over it. That's the house rule.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow blue">How we vet — the house rule</p>
+    <h2>Our margin is ours the moment a sale clears</h2>
+    <div class="rulebox">
+      <p>Every program on this shelf is checked the same way before it is listed: <strong>How long do they hold our money? What is the minimum before they pay? Can they claw a payment back — and for how long?</strong> Long holds, high minimums and wide clawback rights are marks against a program, and a deal that holds our earnings at a platform's sole discretion never makes the shelf. The terms below were checked on each program's own pages by our scouts in November 2026 — and every link on this page goes live only when its program signup is finished. Until then, each slot honestly says so.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Business building &amp; email</p>
+    <h2>For businesses like yours — and ours</h2>
+    <div class="grid">
+      <div class="toolcard">
+        <p class="cat">All-in-one business platform</p>
+        <h3>Systeme.io</h3>
+        <p class="rate">60% — for the life of the customer</p>
+        <p class="terms">The standout rate on our shelf: a lifetime commission on every referred customer. Hold, minimum and clawback terms were not restated in our vetting note — they are confirmed in writing before this link goes live.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Email marketing</p>
+        <h3>GetResponse</h3>
+        <p class="rate">40–60% recurring</p>
+        <p class="terms">Rides PartnerStack (below). The exact tier that applies to our account is confirmed inside PartnerStack before the link goes live — the range is what the program publishes.</p>
+        <span class="badge">Joining the shelf — via PartnerStack</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Email marketing</p>
+        <h3>MailerLite</h3>
+        <p class="rate">30% — for the life of the customer</p>
+        <p class="terms">Lifetime commission, rides PartnerStack. Payout minimum and hold are read from the program's PartnerStack page at signup and printed here before the link goes live.</p>
+        <span class="badge">Joining the shelf — via PartnerStack</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Cold-email outreach</p>
+        <h3>Snov.io</h3>
+        <p class="rate">40% — for the life of the customer</p>
+        <p class="terms">Lifetime commission on referred customers. Hold/minimum terms to be printed plainly here once confirmed at signup — not assumed.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Build, video &amp; voice</p>
+    <h2>For makers and creators</h2>
+    <div class="grid">
+      <div class="toolcard">
+        <p class="cat">Website builder</p>
+        <h3>Framer</h3>
+        <p class="rate">50% for 12 months</p>
+        <p class="terms">Pays via Stripe. A clean rail and a stated term — the shape of program we like.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">AI video avatars</p>
+        <h3>HeyGen</h3>
+        <p class="rate">35% recurring — first 3 months</p>
+        <p class="terms">Pays via PayPal. Short earning window, stated plainly: three months per referral, not lifetime.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">AI short-form video</p>
+        <h3>StoryShort AI</h3>
+        <p class="rate">30% lifetime recurring</p>
+        <p class="terms">60-day attribution window; $100 minimum payout. <strong>Flag:</strong> the payout rail is not stated on their page — flagged in our vetting notes until confirmed.</p>
+        <span class="badge">Joining the shelf — one flag to clear</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">AI voice</p>
+        <h3>Fish Audio</h3>
+        <p class="rate">20% for 12 months</p>
+        <p class="terms">Pays NET-15 via PayPal or Wise. <strong>Flag:</strong> a W-8BEN tax form is required at payout — a paperwork step on our side, noted at vetting.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">AI short-form video</p>
+        <h3>AutoShort</h3>
+        <p class="rate">30% recurring — 40% for customers</p>
+        <p class="terms">30-day cookie, tracked via Whop. <strong>Flags:</strong> minimum payout and payout rail are not stated on their page — not listed as live until both are in writing.</p>
+        <span class="badge">Joining the shelf — flags to clear</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Trades, fundraising &amp; storefronts</p>
+    <h2>For the people we build for</h2>
+    <div class="grid">
+      <div class="toolcard">
+        <p class="cat">Quoting for trades businesses</p>
+        <h3>QuoteIQ</h3>
+        <p class="rate">40% — for the life of the customer</p>
+        <p class="terms">Tracked via Rewardful; pays monthly by PayPal, ACH or bank. A fit for the contractors and service businesses our Workshop builds for.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Inventory software</p>
+        <h3>Unleashed Software</h3>
+        <p class="rate">$500 per referral</p>
+        <p class="terms">Via PartnerStack, and Canada is explicitly eligible — printed here because eligibility is exactly the kind of term that matters.</p>
+        <span class="badge">Joining the shelf — via PartnerStack</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Dropshipping suppliers</p>
+        <h3>Spocket</h3>
+        <p class="rate">20–30%+ recurring</p>
+        <p class="terms">Tiered rate; the tier that applies to us is confirmed at signup and printed here before any link goes live.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Fundraising pages</p>
+        <h3>Donorbox</h3>
+        <p class="rate">15% for 3 years</p>
+        <p class="terms">$50 minimum payout, via PayPal. A long, slow earning shape — stated plainly, as all of them are.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+      <div class="toolcard">
+        <p class="cat">Storefront upsells</p>
+        <h3>RevenueHunt</h3>
+        <p class="rate">20% — for the life of the customer</p>
+        <p class="terms">Pays via PayPal. Lifetime rate on referred stores.</p>
+        <span class="badge">Joining the shelf — signup in the queue</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow blue">One door, already open</p>
+    <h2>PartnerStack — our affiliate doorway</h2>
+    <p>Many of the programs above ride on <strong>PartnerStack</strong>, the partner platform that tracks referrals and pays commissions for hundreds of software companies. Our house account there is <strong>live</strong> — the door itself is open. What remains is the per-program step: each program still gets its own signup inside PartnerStack before its individual link exists. Botpress, Instantly and lemlist ride that same door alongside GetResponse, MailerLite and Landbot, and join this shelf as their signups complete.</p>
+    <p class="secondary">That is the honest state of the shelf today: one open door, a vetted list walking through it, and no link on this page pretending to be live before it is.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow warn">Named plainly — not recommendations</p>
+    <h2>Programs we looked at, and passed on</h2>
+    <div class="caution">
+      <h3>Workstatus — 3-month hold</h3>
+      <p style="margin:0">Our vetting flagged a three-month hold on earnings. Money we earn sits on someone else's timetable for a season — exactly what our house rule is against. Listed here as a caution example only. It is <strong>not</strong> a recommendation.</p>
+    </div>
+    <div class="caution">
+      <h3>Draw UAE — 90-day clawback</h3>
+      <p style="margin:0">A 90-day clawback window means a "paid" commission can be taken back three months later. That shape fails our vetting. Caution example only — <strong>not</strong> a recommendation.</p>
+    </div>
+    <small style="margin-top:12px">We publish the passes as well as the picks. If a program's terms change for the worse, it comes off this shelf — that's the deal.</small>
+  </section>
+</main>
+<footer>Lux Automations · Edmonton, Alberta — joining our adventure, one honest shelf at a time.<br>© 2026 Lux Automations · Staging preview — not yet live.</footer>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Automations — Doors Open December 1</title>
+<meta name="description" content="Lux Automations — original films, music and friendly AI automation, under one roof. Aimée, our AI host, will be at the desk when the house opens Tuesday, December 1.">
+<style>
+  :root{
+    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
+    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
+    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
+    --radius-section:18px; --radius-card:14px; --radius-control:12px; --radius-pill:999px;
+    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  a{color:var(--accent)}
+  img{display:block;max-width:100%}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
+  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:#eef1f6}
+  nav.mainnav a.goldlink{color:var(--gold)}
+  nav.mainnav a.goldlink:hover{background:var(--gold-tint)}
+
+  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
+  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .eyebrow.blue{color:var(--accent)}
+  h1{font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55}
+  .secondary{color:var(--secondary)}
+  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 22px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font:inherit;font-weight:700}
+  .btn-blue{background:var(--accent);color:#fff}
+  .btn-blue:hover{background:var(--accent-hover)}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:#a67c18}
+  .btn-ghost{background:var(--card);color:var(--ink);border-color:var(--border-strong)}
+  .btn-ghost:hover{background:#eef1f6}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+  /* ---------- Aimée, the front door ---------- */
+  .hostcard{text-align:center;padding:32px 24px}
+  .hostcard img.portrait{width:min(300px,72vw);aspect-ratio:1;object-fit:cover;border-radius:50%;margin:6px auto 18px;border:4px solid var(--gold-soft);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .hostcard .nameline{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+  .hostcard h1{margin-bottom:10px}
+  .hostcard p.lede{max-width:560px;margin-left:auto;margin-right:auto}
+  .openline{display:inline-block;margin-top:14px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
+  .doors2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:22px;text-align:left}
+  .doorcard{display:flex;gap:14px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px;text-decoration:none;color:var(--ink)}
+  .doorcard:hover{border-color:var(--border-strong)}
+  .doorcard .dic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:21px}
+  .doorcard b{font-size:17px;display:block;margin-bottom:2px}
+  .doorcard span{color:var(--secondary);font-size:15px;line-height:1.45;display:block}
+  .doorcard .go{margin-left:auto;align-self:center;color:var(--accent);font-weight:700;font-size:20px}
+
+  /* ---------- shop doors ---------- */
+  .shopcard{display:grid;grid-template-columns:1fr;gap:18px}
+  .shopcard img.shot{width:100%;border-radius:var(--radius-card);border:1px solid var(--border);object-fit:cover}
+  .price{font-size:20px;font-weight:700;color:var(--ink)}
+  .price .per{font-size:14.5px;color:var(--secondary);font-weight:500}
+
+  /* ---------- cinema ---------- */
+  .filmgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .moment{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);overflow:hidden}
+  .moment img{width:100%;aspect-ratio:16/10;object-fit:cover}
+  .moment .mbody{padding:14px 16px}
+  .moment .mnum{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+  .moment p{margin:0;color:var(--secondary);font-size:15.5px}
+  .soundline{margin-top:14px;padding:12px 16px;background:var(--gold-tint);border:1px solid var(--gold-soft);border-radius:var(--radius-card);font-size:15.5px}
+
+  /* ---------- workshop ---------- */
+  .craftgrid{display:grid;grid-template-columns:1fr;gap:12px}
+  .craft{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
+  .craft p{margin:0;color:var(--secondary);font-size:15.5px}
+
+  /* ---------- guest book ---------- */
+  form.gb{display:grid;gap:12px;margin-top:6px}
+  form.gb label{font-size:14.5px;font-weight:600;display:grid;gap:6px}
+  form.gb input{font:inherit;font-size:16px;min-height:50px;border-radius:var(--radius-control);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);padding:12px 16px;width:100%}
+  form.gb input:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .choices{display:flex;gap:8px;flex-wrap:wrap}
+  .choices label{display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:15.5px;background:var(--ground);border:1px solid var(--border);padding:9px 14px;border-radius:var(--radius-pill);cursor:pointer}
+  .choices input{min-height:0;width:auto}
+
+  footer{max-width:880px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--secondary);font-size:14.5px;line-height:1.6}
+
+  @media (min-width:700px){
+    .doors2{grid-template-columns:1fr 1fr}
+    .filmgrid{grid-template-columns:repeat(3,1fr)}
+    .craftgrid{grid-template-columns:1fr 1fr}
+    .shopcard{grid-template-columns:220px 1fr;align-items:center}
+  }
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14.5px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#desk">Lux Automations<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../site-pages/video.html">Cinema</a>
+    <a href="../site-pages/automation.html">Workshop</a>
+    <a href="../site-pages/games.html">Playground</a>
+    <a href="../site-pages/programs.html">Programs</a>
+    <a href="../site-pages/referrals.html">Bring a Friend</a>
+    <a href="../site-pages/affiliate.html">Tools We Use</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a class="goldlink" href="../stripe-wiring/music-store/jukebox.html">Music Store</a>
+    <a class="goldlink" href="../stripe-wiring/merch-store/index.html">Merch</a>
+    <a href="#guestbook">Guest Book</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ AIMÉE — THE FRONT DOOR ============ -->
+  <section class="hostcard" id="desk">
+    <img class="portrait" src="assets/aimee.webp" alt="Aimée, your host at the front desk of Lux Automations" width="300" height="300">
+    <p class="nameline">Aimée · Your host</p>
+    <h1>Welcome in. What are you looking for?</h1>
+    <p class="lede">I’m Aimée, the AI host at the front desk of Lux Automations. When the house opens, I’ll be here to greet you, answer your questions, and point you to the right room — the films, the music, or the workshop.</p>
+    <span class="openline">The house opens Tuesday, December 1</span>
+    <p style="margin-top:14px">Two doors, one house — I’ll point you to the right one.</p>
+    <div class="doors2">
+      <a class="doorcard" href="../site-pages/video.html">
+        <span class="dic" aria-hidden="true">🎬</span>
+        <span><b>The Cinema</b><span>Watch the story unfold</span></span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+      <a class="doorcard" href="../site-pages/automation.html">
+        <span class="dic" aria-hidden="true">🛠</span>
+        <span><b>The Workshop</b><span>Put automation to work</span></span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ MUSIC STORE DOOR ============ -->
+  <section id="music">
+    <p class="eyebrow">The Music Store</p>
+    <div class="shopcard">
+      <img class="shot" src="assets/cover-amtb-thumb.jpg" alt="Cover art for A Million Times Better, the first single">
+      <div>
+        <h2>“A Million Times Better” — the first single</h2>
+        <p>From the soundtrack of <em>A Million Times Better — the series</em>. The song, its official music video, and the cover art, bundled — First Access, on the jukebox pedestal in the Music Store.</p>
+        <p class="price">US$4.99 <span class="per">· song + music video + cover</span></p>
+        <div class="btnrow">
+          <a class="btn btn-gold" href="../stripe-wiring/music-store/jukebox.html">Hear it &amp; buy it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE CINEMA ============ -->
+  <section id="cinema">
+    <p class="eyebrow blue">The Cinema</p>
+    <h2>Christmas at the Harbour of Lights</h2>
+    <p>Our first series is coming this Christmas — a harbour town where every light comes home. And behind it, the story that started it all: <em>A Million Times Better</em>.</p>
+
+    <h3 style="margin-top:18px">Christmas at the Harbour of Lights</h3>
+    <p class="secondary">Our first series arrives this December. A small harbour town folded into a dark cove, where the windows light one by one — candle-gold, never electric — and every tradition that travels by light finds its way home. One harbour, every light welcome. The lights come on December 13.</p>
+    <p class="soundline">🎵 “Harbour of Lights” — the Christmas theme, on the Haven soundtrack · ailux.ca</p>
+
+    <h3 style="margin-top:20px">A Million Times Better — the series</h3>
+    <p class="secondary">He died in intensive care, and he came back — with a memory of light that has never left him. This is his story, told as cinema: the night itself, the place he went, and the quieter, stronger life on the other side of it.</p>
+    <div class="filmgrid">
+      <div class="moment">
+        <img src="assets/teaser-icu.webp" alt="Moment One — Intensive Care" loading="lazy">
+        <div class="mbody">
+          <p class="mnum">Moment One</p>
+          <h3>Intensive Care</h3>
+          <p>The night everything stopped — and started again.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <img src="assets/teaser-light.webp" alt="Moment Two — The Light" loading="lazy">
+        <div class="mbody">
+          <p class="mnum">Moment Two</p>
+          <h3>The Light</h3>
+          <p>What he saw on the other side, and why it sent him back.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <img src="assets/teaser-ashes.webp" alt="Moment Three — The Cove" loading="lazy">
+        <div class="mbody">
+          <p class="mnum">Moment Three</p>
+          <h3>The Cove</h3>
+          <p>A promise, kept on the wind over the water.</p>
+        </div>
+      </div>
+    </div>
+    <p class="soundline">🎵 The sound of the series: “The Light That Came Home” · “Heaven on Earth” — on the Haven soundtrack · ailux.ca</p>
+    <div class="btnrow">
+      <a class="btn btn-blue" href="#guestbook">Join our adventure</a>
+    </div>
+  </section>
+
+  <!-- ============ THE WORKSHOP ============ -->
+  <section id="workshop">
+    <img src="assets/automation-scene.webp" alt="Inside the workshop" style="border-radius:var(--radius-card);border:1px solid var(--border);width:100%;margin-bottom:18px" loading="lazy">
+    <p class="eyebrow blue">The Workshop</p>
+    <h2>Lux Automations</h2>
+    <p>AI, automation and animation for the modern age — systems that carry the work, built for humans.</p>
+    <p class="secondary">The next tier isn’t humans replaced — it’s humans carried. Lux builds the quiet machinery underneath a business: the films, the music, the follow-ups, the front desk — so the people can do the part only people can do.</p>
+    <div class="craftgrid">
+      <div class="craft">
+        <h3>Workflow automation</h3>
+        <p>The repetitive work — intake, follow-up, filing, posting — handled quietly in the background.</p>
+      </div>
+      <div class="craft">
+        <h3>AI film &amp; animation</h3>
+        <p>Series, teasers and shorts produced end-to-end — the same craft you see on the cinema side of the house.</p>
+      </div>
+      <div class="craft">
+        <h3>Music &amp; media</h3>
+        <p>Songs and albums with a video for every track, released under one roof and easy to find.</p>
+      </div>
+      <div class="craft">
+        <h3>Always-on helpers</h3>
+        <p>Front-desk hosts like Aimée — greeting every visitor, day or night, and pointing them the right way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MERCH SHELF DOOR ============ -->
+  <section id="merch">
+    <p class="eyebrow">The Merch Shelf</p>
+    <h2>Lux Visuals — Official Merch</h2>
+    <p>Tees, hoodies, mugs, prints and stickers from the house — the Lamp Line, the Friendly Ghost, and art from the films. Everything is bought right here on ailux.ca; the printer works quietly out back.</p>
+    <div class="btnrow">
+      <a class="btn btn-gold" href="../stripe-wiring/merch-store/index.html">Visit the merch shelf</a>
+    </div>
+  </section>
+
+  <!-- ============ A FIRST TASTE OF THE FUTURE ============ -->
+  <section>
+    <p class="eyebrow blue">Now Playing</p>
+    <h2>A First Taste of the Future</h2>
+    <img src="assets/poster-cliff.webp" alt="A cliff above a cove at dawn — the poster for The Morning Call" style="border-radius:var(--radius-card);border:1px solid var(--border);width:100%;margin-bottom:14px" loading="lazy">
+    <p>Now playing: <strong>“The Morning Call”</strong> — a morning in our world, the first feeder from the house of Lux. We’re building in public; more is coming.</p>
+  </section>
+
+  <!-- ============ THE GUEST BOOK ============ -->
+  <section id="guestbook">
+    <p class="eyebrow">The Guest Book</p>
+    <h2>Join our adventure.</h2>
+    <p>Leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
+    <form class="gb" id="joinForm" action="#" method="post">
+      <label>Your name
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <div>
+        <span style="font-size:14.5px;font-weight:600;display:block;margin-bottom:8px">I’m here for</span>
+        <div class="choices">
+          <label><input type="radio" name="choice" value="films"> Films</label>
+          <label><input type="radio" name="choice" value="automation"> Automation</label>
+          <label><input type="radio" name="choice" value="both"> Both</label>
+        </div>
+      </div>
+      <label>Company <span class="secondary" style="font-weight:400">(optional)</span>
+        <input type="text" name="company" autocomplete="organization">
+      </label>
+      <div class="btnrow" style="margin-top:4px">
+        <button class="btn btn-blue" type="submit">Join our adventure</button>
+      </div>
+      <small>Your name and email stay in the house — never sold, never shared.</small>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  Lux Automations · A Million Times Better<br>
+  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
+  © 2026 Lux Automations
+</footer>
+
+</body>
+</html>

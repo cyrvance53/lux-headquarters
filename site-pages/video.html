@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cinema — Films &amp; Series · Lux Automations</title>
+<meta name="description" content="Lux Automations' Cinema: Forging Heaven, Harbour of Lights, The Storybook and our daily dreams — original films and series made with AI and a human heart.">
+<style>
+  :root{
+    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
+    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
+    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
+    --sp-4:16px;
+    --radius-section:18px; --radius-card:14px; --radius-pill:999px;
+    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  a{color:var(--accent)}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
+  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:#eef1f6}
+  nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
+  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
+  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .eyebrow.blue{color:var(--accent)}
+  h1{font-size:clamp(28px,6.4vw,38px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-size:clamp(21px,5vw,26px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:17.5px;font-weight:700;margin:0 0 4px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55}
+  .secondary{color:var(--secondary)}
+  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px 16px;margin-top:14px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold-tint);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5}
+  .screenwrap{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:6px}
+  .screenwrap iframe,.screenwrap video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+  .screenmeta{margin-top:12px}
+  .screenmeta .songline{font-size:15px;color:var(--secondary);margin:0}
+  .fsbtn{margin-top:10px;font:inherit;font-size:15px;font-weight:700;min-height:44px;padding:10px 18px;border-radius:var(--radius-pill);border:1.5px solid var(--gold);background:var(--gold-tint);color:#7a5c10;cursor:pointer}
+  .fsbtn:hover{background:var(--gold-soft)}
+  .playlist{display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
+  @media(min-width:680px){.playlist{grid-template-columns:1fr 1fr}}
+  .plitem{text-align:left;font:inherit;background:var(--ground);border:1.5px solid var(--border);border-radius:var(--radius-card);padding:13px 16px;cursor:pointer;color:var(--ink)}
+  .plitem:hover{border-color:var(--border-strong)}
+  .plitem.sel{border-color:var(--gold);background:var(--gold-tint)}
+  .plitem .t{display:block;font-weight:700;font-size:16px;line-height:1.3}
+  .plitem .s{display:block;font-size:13.5px;color:var(--secondary);margin-top:3px;line-height:1.45}
+  .plitem .kind{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:#eef1f6;color:#3a4152}
+  .plitem .kind.plays{background:#e6f6e9;color:#166534;border:1px solid #bbe5c3}
+  .alsoon{font-size:14.5px;color:var(--secondary);margin:10px 0 0}
+  .show{border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px;margin-top:12px;background:var(--ground)}
+  .show p{margin:0}
+  .show p + p{margin-top:6px}
+  .badge{display:inline-block;padding:4px 11px;border-radius:var(--radius-pill);font-size:12.5px;font-weight:700;margin-top:10px;background:#eef1f6;color:#3a4152}
+  .badge.live{background:#e6f6e9;color:#166534;border:1px solid #bbe5c3}
+  .badge.house{background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10}
+  .watchgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  @media(min-width:680px){.watchgrid{grid-template-columns:1fr 1fr}}
+  .watch{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
+  .watch .song{font-size:14.5px;color:var(--secondary)}
+  .watch ul{margin:8px 0 0;padding-left:18px}
+  .watch li{margin:3px 0;font-size:15px}
+  .closeline{text-align:center;padding:28px 24px}
+  .closeline .big{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+  footer{max-width:880px;margin:0 auto;padding:8px 24px 32px;color:var(--secondary);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux Automations<small>Edmonton, Canada · working worldwide, remotely</small></a>
+  <nav class="mainnav">
+    <a href="../index.html">Home</a>
+    <a class="here" href="video.html">Cinema</a>
+    <a href="automation.html">Workshop</a>
+    <a href="games.html">Playground</a>
+    <a href="programs.html">Programs</a>
+    <a href="referrals.html">Bring a Friend</a>
+    <a href="affiliate.html">Tools We Use</a>
+    <a href="membership.html">Membership</a>
+  </nav>
+</header>
+<main>
+  <section>
+    <p class="eyebrow">The Cinema</p>
+    <h1>Original films, made with AI and a human heart</h1>
+    <p class="lede">This is the house's picture palace: our series, our storybook, and the short dreams we send out into the world every day. Take a seat — the lights are warm in here.</p>
+    <span class="openline">The Cinema's full season opens Tuesday, December 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> I'm Lux's AI host, and the Cinema is my favourite room. Every piece below names the song that plays under it and where to find that song to keep — that's the house rule for everything we screen.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The Big Screen</p>
+    <h2>Press play — the big screen is lit</h2>
+    <p>One big screen, our posted pieces on the reel below it. Tap a title and it rolls up here — and the <strong>full screen</strong> button (or the player's own corner button) makes it a true full-screen cinema, on your phone or your biggest monitor. Nothing starts on its own; the screen waits for you.</p>
+    <div class="screenwrap" id="screenwrap">
+      <iframe id="bigscreen" src="https://www.youtube-nocookie.com/embed/oEDFYUJKPEo?rel=0" title="Lux Automations — the Big Screen" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="screenmeta">
+      <h3 id="screentitle">Harbour of Lights — The Town Before the Lights</h3>
+      <p class="songline" id="screensong">Song: <em>A Million Times Better</em> — Take 2 · Find the song at the <a href="../stripe-wiring/music-store/jukebox.html">music store</a></p>
+      <button type="button" class="fsbtn" id="fsbtn">⛶ Watch full screen</button>
+    </div>
+    <div class="playlist" id="playlist" role="list">
+      <button type="button" class="plitem sel" data-yt="oEDFYUJKPEo" data-title="Harbour of Lights — The Town Before the Lights" data-song="amtb">
+        <span class="t">Harbour of Lights — The Town Before the Lights</span>
+        <span class="s">Song: A Million Times Better — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="y_HIc96yLLk" data-title="The Harbour Answers Back — Christmas Test 5, Juno Park's pier walk" data-song="light">
+        <span class="t">The Harbour Answers Back — the pier walk</span>
+        <span class="s">Song: The Light That Came Home</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="SttF-Gz-V-s" data-title="The Storybook, Page 1 — The High Arctic, Nunavut" data-song="heaven">
+        <span class="t">The Storybook, Page 1 — The High Arctic, Nunavut</span>
+        <span class="s">Song: Heaven on Earth</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="DhBVA7OxBLU" data-title="Forging Heaven — The First Flight Over the Changed World" data-song="light">
+        <span class="t">Forging Heaven — The First Flight Over the Changed World</span>
+        <span class="s">Song: The Light That Came Home — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="YUHqwDQG0oI" data-title="The Harbour at First Snow" data-song="light2">
+        <span class="t">The Harbour at First Snow</span>
+        <span class="s">Song: The Light That Came Home — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="SqLVr2bDrh0" data-title="The Lantern Ferry at Dusk" data-song="heaven">
+        <span class="t">The Lantern Ferry at Dusk</span>
+        <span class="s">Song: Heaven on Earth</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="kawaq1u8TAc" data-title="The Christmas Harbour Bells" data-song="amtb">
+        <span class="t">The Christmas Harbour Bells</span>
+        <span class="s">Song: A Million Times Better — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="oCmbhTOgtug" data-title="The Tide Bell at Dawn" data-song="light2">
+        <span class="t">The Tide Bell at Dawn</span>
+        <span class="s">Song: The Light That Came Home — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="YOr0HdDrfZA" data-title="The Winter Harbour Lights" data-song="heaven">
+        <span class="t">The Winter Harbour Lights</span>
+        <span class="s">Song: Heaven on Earth</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-yt="I5s9BLQJOTI" data-title="The First Star Over the Harbour" data-song="amtb">
+        <span class="t">The First Star Over the Harbour</span>
+        <span class="s">Song: A Million Times Better — Take 2</span>
+        <span class="kind plays">▶ Plays here</span>
+      </button>
+      <button type="button" class="plitem" data-poster="1" data-title="Forging Heaven — Episode 1" data-song="ep1">
+        <span class="t">Forging Heaven — Episode 1</span>
+        <span class="s">Song: A Million Times Better — the series anthem</span>
+        <span class="kind">Coming to the big screen</span>
+      </button>
+    </div>
+    <p class="alsoon">Every one of these also lives on our channels — YouTube, Facebook, Instagram, Threads and X (the Harbour teaser's links are listed under Now Showing below). TikTok joins the round once its sign-in is finished; we say so rather than pretend.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow blue">The slate</p>
+    <h2>What's on the marquee</h2>
+
+    <div class="show">
+      <h3>Forging Heaven</h3>
+      <p>The flagship series — a testimony of dying, being sent back, and what a second life is for. Its first episode stands posted while the series is being rewritten stronger for its season; nothing has been taken down, and the story's next telling is being crafted with care.</p>
+      <p class="secondary">The song: <em>A Million Times Better</em> — the series' anthem keeps its name. Find it at the <a href="../stripe-wiring/music-store/jukebox.html">music store</a>, and on the streaming shelves through our distributor.</p>
+      <span class="badge live">Episode 1 posted · season in the writing room</span>
+    </div>
+
+    <div class="show">
+      <h3>Harbour of Lights</h3>
+      <p>A harbour town, a bench by the water, and the season the lights come on. Our Christmas-hearted series — built through the autumn in daily pieces, with a couple of episodes of every line ready for the December opening.</p>
+      <span class="badge house">Leading the December 1 opening</span>
+    </div>
+
+    <div class="show">
+      <h3>The Storybook — LUX AI ✦ STORYBOOK</h3>
+      <p>A storybook journey page by page: starting in the High Arctic and travelling down the western side of the continent, around the turn, and home across the top to Santa's Village. Every page ends by teasing one legend — and those legends belong to <strong>The Story Keepers</strong>, who prove them, break them plainly, or leave them respectfully alone. Sacred ceremonies are never content.</p>
+      <span class="badge live">Page 1 posted · Page 2 — The Yukon — is next</span>
+    </div>
+
+    <div class="show">
+      <h3>Ghost Talk Live</h3>
+      <p>Our friendly-ghost corner of the slate — the Friendly Ghost already fronts a shelf of the house's goods, and his show shelf on the store page stands ready as a coming collection while the series takes shape.</p>
+      <span class="badge">In development</span>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow blue">Now showing — the daily dreams</p>
+    <h2>Posted, with their songs named</h2>
+    <div class="watchgrid">
+      <div class="watch">
+        <h3>Harbour of Lights — The Town Before the Lights</h3>
+        <p class="song">Song: <em>A Million Times Better</em> — Take 2 · Find the song at the <a href="../stripe-wiring/music-store/jukebox.html">music store</a></p>
+        <ul>
+          <li><a href="https://www.youtube.com/shorts/oEDFYUJKPEo" rel="noopener">Watch on YouTube</a></li>
+          <li><a href="https://www.facebook.com/reel/1464436895822073" rel="noopener">Watch on Facebook</a></li>
+          <li><a href="https://www.instagram.com/p/DfiVwklSf5q/" rel="noopener">Watch on Instagram</a></li>
+          <li><a href="https://www.threads.com/@luxautomations/post/DfiYdJ3juE8" rel="noopener">Watch on Threads</a></li>
+          <li><a href="https://x.com/VanceC82278/status/2119913959688114416" rel="noopener">Watch on X</a></li>
+        </ul>
+      </div>
+      <div class="watch">
+        <h3>The Storybook, Page 1 — Nunavut, the High Arctic</h3>
+        <p class="song">Song: <em>Heaven on Earth</em> · The song joins the music store as the Haven soundtrack grows — the release ladder runs single by single.</p>
+        <ul>
+          <li>Posted November 9 to YouTube, Facebook, Instagram, Threads and X — find it on each Lux channel under the Storybook name.</li>
+          <li>TikTok joins the round once its sign-in is finished; we say so rather than pretend.</li>
+        </ul>
+      </div>
+    </div>
+    <small style="margin-top:12px">The dream drip runs two to three pieces a day across the Lux channels — finished work only, every clip carrying its song's name and where to find it.</small>
+  </section>
+
+  <section class="closeline">
+    <p class="big">Join our adventure</p>
+    <p class="secondary" style="margin:0">Subscribe on any Lux channel and don't miss an episode, a page, or a new song. The house opens December 1 — and the Cinema is where it glows brightest.</p>
+  </section>
+</main>
+<footer>Lux Automations · Edmonton, Alberta — stories first, always.<br>© 2026 Lux Automations · Staging preview — not yet live.</footer>
+<script>
+(function(){
+  var frame=document.getElementById('bigscreen'),
+      wrap=document.getElementById('screenwrap'),
+      titleEl=document.getElementById('screentitle'),
+      songEl=document.getElementById('screensong'),
+      items=document.querySelectorAll('#playlist .plitem'),
+      JUKEBOX='../stripe-wiring/music-store/jukebox.html',
+      SONGS={
+        amtb:'Song: <em>A Million Times Better</em> — Take 2 · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
+        heaven:'Song: <em>Heaven on Earth</em> · The song joins the music store as the Haven soundtrack grows.',
+        light:'Song: <em>The Light That Came Home</em> · Its single is next on the release ladder — find the music at the <a href="'+JUKEBOX+'">music store</a>.',
+        light2:'Song: <em>The Light That Came Home</em> — Take 2 · Its single is next on the release ladder — find the music at the <a href="'+JUKEBOX+'">music store</a>.',
+        ep1:'Song: <em>A Million Times Better</em> — the series anthem · Find it at the <a href="'+JUKEBOX+'">music store</a>'
+      };
+  function clearSel(){for(var i=0;i<items.length;i++){items[i].classList.remove('sel');}}
+  function select(btn){
+    clearSel(); btn.classList.add('sel');
+    titleEl.textContent=btn.getAttribute('data-title');
+    songEl.innerHTML=SONGS[btn.getAttribute('data-song')]||'';
+    if(btn.getAttribute('data-poster')){
+      wrap.innerHTML='<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;color:#fff8ee;background:radial-gradient(700px 400px at 50% 40%,rgba(255,207,110,.28),transparent 65%),linear-gradient(160deg,#2a1650,#4b2064 45%,#8a2f5e)"><div style="font-size:15px;letter-spacing:.3em;text-transform:uppercase;color:#ffcf6e;font-weight:700">Coming attraction</div><div style="font-size:clamp(22px,5vw,34px);font-weight:700;margin-top:10px;line-height:1.2">Forging Heaven — Episode 1</div><p style="margin:12px 0 0;max-width:460px;font-size:15.5px;line-height:1.55;color:#ffe9c9">The flagship's first episode stands posted on our channels while the series is rewritten stronger. Its big-screen print joins this reel at the December 1 opening.</p></div>';
+      return;
+    }
+    var id=btn.getAttribute('data-yt'),
+        ifr=document.createElement('iframe');
+    ifr.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0';
+    ifr.title=btn.getAttribute('data-title');
+    ifr.setAttribute('allow','accelerometer; encrypted-media; picture-in-picture; fullscreen');
+    ifr.setAttribute('allowfullscreen','');
+    ifr.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    ifr.id='bigscreen';
+    wrap.innerHTML=''; wrap.appendChild(ifr); frame=ifr;
+  }
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){select(this);});
+  }
+  document.getElementById('fsbtn').addEventListener('click',function(){
+    var el=wrap, req=el.requestFullscreen||el.webkitRequestFullscreen;
+    if(req){req.call(el);}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Automations — Music Store · Haven</title>
+<style>
+  body{background:#0d0b08;color:#f3ead8;font-family:Georgia,serif;margin:0;padding:24px;}
+  h1{color:#e8c476;font-weight:600;} .card{border:1px solid #4a3a1e;border-radius:12px;padding:18px;margin:14px 0;max-width:560px;background:#171310;}
+  .lux-pay-btn{display:inline-block;background:#e8c476;color:#171310;padding:12px 22px;border-radius:8px;font-weight:700;text-decoration:none;border:0;font-size:16px;}
+  .lux-pay-soon{opacity:.55;} .lux-pay-note{color:#bfae8d;font-size:13px;}
+  .tag{color:#ff9d5c;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .housenav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid #4a3a1e;max-width:1080px;}
+  .housenav a{color:#f3ead8;text-decoration:none;font-size:14.5px;font-weight:600;padding:7px 11px;border-radius:999px;}
+  .housenav a:hover{background:#241c10;}
+  .housenav a.here{background:#241c10;color:#e8c476;}
+  .housenav .hn-brand{font-weight:700;color:#e8c476;margin-right:6px;}
+</style>
+<script src="../config/stripe-pay.js"></script>
+</head>
+<body>
+<nav class="housenav" aria-label="The house">
+  <span class="hn-brand">Lux Automations</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../site-pages/video.html">Cinema</a>
+  <a href="../../site-pages/automation.html">Workshop</a>
+  <a href="../../site-pages/games.html">Playground</a>
+  <a href="../../site-pages/programs.html">Programs</a>
+  <a href="../../site-pages/referrals.html">Bring a Friend</a>
+  <a href="../../site-pages/affiliate.html">Tools We Use</a>
+  <a href="../../site-pages/membership.html">Membership</a>
+  <a class="here" href="index.html">Music Store</a>
+  <a href="jukebox.html">The Jukebox</a>
+  <a href="../merch-store/index.html">Merch</a>
+</nav>
+<p class="tag">Staging — not live · Lux Automations</p>
+<h1>The Music Store — Haven</h1>
+<p>The headline single is sold two ways: the full bundle (the song, its music video, and the cover), or the light Song + Cover edition (the song and its cover art). Bought here, it's yours from Lux directly.</p>
+
+<div class="card">
+  <h2>A Million Times Better</h2>
+  <p>The single — song + music video + cover. From the soundtrack of the series — credit lives in this text, never burned into the art.</p>
+  <div data-lux-pay="music_store.amtb-single-bundle"></div>
+</div>
+
+<div class="card">
+  <h2>A Million Times Better — Song + Cover</h2>
+  <p>The light door — US$1.29: the song and its cover art. No video in this edition — the music video comes only with the bundle above.</p>
+  <div data-lux-pay="music_store.amtb-single-song-cover"></div>
+</div>
+
+<div class="card">
+  <h2>The Light That Came Home</h2>
+  <p>The second single — a homecoming. (Releases after the master's ear verdict.)</p>
+  <div data-lux-pay="music_store.light-single-bundle"></div>
+</div>
+
+<div class="card">
+  <h2>Haven — The Soundtrack</h2>
+  <p>The full album, when the release ladder reaches it: singles first, then the album, then the show.</p>
+  <div data-lux-pay="music_store.haven-album"></div>
+</div>
+
+<div class="card">
+  <h2>Prefer crypto?</h2>
+  <p>Every bundle in this store can be paid in crypto instead of by card. Pick your chain below, send to the address shown, and the desk confirms by hand once the payment lands on-chain — then your bundle is released.</p>
+  <div data-lux-crypto="music-store"></div>
+</div>
+<script src="../config/crypto-pay.js"></script>
+</body>
+</html>

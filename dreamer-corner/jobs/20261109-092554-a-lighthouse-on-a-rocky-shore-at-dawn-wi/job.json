@@ -1,0 +1,29 @@
+{
+  "id": "20261109-092554-a-lighthouse-on-a-rocky-shore-at-dawn-wi",
+  "service": "The Dream Maker",
+  "status": "done",
+  "description": "a lighthouse on a rocky shore at dawn with gulls circling above",
+  "created": "2026-11-09T09:25:54",
+  "note": "Next step is the agent seam: Muse's media pipeline generates master.mp4 from prompt.txt, then `dreamer.py finish` completes the job in code.",
+  "scene": "scene.mp4",
+  "song": "A Million Times Better \u2014 Take 2 (Haven)",
+  "finished": "2026-11-09T09:27:03",
+  "qa": {
+    "duration_s": 10.0,
+    "streams": [
+      {
+        "type": "video",
+        "codec": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "type": "audio",
+        "codec": "aac",
+        "width": null,
+        "height": null
+      }
+    ],
+    "mean_volume_db": -15.6
+  }
+}

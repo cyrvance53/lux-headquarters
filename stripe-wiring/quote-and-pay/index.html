@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Automations — Start a Project</title>
+<style>
+  body{background:#0d0b08;color:#f3ead8;font-family:Georgia,serif;margin:0;padding:24px;}
+  h1{color:#e8c476;font-weight:600;} .card{border:1px solid #4a3a1e;border-radius:12px;padding:18px;margin:14px 0;max-width:560px;background:#171310;}
+  .lux-pay-btn{display:inline-block;background:#e8c476;color:#171310;padding:12px 22px;border-radius:8px;font-weight:700;text-decoration:none;border:0;font-size:16px;}
+  .lux-pay-soon{opacity:.55;} .lux-pay-note{color:#bfae8d;font-size:13px;}
+  .tag{color:#ff9d5c;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  ol li{margin:8px 0;}
+  .housenav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid #4a3a1e;max-width:1080px;}
+  .housenav a{color:#f3ead8;text-decoration:none;font-size:14.5px;font-weight:600;padding:7px 11px;border-radius:999px;}
+  .housenav a:hover{background:#241c10;}
+  .housenav a.here{background:#241c10;color:#e8c476;}
+  .housenav .hn-brand{font-weight:700;color:#e8c476;margin-right:6px;}
+</style>
+<script src="../config/stripe-pay.js"></script>
+</head>
+<body>
+<nav class="housenav" aria-label="The house">
+  <span class="hn-brand">Lux Automations</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../site-pages/video.html">Cinema</a>
+  <a href="../../site-pages/automation.html">Workshop</a>
+  <a href="../../site-pages/games.html">Playground</a>
+  <a href="../../site-pages/programs.html">Programs</a>
+  <a href="../../site-pages/referrals.html">Bring a Friend</a>
+  <a href="../../site-pages/affiliate.html">Tools We Use</a>
+  <a href="../../site-pages/membership.html">Membership</a>
+  <a href="../music-store/jukebox.html">Music Store</a>
+  <a href="../merch-store/index.html">Merch</a>
+</nav>
+<p class="tag">Staging — not live · Lux Automations</p>
+<h1>Start a Project</h1>
+<p>Agree the work with the desk, get your quote, pay — then we build. Money first, then work: that's the house rule, and it protects you too.</p>
+
+<div class="card">
+  <h2>How a custom project runs</h2>
+  <ol>
+    <li>Talk to the desk — we agree exactly what's being made, and the price, in writing.</li>
+    <li>You get a payment link made for <em>your</em> project alone. Bigger projects: 50% down starts the work.</li>
+    <li>We start the moment your payment shows in our account under your name — not before, never on a promise.</li>
+    <li>You see the finished work; the balance is paid, and the final files are released to you.</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>Project deposit — 50%</h2>
+  <p>For quotes already agreed at the desk. Custom deals receive their own one-off link from the desk; this slot holds the standard deposit pattern.</p>
+  <div data-lux-pay="quote_and_pay.service-deposit-50"></div>
+</div>
+
+<div class="card">
+  <h2>Project balance — before final release</h2>
+  <div data-lux-pay="quote_and_pay.service-balance"></div>
+</div>
+
+<div class="card">
+  <h2>Paying with crypto</h2>
+  <p>Crypto follows the same house law as card payments: <strong>50% down starts the work, and the balance is paid before the final files are released</strong> — and work starts only on <em>confirmed</em> receipt, matched to your deal. One honest difference: crypto confirmation is done by hand — we watch the address on-chain rather than getting an automatic notice — so allow a little time, and always send the desk your transaction hash.</p>
+  <div data-lux-crypto="quote-and-pay"></div>
+</div>
+<script src="../config/crypto-pay.js"></script>
+</body>
+</html>

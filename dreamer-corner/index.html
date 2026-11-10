@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dream Maker — Playground (Staging)</title>
+<style>
+  :root { --gold: #b8860b; --gold-soft: #c9a227; --ink: #1c1a14; --line: #e8e2d2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ffffff; color: var(--ink);
+         font-family: Georgia, "Times New Roman", serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 40px 20px 64px; text-align: center; }
+  img.mark { width: 92px; height: 92px; }
+  .staging { display: inline-block; margin-top: 10px; padding: 3px 12px;
+             border: 1px solid var(--gold); border-radius: 999px;
+             color: var(--gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  h1 { font-size: 34px; font-weight: normal; margin: 14px 0 4px; }
+  .sub { color: #6b6455; margin: 0 0 28px; font-style: italic; }
+  textarea { width: 100%; min-height: 96px; padding: 14px; font: inherit; font-size: 16px;
+             border: 1px solid var(--line); border-radius: 10px; resize: vertical; }
+  textarea:focus { outline: 2px solid var(--gold-soft); border-color: transparent; }
+  button { margin-top: 14px; padding: 12px 30px; font: inherit; font-size: 17px; cursor: pointer;
+           background: #ffffff; color: var(--gold); border: 2px solid var(--gold); border-radius: 999px; }
+  button:hover { background: var(--gold); color: #ffffff; }
+  #status { min-height: 24px; margin: 18px 0 6px; color: #6b6455; font-style: italic; }
+  video { width: 100%; max-width: 360px; aspect-ratio: 9/16; background: #faf8f2;
+          border: 1px solid var(--line); border-radius: 12px; margin-top: 10px; }
+  .caption { color: #6b6455; font-size: 14px; margin-top: 8px; }
+  .how { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line);
+         color: #6b6455; font-size: 13.5px; line-height: 1.55; text-align: left; }
+  .how b { color: var(--gold); font-weight: normal; letter-spacing: 1px; text-transform: uppercase; font-size: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <img class="mark" src="crystal-heart.png" alt="Crystal Heart mark">
+  <div><span class="staging">Staging — local only</span></div>
+  <h1>The Dream Maker</h1>
+  <p class="sub">A toy in the Playground. Describe a dream scene — the Dream Maker makes it.</p>
+
+  <textarea id="desc" placeholder="e.g. A cozy treehouse village in a snowy pine forest at dusk, warm lanterns in the windows…"></textarea>
+  <br>
+  <button id="make" type="button">Make my dream</button>
+  <p id="status"></p>
+
+  <video id="player" controls playsinline loop></video>
+  <p class="caption" id="caption"></p>
+
+  <div class="how">
+    <b>How it works here</b><br>
+    Your description becomes a job. The scene itself is dreamed by Lux's own
+    media pipeline — the same one that makes the daily dreams — then the house
+    finisher adds Haven music, levels it, and checks it before it plays here.
+    This corner stands on its own in the Playground.
+  </div>
+</main>
+<script>
+(function () {
+  var status = document.getElementById('status'),
+      player = document.getElementById('player'),
+      caption = document.getElementById('caption'),
+      desc = document.getElementById('desc');
+
+  function show(sceneUrl, text) {
+    player.src = sceneUrl;
+    caption.textContent = text || '';
+    player.play().catch(function () {});
+  }
+
+  // Show the most recently finished dream on load.
+  fetch('jobs/latest.json').then(function (r) { return r.json(); }).then(function (j) {
+    if (j && j.scene) show(j.scene, '“' + j.description + '”');
+  }).catch(function () {});
+
+  function poll(id) {
+    fetch('/api/job/' + id).then(function (r) { return r.json(); }).then(function (job) {
+      if (job.status === 'done') {
+        status.textContent = 'Your dream is ready.';
+        show('jobs/' + id + '/scene.mp4', '“' + job.description + '” · Music: ' + (job.song || 'Haven'));
+      } else {
+        status.textContent = 'The Dream Maker is dreaming… (job ' + id + ')';
+        setTimeout(function () { poll(id); }, 3000);
+      }
+    }).catch(function () { setTimeout(function () { poll(id); }, 3000); });
+  }
+
+  document.getElementById('make').addEventListener('click', function () {
+    var text = desc.value.trim();
+    if (!text) { status.textContent = 'Describe your dream scene first.'; return; }
+    status.textContent = 'Sending your dream to the Dream Maker…';
+    fetch('/api/dream', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ description: text }) })
+      .then(function (r) { return r.json(); })
+      .then(function (job) {
+        if (job.id) poll(job.id);
+        else status.textContent = 'Something went wrong: ' + (job.error || 'unknown');
+      })
+      .catch(function () {
+        status.textContent = 'This staging page needs its local server: run  python3 dreamer_server.py  in this folder, then reopen this page from http://localhost:8765/';
+      });
+  });
+})();
+</script>
+</body>
+</html>

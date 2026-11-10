@@ -1,0 +1,28 @@
+{
+  "id": "20261109-treehouse-pond",
+  "status": "done",
+  "description": "A cozy treehouse village in a snowy pine forest at dusk, warm lanterns glowing in the windows, a small frozen pond reflecting the lights, gentle snowfall, calm and peaceful",
+  "created": "2026-11-09",
+  "service": "The Dream Maker",
+  "scene": "scene.mp4",
+  "song": "A Million Times Better \u2014 Take 2 (Haven)",
+  "finished": "2026-11-09T08:58:12",
+  "qa": {
+    "duration_s": 10.0,
+    "streams": [
+      {
+        "type": "video",
+        "codec": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "type": "audio",
+        "codec": "aac",
+        "width": null,
+        "height": null
+      }
+    ],
+    "mean_volume_db": -15.6
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Automations — Research Briefings</title>
+<style>
+  body{background:#0d0b08;color:#f3ead8;font-family:Georgia,serif;margin:0;padding:24px;}
+  h1{color:#e8c476;font-weight:600;} .card{border:1px solid #4a3a1e;border-radius:12px;padding:18px;margin:14px 0;max-width:560px;background:#171310;}
+  .lux-pay-btn{display:inline-block;background:#e8c476;color:#171310;padding:12px 22px;border-radius:8px;font-weight:700;text-decoration:none;border:0;font-size:16px;}
+  .lux-pay-soon{opacity:.55;} .lux-pay-note{color:#bfae8d;font-size:13px;}
+  .tag{color:#ff9d5c;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .warn{color:#ff9d5c;}
+</style>
+<script src="../config/stripe-pay.js"></script>
+</head>
+<body>
+<p class="tag">Staging — not live · Lux Automations</p>
+<h1>Lux Research Briefings</h1>
+<p>Deep, sourced research briefings — primary sources, hype flagged, what's real separated from what's plausible. Aimée at the desk offers every visitor the free sample briefing first.</p>
+<p class="warn">STAGING NOTE: all prices below are UNSTAMPED recommendations, not final prices.</p>
+
+<div class="card">
+  <h2>Reader — monthly</h2>
+  <p>One full briefing a month on your beat, plus updates when a tracked story moves.</p>
+  <div data-lux-pay="research_subscription.research-reader"></div>
+</div>
+
+<div class="card">
+  <h2>Pro — monthly</h2>
+  <p>Topic picks, the full source pack, archive access, priority updates.</p>
+  <div data-lux-pay="research_subscription.research-pro"></div>
+</div>
+
+<div class="card">
+  <h2>One-off briefing</h2>
+  <p>A single full briefing on one topic.</p>
+  <div data-lux-pay="research_subscription.research-oneoff"></div>
+</div>
+
+<div class="card">
+  <h2>Private custom-topic briefing</h2>
+  <p>Your topic, researched privately, delivered to you alone.</p>
+  <div data-lux-pay="research_subscription.research-custom"></div>
+</div>
+</body>
+</html>

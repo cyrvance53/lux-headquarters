@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Automations — Playground Credits</title>
+<style>
+  body{background:#0d0b08;color:#f3ead8;font-family:Georgia,serif;margin:0;padding:24px;}
+  h1{color:#e8c476;font-weight:600;} .card{border:1px solid #4a3a1e;border-radius:12px;padding:18px;margin:14px 0;max-width:560px;background:#171310;}
+  .lux-pay-btn{display:inline-block;background:#e8c476;color:#171310;padding:12px 22px;border-radius:8px;font-weight:700;text-decoration:none;border:0;font-size:16px;}
+  .lux-pay-soon{opacity:.55;} .lux-pay-note{color:#bfae8d;font-size:13px;}
+  .tag{color:#ff9d5c;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .warn{color:#ff9d5c;}
+</style>
+<script src="../config/stripe-pay.js"></script>
+</head>
+<body>
+<p class="tag">Staging — not live · Lux Automations</p>
+<h1>Playground Credits</h1>
+<p>The Playground's tools run on credits. Buy a pack here; every tool shows its credit price <em>before</em> it runs — no surprises, ever. Paid bulk design runs are charged before the run, same rule.</p>
+<p class="warn">STAGING NOTE: credit-pack sizes and prices are UNSTAMPED — no prices are on record yet; these slots wait for Vance's price word.</p>
+
+<div class="card">
+  <h2>Starter pack</h2>
+  <div data-lux-pay="playground_credits.credits-starter"></div>
+</div>
+
+<div class="card">
+  <h2>Maker pack</h2>
+  <div data-lux-pay="playground_credits.credits-maker"></div>
+</div>
+</body>
+</html>
