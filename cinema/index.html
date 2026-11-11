@@ -77,6 +77,11 @@
 
 
   .soonline{margin-top:16px;text-align:center;padding:12px 16px;border:1.5px dashed var(--gold);border-radius:var(--radius-card);background:var(--gold-tint);font-weight:600;font-size:16px}
+  .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
+  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
+  .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
+  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:rgba(255,255,255,.97);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+  .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
   /* ---------- fullscreen: the film takes the whole screen; the bar comes when you move, goes when you don't ---------- */
   .player{position:relative}
   .player:fullscreen{background:#000;width:100%;height:100%}
@@ -143,6 +148,8 @@
     <div class="stage" id="stage">
       <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
       <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
+      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome to my favourite room. Pick a picture from the shelf and it rolls up here — everything on the shelf is finished work from the house.</div>
     </div>
     <div class="controls" role="group" aria-label="Player controls">
       <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
@@ -259,6 +266,8 @@
       ccbtn=document.getElementById('ccbtn'),
       fsbtn=document.getElementById('fsbtn'),
       playerEl=document.getElementById('player'),
+      hostchip=document.getElementById('hostchip'),
+      hostbubble=document.getElementById('hostbubble'),
       titleEl=document.getElementById('screentitle'),
       songEl=document.getElementById('screensong'),
       blurbEl=document.getElementById('screenblurb'),
@@ -366,6 +375,11 @@
   });
   speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
   ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+  hostchip.addEventListener('click', function(){
+    var open=hostbubble.hidden;
+    hostbubble.hidden=!open;
+    hostchip.setAttribute('aria-expanded', open?'true':'false');
+  });
   fsbtn.addEventListener('click', function(){
     if(document.fullscreenElement){ document.exitFullscreen(); return; }
     var target=playerEl||stage;
