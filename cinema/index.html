@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cinema — Watch · Lux Automations</title>
+<meta name="description" content="The Lux Cinema: our own player, on our own stage. Watch the Harbour of Lights pier walk and The Morning Call — original films and dreams from the house of Lux.">
+<style>
+  :root{
+    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
+    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
+    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
+    --radius-section:18px; --radius-card:14px; --radius-control:12px; --radius-pill:999px;
+    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  a{color:var(--accent)}
+  img{display:block;max-width:100%}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
+  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:#eef1f6}
+  nav.mainnav a.goldlink{color:var(--gold)}
+  nav.mainnav a.goldlink:hover{background:var(--gold-tint)}
+  nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
+
+  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
+  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .eyebrow.blue{color:var(--accent)}
+  h1{font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55}
+  .secondary{color:var(--secondary)}
+  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px 16px;margin-top:16px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold-tint);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 22px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font:inherit;font-weight:700}
+  .btn-blue{background:var(--accent);color:#fff}
+  .btn-blue:hover{background:var(--accent-hover)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+  /* ---------- the screen (our own player) ---------- */
+  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto}
+  .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
+  .stage:fullscreen{max-height:none;border-radius:0}
+  .stage:fullscreen video{object-fit:contain}
+  .bigplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.92);color:#1d1d1f;display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:0 12px 34px rgba(0,0,0,.35)}
+  .bigplay:hover span{background:#fff}
+  .bigplay[hidden]{display:none}
+  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:#eef1f6}
+  .cbtn[aria-pressed="true"]{background:var(--gold-tint);border-color:var(--gold);color:#7a5c10}
+  .cbtn:disabled{opacity:.45;cursor:default}
+  .cbtn:disabled:hover{background:var(--card)}
+  .ctime{font-size:14.5px;color:var(--secondary);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .vol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);padding:6px 10px;cursor:pointer}
+  .screenmeta{margin-top:14px}
+  .screenmeta .songline{font-size:15px;color:var(--secondary);margin:0}
+
+  /* ---------- the shelf (catalogue) ---------- */
+  .shelf{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px;align-items:start}
+  @media(min-width:680px){.shelf{grid-template-columns:1fr 1fr}}
+  .carditem{text-align:left;font:inherit;background:var(--ground);border:1.5px solid var(--border);border-radius:var(--radius-card);overflow:hidden;cursor:pointer;color:var(--ink);padding:0;width:100%}
+  .carditem:hover{border-color:var(--border-strong)}
+  .carditem.sel{border-color:var(--gold);background:var(--gold-tint)}
+  .carditem img{width:100%;object-fit:cover}
+  .carditem .cbody{padding:14px 16px}
+  .carditem .ct{display:block;font-weight:700;font-size:17px;line-height:1.3}
+  .carditem .cm{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+  .carditem .cs{display:block;font-size:14.5px;color:var(--secondary);margin-top:5px;line-height:1.45}
+  .carditem .kind{display:inline-block;margin-top:9px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:#e6f6e9;color:#166534;border:1px solid #bbe5c3}
+  .comingcard{border:1.5px dashed var(--border-strong);border-radius:var(--radius-card);padding:22px 18px;background:var(--card)}
+  .comingcard .ct{font-weight:700;font-size:17px;display:block}
+  .comingcard .cs{font-size:14.5px;color:var(--secondary);display:block;margin-top:5px;line-height:1.45}
+  .closeline{text-align:center;padding:28px 24px}
+  .closeline .big{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+
+  footer{max-width:880px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--secondary);font-size:14.5px;line-height:1.6}
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14.5px}
+    .vol{display:none}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "itemListElement":[
+    {"@type":"VideoObject","position":1,"name":"The Harbour Answers Back — Juno Park's Pier Walk",
+     "description":"Juno Park walks the pier on a snowy night and the harbour answers back — a scene from Harbour of Lights, the Lux Christmas series.",
+     "thumbnailUrl":"https://ailux.ca/cinema/assets/pier-walk.jpg",
+     "contentUrl":"https://ailux.ca/cinema/assets/pier-walk.mp4","duration":"PT25S","uploadDate":"2026-11-11"},
+    {"@type":"VideoObject","position":2,"name":"The Morning Call",
+     "description":"A morning in our world — the first feeder from the house of Lux, dreamed by Muse.",
+     "thumbnailUrl":"https://ailux.ca/cinema/assets/morning-call.jpg",
+     "contentUrl":"https://ailux.ca/cinema/assets/morning-call.mp4","duration":"PT25S","uploadDate":"2026-11-11"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux Automations<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../index.html">Home</a>
+    <a class="here" href="./">Cinema</a>
+    <a href="../site-pages/automation.html">Workshop</a>
+    <a href="../site-pages/games.html">Playground</a>
+    <a href="../site-pages/programs.html">Programs</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a class="goldlink" href="../stripe-wiring/music-store/jukebox.html">Music Store</a>
+    <a class="goldlink" href="../stripe-wiring/merch-store/index.html">Merch</a>
+    <a href="../index.html#guestbook">Guest Book</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ THE ROOM ============ -->
+  <section>
+    <p class="eyebrow">The Cinema</p>
+    <h1>Take a seat — this screen is ours</h1>
+    <p class="lede">No rented player, no detours: the films below play right here, on the house's own stage. Pick a picture from the shelf and it rolls up on the big screen.</p>
+    <span class="openline">Now showing · the full season opens Tuesday, December 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> Welcome to my favourite room. Everything on this shelf is finished work from the house, and every piece names the song that plays under it — that's the house rule. Captions join each title as its caption file is finished; the CC button lights up when they're ready.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE SCREEN ============ -->
+  <section>
+    <p class="eyebrow blue">The Big Screen</p>
+    <h2 id="screentitle">The Harbour Answers Back — Juno Park's Pier Walk</h2>
+    <div class="stage" id="stage">
+      <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+    </div>
+    <div class="controls" role="group" aria-label="Player controls">
+      <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">0:25</span></span>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔊</button>
+      <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="speedsel" id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
+      <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    <div class="screenmeta">
+      <p class="songline" id="screensong"></p>
+      <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
+    </div>
+  </section>
+
+  <!-- ============ THE SHELF ============ -->
+  <section>
+    <p class="eyebrow blue">On the shelf</p>
+    <h2>Pick a picture</h2>
+    <div class="shelf" id="shelf" role="list"></div>
+    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The full first season — Harbour of Lights, The Storybook, and the flagship's return — arrives with the December 1 opening.</small>
+  </section>
+
+  <section class="closeline">
+    <p class="big">Join our adventure</p>
+    <p class="secondary" style="margin:0 0 6px">Leave your name in the guest book and we'll write when there's something new on the shelf — an episode, a song, a door opening in the house.</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn btn-blue" href="../index.html#guestbook">Join our adventure</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Lux Automations · A Million Times Better<br>
+  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
+  © 2026 Lux Automations
+</footer>
+
+<script>
+(function(){
+  var JUKEBOX='../stripe-wiring/music-store/jukebox.html';
+  /* Captions: to give a title captions, drop its WebVTT file in cinema/assets/
+     (e.g. assets/captions-pier-walk.en.vtt) and set that title's "captions"
+     value below to the file path. The CC button enables automatically. */
+  var TITLES=[
+    { slug:'pier-walk',
+      title:'The Harbour Answers Back',
+      heading:'The Harbour Answers Back — Juno Park\u2019s Pier Walk',
+      series:'Harbour of Lights', dur:'0:25', ratio:'2 / 3',
+      src:'assets/pier-walk.mp4', poster:'assets/pier-walk.jpg',
+      captions:null,
+      song:'Song: <em>The Light That Came Home</em> · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
+      blurb:'Juno Park walks the pier on a snowy night, and the harbour answers back — a scene from our Christmas series, rebuilt full-frame.' },
+    { slug:'morning-call',
+      title:'The Morning Call',
+      heading:'The Morning Call',
+      series:'A Lux Dream', dur:'0:25', ratio:'16 / 9',
+      src:'assets/morning-call.mp4', poster:'assets/morning-call.jpg',
+      captions:null,
+      song:'',
+      blurb:'A morning in our world — the first feeder from the house of Lux, dreamed by Muse.' }
+  ];
+
+  var stage=document.getElementById('stage'),
+      video=document.getElementById('screen'),
+      bigplay=document.getElementById('bigplay'),
+      playbtn=document.getElementById('playbtn'),
+      seek=document.getElementById('seek'),
+      tcur=document.getElementById('tcur'),
+      ttot=document.getElementById('ttot'),
+      mutebtn=document.getElementById('mutebtn'),
+      vol=document.getElementById('vol'),
+      speed=document.getElementById('speed'),
+      ccbtn=document.getElementById('ccbtn'),
+      fsbtn=document.getElementById('fsbtn'),
+      titleEl=document.getElementById('screentitle'),
+      songEl=document.getElementById('screensong'),
+      blurbEl=document.getElementById('screenblurb'),
+      shelf=document.getElementById('shelf'),
+      current=-1, seeking=false, ccOn=false;
+
+  function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+  function setCCEnabled(on){
+    ccbtn.disabled=!on;
+    ccbtn.title=on?'Turn captions on or off':'Captions are on their way for this title';
+    if(!on){ ccOn=false; ccbtn.setAttribute('aria-pressed','false'); }
+  }
+  function applyCC(){
+    var tracks=video.textTracks;
+    for(var i=0;i<tracks.length;i++){ tracks[i].mode = ccOn ? 'showing' : 'hidden'; }
+    ccbtn.setAttribute('aria-pressed', ccOn?'true':'false');
+  }
+
+  function loadTitle(idx, autoplay){
+    var t=TITLES[idx]; if(!t) return;
+    current=idx;
+    var cards=shelf.querySelectorAll('.carditem');
+    for(var i=0;i<cards.length;i++){ cards[i].classList.toggle('sel', i===idx); }
+    titleEl.textContent=t.heading;
+    songEl.innerHTML=t.song||'';
+    blurbEl.textContent=t.blurb||'';
+    stage.style.aspectRatio=t.ratio;
+    /* reset caption tracks, then wire this title's if it has one */
+    var old=video.querySelectorAll('track'); for(var j=0;j<old.length;j++){ old[j].remove(); }
+    if(t.captions){
+      var tr=document.createElement('track');
+      tr.kind='captions'; tr.label='English'; tr.srclang='en'; tr.src=t.captions;
+      video.appendChild(tr);
+      setCCEnabled(true);
+    } else { setCCEnabled(false); }
+    video.poster=t.poster;
+    video.src=t.src;
+    video.playbackRate=parseFloat(speed.value)||1;
+    video.load();
+    ttot.textContent=t.dur;
+    tcur.textContent='0:00';
+    seek.value=0;
+    bigplay.hidden=false;
+    playbtn.textContent='▶';
+    applyCC();
+    if(autoplay){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+  }
+
+  /* build the shelf */
+  TITLES.forEach(function(t, idx){
+    var b=document.createElement('button');
+    b.type='button'; b.className='carditem'; b.setAttribute('role','listitem');
+    b.innerHTML='<img src="'+t.poster+'" alt="Poster — '+t.title+'" loading="lazy" style="aspect-ratio:'+t.ratio+'">'
+      +'<span class="cbody"><span class="ct">'+t.title+'</span>'
+      +'<span class="cm">'+t.series+' · '+t.dur+'</span>'
+      +'<span class="cs">'+t.blurb+'</span>'
+      +'<span class="kind">▶ Plays here</span></span>';
+    b.addEventListener('click', function(){
+      loadTitle(idx, true);
+      stage.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    shelf.appendChild(b);
+  });
+  var coming=document.createElement('div');
+  coming.className='comingcard';
+  coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the December 1 opening. The shelf fills as each piece is finished and approved.</span>';
+  shelf.appendChild(coming);
+
+  /* player wiring */
+  function togglePlay(){
+    if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+    else { video.pause(); }
+  }
+  playbtn.addEventListener('click', togglePlay);
+  bigplay.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+  video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+  video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+  video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+  video.addEventListener('loadedmetadata', function(){
+    ttot.textContent=fmt(video.duration);
+    if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+    applyCC();
+  });
+  video.addEventListener('timeupdate', function(){
+    if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+    tcur.textContent=fmt(video.currentTime);
+  });
+  seek.addEventListener('input', function(){
+    seeking=true;
+    if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+  });
+  seek.addEventListener('change', function(){
+    if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+    seeking=false;
+  });
+  mutebtn.addEventListener('click', function(){
+    video.muted=!video.muted;
+    mutebtn.textContent=video.muted?'🔇':'🔊';
+  });
+  vol.addEventListener('input', function(){
+    video.volume=vol.value/100;
+    if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+  });
+  speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+  ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+  fsbtn.addEventListener('click', function(){
+    if(document.fullscreenElement){ document.exitFullscreen(); return; }
+    var req=stage.requestFullscreen||stage.webkitRequestFullscreen;
+    if(req){ req.call(stage); }
+  });
+  stage.addEventListener('keydown', function(ev){
+    if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+  });
+  stage.setAttribute('tabindex','0');
+
+  loadTitle(0, false);
+})();
+</script>
+</body>
+</html>
