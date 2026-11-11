@@ -32,6 +32,8 @@
   nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
 
   main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
+  .roomtitle{font-size:clamp(30px,7vw,42px);font-weight:700;letter-spacing:-.015em;line-height:1.1;margin:4px 2px 0}
+  .topbar.bottom{position:static;margin-top:8px}
   section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
   .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
   .eyebrow.blue{color:var(--accent)}
@@ -72,6 +74,15 @@
   .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);padding:6px 10px;cursor:pointer}
   .screenmeta{margin-top:14px}
   .screenmeta .songline{font-size:15px;color:var(--secondary);margin:0}
+
+
+  /* ---------- fullscreen: the film takes the whole screen; the bar comes when you move, goes when you don't ---------- */
+  .player{position:relative}
+  .player:fullscreen{background:#000;width:100%;height:100%}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
+  .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .player:fullscreen.idle{cursor:none}
+  .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
 
   /* ---------- the shelf (catalogue) ---------- */
   .shelf{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px;align-items:start}
@@ -119,39 +130,15 @@
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="../index.html">Lux Automations<small>ailux.ca</small></a>
-  <nav class="mainnav" aria-label="The house">
-    <a href="../index.html">Home</a>
-    <a class="here" href="./">Cinema</a>
-    <a href="../site-pages/automation.html">Workshop</a>
-    <a href="../site-pages/games.html">Playground</a>
-    <a href="../site-pages/programs.html">Programs</a>
-    <a href="../site-pages/membership.html">Membership</a>
-    <a class="goldlink" href="../stripe-wiring/music-store/jukebox.html">Music Store</a>
-    <a class="goldlink" href="../stripe-wiring/merch-store/index.html">Merch</a>
-    <a href="../index.html#guestbook">Guest Book</a>
-  </nav>
-</header>
 
 <main>
 
-  <!-- ============ THE ROOM ============ -->
-  <section>
-    <p class="eyebrow">The Cinema</p>
-    <h1>Take a seat — this screen is ours</h1>
-    <p class="lede">No rented player, no detours: the films below play right here, on the house's own stage. Pick a picture from the shelf and it rolls up on the big screen.</p>
-    <span class="openline">Now showing · the full season opens Tuesday, December 1</span>
-    <div class="hostline">
-      <div class="hi" aria-hidden="true">👋</div>
-      <p><strong>Aimée, your host:</strong> Welcome to my favourite room. Everything on this shelf is finished work from the house, and every piece names the song that plays under it — that's the house rule. Captions join each title as its caption file is finished; the CC button lights up when they're ready.</p>
-    </div>
-  </section>
+  <h1 class="roomtitle">Cinema</h1>
+
 
   <!-- ============ THE SCREEN ============ -->
   <section>
-    <p class="eyebrow blue">The Big Screen</p>
-    <h2 id="screentitle">The Harbour Answers Back — Juno Park's Pier Walk</h2>
+    <div class="player" id="player">
     <div class="stage" id="stage">
       <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
       <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
@@ -173,7 +160,9 @@
       <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
       <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
     </div>
+    </div>
     <div class="screenmeta">
+      <h2 id="screentitle" style="margin:0 0 4px">The Harbour Answers Back</h2>
       <p class="songline" id="screensong"></p>
       <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
     </div>
@@ -184,7 +173,19 @@
     <p class="eyebrow blue">On the shelf</p>
     <h2>Pick a picture</h2>
     <div class="shelf" id="shelf" role="list"></div>
-    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The full first season — Harbour of Lights, The Storybook, and the flagship's return — arrives with the December 1 opening.</small>
+    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The full first season — Harbour of Lights, The Storybook, and the flagship's return — arrives with the January 1 opening.</small>
+  </section>
+
+  <!-- ============ THE ROOM ============ -->
+  <section>
+    <p class="eyebrow">The Cinema</p>
+    <h2>Take a seat — this screen is ours</h2>
+    <p class="lede">No rented player, no detours: the films below play right here, on the house's own stage. Pick a picture from the shelf and it rolls up on the big screen.</p>
+    <span class="openline">Now showing · the full season opens Friday, January 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> Welcome to my favourite room. Everything on this shelf is finished work from the house, and every piece names the song that plays under it — that's the house rule. Captions join each title as its caption file is finished; the CC button lights up when they're ready.</p>
+    </div>
   </section>
 
   <section class="closeline">
@@ -196,6 +197,21 @@
   </section>
 
 </main>
+
+<header class="topbar bottom">
+  <a class="brand" href="../index.html">Lux Automations<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../index.html">Home</a>
+    <a class="here" href="./">Cinema</a>
+    <a href="../site-pages/automation.html">Workshop</a>
+    <a href="../site-pages/games.html">Playground</a>
+    <a href="../site-pages/programs.html">Programs</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a class="goldlink" href="../stripe-wiring/music-store/jukebox.html">Music Store</a>
+    <a class="goldlink" href="../stripe-wiring/merch-store/index.html">Merch</a>
+    <a href="../index.html#guestbook">Guest Book</a>
+  </nav>
+</header>
 
 <footer>
   Lux Automations · A Million Times Better<br>
@@ -240,6 +256,7 @@
       speed=document.getElementById('speed'),
       ccbtn=document.getElementById('ccbtn'),
       fsbtn=document.getElementById('fsbtn'),
+      playerEl=document.getElementById('player'),
       titleEl=document.getElementById('screentitle'),
       songEl=document.getElementById('screensong'),
       blurbEl=document.getElementById('screenblurb'),
@@ -306,7 +323,7 @@
   });
   var coming=document.createElement('div');
   coming.className='comingcard';
-  coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the December 1 opening. The shelf fills as each piece is finished and approved.</span>';
+  coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the January 1 opening. The shelf fills as each piece is finished and approved.</span>';
   shelf.appendChild(coming);
 
   /* player wiring */
@@ -349,8 +366,24 @@
   ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
   fsbtn.addEventListener('click', function(){
     if(document.fullscreenElement){ document.exitFullscreen(); return; }
-    var req=stage.requestFullscreen||stage.webkitRequestFullscreen;
-    if(req){ req.call(stage); }
+    var target=playerEl||stage;
+    var req=target.requestFullscreen||target.webkitRequestFullscreen;
+    if(req){ req.call(target); }
+  });
+  /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+  var idleTimer=null;
+  function poke(){
+    if(!document.fullscreenElement){ return; }
+    playerEl.classList.remove('idle');
+    if(idleTimer){ clearTimeout(idleTimer); }
+    idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+  }
+  ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+    playerEl.addEventListener(ev, poke, {passive:true});
+  });
+  document.addEventListener('fullscreenchange', function(){
+    if(document.fullscreenElement){ poke(); }
+    else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
   });
   stage.addEventListener('keydown', function(ev){
     if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
