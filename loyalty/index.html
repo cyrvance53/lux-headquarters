@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loyalty Lives Here — The Golden Ticket | ailux.ca</title>
+<meta name="description" content="The Lux loyalty ticket: join the Playground and loyalty comes with it. Members who are good, truthful, and stay a while earn a special discount — and bringing a friend who joins and stays is rewarded too. Full details when the doors open, January 1.">
+<style>
+  :root{
+    --black:#000; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --ink:#f6f3ec; --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+    /* The ticket's ink — deep bronze-brown, letterpressed into gold */
+    --ticket-ink:#4a3205;
+    --ticket-ink-soft:#6b4a10;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
+  p{margin:0 0 12px}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:999px}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em;background:rgba(245,198,92,.12)}
+  nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
+
+  main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
+  .pagewrap{padding-top:34px}
+  .backlink{display:inline-flex;align-items:center;gap:8px;color:var(--muted-2);text-decoration:none;font-weight:700;font-size:15px;margin-bottom:22px;padding:9px 16px;border-radius:999px;background:#000;box-shadow:var(--aura-soft)}
+  .backlink:hover{color:var(--ink)}
+  .intro{text-align:center;max-width:640px;margin:6px auto 0}
+  .intro .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+  .intro p{color:var(--muted-2);font-size:17.5px}
+
+  /* ================================================================
+     THE GOLDEN TICKET — one big ticket, presented on the black.
+     Rich gold stock, engraved double-rule border, letterpressed
+     serif type, a perforated stub down the right side. The diamond's
+     light catches it from behind. Classy, not cartoonish.
+     ================================================================ */
+  .ticketstage{position:relative;max-width:920px;margin:38px auto 10px;padding:34px 10px 30px}
+  .ticketstage::before{content:"";position:absolute;inset:-8% -4%;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(245,198,92,.22) 0%,rgba(190,215,255,.08) 45%,rgba(0,0,0,0) 70%)}
+  .ticket{position:relative;display:flex;border-radius:14px;color:var(--ticket-ink);
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 2px, rgba(255,255,255,0) 2px 7px),
+      linear-gradient(118deg,#fbe38e 0%, #f5c65c 30%, #e3ac38 52%, #f7d774 76%, #d9a52e 100%);
+    box-shadow:
+      0 0 0 1px rgba(255,244,214,.55),
+      0 0 26px rgba(245,198,92,.35),
+      0 0 70px rgba(245,198,92,.18),
+      0 30px 60px rgba(0,0,0,.65);
+    transform:rotate(-.6deg)}
+  /* The engraved double rule, inset from the edge */
+  .ticket::before{content:"";position:absolute;inset:10px;border:2px solid rgba(97,66,8,.65);border-radius:8px;pointer-events:none;
+    box-shadow:inset 0 0 0 2px rgba(255,246,214,.5), inset 0 0 0 4px rgba(97,66,8,.35)}
+  .ticket-main{flex:1 1 auto;padding:40px 44px 34px;position:relative}
+  .ticket .presenter{text-align:center;font-size:12px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--ticket-ink-soft);margin:0 0 6px;
+    text-shadow:0 1px 0 rgba(255,246,214,.6)}
+  .ticket .rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:4px auto 14px;max-width:420px}
+  .ticket .rule::before,.ticket .rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(97,66,8,.7),transparent)}
+  .ticket .rule span{color:var(--ticket-ink-soft);font-size:13px}
+  .ticket h1{text-align:center;font-size:clamp(38px,6.6vw,62px);line-height:1.04;letter-spacing:.015em;color:var(--ticket-ink);
+    text-shadow:0 1px 0 rgba(255,248,220,.65), 0 -1px 1px rgba(90,60,0,.35)}
+  .ticket .subline{text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,21px);color:var(--ticket-ink-soft);margin:10px 0 20px;
+    text-shadow:0 1px 0 rgba(255,246,214,.55)}
+  .ticket .tcopy{max-width:600px;margin:0 auto;text-align:center;font-size:16.5px;line-height:1.6;color:var(--ticket-ink)}
+  .ticket .tcopy p{margin:0 0 12px}
+  .ticket .fineprint{margin:20px auto 0;max-width:600px;text-align:center;border-top:1px solid rgba(97,66,8,.45);padding-top:14px}
+  .ticket .fineprint .big{font-family:var(--serif);font-weight:700;font-size:18.5px;letter-spacing:.02em}
+  .ticket .fineprint p{margin:6px 0 0;font-size:13.5px;color:var(--ticket-ink-soft);line-height:1.55}
+  .ticket .trow{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:20px;font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--ticket-ink-soft)}
+  /* The stub — separated by a perforated line, punched with two
+     half-moon notches where it would tear */
+  .ticket-stub{flex:0 0 148px;position:relative;display:flex;align-items:center;justify-content:center;
+    border-left:3px dashed rgba(97,66,8,.55)}
+  .ticket-stub::before,.ticket-stub::after{content:"";position:absolute;left:-13px;width:24px;height:24px;border-radius:50%;background:#000;
+    box-shadow:inset 0 0 0 1px rgba(255,244,214,.35)}
+  .ticket-stub::before{top:-13px}
+  .ticket-stub::after{bottom:-13px}
+  .ticket-stub .stubtext{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-family:var(--serif);font-weight:700;
+    font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--ticket-ink);white-space:nowrap;
+    text-shadow:0 1px 0 rgba(255,246,214,.6)}
+  .ticket-stub .stubsub{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--ticket-ink-soft);white-space:nowrap;margin-left:8px}
+  .undernote{text-align:center;color:var(--muted);font-size:15px;max-width:600px;margin:18px auto 0}
+  .undernote a{font-weight:700;text-decoration:none}
+  .undernote a:hover{text-decoration:underline}
+
+  footer{max-width:1080px;margin:26px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+
+  @media (max-width:640px){
+    .ticket{flex-direction:column;transform:none}
+    .ticket-main{padding:32px 24px 26px}
+    .ticket-stub{flex:none;border-left:0;border-top:3px dashed rgba(97,66,8,.55);padding:16px 10px 20px;flex-direction:column;gap:4px}
+    .ticket-stub::before,.ticket-stub::after{left:auto;top:-13px}
+    .ticket-stub::before{left:-13px}
+    .ticket-stub::after{right:-13px;left:auto;bottom:auto}
+    .ticket-stub .stubtext,.ticket-stub .stubsub{writing-mode:horizontal-tb;transform:none;margin-left:0}
+    .ticketstage{padding:20px 2px 16px}
+  }
+  @media (max-width:560px){
+    main{padding:0 14px 8px}
+    .topbar{padding:11px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="./">Loyalty</a>
+    <a class="cta" href="../playground/#guestbook">Join us</a>
+  </nav>
+</header>
+
+<main>
+  <div class="pagewrap">
+    <a class="backlink" href="../">← Home</a>
+
+    <div class="intro">
+      <p class="kicker">The Loyalty Ticket</p>
+      <p>Every member of the Playground carries one of these. Not bought — earned, the pleasant way.</p>
+    </div>
+
+    <!-- THE GOLDEN TICKET -->
+    <div class="ticketstage">
+      <div class="ticket" role="img" aria-label="A golden ticket: Loyalty Lives Here. Join the Playground and loyalty comes with it. Members who are good, truthful, and stay a while earn a special discount — for being pleasant on our network. Bring a friend who joins and stays, and loyalty rewards that too. Full details when the doors open — January 1. Admit one good member.">
+        <div class="ticket-main">
+          <p class="presenter">Lux Animations · The AI Playground presents</p>
+          <div class="rule" aria-hidden="true"><span>✦</span></div>
+          <h1>LOYALTY LIVES HERE</h1>
+          <p class="subline">The golden ticket of the house</p>
+          <div class="tcopy">
+            <p>Join the Playground and loyalty comes with it. Members who are good, truthful, and stay a while earn a special discount — for being pleasant on our network.</p>
+            <p>Bring a friend who joins and stays, and loyalty rewards that too.</p>
+          </div>
+          <div class="fineprint">
+            <span class="big">Full details when the doors open — January 1.</span>
+            <p>Members also earn loyalty points when they upgrade things. Points live inside the house only, on your own ledger — never a coin, never traded, yours alone to see.</p>
+          </div>
+          <div class="trow" aria-hidden="true">
+            <span>House of Lux</span>
+            <span>Est. October 21, 2026</span>
+            <span>ailux.ca</span>
+          </div>
+        </div>
+        <div class="ticket-stub" aria-hidden="true">
+          <span class="stubtext">Admit One</span>
+          <span class="stubsub">One good member</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="undernote">The ticket comes with the <a href="../playground/">Playground</a> — look around free first, and see everything it opens.</p>
+  </div>
+</main>
+
+<footer>
+  <p class="flogo">Lux <em>Automations</em> · Lux <em>Animations</em></p>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="./">Loyalty</a>
+  </nav>
+  A Million Times Better · ailux.ca — Edmonton, Alberta<br>
+  © 2026 Lux Automations
+</footer>
+
+</body>
+</html>

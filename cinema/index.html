@@ -7,86 +7,105 @@
 <meta name="description" content="The Lux Cinema: our own player, on our own stage. Watch the Harbour of Lights pier walk and The Morning Call — original films and dreams from the house of Lux.">
 <style>
   :root{
-    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
-    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
-    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
-    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
-    --radius-section:18px; --radius-card:14px; --radius-control:12px; --radius-pill:999px;
-    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
-  a{color:var(--accent)}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
   img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
 
   /* ---------- top bar ---------- */
-  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
-  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
-  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
-  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
-  nav.mainnav a:hover{background:#eef1f6}
-  nav.mainnav a.goldlink{color:var(--gold)}
-  nav.mainnav a.goldlink:hover{background:var(--gold-tint)}
-  nav.mainnav a.here{background:var(--gold-tint);color:var(--gold)}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar.bottom{position:static;margin-top:8px;border-bottom:0;border-top:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
+  nav.mainnav a.goldlink:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
 
-  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
-  .roomtitle{font-size:clamp(30px,7vw,42px);font-weight:700;letter-spacing:-.015em;line-height:1.1;margin:4px 2px 0}
-  .topbar.bottom{position:static;margin-top:8px}
-  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
-  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-  .eyebrow.blue{color:var(--accent)}
-  h1{font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
-  h2{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
+  .roomtitle .goldline{color:var(--gold)}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
   h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
   p{margin:0 0 12px}
-  p.lede{font-size:19px;line-height:1.55}
-  .secondary{color:var(--secondary)}
-  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
-  .openline{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
-  .hostline{display:flex;gap:12px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px 16px;margin-top:16px}
-  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold-tint);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
-  .hostline p{margin:0;font-size:15.5px;line-height:1.5}
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 22px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font:inherit;font-weight:700}
-  .btn-blue{background:var(--accent);color:#fff}
-  .btn-blue:hover{background:var(--accent-hover)}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:10px 20px;border-radius:var(--radius-pill);background:#000;box-shadow:var(--aura-soft);color:var(--gold);font-weight:800;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:14px 16px;margin-top:16px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)}
+  .hostline p strong{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 24px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 
   /* ---------- the screen (our own player) ---------- */
-  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto}
+  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
   .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
   .stage:fullscreen{max-height:none;border-radius:0}
   .stage:fullscreen video{object-fit:contain}
   .bigplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
-  .bigplay span{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.92);color:#1d1d1f;display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:0 12px 34px rgba(0,0,0,.35)}
-  .bigplay:hover span{background:#fff}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(245,198,92,.55)}
   .bigplay[hidden]{display:none}
   .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
-  .cbtn:hover{background:#eef1f6}
-  .cbtn[aria-pressed="true"]{background:var(--gold-tint);border-color:var(--gold);color:#7a5c10}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:rgba(255,255,255,.08)}
+  .cbtn[aria-pressed="true"]{background:rgba(245,198,92,.16);border-color:var(--gold);color:var(--gold)}
   .cbtn:disabled{opacity:.45;cursor:default}
-  .cbtn:disabled:hover{background:var(--card)}
-  .ctime{font-size:14.5px;color:var(--secondary);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cbtn:disabled:hover{background:#000}
+  .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
   .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
   .vol{width:84px;accent-color:var(--gold);cursor:pointer}
-  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);padding:6px 10px;cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
   .screenmeta{margin-top:14px}
-  .screenmeta .songline{font-size:15px;color:var(--secondary);margin:0}
+  .screenmeta .songline{font-size:15px;color:var(--muted);margin:0}
 
 
-  .soonline{margin-top:16px;text-align:center;padding:12px 16px;border:1.5px dashed var(--gold);border-radius:var(--radius-card);background:var(--gold-tint);font-weight:600;font-size:16px}
-  /* ---------- the loyalty stamp ---------- */
-  .stamp{margin-top:20px;border:3px solid var(--gold);border-radius:var(--radius-card);background:var(--gold-tint);box-shadow:inset 0 0 0 4px #fffdf4,inset 0 0 0 6.5px var(--gold-soft),0 10px 26px rgba(185,138,28,.16);padding:24px 24px 20px;text-align:center}
-  .stamp .seal{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px;border:2px dashed rgba(255,255,255,.8);box-shadow:0 0 0 2.5px var(--gold)}
-  .stamp h2{font-size:clamp(23px,5.4vw,32px);letter-spacing:.14em;color:#7a5c10;margin:0 0 10px}
-  .stamp p{max-width:580px;margin:0 auto 10px;font-size:16.5px;line-height:1.55}
-  .stamp small{margin:0;font-weight:600}
+  .soonline{margin-top:16px;text-align:center;padding:12px 16px;border:1.5px dashed rgba(245,198,92,.55);border-radius:var(--radius-card);background:rgba(245,198,92,.06);font-weight:600;font-size:16px;color:#e9dfc4}
+  /* ---------- the loyalty stamp — a golden seal; tap it for the ticket ---------- */
+  a.stamp{display:block;text-decoration:none;color:var(--ink);margin-top:20px;border:3px solid var(--gold);border-radius:var(--radius-card);background:linear-gradient(160deg,#2a1f06,#171106 70%);box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.4),0 0 26px rgba(245,198,92,.22);padding:24px 24px 20px;text-align:center;transition:box-shadow .25s ease}
+  a.stamp:hover{box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.55),0 0 40px rgba(245,198,92,.4)}
+  .stamp .seal{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-size:25px;border:2px dashed rgba(23,17,6,.55);box-shadow:0 0 0 2.5px var(--gold)}
+  .stamp h2{font-size:clamp(23px,5.4vw,32px);letter-spacing:.14em;color:var(--gold);margin:0 0 10px}
+  .stamp p{max-width:580px;margin:0 auto 10px;font-size:16.5px;line-height:1.55;color:#e9dfc4}
+  .stamp small{margin:0;font-weight:600;color:var(--muted)}
+  .stamp .tapline{display:block;margin-top:10px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
   .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
-  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
+  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
   .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
-  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:rgba(255,255,255,.97);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
   .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
   /* ---------- fullscreen: the film takes the whole screen; the bar comes when you move, goes when you don't ---------- */
   .player{position:relative}
@@ -96,9 +115,9 @@
   .player:fullscreen.idle{cursor:none}
   .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
 
-  /* ---------- the theatre shelf: poster rows, newest first ---------- */
-  section.theatre{background:linear-gradient(180deg,#1c150a,#110e0a 55%,#0d0b09);border:1px solid #3d3016;color:#f5efe0}
-  section.theatre .eyebrow{color:#d8ab3a}
+  /* ---------- the theatre shelf: poster rows, newest first — the boxes hover ---------- */
+  section.theatre{background:linear-gradient(180deg,#171106,#0d0a05 55%,#080604);border:1px solid rgba(245,198,92,.28);color:#f5efe0}
+  section.theatre .eyebrow{color:var(--gold-deep)}
   section.theatre h2{color:#fff6df}
   section.theatre small{color:#b7ad9c}
   .shelf{display:block;margin-top:2px}
@@ -107,13 +126,20 @@
   .railwrap:first-child .railhead{margin-top:6px}
   .railhead::before,.railhead::after{content:"";flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(216,171,58,.55),transparent)}
   .railhead .star{color:var(--gold);letter-spacing:0}
-  .rail{display:flex;gap:18px;overflow-x:auto;padding:10px 2px 16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .rail{display:flex;gap:18px;overflow-x:auto;padding:14px 2px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
   .rail::-webkit-scrollbar{height:8px}
   .rail::-webkit-scrollbar-thumb{background:#3d3016;border-radius:99px}
   .rail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
-  .theatre .carditem{flex:0 0 auto;width:224px;scroll-snap-align:start;text-align:left;font:inherit;background:transparent;border:0;border-radius:0;overflow:visible;cursor:pointer;color:#f5efe0;padding:0}
-  .theatre .carditem img{width:100%;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);transition:border-color .15s ease,transform .15s ease}
-  .theatre .carditem:hover img{border-color:rgba(216,171,58,.85);transform:translateY(-2px)}
+  /* The video boxes hover — a gentle bob, each on its own timing like
+     the doors, and the diamond's light blooms around the one you touch */
+  .theatre .carditem{flex:0 0 auto;width:224px;scroll-snap-align:start;text-align:left;font:inherit;background:transparent;border:0;border-radius:0;overflow:visible;cursor:pointer;color:#f5efe0;padding:0;animation:cardbob 7s ease-in-out infinite}
+  .rail .carditem:nth-child(2){animation-delay:.9s}
+  .rail .carditem:nth-child(3){animation-delay:1.8s}
+  .rail .carditem:nth-child(4){animation-delay:2.7s}
+  .rail .carditem:nth-child(5){animation-delay:3.6s}
+  @keyframes cardbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .theatre .carditem img{width:100%;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);transition:border-color .15s ease,box-shadow .25s ease}
+  .theatre .carditem:hover img,.theatre .carditem:focus-visible img{border-color:rgba(245,198,92,.9);box-shadow:0 0 0 1px rgba(255,244,214,.5),0 0 18px rgba(234,242,255,.4),0 0 38px rgba(245,198,92,.35)}
   .theatre .carditem.sel img{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 12px 28px rgba(0,0,0,.55)}
   .theatre .carditem .cbody{display:block;padding:10px 2px 0}
   .theatre .carditem .ct{display:block;font-weight:700;font-size:16.5px;line-height:1.3;color:#fdf8ea}
@@ -127,27 +153,37 @@
   .theatre .linkcard .ct{color:#fdf8ea}
   .theatre .linkcard .cs{color:#cfc6b4}
   @media (max-width:560px){.theatre .carditem,.theatre .comingcard{width:176px}}
-  .comingcard{border:1.5px dashed var(--border-strong);border-radius:var(--radius-card);padding:22px 18px;background:var(--card)}
+  .comingcard{border:1.5px dashed rgba(255,255,255,.25);border-radius:var(--radius-card);padding:22px 18px;background:#000}
   .comingcard .ct{font-weight:700;font-size:17px;display:block}
-  .comingcard .cs{font-size:14.5px;color:var(--secondary);display:block;margin-top:5px;line-height:1.45}
-  .linkcard{border:1.5px solid var(--border);border-radius:var(--radius-card);padding:22px 18px;background:var(--card);margin-top:14px}
+  .comingcard .cs{font-size:14.5px;color:var(--muted);display:block;margin-top:5px;line-height:1.45}
+  .linkcard{border:1.5px solid rgba(255,255,255,.16);border-radius:var(--radius-card);padding:22px 18px;background:#000;margin-top:14px}
   .linkcard .ct{font-weight:700;font-size:17px;display:block}
   .linkcard .cm{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
-  .linkcard .cs{display:block;font-size:14.5px;color:var(--secondary);margin-top:5px;line-height:1.45}
+  .linkcard .cs{display:block;font-size:14.5px;color:var(--muted);margin-top:5px;line-height:1.45}
   .linkcard ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
   .linkcard a{font-weight:600;text-decoration:none}
   .linkcard a:hover{text-decoration:underline}
   .closeline{text-align:center;padding:28px 24px}
-  .closeline .big{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+  .closeline .big{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
 
-  footer{max-width:880px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--secondary);font-size:14.5px;line-height:1.6}
+  footer{max-width:1080px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
   @media (max-width:560px){
     main{padding:12px;gap:12px}
     section{padding:20px 18px}
     .topbar{padding:10px 14px}
-    nav.mainnav a{padding:7px 9px;font-size:14.5px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
     .vol{display:none}
   }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .theatre .carditem{animation:none}
+    .btn{transition:none}
+  }
+
 </style>
 <script type="application/ld+json">
 {
@@ -175,7 +211,7 @@
 
 <main>
 
-  <h1 class="roomtitle">Cinema</h1>
+  <h1 class="roomtitle">Free <span class="goldline">Cinema</span></h1>
 
 
   <!-- ============ THE SCREEN ============ -->
@@ -210,12 +246,13 @@
       <p class="songline" id="screensong"></p>
       <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
     </div>
-    <div class="stamp" role="note" aria-label="Loyalty">
+    <a class="stamp" href="../loyalty/" aria-label="Loyalty — see the golden ticket">
       <div class="seal" aria-hidden="true">✦</div>
       <h2>LOYALTY LIVES HERE</h2>
       <p>Join the Playground and loyalty comes with it. Members who are good, truthful, and stay a while earn a special discount — for being pleasant on our network. Bring a friend who joins and stays, and loyalty rewards that too.</p>
       <small>Full details when the doors open — January 1.</small>
-    </div>
+      <span class="tapline">See the golden ticket →</span>
+    </a>
     <div class="soonline">Coming soon — join the Playground and make your own movies and shows, with the same tools and the same quality as ours.</div>
   </section>
 
@@ -233,7 +270,7 @@
         <li><a href="https://www.youtube.com/watch?v=LLiO-etW5lE" rel="noopener">Watch on YouTube</a></li>
       </ul>
     </div>
-    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The full first season — Harbour of Lights, The Storybook, and the flagship's return — arrives with the January 1 opening.</small>
+    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The series itself lives in the Playground, starting December 1; everything here in the Cinema stays free to watch.</small>
   </section>
 
   <!-- ============ THE ROOM ============ -->
@@ -241,7 +278,7 @@
     <p class="eyebrow">The Cinema</p>
     <h2>Take a seat — this screen is ours</h2>
     <p class="lede">No rented player, no detours: the films below play right here, on the house's own stage. Pick a picture from the shelf and it rolls up on the big screen.</p>
-    <span class="openline">Now showing · the full season opens Friday, January 1</span>
+    <span class="openline">Now showing — always free · The series starts December 1 in the Playground</span>
     <div class="hostline">
       <div class="hi" aria-hidden="true">👋</div>
       <p><strong>Aimée, your host:</strong> Welcome to my favourite room. Everything on this shelf is finished work from the house, and every piece names the song that plays under it — that's the house rule. Captions join each title as its caption file is finished; the CC button lights up when they're ready.</p>
@@ -252,29 +289,34 @@
     <p class="big">Join our adventure</p>
     <p class="secondary" style="margin:0 0 6px">Leave your name in the guest book and we'll write when there's something new on the shelf — an episode, a song, a door opening in the house.</p>
     <div class="btnrow" style="justify-content:center">
-      <a class="btn btn-blue" href="../index.html#guestbook">Join our adventure</a>
+      <a class="btn" href="../#guestbook">Join our adventure</a>
     </div>
   </section>
 
 </main>
 
 <header class="topbar bottom">
-  <a class="brand" href="../index.html">Lux Automations<small>ailux.ca</small></a>
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
   <nav class="mainnav" aria-label="The house">
-    <a href="../index.html">Home</a>
-    <a class="here" href="./">Cinema</a>
-    <a href="../site-pages/automation.html">Workshop</a>
-    <a href="../site-pages/games.html">Playground</a>
-    <a href="../site-pages/programs.html">Programs</a>
-    <a href="../site-pages/membership.html">Membership</a>
-    <a class="goldlink" href="../stripe-wiring/music-store/jukebox.html">Music Store</a>
-    <a class="goldlink" href="../stripe-wiring/merch-store/index.html">Merch</a>
-    <a href="../index.html#guestbook">Guest Book</a>
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a class="here" href="./">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="goldlink" href="../loyalty/">Loyalty</a>
+    <a href="../#guestbook">Guest Book</a>
   </nav>
 </header>
 
 <footer>
   Lux Automations · A Million Times Better<br>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="./">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+  </nav>
   ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
   © 2026 Lux Automations
 </footer>
@@ -421,7 +463,7 @@
     if(row.id==='newest'){
       var coming=document.createElement('div');
       coming.className='comingcard';
-      coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the January 1 opening. The shelf fills as each piece is finished and approved.</span>';
+      coming.innerHTML='<span class="ct">The series starts December 1</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats in the Playground — the series lives there from December 1. The Cinema stays free, and this shelf fills as each piece is finished and approved.</span>';
       rail.appendChild(coming);
     }
     wrap.appendChild(head); wrap.appendChild(rail);

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Playground — Lux Animations | ailux.ca</title>
+<meta name="description" content="The AI Playground: one membership opens every tool — make films, songs, books and games, keep your own channel, and sell what you make in our Store. Look around free first. Opens Friday, January 1, 2027.">
+<style>
+  :root{
+    --black:#000; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --ink:#f6f3ec; --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.55;display:block}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:999px}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em}
+  nav.mainnav a.loyaltap:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
+  nav.mainnav a.cta:hover{box-shadow:var(--aura)}
+
+  main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(245,198,92,.4),transparent)}
+  h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
+  .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
+  .soundline{margin-top:18px;padding:13px 18px;background:#000;border-radius:14px;box-shadow:var(--aura-soft);font-size:15.5px;color:#e9dfc4}
+  .soundline b{color:var(--gold)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btn.small{min-height:48px;padding:11px 22px;font-size:15.5px}
+  .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+
+  .room{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:26px;padding:38px;box-shadow:var(--aura-soft);position:relative;overflow:hidden}
+  .room::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 40%);pointer-events:none}
+  .room>*{position:relative}
+  .pagewrap{padding-top:34px}
+  .backlink{display:inline-flex;align-items:center;gap:8px;color:var(--muted-2);text-decoration:none;font-weight:700;font-size:15px;margin-bottom:22px;padding:9px 16px;border-radius:999px;background:#000;box-shadow:var(--aura-soft)}
+  .backlink:hover{color:var(--ink);box-shadow:var(--aura)}
+
+  .aimee{display:flex;gap:18px;align-items:flex-start;background:#000;border-radius:18px;box-shadow:var(--aura-soft);padding:20px 22px;margin:22px 0 6px;max-width:760px}
+  .aimee img{width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:50% 0%;flex:none;box-shadow:var(--aura-soft)}
+  .aimee .who{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+  .aimee blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:var(--ink)}
+
+  .videoslot{margin-top:26px;background:#000;border-radius:20px;box-shadow:var(--aura-soft);padding:30px 26px;text-align:center}
+  .videoslot .heartmark{width:40px;height:36px;margin:0 auto 12px;filter:drop-shadow(0 0 7px rgba(245,198,92,.75))}
+  .videoslot .vlabel{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .videoslot h3{font-size:23px;margin:0 0 16px}
+  .vnote{margin:16px auto 0;max-width:520px;padding:12px 16px;border-radius:12px;background:var(--panel-2);color:#f0e6cb;font-size:15px}
+
+  .grouphead{font-size:13px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:44px 0 2px;display:flex;align-items:center;gap:12px}
+  .grouphead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(245,198,92,.4),transparent)}
+  .craftrow{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+  .craft{background:#000;border-radius:14px;box-shadow:var(--aura-soft);padding:18px 20px}
+  .craft h3{font-size:18.5px;margin:0 0 4px}
+  .craft p{margin:0;color:var(--muted);font-size:15px}
+
+  .filmgrid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+  .moment{position:relative;border-radius:22px;overflow:hidden;min-height:280px;display:flex;align-items:flex-end;box-shadow:var(--aura-soft);background:#000}
+  .moment img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .moment .mshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 40%,rgba(0,0,0,.93) 95%)}
+  .moment .mbody{position:relative;padding:20px 22px}
+  .moment .mnum{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 5px}
+  .moment h3{font-size:24px;margin:0 0 4px}
+  .moment p{margin:0;color:#d9d5e4;font-size:15px}
+
+  /* ---------- guest book ---------- */
+  .guestbook{margin-top:52px;scroll-margin-top:96px}
+  form.gb{display:grid;gap:14px;margin-top:20px;max-width:620px}
+  form.gb label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--muted-2)}
+  form.gb input[type="text"],form.gb input[type="email"]{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#000;color:var(--ink);padding:12px 16px;width:100%}
+  form.gb input[type="text"]:focus,form.gb input[type="email"]:focus{outline:2px solid var(--ice);outline-offset:1px}
+  .choices{display:flex;gap:10px;flex-wrap:wrap}
+  form.gb .choices label{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;background:#000;box-shadow:var(--aura-soft);padding:10px 17px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  form.gb .choices input[type="radio"]{width:18px;height:18px;min-height:0;padding:0;border:0;background:none;flex:none;margin:0;accent-color:var(--gold)}
+  #joinMsg{font-size:15.5px;color:#f0e6cb;margin:6px 0 0}
+
+  footer{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+
+  @media (min-width:760px){
+    .craftrow{grid-template-columns:1fr 1fr}
+    .filmgrid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (min-width:1020px){
+    .craftrow{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:560px){
+    main{padding:0 14px 8px}
+    .topbar{padding:11px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+    .room{padding:26px 20px}
+    .aimee{flex-direction:column;gap:12px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a class="here" href="./">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+    <a class="cta" href="#guestbook">Join us</a>
+  </nav>
+</header>
+
+<main>
+  <div class="pagewrap">
+    <a class="backlink" href="../">← Home</a>
+    <div class="room">
+      <p class="kicker">Door Two · Lux Animations</p>
+      <h2 class="section-title">AI Playground — opens Friday, January 1</h2>
+
+      <div class="aimee">
+        <img src="../assets/aimee.webp" alt="Aimée, your host" width="124" height="124" loading="lazy">
+        <div>
+          <p class="who">Aimée explains</p>
+          <blockquote>“Come in and look around first — everything’s open to see. When you’re ready to make something, the channel is yours.”</blockquote>
+        </div>
+      </div>
+
+      <p class="section-lede">One membership opens every tool in the Playground — make films, songs, books and games, keep your own channel, and sell what you make in our Store.</p>
+      <p class="muted" style="max-width:700px">Aimée runs the room: host of the Cinema, greeter at the door, and the help inside every tool. Help on offer, never control taken. And the door is everybody — something at every age. Nobody is designed out.</p>
+      <p class="muted" style="max-width:700px">This page is the Playground’s front room while the rooms themselves are being built. Everything below is what the membership will hold when the doors open.</p>
+
+      <div class="videoslot">
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <p class="vlabel">Video · Aimée explains</p>
+        <h3>The Playground, in her own words</h3>
+        <button class="btn small" type="button" data-vnote>Watch Aimée explain</button>
+        <p class="vnote" hidden>Aimée’s explainer film is being made now — it opens with the house on Friday, January 1.</p>
+      </div>
+
+      <p class="grouphead">Make — the benches</p>
+      <div class="craftrow">
+        <div class="craft"><h3>The Maker (Video Maker)</h3><p>The big one: storyboard tab → audio → video → join, one typing line, finished film out. Our videos and members’ videos pass through the same finishing bench — same quality.</p></div>
+        <div class="craft"><h3>Music Video Door</h3><p>Bring your own song; the maker builds the video around its beats and lyrics.</p></div>
+        <div class="craft"><h3>Image Maker</h3><p>Tabs inside tabs: Images · Mock-ups · Pinpoint · Displays · Business · School.</p></div>
+        <div class="craft"><h3>Prism, the design hand</h3><p>Posters, covers, logos, thumbnails, product shots.</p></div>
+        <div class="craft"><h3>Song Bench</h3><p>Write words, get a song; a lyric helper sits inside.</p></div>
+        <div class="craft"><h3>Voice Bench</h3><p>Type it, hear it spoken; narration for your videos and stories.</p></div>
+        <div class="craft"><h3>Storyboard Room</h3><p>Your idea becomes a board of scenes with pictures and prompts, ready for the video machines.</p></div>
+        <div class="craft"><h3>Meme &amp; Sticker Bench</h3><p>Quick fun pictures, stickers, reaction images.</p></div>
+        <div class="craft"><h3>Card &amp; Invitation Maker</h3><p>Birthday cards, holiday cards, party invites, thank-you notes.</p></div>
+        <div class="craft"><h3>Colouring Page Maker</h3><p>Type an idea, get printable colouring pages.</p></div>
+        <div class="craft"><h3>Comic Strip Bench</h3><p>Panels, speech bubbles, your characters, page by page.</p></div>
+      </div>
+
+      <p class="grouphead">The Writing Station</p>
+      <p class="muted" style="max-width:700px;margin-top:10px">One station for written things. Pick the <strong style="color:var(--ink)">write tab</strong> above the writing box for the kind of thing you want, then just tell it in the box what you want. Words are metered in credits — so many words, so many credits.</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Book tab</h3><p>Write a book, chapter by chapter.</p></div>
+        <div class="craft"><h3>Short tab</h3><p>Short stories and short pieces.</p></div>
+        <div class="craft"><h3>Music Video tab</h3><p>Words that become a music video.</p></div>
+        <div class="craft"><h3>Audiobook tab</h3><p>The book comes back <strong style="color:var(--ink)">narrated</strong> — and you pick the narrator’s voice from the house voice shelf.</p></div>
+        <div class="craft"><h3>Audiobook Corner</h3><p>Bring a chapter you already wrote; get it read aloud, in chapters you keep.</p></div>
+      </div>
+
+      <p class="grouphead">Play — the Games Room</p>
+      <div class="craftrow">
+        <div class="craft"><h3>The Games Room</h3><p>Games dressed in Lux style; new titles land as the bench builds them.</p></div>
+        <div class="craft"><h3>Daily Puzzle</h3><p>One small puzzle a day; streaks on your profile.</p></div>
+        <div class="craft"><h3>Trivia Nights</h3><p>Scheduled quiz rooms — space, music, movies, Edmonton, Christmas.</p></div>
+        <div class="craft"><h3>Build-a-World Sandbox</h3><p>Place houses, harbours, lighthouses; save your world; visit friends’ worlds.</p></div>
+        <div class="craft"><h3>Dress-Up &amp; Character Creator</h3><p>Build your avatar or character; the same tool feeds the storyboard bench.</p></div>
+        <div class="craft"><h3>Pet Corner</h3><p>The Lux Cat and Lux Mouse mini-games and care play.</p></div>
+      </div>
+
+      <p class="grouphead">Stories — the writing side</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Story Dice</h3><p>Roll three picture dice, write the story they give you; the best ones get read aloud by the Voice Bench.</p></div>
+        <div class="craft"><h3>Finish-My-Story</h3><p>The house starts a story; members write the next paragraph; Aimée keeps it tidy.</p></div>
+        <div class="craft"><h3>Poetry Corner</h3><p>Write a poem, hear it read, shelve it in your own little book.</p></div>
+        <div class="craft"><h3>Family History Pages</h3><p>Record grandma’s stories by voice; the bench writes them out and lays them up as a keepsake book.</p></div>
+      </div>
+
+      <p class="grouphead">Learn — school without the school face</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Aimée’s Classroom</h3><p>Members come in and she teaches any subject, interactively, making the pictures and media needed on the spot.</p></div>
+        <div class="craft"><h3>Homework Helper Benches</h3><p>A patient explainer with facts checked.</p></div>
+        <div class="craft"><h3>Draw-Along &amp; Make-Along Classes</h3><p>Follow a project step by step; finish with a thing you made.</p></div>
+        <div class="craft"><h3>How-It-Works Room</h3><p>Short, honest explainers: how a song is made, how a video is finished — the house shows its craft.</p></div>
+        <div class="craft"><h3>The Lesson Box</h3><p>Lessons members make for each other, under the same creator-share as everything else members sell.</p></div>
+      </div>
+
+      <p class="grouphead">Together — the common deck</p>
+      <div class="craftrow">
+        <div class="craft"><h3>The Chat Room</h3><p>A private room where people just talk about anything. The house is not a funnel.</p></div>
+        <div class="craft"><h3>Clubs</h3><p>Little rooms by interest: harbour watchers, songwriters, storytellers, stargazers.</p></div>
+        <div class="craft"><h3>Weekly Challenge</h3><p>One theme a week; members make something; the house showcases favourites in the Cinema, always with the maker’s name on it.</p></div>
+        <div class="craft"><h3>Watch Parties</h3><p>Cinema rooms where members watch a premiere together and chat along.</p></div>
+        <div class="craft"><h3>The Request Line</h3><p>Ask the house for a dream: a song for a birthday, a picture for your wall.</p></div>
+      </div>
+
+      <p class="grouphead">Show &amp; Earn — the creator doors</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Your own channel</h3><p>Every member can have a channel under their own name, organized how they like — their rows, their order. House rows sit above the channels, so a member’s film can surface in front of everybody.</p></div>
+        <div class="craft"><h3>The member’s choice</h3><p>A finished video does NOT post itself. The machine hands it to the member; posting to their channel is always the member’s own call.</p></div>
+        <div class="craft"><h3>The Cinema — free to view</h3><p>Our films and series on our own player, newest first — free for everyone, member or not. <a href="../cinema/">Take a seat →</a></p></div>
+        <div class="craft"><h3>The Store</h3><p>Two shelves under one till: <strong style="color:var(--ink)">Music</strong> — our songs and our members’ songs, side by side; members earn when their music sells. <strong style="color:var(--ink)">Merch</strong> — the house’s own shelf. Every release comes in two shapes: song + cover — <strong style="color:var(--ink)">US$1.29</strong> · song + cover + music video — <strong style="color:var(--ink)">US$4.99</strong>. <a href="../stripe-wiring/music-store/jukebox.html">Visit the Store →</a></p></div>
+        <div class="craft"><h3>Distribution — the Submitter</h3><p>You pick the sites; our AI posts your finished piece there for you, with your permission. We put your song on Apple Music and the other music sites, and your videos to the video sites. No raw file ever changes hands — the master never leaves our walls. Distribution is metered in credits.</p></div>
+        <div class="craft"><h3>The NFT Showcase</h3><p>A gallery of really cool member-made pieces by kind — video · picture · hologram · 3D — showing what can be done, before members mint their own.</p></div>
+        <div class="craft"><h3>Member minting</h3><p>Members make their own NFTs in the Playground, metered in credits. Credits and loyalty points are house points only — private, in-house, never a coin.</p></div>
+        <div class="craft"><h3>Loyalty</h3><p>The pleasant-member deal: be good, be truthful, stay a while — and earn a special discount. Bring a friend who joins and stays, and loyalty rewards that too. <a href="../loyalty/">Loyalty lives here →</a></p></div>
+        <div class="craft"><h3>Your Notebook</h3><p>Aimée remembers you — your projects, your patterns, your way of talking — inside the house walls only. You can see it, correct it, or wipe it. Never sold, never shared.</p></div>
+        <div class="craft"><h3>The Stark Room · seed</h3><p>A talk-and-see-it room: camera-tracked play first; the long aim is a voice-first holographic desk — no keyboard, you talk, the work appears in front of you.</p></div>
+        <div class="craft"><h3>The Glasses Room · seed</h3><p>A Cinema room where you plug in smart glasses and the film is around you instead of in front of you.</p></div>
+      </div>
+
+      <p class="grouphead">How every tool page works</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Named by the job</h3><p>Tools are named by the job, never by the engine: “Make a Movie from a Photo,” not a model name.</p></div>
+        <div class="craft"><h3>No blank canvas, ever</h3><p>Every tool opens with a finished example and a “Make one like this” button. Aimée is right there on the page, and a short explainer video shows what the tool is for — in your own walk of life.</p></div>
+        <div class="craft"><h3>The price is on the button</h3><p>The price is printed on the run button. Failed runs are free. Credits move only when the machine does the expensive step.</p></div>
+        <div class="craft"><h3>Yours stays yours</h3><p>Members keep the rights in what they make; the house takes only the licence it needs to host and show what members choose to post. Watching is view-only — buying a title outright is a separate, paid right, and then the real file is yours.</p></div>
+      </div>
+
+      <p class="grouphead">Membership</p>
+      <p class="muted" style="max-width:700px;margin-top:10px">Two memberships, named for their sides: the <strong style="color:var(--ink)">Lux Automations membership</strong> (the Workshop) and the <strong style="color:var(--ink)">Lux Animations membership</strong> (the Playground) — and holding both may be a much better deal. There are <strong style="color:var(--ink)">no per-tool subscriptions</strong>, ever: one membership unlocks <strong style="color:var(--ink)">ALL</strong> of its side’s tools.</p>
+      <div class="craftrow">
+        <div class="craft"><h3>Founding prepay</h3><p>Pay now and take <strong style="color:var(--ink)">25% off the first month</strong> — it covers <strong style="color:var(--ink)">January 1 to February 1</strong>, and you are <strong style="color:var(--ink)">not charged again until February 1</strong>. Or buy a full founding year at <strong style="color:var(--ink)">25% off the year</strong>.</p></div>
+        <div class="craft"><h3>Pick your billing day</h3><p>Each member picks their own monthly billing day — the 1st to the 28th — so the charge follows your payday. Founders’ renewals follow their picked day from February on.</p></div>
+        <div class="craft"><h3>Look around free first</h3><p>Anyone can log in and look around the Playground free before paying — walk the rooms, see the tools, see the channel that could be yours. Making and posting unlock with membership. The Cinema stays free to view.</p></div>
+        <div class="craft"><h3>Credits, in plain sight</h3><p>Membership includes a monthly credit allotment. Spend your credits, you buy more — packs and in-place top-up, with a ledger you can see: every credit in and out. No dark patterns. Credits live inside the house only — never a coin.</p></div>
+      </div>
+
+      <h3 style="font-size:24px;margin-top:44px">A Million Times Better — the series starts December 1</h3>
+      <p class="muted" style="max-width:700px;margin-top:8px">The series starts December 1 — right here in the Playground. He died in intensive care, and he came back — with a memory of light that has never left him. This is his story, told as cinema.</p>
+      <div class="filmgrid">
+        <div class="moment">
+          <img src="../assets/teaser-icu.webp" alt="Moment One — Intensive Care" loading="lazy">
+          <span class="mshade" aria-hidden="true"></span>
+          <div class="mbody">
+            <p class="mnum">Moment One</p>
+            <h3>Intensive Care</h3>
+            <p>The night everything stopped — and started again.</p>
+          </div>
+        </div>
+        <div class="moment">
+          <img src="../assets/teaser-light.webp" alt="Moment Two — The Light" loading="lazy">
+          <span class="mshade" aria-hidden="true"></span>
+          <div class="mbody">
+            <p class="mnum">Moment Two</p>
+            <h3>The Light</h3>
+            <p>What he saw on the other side, and why it sent him back.</p>
+          </div>
+        </div>
+        <div class="moment">
+          <img src="../assets/teaser-ashes.webp" alt="Moment Three — The Cove" loading="lazy">
+          <span class="mshade" aria-hidden="true"></span>
+          <div class="mbody">
+            <p class="mnum">Moment Three</p>
+            <h3>The Cove</h3>
+            <p>A promise, kept on the wind over the water.</p>
+          </div>
+        </div>
+      </div>
+      <p class="soundline">The sound of the series: <b>“The Light That Came Home”</b> · <b>“Heaven on Earth”</b> — on the Haven soundtrack · ailux.ca</p>
+
+      <!-- The guest book lives here too, at the bottom of the Playground page -->
+      <div class="guestbook" id="guestbook">
+        <p class="kicker">The Guest Book</p>
+        <h2 class="section-title">Join our adventure.</h2>
+        <p class="section-lede">Leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
+        <form class="gb" id="joinForm" action="/api/join" method="post">
+          <label>Your name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <div>
+            <span style="font-size:14.5px;font-weight:600;display:block;margin-bottom:8px;color:var(--muted-2)">I’m here for</span>
+            <div class="choices">
+              <label><input type="radio" name="choice" value="films"> Films</label>
+              <label><input type="radio" name="choice" value="automation"> Automation</label>
+              <label><input type="radio" name="choice" value="both"> Both</label>
+            </div>
+          </div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+            <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <div class="btnrow" style="margin-top:4px">
+            <button class="btn" type="submit">Join our adventure</button>
+          </div>
+          <small>Your name and email stay in the house — never sold, never shared.</small>
+          <p id="joinMsg" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p class="flogo">Lux <em>Automations</em> · Lux <em>Animations</em></p>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="./">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+  </nav>
+  A Million Times Better · ailux.ca — Edmonton, Alberta<br>
+  © 2026 Lux Automations
+</footer>
+
+<script>
+  document.querySelectorAll("[data-vnote]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var wrap = btn.parentElement;
+      var note = wrap ? wrap.querySelector(".vnote") : null;
+      if (note) {
+        note.hidden = false;
+        note.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    });
+  });
+</script>
+<script>
+(function(){
+  var form = document.getElementById('joinForm');
+  if(!form) return;
+  var msg = document.getElementById('joinMsg');
+  var MAP = {films:'Films', automation:'Automation', both:'Both'};
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var fd = new FormData(form);
+    var payload = {
+      name: (fd.get('name')||'').toString().trim(),
+      email: (fd.get('email')||'').toString().trim(),
+      choice: MAP[(fd.get('choice')||'both').toString()] || 'Both',
+      company: (fd.get('company')||'').toString()
+    };
+    var btn = form.querySelector('button[type="submit"]');
+    if(btn) btn.disabled = true;
+    if(msg) msg.textContent = 'One moment…';
+    fetch('/api/join', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(payload)})
+      .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+      .then(function(d){
+        if(d && d.ok){
+          if(msg) msg.textContent = 'You’re in — welcome to the adventure. Watch your inbox; we write only when it matters.';
+          form.reset();
+        } else {
+          if(msg) msg.textContent = 'That didn’t go through — please try again, or write to us at hello@ailux.ca.';
+        }
+      })
+      .catch(function(){
+        if(msg) msg.textContent = 'That didn’t go through — please try again, or write to us at hello@ailux.ca.';
+      })
+      .finally(function(){ if(btn) btn.disabled = false; });
+  });
+})();
+</script>
+
+</body>
+</html>

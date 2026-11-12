@@ -2,274 +2,330 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lux Automations — Doors Open January 1</title>
-<meta name="description" content="Lux Automations — original films, music and friendly AI automation, under one roof. Aimée, our AI host, will be at the desk when the house opens Friday, January 1.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lux — One House, Four Doors | ailux.ca</title>
+<meta name="description" content="Lux on a black diamond: four doors — the Business AI Workshop, the AI Playground, the free Cinema, and the Store. The house opens Friday, January 1, 2027, with Aimée at the desk.">
 <style>
   :root{
-    --ground:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --secondary:#6e6e73;
-    --accent:#0071e3; --accent-hover:#0077ed; --border:#e3e3e8; --border-strong:#d2d2d7;
-    --gold:#b98a1c; --gold-soft:#f3e5c3; --gold-tint:#fdf6e3;
-    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
-    --radius-section:18px; --radius-card:14px; --radius-control:12px; --radius-pill:999px;
-    --shadow-section:0 8px 24px rgba(0,0,0,.06);
+    --black:#000;
+    --panel:#0b0b10;
+    --panel-2:#101017;
+    --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff;
+    --gold:#f5c65c;
+    --ink:#f6f3ec;
+    --muted:#a9a5b5;
+    --muted-2:#cfcbd9;
+    --radius:22px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    /* The diamond's light — a ring of white-gold brilliance, used as the
+       aura around buttons, doors and panels. Never a diamond fill. */
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;margin:0;background:var(--ground);color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
-  a{color:var(--accent)}
+  html,body{overflow-x:clip}
+  body{
+    font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    /* Shiny black: a polished surface with one soft sheen of light across it */
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);
+    background-attachment:fixed;
+  }
+  a{color:var(--gold)}
   img{display:block;max-width:100%}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.55;display:block}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
 
   /* ---------- top bar ---------- */
-  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .brand{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
-  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--secondary);letter-spacing:.02em}
-  nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
-  nav.mainnav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:var(--radius-pill)}
-  nav.mainnav a:hover{background:#eef1f6}
-  nav.mainnav a.goldlink{color:var(--gold)}
-  nav.mainnav a.goldlink:hover{background:var(--gold-tint)}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:999px}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  /* The Loyalty tap — small, quiet, gold, top right. No box. */
+  nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em}
+  nav.mainnav a.loyaltap:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  /* Buttons stay black — only the light around them shines */
+  nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
+  nav.mainnav a.cta:hover{box-shadow:var(--aura)}
 
-  main{display:grid;grid-template-columns:1fr;gap:var(--sp-4);padding:var(--sp-4);max-width:880px;margin:0 auto}
-  section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-section);padding:24px;box-shadow:var(--shadow-section)}
-  .eyebrow{font-size:13px;margin:0 0 10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-  .eyebrow.blue{color:var(--accent)}
-  h1{font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
-  h2{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
-  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
-  p{margin:0 0 12px}
-  p.lede{font-size:19px;line-height:1.55}
-  .secondary{color:var(--secondary)}
-  small{color:var(--secondary);font-size:13.5px;line-height:1.5;display:block}
+  /* ---------- layout ---------- */
+  main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(245,198,92,.4),transparent)}
+  h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
+  .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 22px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font:inherit;font-weight:700}
-  .btn-blue{background:var(--accent);color:#fff}
-  .btn-blue:hover{background:var(--accent-hover)}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:#a67c18}
-  .btn-ghost{background:var(--card);color:var(--ink);border-color:var(--border-strong)}
-  .btn-ghost:hover{background:#eef1f6}
-  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  /* ---------- buttons: black, ringed with light ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 
-  /* ---------- Aimée, the front door ---------- */
-  .hostcard{text-align:center;padding:32px 24px}
-  .hostcard img.portrait{width:min(300px,72vw);aspect-ratio:1;object-fit:cover;border-radius:50%;margin:6px auto 18px;border:4px solid var(--gold-soft);box-shadow:0 10px 30px rgba(0,0,0,.12)}
-  .hostcard .nameline{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
-  .hostcard h1{margin-bottom:10px}
-  .hostcard p.lede{max-width:560px;margin-left:auto;margin-right:auto}
-  .openline{display:inline-block;margin-top:14px;padding:9px 18px;border-radius:var(--radius-pill);background:var(--gold-tint);border:1px solid var(--gold-soft);color:#7a5c10;font-weight:700;font-size:15px}
-  .doors2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:22px;text-align:left}
-  .doorcard{display:flex;gap:14px;align-items:flex-start;background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px;text-decoration:none;color:var(--ink)}
-  .doorcard:hover{border-color:var(--border-strong)}
-  .doorcard .dic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:21px}
-  .doorcard b{font-size:17px;display:block;margin-bottom:2px}
-  .doorcard span{color:var(--secondary);font-size:15px;line-height:1.45;display:block}
-  .doorcard .go{margin-left:auto;align-self:center;color:var(--accent);font-weight:700;font-size:20px}
+  /* ---------- hero: the heart diamond ---------- */
+  .hero{text-align:center;padding:10px 0 0;position:relative;z-index:2}
+  .hero .dateline{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;box-shadow:none;color:var(--gold);font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:0}
+  .hero .dateline .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold)}
+  /* The stage: the diamond sits high, right under the headline, and the
+     four doors float over it — lifted on their light, gently hovering. */
+  .stage{position:relative;margin-top:-4px;padding-top:10px;overflow-x:clip}
+  .diamond{position:absolute;left:50%;top:-58px;transform:translateX(-50%);width:min(560px,98vw);margin:0;z-index:0;pointer-events:none}
+  .diamond::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(245,198,92,.20) 0%,rgba(190,215,255,.10) 42%,rgba(0,0,0,0) 68%);pointer-events:none}
+  /* The heart turns, slowly, behind the doors — a gentle rock, never
+     a full spin, so the heart always stays a heart — while a ring of
+     its light rotates all the way around it. */
+  .diamond .heartspin{display:block;animation:heartrock 11s ease-in-out infinite}
+  @keyframes heartrock{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(3.5deg)}}
+  .diamond::after{content:"";position:absolute;inset:-9%;border-radius:50%;pointer-events:none;
+    background:conic-gradient(from 0deg,rgba(245,198,92,0) 0deg,rgba(245,198,92,.16) 40deg,rgba(255,255,255,0) 90deg,rgba(190,215,255,.12) 170deg,rgba(245,198,92,0) 230deg,rgba(255,244,214,.14) 300deg,rgba(245,198,92,0) 360deg);
+    -webkit-mask-image:radial-gradient(circle,transparent 52%,#000 68%,transparent 88%);mask-image:radial-gradient(circle,transparent 52%,#000 68%,transparent 88%);
+    animation:ringspin 46s linear infinite}
+  @keyframes ringspin{to{transform:rotate(360deg)}}
+  .diamond img{position:relative;width:100%;height:auto;mix-blend-mode:screen}
+  /* Sparkles: small four-point stars of light that flare and fade
+     around the heart, each on its own timing so they never blink
+     together. Pure CSS shapes — drawn, not emoji. */
+  .diamond .spark{position:absolute;width:22px;height:22px;pointer-events:none;opacity:0;
+    background:#fff3d0;
+    clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+    filter:drop-shadow(0 0 6px rgba(245,198,92,.85));
+    animation:sparkle 4.6s ease-in-out infinite}
+  .diamond .s1{top:12%;left:16%;animation-delay:.2s}
+  .diamond .s2{top:6%;left:58%;width:15px;height:15px;animation-delay:1.5s;animation-duration:3.9s}
+  .diamond .s3{top:30%;left:84%;width:26px;height:26px;animation-delay:2.6s;animation-duration:5.2s}
+  .diamond .s4{top:48%;left:6%;width:16px;height:16px;animation-delay:3.4s;animation-duration:4.1s}
+  .diamond .s5{top:58%;left:88%;width:18px;height:18px;animation-delay:.9s;animation-duration:4.9s}
+  .diamond .s6{top:20%;left:40%;width:13px;height:13px;animation-delay:2.1s;animation-duration:3.6s}
+  @keyframes sparkle{0%,100%{opacity:0;transform:scale(.35) rotate(0deg)}12%{opacity:1;transform:scale(1) rotate(45deg)}26%{opacity:0;transform:scale(.35) rotate(90deg)}}
+  .hero h1{font-size:clamp(40px,7.4vw,68px);line-height:1.04;letter-spacing:-.015em;margin-top:8px}
+  .hero h1 .goldline{color:var(--gold)}
 
-  /* ---------- shop doors ---------- */
-  .shopcard{display:grid;grid-template-columns:1fr;gap:18px}
-  .shopcard img.shot{width:100%;border-radius:var(--radius-card);border:1px solid var(--border);object-fit:cover}
-  .price{font-size:20px;font-weight:700;color:var(--ink)}
-  .price .per{font-size:14.5px;color:var(--secondary);font-weight:500}
+  /* ---------- "One house." — centred between the doors and the
+     engraving, in the same headline writing it had up top ---------- */
+  .onehouse{text-align:center;font-family:var(--serif);font-size:clamp(40px,7.4vw,68px);font-weight:700;color:var(--ink);margin:44px 0 0;position:relative;z-index:2;line-height:1.04;letter-spacing:-.015em;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+  .onehouse .onehouse-sub{display:block;font-size:clamp(21px,3.6vw,32px);color:var(--gold);margin-top:8px;letter-spacing:.01em;line-height:1.15}
 
-  /* ---------- cinema ---------- */
-  .filmgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  .moment{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);overflow:hidden}
-  .moment img{width:100%;aspect-ratio:16/10;object-fit:cover}
-  .moment .mbody{padding:14px 16px}
-  .moment .mnum{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
-  .moment p{margin:0;color:var(--secondary);font-size:15.5px}
-  .soundline{margin-top:14px;padding:12px 16px;background:var(--gold-tint);border:1px solid var(--gold-soft);border-radius:var(--radius-card);font-size:15.5px}
+  /* ---------- the four doors ---------- */
+  .doors{display:grid;grid-template-columns:1fr;gap:22px;margin-top:16px;position:relative;z-index:2}
+  /* The doors as polished black — smooth dark panels with a soft
+     sheen, ringed with the diamond's light, hovering over it. */
+  .door{position:relative;display:block;text-decoration:none;color:var(--ink);background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);overflow:hidden;transition:box-shadow .25s ease;animation:doorhover 7s ease-in-out infinite}
+  .door:nth-child(2){animation-delay:.9s}
+  .door:nth-child(3){animation-delay:1.8s}
+  .door:nth-child(4){animation-delay:2.7s}
+  @keyframes doorhover{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .door::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%),linear-gradient(180deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,0) 22%);pointer-events:none;z-index:0}
+  .door>*{position:relative;z-index:1}
+  .door:hover{box-shadow:var(--aura)}
+  .door .heartmark{width:44px;height:40px;margin-bottom:16px;filter:drop-shadow(0 0 7px rgba(245,198,92,.75))}
+  .door .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px;position:relative}
+  .door h3{font-size:clamp(25px,3.4vw,31px);line-height:1.12;margin:0 0 6px;position:relative}
+  .door p.desc{margin:0;color:var(--muted-2);font-size:16px;max-width:420px;position:relative}
+  .door .go{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:20px;font-weight:700}
 
-  /* ---------- workshop ---------- */
-  .craftgrid{display:grid;grid-template-columns:1fr;gap:12px}
-  .craft{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
-  .craft p{margin:0;color:var(--secondary);font-size:15.5px}
+  /* ---------- the two names, engraved into the black ----------
+     Carved, not printed: the letters sit sunk into a recessed plate,
+     dark in the cut with the diamond's light catching the lower edge
+     of every chisel stroke — the way a name is cut into polished stone. */
+  .engraving{margin:12px auto 0;max-width:860px;text-align:center;border-radius:20px;padding:28px 26px 20px;
+    background:linear-gradient(180deg,#040405 0%,#0a0a0f 78%,#0d0d13 100%);
+    box-shadow:inset 0 2px 3px rgba(0,0,0,.95),inset 0 14px 30px rgba(0,0,0,.75),inset 0 -1px 0 rgba(255,255,255,.07),inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8)}
+  .engraving .eng-row{display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,44px);flex-wrap:wrap}
+  /* Equal columns either side of the heart, so the heart sits at the
+     plate's true centre and the whole carving reads dead-centred */
+  .engraving .eng-row>.eng-link{flex:1 1 0;text-align:center;min-width:min(240px,100%)}
+  /* Each engraved name is also a door link — the carving stays carved,
+     it just opens its door when tapped */
+  .engraving a.eng-link{display:block;text-decoration:none}
+  .engraving a.eng-link:hover .eng-name{color:#2c2c36}
+  .engraving .eng-name{font-family:var(--serif);font-weight:700;font-size:clamp(27px,4.6vw,42px);line-height:1.1;letter-spacing:.015em;
+    color:#22222b;
+    text-shadow:0 1px 0 rgba(238,244,255,.42),0 2px 1px rgba(245,198,92,.18),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
+  .engraving .eng-name em{font-style:normal;
+    text-shadow:0 1px 0 rgba(255,236,190,.38),0 2px 1px rgba(245,198,92,.22),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
+  .engraving .eng-cap{display:block;margin-top:9px;font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
+    color:#1b1b22;text-shadow:0 1px 0 rgba(238,244,255,.34),0 -1px 1px rgba(0,0,0,1)}
+  .engraving .eng-heart{align-self:center;width:34px;height:31px;flex:none;filter:drop-shadow(0 1px 0 rgba(238,244,255,.25)) drop-shadow(0 0 6px rgba(245,198,92,.35))}
+  .engraving .eng-line{margin:14px 0 0;font-size:14.5px;color:var(--muted)}
+  @media (max-width:560px){ .engraving .eng-heart{order:-1;width:100%} }
+
+  /* ---------- room panels ---------- */
+  .room{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:26px;padding:38px;box-shadow:var(--aura-soft);position:relative;overflow:hidden}
+  .room::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 40%);pointer-events:none}
+  .room>*{position:relative}
 
   /* ---------- guest book ---------- */
-  form.gb{display:grid;gap:12px;margin-top:6px}
-  form.gb label{font-size:14.5px;font-weight:600;display:grid;gap:6px}
-  form.gb input{font:inherit;font-size:16px;min-height:50px;border-radius:var(--radius-control);border:1.5px solid var(--border-strong);background:var(--card);color:var(--ink);padding:12px 16px;width:100%}
-  form.gb input:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-  .choices{display:flex;gap:8px;flex-wrap:wrap}
-  .choices label{display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:15.5px;background:var(--ground);border:1px solid var(--border);padding:9px 14px;border-radius:var(--radius-pill);cursor:pointer}
-  .choices input{min-height:0;width:auto}
+  .guestbook{margin-top:44px;scroll-margin-top:96px}
+  form.gb{display:grid;gap:14px;margin-top:20px;max-width:620px}
+  form.gb label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--muted-2)}
+  /* Text fields only — this rule must never reach the choice radios,
+     or they swell into giant blobs that bury their labels */
+  form.gb input[type="text"],form.gb input[type="email"]{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#000;color:var(--ink);padding:12px 16px;width:100%}
+  form.gb input[type="text"]:focus,form.gb input[type="email"]:focus{outline:2px solid var(--ice);outline-offset:1px}
+  .choices{display:flex;gap:10px;flex-wrap:wrap}
+  form.gb .choices label{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;background:#000;box-shadow:var(--aura-soft);padding:10px 17px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  form.gb .choices input[type="radio"]{width:18px;height:18px;min-height:0;padding:0;border:0;background:none;flex:none;margin:0;accent-color:var(--gold)}
+  #joinMsg{font-size:15.5px;color:#f0e6cb;margin:6px 0 0}
 
-  footer{max-width:880px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--secondary);font-size:14.5px;line-height:1.6}
+  /* ---------- the heart's hum: a small fixed sound control ----------
+     The hum itself is synthesised live (see the script) — a deep space
+     tone that breathes on the heart's own 11-second rock. The button
+     floats in the corner so it never takes space from the page. */
+  .humbtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 18px;border-radius:999px;background:#000;color:var(--muted-2);border:0;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.02em;box-shadow:var(--aura-soft);transition:box-shadow .25s ease,color .25s ease}
+  .humbtn:hover{box-shadow:var(--aura);color:var(--ink)}
+  .humbtn svg{width:18px;height:18px;flex:none;color:var(--gold)}
+  .humbtn .waves{opacity:.35;transition:opacity .3s ease}
+  .humbtn[aria-pressed="true"]{color:var(--ink)}
+  .humbtn[aria-pressed="true"] .waves{opacity:1}
+  .humbtn[aria-pressed="true"] .waves path{animation:wavepulse 11s ease-in-out infinite}
+  .humbtn[aria-pressed="true"] .waves path:nth-child(2){animation-delay:.5s}
+  @keyframes wavepulse{0%,100%{opacity:.45}50%{opacity:1}}
+  /* While the hum sounds, the heart's halo breathes with it — the same
+     11-second ease as the rock, so light and sound move as one. */
+  .diamond.humming::before{animation:halobreath 11s ease-in-out infinite}
+  @keyframes halobreath{0%,100%{opacity:.75}50%{opacity:1}}
 
-  @media (min-width:700px){
-    .doors2{grid-template-columns:1fr 1fr}
-    .filmgrid{grid-template-columns:repeat(3,1fr)}
-    .craftgrid{grid-template-columns:1fr 1fr}
-    .shopcard{grid-template-columns:220px 1fr;align-items:center}
+  footer{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+  /* The four doors, linked again at the bottom of the page */
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+
+  @media (min-width:760px){
+    .doors{grid-template-columns:1fr 1fr}
   }
   @media (max-width:560px){
-    main{padding:12px;gap:12px}
-    section{padding:20px 18px}
-    .topbar{padding:10px 14px}
-    nav.mainnav a{padding:7px 9px;font-size:14.5px}
+    main{padding:0 14px 8px}
+    .topbar{padding:11px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+    .hero{padding-top:14px}
+    .room{padding:26px 20px}
+    .door{padding:26px 22px 22px}
   }
-  .previewline{margin:12px 0 2px;font-weight:600}
-  audio.preview{width:100%;max-width:430px;height:42px;display:block;margin:4px 0 12px}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .btn,.door{transition:none}
+    .door{animation:none}
+    .diamond .heartspin,.diamond::after{animation:none}
+    .diamond .spark{animation:none;opacity:0}
+    .diamond.humming::before{animation:none}
+    .humbtn[aria-pressed="true"] .waves path{animation:none}
+  }
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <a class="brand" href="#desk">Lux Automations<small>ailux.ca</small></a>
+  <a class="brand" href="./">Lux<small>ailux.ca</small></a>
   <nav class="mainnav" aria-label="The house">
-    <a href="cinema/">Cinema</a>
-    <a href="site-pages/automation.html">Workshop</a>
-    <a href="site-pages/games.html">Playground</a>
-    <a href="site-pages/programs.html">Programs</a>
-    <a href="site-pages/referrals.html">Bring a Friend</a>
-    <a href="site-pages/affiliate.html">Tools We Use</a>
-    <a href="site-pages/membership.html">Membership</a>
-    <a class="goldlink" href="stripe-wiring/music-store/jukebox.html">Music Store</a>
-    <a class="goldlink" href="stripe-wiring/merch-store/index.html">Merch</a>
-    <a href="#guestbook">Guest Book</a>
+    <a href="workshop/">Business AI Workshop</a>
+    <a href="playground/">AI Playground</a>
+    <a href="cinema/">Free Cinema</a>
+    <a href="stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="loyalty/">Loyalty</a>
+    <a class="cta" href="#guestbook">Join us</a>
   </nav>
 </header>
 
-<main>
+<main id="top">
 
-  <!-- ============ AIMÉE — THE FRONT DOOR ============ -->
-  <section class="hostcard" id="desk">
-    <img class="portrait" src="front-page-apple-clean/assets/aimee.webp" alt="Aimée, your host at the front desk of Lux Automations" width="300" height="300">
-    <p class="nameline">Aimée · Your host · Live January 1</p>
-    <h1>Welcome in. What are you looking for?</h1>
-    <p class="lede">I’m Aimée, the AI host at the front desk of Lux Automations. When the house opens, I’ll be here to greet you, answer your questions, and point you to the right room — the films, the music, or the workshop.</p>
-    <span class="openline">The Playground opens Friday, January 1</span>
-    <p style="margin-top:14px">Two doors, one house — I’ll point you to the right one.</p>
-    <div class="doors2">
-      <a class="doorcard" href="cinema/">
-        <span class="dic" aria-hidden="true">🎬</span>
-        <span><b>The Cinema</b><span>Watch the story unfold</span></span>
+  <!-- ================================================================
+       THE FRONT PAGE — almost nothing on it, on purpose.
+       The diamond, four doors, and the opening date.
+       Everything else lives behind the doors.
+       ================================================================ -->
+  <div class="hero">
+    <span class="dateline"><span class="dot" aria-hidden="true"></span>The house opens Friday, January 1, 2027</span>
+    <h1><span class="goldline">Four doors.</span></h1>
+  </div>
+
+  <div class="stage">
+    <div class="diamond">
+      <span class="heartspin"><img src="assets/heart-diamond.webp" alt="A heart-cut diamond ringed with light, on black" width="1600" height="1600"></span>
+      <span class="spark s1" aria-hidden="true"></span>
+      <span class="spark s2" aria-hidden="true"></span>
+      <span class="spark s3" aria-hidden="true"></span>
+      <span class="spark s4" aria-hidden="true"></span>
+      <span class="spark s5" aria-hidden="true"></span>
+      <span class="spark s6" aria-hidden="true"></span>
+    </div>
+
+    <div class="doors">
+      <a class="door" href="workshop/">
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
+        <p class="dtag">Door One · Lux Automations</p>
+        <h3>Business AI Workshop</h3>
+        <p class="desc">Automation that carries the work.</p>
       </a>
-      <a class="doorcard" href="site-pages/automation.html">
-        <span class="dic" aria-hidden="true">🛠</span>
-        <span><b>The Workshop</b><span>Put automation to work</span></span>
+      <a class="door" href="playground/">
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
+        <p class="dtag">Door Two · Lux Animations</p>
+        <h3>AI Playground</h3>
+        <p class="desc">Your own channel — free for now.</p>
+      </a>
+      <a class="door" href="cinema/">
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <span class="go" aria-hidden="true">›</span>
+        <p class="dtag">Door Three · Free</p>
+        <h3>Free Cinema</h3>
+        <p class="desc">Watch — free, while we build.</p>
+      </a>
+      <a class="door" href="stripe-wiring/music-store/jukebox.html">
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <span class="go" aria-hidden="true">›</span>
+        <p class="dtag">Door Four · Music &amp; merch</p>
+        <h3>Store</h3>
+        <p class="desc">Music &amp; merch — from us and our members.</p>
       </a>
     </div>
-  </section>
 
-  <!-- ============ MUSIC STORE DOOR ============ -->
-  <section id="music">
-    <p class="eyebrow">The Music Store</p>
-    <div class="shopcard">
-      <img class="shot" src="front-page-apple-clean/assets/cover-amtb-thumb.jpg" alt="Cover art for A Million Times Better, the first single">
-      <div>
-        <h2>“A Million Times Better” — the first single</h2>
-        <p>From the soundtrack of <em>A Million Times Better — the series</em>. The song, its official music video, and the cover art, bundled — First Access, on the jukebox pedestal in the Music Store.</p>
-        <p class="price">US$1.29 <span class="per">· song + cover</span> &nbsp;·&nbsp; US$4.99 <span class="per">· song + music video + cover</span></p>
-        <p class="previewline">▶ Preview — a taste of the song, on the house:</p>
-        <audio class="preview" controls preload="none" src="stripe-wiring/music-store/assets/sample-amtb.mp3">Your browser does not support audio playback.</audio>
-        <div class="btnrow">
-          <a class="btn btn-gold" href="https://buy.stripe.com/6oU00icIb0wm0I9f4p2B200" rel="noopener">Buy — US$4.99 · Song + Video + Cover</a>
-          <a class="btn" href="https://buy.stripe.com/28EcN4eQj2Eu9eF09v2B204" rel="noopener">Buy — US$1.29 · Song + Cover</a>
-        </div>
-        <p class="secondary">Secure checkout by Stripe — cards, Google Pay and Apple Pay accepted. Or hear it on the jukebox in the <a href="stripe-wiring/music-store/jukebox.html">Music Store</a>.</p>
-      </div>
+    <p class="onehouse">One house.<span class="onehouse-sub">AI &amp; Humans</span></p>
+  </div>
+
+  <!-- The two names of the house, engraved into the black itself -->
+  <div class="engraving" aria-label="Lux Automations and Lux Animations — the two names of the house">
+    <div class="eng-row">
+      <a class="eng-link" href="workshop/">
+        <span class="eng-name">Lux <em>Automations</em></span>
+        <span class="eng-cap">The Business AI Workshop</span>
+      </a>
+      <svg class="eng-heart" viewBox="0 0 100 92" fill="none" stroke="#3a3a44" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+      <a class="eng-link" href="playground/">
+        <span class="eng-name">Lux <em>Animations</em></span>
+        <span class="eng-cap">The AI Playground</span>
+      </a>
     </div>
-  </section>
+    <p class="eng-line">Two names, one house — cut into the stone, not printed on it.</p>
+  </div>
 
-  <!-- ============ THE CINEMA ============ -->
-  <section id="cinema">
-    <p class="eyebrow blue">The Cinema</p>
-    <h2>Christmas at the Harbour of Lights</h2>
-    <p>Our first series is coming this Christmas — a harbour town where every light comes home. And behind it, the story that started it all: <em>A Million Times Better</em>.</p>
-    <p class="secondary">Watch our newest videos <strong>free</strong> in the Cinema while we set it up — everyone is welcome to view. And when the Playground opens January 1, every member gets a channel of their own.</p>
-
-    <h3 style="margin-top:18px">Christmas at the Harbour of Lights</h3>
-    <p class="secondary">Our first series arrives this December. A small harbour town folded into a dark cove, where the windows light one by one — candle-gold, never electric — and every tradition that travels by light finds its way home. One harbour, every light welcome. The lights come on December 13.</p>
-    <p class="soundline">🎵 “Harbour of Lights” — the Christmas theme, on the Haven soundtrack · ailux.ca</p>
-
-    <h3 style="margin-top:20px">A Million Times Better — the series</h3>
-    <p class="secondary">He died in intensive care, and he came back — with a memory of light that has never left him. This is his story, told as cinema: the night itself, the place he went, and the quieter, stronger life on the other side of it.</p>
-    <div class="filmgrid">
-      <div class="moment">
-        <img src="front-page-apple-clean/assets/teaser-icu.webp" alt="Moment One — Intensive Care" loading="lazy">
-        <div class="mbody">
-          <p class="mnum">Moment One</p>
-          <h3>Intensive Care</h3>
-          <p>The night everything stopped — and started again.</p>
-        </div>
-      </div>
-      <div class="moment">
-        <img src="front-page-apple-clean/assets/teaser-light.webp" alt="Moment Two — The Light" loading="lazy">
-        <div class="mbody">
-          <p class="mnum">Moment Two</p>
-          <h3>The Light</h3>
-          <p>What he saw on the other side, and why it sent him back.</p>
-        </div>
-      </div>
-      <div class="moment">
-        <img src="front-page-apple-clean/assets/teaser-ashes.webp" alt="Moment Three — The Cove" loading="lazy">
-        <div class="mbody">
-          <p class="mnum">Moment Three</p>
-          <h3>The Cove</h3>
-          <p>A promise, kept on the wind over the water.</p>
-        </div>
-      </div>
-    </div>
-    <p class="soundline">🎵 The sound of the series: “The Light That Came Home” · “Heaven on Earth” — on the Haven soundtrack · ailux.ca</p>
-    <div class="btnrow">
-      <a class="btn btn-blue" href="#guestbook">Join our adventure</a>
-    </div>
-  </section>
-
-  <!-- ============ THE WORKSHOP ============ -->
-  <section id="workshop">
-    <img src="front-page-apple-clean/assets/automation-scene.webp" alt="Inside the workshop" style="border-radius:var(--radius-card);border:1px solid var(--border);width:100%;margin-bottom:18px" loading="lazy">
-    <p class="eyebrow blue">The Workshop</p>
-    <h2>Lux Automations</h2>
-    <p>AI, automation and animation for the modern age — systems that carry the work, built for humans.</p>
-    <p class="secondary">The next tier isn’t humans replaced — it’s humans carried. Lux builds the quiet machinery underneath a business: the films, the music, the follow-ups, the front desk — so the people can do the part only people can do.</p>
-    <div class="craftgrid">
-      <div class="craft">
-        <h3>Workflow automation</h3>
-        <p>The repetitive work — intake, follow-up, filing, posting — handled quietly in the background.</p>
-      </div>
-      <div class="craft">
-        <h3>AI film &amp; animation</h3>
-        <p>Series, teasers and shorts produced end-to-end — the same craft you see on the cinema side of the house.</p>
-      </div>
-      <div class="craft">
-        <h3>Music &amp; media</h3>
-        <p>Songs and albums with a video for every track, released under one roof and easy to find.</p>
-      </div>
-      <div class="craft">
-        <h3>Always-on helpers</h3>
-        <p>Front-desk hosts like Aimée — greeting every visitor, day or night, and pointing them the right way.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MERCH SHELF DOOR ============ -->
-  <section id="merch">
-    <p class="eyebrow">The Merch Shelf</p>
-    <h2>Lux Visuals — Official Merch</h2>
-    <p>Tees, hoodies, mugs, prints and stickers from the house — the Lamp Line, the Friendly Ghost, and art from the films. Everything is bought right here on ailux.ca; the printer works quietly out back.</p>
-    <div class="btnrow">
-      <a class="btn btn-gold" href="stripe-wiring/merch-store/index.html">Visit the merch shelf</a>
-    </div>
-  </section>
-
-  <!-- ============ A FIRST TASTE OF THE FUTURE ============ -->
-  <section>
-    <p class="eyebrow blue">Now Playing</p>
-    <h2>A First Taste of the Future</h2>
-    <img src="front-page-apple-clean/assets/poster-cliff.webp" alt="A cliff above a cove at dawn — the poster for The Morning Call" style="border-radius:var(--radius-card);border:1px solid var(--border);width:100%;margin-bottom:14px" loading="lazy">
-    <p>Now playing: <strong>“The Morning Call”</strong> — a morning in our world, the first feeder from the house of Lux. We’re building in public; more is coming.</p>
-  </section>
-
-  <!-- ============ THE GUEST BOOK ============ -->
-  <section id="guestbook">
-    <p class="eyebrow">The Guest Book</p>
-    <h2>Join our adventure.</h2>
-    <p>Leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
+  <!-- ============ AIMÉE'S DESK — THE GUEST BOOK ============ -->
+  <div class="room guestbook" id="guestbook">
+    <p class="kicker">Aimée’s Desk · The Guest Book</p>
+    <h2 class="section-title">Join our adventure.</h2>
+    <p class="section-lede">Aimée is the host at the front desk — live here January 1. Until then, leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
     <form class="gb" id="joinForm" action="/api/join" method="post">
       <label>Your name
         <input type="text" name="name" autocomplete="name" required>
@@ -278,7 +334,7 @@
         <input type="email" name="email" autocomplete="email" required>
       </label>
       <div>
-        <span style="font-size:14.5px;font-weight:600;display:block;margin-bottom:8px">I’m here for</span>
+        <span style="font-size:14.5px;font-weight:600;display:block;margin-bottom:8px;color:var(--muted-2)">I’m here for</span>
         <div class="choices">
           <label><input type="radio" name="choice" value="films"> Films</label>
           <label><input type="radio" name="choice" value="automation"> Automation</label>
@@ -289,23 +345,33 @@
         <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
       </div>
       <div class="btnrow" style="margin-top:4px">
-        <button class="btn btn-blue" type="submit">Join our adventure</button>
+        <button class="btn" type="submit">Join our adventure</button>
       </div>
       <small>Your name and email stay in the house — never sold, never shared.</small>
-      <p id="joinMsg" role="status" style="font-size:15px;margin:10px 0 0"></p>
+      <p id="joinMsg" role="status"></p>
     </form>
-  </section>
+  </div>
 
 </main>
 
+<!-- The heart's hum — tap to hear the sound its turning makes -->
+<button class="humbtn" id="humBtn" type="button" aria-pressed="false" aria-label="Play the heart diamond's space hum">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19z" fill="currentColor" stroke="none"/><g class="waves"><path d="M14.5 9.2a4 4 0 0 1 0 5.6"/><path d="M17 6.8a7.4 7.4 0 0 1 0 10.4"/></g></svg>
+  <span id="humLabel">Hear the heart hum</span>
+</button>
+
 <footer>
-  Lux Automations · A Million Times Better<br>
-  <a href="cinema/">The Cinema — now showing on our own player</a><br>
-  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
-  A site built by a veteran · <a href="veterans/index.html">The Veterans' Corner</a><br>
+  <p class="flogo">Lux <em>Automations</em> · Lux <em>Animations</em></p>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="workshop/">Business AI Workshop</a>
+    <a href="playground/">AI Playground</a>
+    <a href="cinema/">Free Cinema</a>
+    <a href="stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="loyalty/">Loyalty</a>
+  </nav>
+  A Million Times Better · ailux.ca — Edmonton, Alberta<br>
   © 2026 Lux Automations
 </footer>
-
 
 <script>
 (function(){
@@ -342,5 +408,143 @@
   });
 })();
 </script>
+
+<script>
+  // The heart's hum: the sound the turning heart-diamond makes.
+  // Synthesised live with Web Audio — no audio file. A deep, warm
+  // space hum built for joy: a low root and its fifth (the heart
+  // beating far below), a soft major warmth above, and a faint
+  // 528 Hz shimmer — the love tone — floating on top. Everything
+  // breathes on the heart's own timing: the swell follows its
+  // 11-second rock, and the tone slowly opens and closes on the
+  // 46-second turn of its ring of light. Sound can only start on a
+  // tap (the browser's rule), so the corner button is the switch:
+  // tap to hear it, tap again for quiet. It rests while the tab is
+  // hidden, and returns with the page.
+  (function () {
+    var btn = document.getElementById("humBtn");
+    var label = document.getElementById("humLabel");
+    var diamond = document.querySelector(".diamond");
+    if (!btn) return;
+
+    var ctx = null, master = null, nodes = [];
+    var wantOn = false;   // the visitor's switch
+    var audible = false;  // actually sounding right now
+
+    function buildGraph() {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain();
+      master.gain.value = 0;
+
+      // The tone slowly opens and closes — one full sweep per turn
+      // of the ring of light (46s). The edge sits high enough that
+      // the warmth of the hum actually reaches small speakers.
+      var filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 680;
+      filter.Q.value = 0.6;
+      var filterLfo = ctx.createOscillator();
+      filterLfo.frequency.value = 1 / 46;
+      var filterDepth = ctx.createGain();
+      filterDepth.gain.value = 260;
+      filterLfo.connect(filterDepth);
+      filterDepth.connect(filter.frequency);
+      filterLfo.start();
+
+      // The swell of the hum follows the heart's rock (11s).
+      var swell = ctx.createGain();
+      swell.gain.value = 0.78;
+      var swellLfo = ctx.createOscillator();
+      swellLfo.frequency.value = 1 / 11;
+      var swellDepth = ctx.createGain();
+      swellDepth.gain.value = 0.22;
+      swellLfo.connect(swellDepth);
+      swellDepth.connect(swell.gain);
+      swellLfo.start();
+
+      filter.connect(swell);
+      swell.connect(master);
+      // A gentle compressor glues the voices together and keeps the
+      // hum smooth at its fuller level — warm, never harsh.
+      var comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -20;
+      comp.knee.value = 24;
+      comp.ratio.value = 6;
+      comp.attack.value = 0.08;
+      comp.release.value = 0.4;
+      master.connect(comp);
+      comp.connect(ctx.destination);
+      nodes = [filterLfo, swellLfo];
+
+      // The voices of the hum — warm, major, joyful. The deep root
+      // is still there to be felt, but the body of the sound now
+      // rides on the octave-up voices (216–432 Hz) that a phone
+      // speaker can actually play.
+      var voices = [
+        { f: 54,    g: 0.26, type: "sine",     bright: false },
+        { f: 108,   g: 0.30, type: "sine",     bright: false },
+        { f: 108.8, g: 0.15, type: "sine",     bright: false },
+        { f: 135,   g: 0.10, type: "sine",     bright: false },
+        { f: 162,   g: 0.15, type: "sine",     bright: false },
+        { f: 216,   g: 0.17, type: "sine",     bright: false },
+        { f: 270,   g: 0.09, type: "sine",     bright: false },
+        { f: 324,   g: 0.07, type: "sine",     bright: false },
+        { f: 432,   g: 0.045, type: "triangle", bright: true },
+        { f: 528,   g: 0.05, type: "sine",     bright: true }
+      ];
+      voices.forEach(function (v) {
+        var osc = ctx.createOscillator();
+        osc.type = v.type;
+        osc.frequency.value = v.f;
+        var g = ctx.createGain();
+        g.gain.value = v.g;
+        osc.connect(g);
+        g.connect(v.bright ? swell : filter);
+        osc.start();
+        nodes.push(osc);
+      });
+    }
+
+    function fadeTo(level, seconds) {
+      if (!ctx || !master) return;
+      var t = ctx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value, t);
+      master.gain.linearRampToValueAtTime(level, t + seconds);
+    }
+
+    function shouldSound() {
+      return wantOn && !document.hidden;
+    }
+
+    function applyState() {
+      var sound = shouldSound();
+      if (sound && !audible) {
+        if (!ctx) buildGraph();
+        ctx.resume();
+        fadeTo(0.26, 2.5);
+        audible = true;
+      } else if (!sound && audible) {
+        fadeTo(0, 1.1);
+        audible = false;
+        var c = ctx;
+        setTimeout(function () { if (!audible && c) c.suspend(); }, 1400);
+      }
+      btn.setAttribute("aria-pressed", wantOn ? "true" : "false");
+      btn.setAttribute("aria-label", wantOn
+        ? "Quiet the heart diamond's space hum"
+        : "Play the heart diamond's space hum");
+      label.textContent = wantOn ? "The heart is humming" : "Hear the heart hum";
+      if (diamond) diamond.classList.toggle("humming", audible);
+    }
+
+    btn.addEventListener("click", function () {
+      wantOn = !wantOn;
+      applyState();
+    });
+    document.addEventListener("visibilitychange", applyState);
+  })();
+</script>
+
 </body>
 </html>
