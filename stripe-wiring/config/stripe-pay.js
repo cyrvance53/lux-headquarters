@@ -10,7 +10,7 @@
       var a = document.createElement("a");
       a.className = "lux-pay-btn";
       a.href = product.url;
-      a.textContent = "Pay with Stripe — " + product.label;
+      a.textContent = (typeof product.price === "number") ? "Buy \u2014 US$" + product.price.toFixed(2) : "Buy \u2014 " + product.label;
       a.setAttribute("rel", "noopener");
       wrap.appendChild(a);
       var note = document.createElement("p");
@@ -21,7 +21,7 @@
       var b = document.createElement("button");
       b.className = "lux-pay-btn lux-pay-soon";
       b.disabled = true;
-      b.textContent = "Opens December 1 — Lux Automations";
+      b.textContent = "Opens January 1 — Lux Automations";
       wrap.appendChild(b);
       var note2 = document.createElement("p");
       note2.className = "lux-pay-note";
