@@ -90,18 +90,37 @@
   .player:fullscreen.idle{cursor:none}
   .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
 
-  /* ---------- the shelf (catalogue) ---------- */
-  .shelf{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px;align-items:start}
-  @media(min-width:680px){.shelf{grid-template-columns:1fr 1fr}}
-  .carditem{text-align:left;font:inherit;background:var(--ground);border:1.5px solid var(--border);border-radius:var(--radius-card);overflow:hidden;cursor:pointer;color:var(--ink);padding:0;width:100%}
-  .carditem:hover{border-color:var(--border-strong)}
-  .carditem.sel{border-color:var(--gold);background:var(--gold-tint)}
-  .carditem img{width:100%;object-fit:cover}
-  .carditem .cbody{padding:14px 16px}
-  .carditem .ct{display:block;font-weight:700;font-size:17px;line-height:1.3}
-  .carditem .cm{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
-  .carditem .cs{display:block;font-size:14.5px;color:var(--secondary);margin-top:5px;line-height:1.45}
-  .carditem .kind{display:inline-block;margin-top:9px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:#e6f6e9;color:#166534;border:1px solid #bbe5c3}
+  /* ---------- the theatre shelf: poster rows, newest first ---------- */
+  section.theatre{background:linear-gradient(180deg,#1c150a,#110e0a 55%,#0d0b09);border:1px solid #3d3016;color:#f5efe0}
+  section.theatre .eyebrow{color:#d8ab3a}
+  section.theatre h2{color:#fff6df}
+  section.theatre small{color:#b7ad9c}
+  .shelf{display:block;margin-top:2px}
+  .railwrap{margin-top:8px}
+  .railhead{display:flex;align-items:center;gap:14px;margin:22px 0 6px;color:#f3e5c3;font-size:14.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+  .railwrap:first-child .railhead{margin-top:6px}
+  .railhead::before,.railhead::after{content:"";flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(216,171,58,.55),transparent)}
+  .railhead .star{color:var(--gold);letter-spacing:0}
+  .rail{display:flex;gap:18px;overflow-x:auto;padding:10px 2px 16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{height:8px}
+  .rail::-webkit-scrollbar-thumb{background:#3d3016;border-radius:99px}
+  .rail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+  .theatre .carditem{flex:0 0 auto;width:224px;scroll-snap-align:start;text-align:left;font:inherit;background:transparent;border:0;border-radius:0;overflow:visible;cursor:pointer;color:#f5efe0;padding:0}
+  .theatre .carditem img{width:100%;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);transition:border-color .15s ease,transform .15s ease}
+  .theatre .carditem:hover img{border-color:rgba(216,171,58,.85);transform:translateY(-2px)}
+  .theatre .carditem.sel img{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 12px 28px rgba(0,0,0,.55)}
+  .theatre .carditem .cbody{display:block;padding:10px 2px 0}
+  .theatre .carditem .ct{display:block;font-weight:700;font-size:16.5px;line-height:1.3;color:#fdf8ea}
+  .theatre .carditem .cm{display:block;font-size:12.5px;color:#cbb26a;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-top:4px}
+  .theatre .carditem .gtag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:rgba(216,171,58,.14);color:#ecd28a;border:1px solid rgba(216,171,58,.45)}
+  .theatre .carditem .playhint{display:block;font-size:12.5px;color:#9d968a;margin-top:7px;font-weight:600}
+  .theatre .comingcard{flex:0 0 auto;width:224px;scroll-snap-align:start;border:1.5px dashed rgba(216,171,58,.5);border-radius:10px;padding:18px 16px;background:rgba(255,255,255,.03)}
+  .theatre .comingcard .ct{color:#fdf8ea}
+  .theatre .comingcard .cs{color:#b7ad9c}
+  .theatre .linkcard{background:rgba(255,255,255,.04);border-color:rgba(216,171,58,.4)}
+  .theatre .linkcard .ct{color:#fdf8ea}
+  .theatre .linkcard .cs{color:#cfc6b4}
+  @media (max-width:560px){.theatre .carditem,.theatre .comingcard{width:176px}}
   .comingcard{border:1.5px dashed var(--border-strong);border-radius:var(--radius-card);padding:22px 18px;background:var(--card)}
   .comingcard .ct{font-weight:700;font-size:17px;display:block}
   .comingcard .cs{font-size:14.5px;color:var(--secondary);display:block;margin-top:5px;line-height:1.45}
@@ -129,18 +148,18 @@
   "@context":"https://schema.org",
   "@type":"ItemList",
   "itemListElement":[
-    {"@type":"VideoObject","position":1,"name":"The Harbour Answers Back — Juno Park's Pier Walk",
+    {"@type":"VideoObject","position":1,"name":"Lest We Forget — Remembrance Day",
+     "description":"A private on a gun crew below Vimy Ridge, Canadian sailors among the rescuers at Dunkirk, and our own boys at Juno Beach — a tribute to the Canadians who stood in the worst places so we could live free.",
+     "thumbnailUrl":"https://ailux.ca/cinema/assets/lest-we-forget.jpg",
+     "contentUrl":"https://ailux.ca/cinema/assets/lest-we-forget.mp4","duration":"PT1M33S","uploadDate":"2026-11-11"},
+    {"@type":"VideoObject","position":2,"name":"The Harbour Answers Back — Juno Park's Pier Walk",
      "description":"Juno Park walks the pier on a snowy night and the harbour answers back — a scene from Harbour of Lights, the Lux Christmas series.",
      "thumbnailUrl":"https://ailux.ca/cinema/assets/pier-walk.jpg",
      "contentUrl":"https://ailux.ca/cinema/assets/pier-walk.mp4","duration":"PT25S","uploadDate":"2026-11-11"},
-    {"@type":"VideoObject","position":2,"name":"The Morning Call",
+    {"@type":"VideoObject","position":3,"name":"The Morning Call",
      "description":"A morning in our world — the first feeder from the house of Lux, dreamed by Muse.",
      "thumbnailUrl":"https://ailux.ca/cinema/assets/morning-call.jpg",
-     "contentUrl":"https://ailux.ca/cinema/assets/morning-call.mp4","duration":"PT25S","uploadDate":"2026-11-11"},
-    {"@type":"VideoObject","position":3,"name":"Lest We Forget — Remembrance Day",
-     "description":"A private on a gun crew below Vimy Ridge, Canadian sailors among the rescuers at Dunkirk, and our own boys at Juno Beach — a tribute to the Canadians who stood in the worst places so we could live free.",
-     "thumbnailUrl":"https://ailux.ca/cinema/assets/lest-we-forget.jpg",
-     "contentUrl":"https://ailux.ca/cinema/assets/lest-we-forget.mp4","duration":"PT1M33S","uploadDate":"2026-11-11"}
+     "contentUrl":"https://ailux.ca/cinema/assets/morning-call.mp4","duration":"PT25S","uploadDate":"2026-11-11"}
   ]
 }
 </script>
@@ -189,7 +208,7 @@
   </section>
 
   <!-- ============ THE SHELF ============ -->
-  <section>
+  <section class="theatre">
     <p class="eyebrow blue">On the shelf</p>
     <h2>Pick a picture</h2>
     <div class="shelf" id="shelf" role="list"></div>
@@ -258,6 +277,7 @@
     { slug:'pier-walk',
       title:'The Harbour Answers Back',
       heading:'The Harbour Answers Back — Juno Park\u2019s Pier Walk',
+      kind:'show', genre:'Series · Drama', addedAt:'2026-11-11T09:00:00',
       series:'Harbour of Lights', dur:'0:25', ratio:'2 / 3',
       src:'assets/pier-walk.mp4', poster:'assets/pier-walk.jpg',
       captions:null,
@@ -266,6 +286,7 @@
     { slug:'morning-call',
       title:'The Morning Call',
       heading:'The Morning Call',
+      kind:'short', genre:'Commercial', addedAt:'2026-11-11T09:00:00',
       series:'A Lux Dream', dur:'0:25', ratio:'16 / 9',
       src:'assets/morning-call.mp4', poster:'assets/morning-call.jpg',
       captions:null,
@@ -274,6 +295,7 @@
     { slug:'lest-we-forget',
       title:'Lest We Forget — Remembrance Day',
       heading:'Lest We Forget — Remembrance Day',
+      kind:'movie', genre:'Tribute · Short Film', addedAt:'2026-11-11T18:30:00',
       series:'A Lux Film', dur:'1:33', ratio:'16 / 9',
       src:'assets/lest-we-forget.mp4', poster:'assets/lest-we-forget.jpg',
       captions:null,
@@ -319,7 +341,7 @@
     var t=TITLES[idx]; if(!t) return;
     current=idx;
     var cards=shelf.querySelectorAll('.carditem');
-    for(var i=0;i<cards.length;i++){ cards[i].classList.toggle('sel', i===idx); }
+    for(var i=0;i<cards.length;i++){ cards[i].classList.toggle('sel', cards[i].getAttribute('data-slug')===t.slug); }
     titleEl.textContent=t.heading;
     songEl.innerHTML=t.song||'';
     blurbEl.textContent=t.blurb||'';
@@ -345,25 +367,54 @@
     if(autoplay){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
   }
 
-  /* build the shelf */
-  TITLES.forEach(function(t, idx){
+  /* build the rows — fully data-driven from TITLES: a title's "kind" files it
+     under its row and "addedAt" sorts Newest Releases, so a finished title
+     (ours or a member's, off the same machine) joins the Cinema by adding one
+     TITLES entry — the rows build themselves, no markup is edited per title. */
+  var ROWS=[
+    { id:'newest', heading:'Newest Releases', kind:null },
+    { id:'movies', heading:'Movies', kind:'movie' },
+    { id:'shows',  heading:'TV Shows', kind:'show' },
+    { id:'shorts', heading:'Shorts & Commercials', kind:'short' }
+  ];
+  function makeCard(t){
+    var idx=TITLES.indexOf(t);
     var b=document.createElement('button');
     b.type='button'; b.className='carditem'; b.setAttribute('role','listitem');
+    b.setAttribute('data-slug', t.slug);
     b.innerHTML='<img src="'+t.poster+'" alt="Poster — '+t.title+'" loading="lazy" style="aspect-ratio:'+t.ratio+'">'
       +'<span class="cbody"><span class="ct">'+t.title+'</span>'
       +'<span class="cm">'+t.series+' · '+t.dur+'</span>'
-      +'<span class="cs">'+t.blurb+'</span>'
-      +'<span class="kind">▶ Plays here</span></span>';
+      +'<span class="gtag">'+t.genre+'</span>'
+      +'<span class="playhint">▶ Plays on the big screen</span></span>';
     b.addEventListener('click', function(){
       loadTitle(idx, true);
       stage.scrollIntoView({behavior:'smooth', block:'center'});
     });
-    shelf.appendChild(b);
+    return b;
+  }
+  ROWS.forEach(function(row){
+    var items;
+    if(row.kind){ items=TITLES.filter(function(t){ return t.kind===row.kind; }); }
+    else { items=TITLES.slice().sort(function(a,b){ return (b.addedAt||'').localeCompare(a.addedAt||''); }); }
+    if(!items.length) return;
+    var wrap=document.createElement('div');
+    wrap.className='railwrap'; wrap.setAttribute('role','group'); wrap.setAttribute('aria-label', row.heading);
+    var head=document.createElement('h3');
+    head.className='railhead';
+    head.innerHTML='<span class="star" aria-hidden="true">✦</span>'+row.heading+'<span class="star" aria-hidden="true">✦</span>';
+    var rail=document.createElement('div');
+    rail.className='rail'; rail.setAttribute('role','list');
+    items.forEach(function(t){ rail.appendChild(makeCard(t)); });
+    if(row.id==='newest'){
+      var coming=document.createElement('div');
+      coming.className='comingcard';
+      coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the January 1 opening. The shelf fills as each piece is finished and approved.</span>';
+      rail.appendChild(coming);
+    }
+    wrap.appendChild(head); wrap.appendChild(rail);
+    shelf.appendChild(wrap);
   });
-  var coming=document.createElement('div');
-  coming.className='comingcard';
-  coming.innerHTML='<span class="ct">The full season is coming</span><span class="cs">Harbour of Lights, The Storybook and the flagship\u2019s return take their seats at the January 1 opening. The shelf fills as each piece is finished and approved.</span>';
-  shelf.appendChild(coming);
 
   /* player wiring */
   function togglePlay(){
