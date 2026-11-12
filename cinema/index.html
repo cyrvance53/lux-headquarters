@@ -105,6 +105,13 @@
   .comingcard{border:1.5px dashed var(--border-strong);border-radius:var(--radius-card);padding:22px 18px;background:var(--card)}
   .comingcard .ct{font-weight:700;font-size:17px;display:block}
   .comingcard .cs{font-size:14.5px;color:var(--secondary);display:block;margin-top:5px;line-height:1.45}
+  .linkcard{border:1.5px solid var(--border);border-radius:var(--radius-card);padding:22px 18px;background:var(--card);margin-top:14px}
+  .linkcard .ct{font-weight:700;font-size:17px;display:block}
+  .linkcard .cm{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+  .linkcard .cs{display:block;font-size:14.5px;color:var(--secondary);margin-top:5px;line-height:1.45}
+  .linkcard ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+  .linkcard a{font-weight:600;text-decoration:none}
+  .linkcard a:hover{text-decoration:underline}
   .closeline{text-align:center;padding:28px 24px}
   .closeline .big{font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
 
@@ -182,6 +189,15 @@
     <p class="eyebrow blue">On the shelf</p>
     <h2>Pick a picture</h2>
     <div class="shelf" id="shelf" role="list"></div>
+    <div class="linkcard">
+      <span class="ct">Lest We Forget — Remembrance Day</span>
+      <span class="cm">A Lux film · kept on its own page</span>
+      <span class="cs">Song: <em>A Million Times Better</em> — from the Haven soundtrack · Find the song at the <a href="../stripe-wiring/music-store/jukebox.html">music store</a></span>
+      <ul>
+        <li><a href="../remembrance/">Watch it on its own page, with the words of the film</a></li>
+        <li><a href="https://www.youtube.com/watch?v=LLiO-etW5lE" rel="noopener">Watch on YouTube</a></li>
+      </ul>
+    </div>
     <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The full first season — Harbour of Lights, The Storybook, and the flagship's return — arrives with the January 1 opening.</small>
   </section>
 
