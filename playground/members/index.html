@@ -35,6 +35,9 @@ h1{font-size:2rem;margin:.1em 0}
 .room{background:#0b0e14;border:1px solid var(--line);border-radius:14px;padding:14px}
 .room h4{margin:.1em 0 .3em}
 .room p{color:var(--mut);font-size:.9rem;margin:.2em 0 .6em}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;border-radius:999px;padding:3px 10px;margin-bottom:6px}
+.chip.open{background:#12351f;color:#8fe3a8;border:1px solid #2c6e44}
+.chip.lock{background:#2a2113;color:var(--gold2);border:1px solid #6e5620}
 .btn{display:inline-block;background:var(--gold);color:#14100a;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;margin:4px 6px 4px 0}
 .btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold2)}
 .btn.small{padding:8px 14px;font-size:.88rem}
@@ -93,6 +96,10 @@ h1{font-size:2rem;margin:.1em 0}
   <main class="main">
     <h1>AI Playground</h1>
     <p class="sub">Welcome to your side of the house — the making, the playing, the showing. Your rooms are being furnished now; the doors open January 1, and founders are already on the list.</p>
+    <div class="card" style="border-color:var(--gold)">
+      <h3 style="margin-top:0">You're in — the house opens January 1</h3>
+      <p class="mut">Founding members are joining now. Rooms and tools unlock <strong style="color:var(--ink)">one by one, the moment each is finished</strong> — anything still being built stays locked until it's done, then it opens for members first. What's open today is open below.</p>
+    </div>
 
     <div class="card" id="tonight">
       <h3>Tonight at the house: <span id="tonightname">House Night</span></h3>
@@ -103,12 +110,12 @@ h1{font-size:2rem;margin:.1em 0}
     <div class="card" id="rooms">
       <h3>Rooms &amp; benches</h3>
       <div class="grid">
-<div class="room"><h4>The Maker Benches</h4><p>Video, images, voices, music — the benches where members make.</p><a href="https://ailux.ca/playground/">Visit</a></div>
-<div class="room"><h4>The Games Room</h4><p>Free games wall to wall — and Game Night tournaments for credits.</p><a href="https://ailux.ca/playground/">Visit</a></div>
-<div class="room"><h4>The Story Room</h4><p>Make stories with the house AI plugged in — plain choices, heavy lifting done for you.</p><a href="https://ailux.ca/playground/">Visit</a></div>
-<div class="room"><h4>Living Cards</h4><p>Greeting cards that come alive in a loved one's voice and likeness. In the works.</p><a href="https://ailux.ca/playground/">Visit</a></div>
-<div class="room"><h4>The Cinema</h4><p>Films and shows in true 16:9 — Movie Night lives here.</p><a href="https://ailux.ca/cinema/">Visit</a></div>
-<div class="room"><h4>Reels</h4><p>The tall room — short vertical films, one after another.</p><a href="https://ailux.ca/reels/">Visit</a></div>
+<div class="room"><span class="chip lock">🔒 Opens when ready</span><h4>The Maker Benches</h4><p>Video, images, voices, music — the benches where members make.</p><a href="https://ailux.ca/playground/">Preview</a></div>
+<div class="room"><span class="chip lock">🔒 Opens when ready</span><h4>The Games Room</h4><p>Free games wall to wall — and Game Night tournaments for credits.</p><a href="https://ailux.ca/playground/">Preview</a></div>
+<div class="room"><span class="chip lock">🔒 Opens when ready</span><h4>The Story Room</h4><p>Make stories with the house AI plugged in — plain choices, heavy lifting done for you.</p><a href="https://ailux.ca/playground/">Preview</a></div>
+<div class="room"><span class="chip lock">🔒 Opens when ready</span><h4>Living Cards</h4><p>Greeting cards that come alive in a loved one's voice and likeness. In the works.</p><a href="https://ailux.ca/playground/">Preview</a></div>
+<div class="room"><span class="chip open">● Open now</span><h4>The Cinema</h4><p>Films and shows in true 16:9 — Movie Night lives here.</p><a href="https://ailux.ca/cinema/">Visit</a></div>
+<div class="room"><span class="chip open">● Open now</span><h4>Reels</h4><p>The tall room — short vertical films, one after another.</p><a href="https://ailux.ca/reels/">Visit</a></div>
       </div>
     </div>
 
