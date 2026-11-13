@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>School in a Box · Lux Automations</title>
+<meta name="description" content="School in a Box: a whole school on one small computer — an offline AI teacher, the lessons, and tools that teach real skills. Placed where the need is greatest. Sponsor a box as a gift.">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar.bottom{position:static;margin-top:8px;border-bottom:0;border-top:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
+  nav.mainnav a.goldlink:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
+  .goldline{color:var(--gold)}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:10px 20px;border-radius:var(--radius-pill);background:#000;box-shadow:var(--aura-soft);color:var(--gold);font-weight:800;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:14px 16px;margin-top:16px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)}
+  .hostline p strong{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 24px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+  /* ---------- the mission line ---------- */
+  .mission{font-family:var(--serif);font-size:clamp(24px,5.4vw,34px);font-weight:700;line-height:1.28;letter-spacing:-.01em;margin:0 0 14px;color:var(--ink)}
+
+  /* ---------- the film slots ---------- */
+  .videobox{position:relative;width:100%;aspect-ratio:16/9;background:#0b0b0e;border-radius:12px;overflow:hidden;box-shadow:var(--aura-soft);margin-top:16px}
+  .videobox video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
+  .filmcap{font-size:14.5px;color:var(--muted);margin-top:8px;font-weight:600}
+
+  /* ---------- how it works ---------- */
+  .step{margin-top:18px}
+  .step:first-of-type{margin-top:6px}
+
+  /* ---------- the wall of honour ---------- */
+  .honour{border:1.5px dashed rgba(245,198,92,.5);border-radius:var(--radius-card);background:rgba(245,198,92,.05);padding:20px;margin-top:14px}
+  .honour-head{display:grid;grid-template-columns:1.2fr 1fr 1fr .6fr;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(245,198,92,.25);padding-bottom:10px;margin-bottom:14px}
+  .honour-empty{margin:0;color:#e9dfc4;font-size:16px;line-height:1.55}
+  @media (max-width:560px){.honour-head{grid-template-columns:1fr 1fr}}
+
+  .closeline{text-align:center;padding:28px 24px}
+  .closeline .big{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+
+  footer{max-width:1080px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <h1 class="roomtitle">School in a <span class="goldline">Box</span></h1>
+
+  <!-- ============ THE MISSION ============ -->
+  <section>
+    <p class="eyebrow">From the house of Lux</p>
+    <p class="mission">&ldquo;We want to be that adapter that the world plugs into.&rdquo;</p>
+    <p class="lede">Some schools have no internet, no library, and no way to reach either. So we put a whole school on one small computer — and we carry it to the places the wires never reached.</p>
+    <span class="openline">In proof now — the first boxes are being finished and tested · The house opens January 1</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> Welcome. This page is the school's front door. Below you'll find what the box is, how a school comes to have one, the wall where every placement will be honoured by name — and, if your heart moves you, the sponsor desk, where a school is given as a gift.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT IT IS ============ -->
+  <section>
+    <p class="eyebrow">What it is</p>
+    <h2>A real computer. A whole school. Already on it.</h2>
+    <p>School in a Box is a real PC with a whole school already loaded: an AI teacher who works with no internet at all, the lessons, and working <strong>tools</strong> that teach real skills — the kind a person can build a living on, not just pass a test with.</p>
+    <p>It arrives all set up for everything. There is nothing to install, nothing to configure, nobody technical required at the other end — the school just has to turn it on. It runs with no internet, forever; if a connection ever shows up, it quietly takes its updates then. Every learner signs in with their own account, by cable or Wi-Fi, and keeps their own work in their own place.</p>
+    <p class="secondary">The honest state of things: the first boxes are in proof now — built, tested, and made ready before a single one is placed. Nothing on this page will ever claim a school has one before it truly does.</p>
+  </section>
+
+  <!-- ============ THE FILMS — TWO TRIES ============ -->
+  <section>
+    <p class="eyebrow">The film — two tries</p>
+    <h2>Two ways of seeing it</h2>
+    <p>We're finishing two short films about the box — one told straight, and one told the Milo way, as a cartoon. Both will live here; the house is still choosing which one leads.</p>
+    <div class="videobox">
+      <video src="assets/school-video-real.mp4" controls preload="none" playsinline></video>
+    </div>
+    <p class="filmcap">The real road — told straight.</p>
+    <div class="videobox">
+      <video src="assets/school-video-milo.mp4" controls preload="none" playsinline></video>
+    </div>
+    <p class="filmcap">The Milo way — told as a cartoon.</p>
+  </section>
+
+  <!-- ============ HOW A SCHOOL GETS ONE ============ -->
+  <section>
+    <p class="eyebrow">How it works</p>
+    <h2>Placed where the need is greatest</h2>
+    <div class="step">
+      <h3>1 · Need decides</h3>
+      <p>We place boxes where the need is greatest — that judgement is ours to make, and we make it carefully. A sponsor may instead name a country or an area in need, and the box their gift carries goes there; we make sure it is set up right.</p>
+    </div>
+    <div class="step">
+      <h3>2 · Local hands</h3>
+      <p>The machines are bought from a local business, which downloads the school from us, delivers it, and sets it up. The sale, the work, and the pride stay in the community — and the school gains a shop it can walk back into if anything ever needs fixing.</p>
+    </div>
+    <div class="step">
+      <h3>3 · Every name in lights</h3>
+      <p>We advertise every placement: the place that received the box, the sponsor who gave it, and the local business that delivered and set it up — everybody named, everybody credited. The record below is public, and a public record is what keeps every promise at that table honest.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE WALL OF HONOUR ============ -->
+  <section>
+    <p class="eyebrow">The record</p>
+    <h2>Wall of honour</h2>
+    <p>Every placement will be written here — the place, the sponsor, the local business, and the date — and it stays here. This wall is the promise and the proof, in the same place.</p>
+    <div class="honour">
+      <div class="honour-head" aria-hidden="true"><span>Place</span><span>Sponsor</span><span>Local business</span><span>Date</span></div>
+      <p class="honour-empty">No names yet — the first boxes are still in proof, and we won't write a name here before it's true. When the first school is placed, the first names will be written here.</p>
+    </div>
+  </section>
+
+  <!-- ============ SPONSOR A SCHOOL — A DONATION, NEVER A SALE ============ -->
+  <section>
+    <p class="eyebrow">Sponsor a school</p>
+    <h2>Give a school — a gift, never a sale</h2>
+    <p>Sponsoring a box is a donation. The school never pays, the learners never pay — a sponsor's gift places the box, and a sponsor's monthly gift keeps it cared for: the teacher kept current, the syncs, the help when something breaks.</p>
+    <p>Sponsor a <strong>full box</strong> and your name goes on the sponsorship, here on the wall — and your own note travels with the box: a message from you, arriving with the school. Sponsor the <strong>upkeep</strong>, and a placed box stays alive month by month. Give <strong>any amount</strong>, and it is honoured exactly the same way.</p>
+    <div class="btnrow">
+      <!-- STRIPE SLOT — data-sponsor="full-box": replace href="#" with the live Stripe payment link when the sponsor desk opens. No amounts on this page until prices are stamped. -->
+      <a class="btn" href="#" data-sponsor="full-box">Sponsor a full box</a>
+      <!-- STRIPE SLOT — data-sponsor="monthly": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
+      <a class="btn" href="#" data-sponsor="monthly">Sponsor a box's upkeep — monthly</a>
+      <!-- STRIPE SLOT — data-sponsor="any-amount": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
+      <a class="btn" href="#" data-sponsor="any-amount">Sponsor any amount</a>
+    </div>
+    <small style="margin-top:14px">These buttons connect to our secure checkout when the sponsor desk opens with the house on January 1. Sponsoring opens your free Lux account at checkout — any membership thank-you from the house lives on that account, in your name alone. No codes, nothing copyable, nothing to lose.</small>
+  </section>
+
+  <!-- ============ SPONSOR A BEGINNING — MEMBERSHIP-SIDE SPONSORSHIPS ============ -->
+  <section>
+    <p class="eyebrow">Sponsor a beginning</p>
+    <h2>Sponsor a Beginning</h2>
+    <p>Not every gift is a school. A sponsor can also cover a beginning: a kid's Playground membership, month by month — or a young entrepreneur's start in the Workshop, where a business of their own can begin.</p>
+    <p>The sponsor funds it, and <strong>the house places it</strong>. For the kid's sponsorship especially, hear this plainly: sponsors never contact the child. The house grants the membership; the sponsor receives the honour — and the record on the wall. Sponsored memberships are granted through our one-claim ledger: a membership is claimed once, bound to the receiver's own account, and then deactivated. It can be given — it can never be copied, or claimed twice.</p>
+    <div class="btnrow">
+      <!-- STRIPE SLOT — data-sponsor="playground-kid-monthly": replace href="#" with the live Stripe payment link when the sponsor desk opens. No amounts on this page until prices are stamped. -->
+      <a class="btn" href="#" data-sponsor="playground-kid-monthly">Sponsor a kid's Playground — monthly</a>
+      <!-- STRIPE SLOT — data-sponsor="workshop-entrepreneur": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
+      <a class="btn" href="#" data-sponsor="workshop-entrepreneur">Sponsor a young entrepreneur in the Workshop</a>
+    </div>
+    <small style="margin-top:14px">Same desk, same secure checkout — these buttons connect when the house opens January 1. Recipients are chosen by the house, by need; no names appear here before a membership is truly granted.</small>
+  </section>
+
+  <!-- ============ THE VISION ============ -->
+  <section>
+    <p class="eyebrow">Where this goes</p>
+    <h2>Reach the unreachable</h2>
+    <p>We work with education partners in each country — people who know their own ground — and we tell them plainly what we can do: help reach the unreachable, and help their land grow a smarter generation, one that can build its own future with its own hands. In time, whole countries at a time — and the price of that door is the standard we hold from the very first box: every box over-built, and over-delivering, every time.</p>
+  </section>
+
+  <section class="closeline">
+    <p class="big">Join our adventure</p>
+    <p class="secondary" style="margin:0 0 6px">Leave your name in the guest book and we'll write when there's something new — a school placed, a door opening in the house.</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn" href="../#guestbook">Join our adventure</a>
+    </div>
+  </section>
+
+</main>
+
+<header class="topbar bottom">
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a class="here" href="./">School in a Box</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="goldlink" href="../loyalty/">Loyalty</a>
+    <a href="../#guestbook">Guest Book</a>
+  </nav>
+</header>
+
+<footer>
+  Lux Automations · A Million Times Better<br>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="./">School in a Box</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+  </nav>
+  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
+  © 2026 Lux Automations
+</footer>
+
+</body>
+</html>
