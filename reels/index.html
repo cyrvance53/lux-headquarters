@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reels — The Tall Room · Lux Automations</title>
+<meta name="description" content="Lux Reels: the tall room. Short vertical pictures on our own stage — the Harbour of Lights pier walk and every reel the house finishes, free to watch.">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar.bottom{position:static;margin-top:8px;border-bottom:0;border-top:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
+  nav.mainnav a.goldlink:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
+  .roomtitle .goldline{color:var(--gold)}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .openline{display:inline-block;margin-top:6px;padding:10px 20px;border-radius:var(--radius-pill);background:#000;box-shadow:var(--aura-soft);color:var(--gold);font-weight:800;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:14px 16px;margin-top:16px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .hostline p{margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)}
+  .hostline p strong{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 24px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+  /* ---------- the screen (our own player) ---------- */
+  .stage{position:relative;width:min(430px,100%);background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:2/3;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
+  .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
+  .stage:fullscreen{max-height:none;border-radius:0}
+  .stage:fullscreen video{object-fit:contain}
+  .bigplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(245,198,92,.55)}
+  .bigplay[hidden]{display:none}
+  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:rgba(255,255,255,.08)}
+  .cbtn[aria-pressed="true"]{background:rgba(245,198,92,.16);border-color:var(--gold);color:var(--gold)}
+  .cbtn:disabled{opacity:.45;cursor:default}
+  .cbtn:disabled:hover{background:#000}
+  .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .vol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
+  .screenmeta{margin-top:14px}
+  .screenmeta .songline{font-size:15px;color:var(--muted);margin:0}
+
+
+  .soonline{margin-top:16px;text-align:center;padding:12px 16px;border:1.5px dashed rgba(245,198,92,.55);border-radius:var(--radius-card);background:rgba(245,198,92,.06);font-weight:600;font-size:16px;color:#e9dfc4}
+  /* ---------- the loyalty stamp — a golden seal; tap it for the ticket ---------- */
+  a.stamp{display:block;text-decoration:none;color:var(--ink);margin-top:20px;border:3px solid var(--gold);border-radius:var(--radius-card);background:linear-gradient(160deg,#2a1f06,#171106 70%);box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.4),0 0 26px rgba(245,198,92,.22);padding:24px 24px 20px;text-align:center;transition:box-shadow .25s ease}
+  a.stamp:hover{box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.55),0 0 40px rgba(245,198,92,.4)}
+  .stamp .seal{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-size:25px;border:2px dashed rgba(23,17,6,.55);box-shadow:0 0 0 2.5px var(--gold)}
+  .stamp h2{font-size:clamp(23px,5.4vw,32px);letter-spacing:.14em;color:var(--gold);margin:0 0 10px}
+  .stamp p{max-width:580px;margin:0 auto 10px;font-size:16.5px;line-height:1.55;color:#e9dfc4}
+  .stamp small{margin:0;font-weight:600;color:var(--muted)}
+  .stamp .tapline{display:block;margin-top:10px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
+  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
+  .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
+  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
+  .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
+  /* ---------- fullscreen: the film takes the whole screen; the bar comes when you move, goes when you don't ---------- */
+  .player{position:relative}
+  .player:fullscreen{background:#000;width:100%;height:100%}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
+  .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .player:fullscreen.idle{cursor:none}
+  .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
+
+  /* ---------- the theatre shelf: poster rows, newest first — the boxes hover ---------- */
+  section.theatre{background:linear-gradient(180deg,#171106,#0d0a05 55%,#080604);border:1px solid rgba(245,198,92,.28);color:#f5efe0}
+  section.theatre .eyebrow{color:var(--gold-deep)}
+  section.theatre h2{color:#fff6df}
+  section.theatre small{color:#b7ad9c}
+  .shelf{display:block;margin-top:2px}
+  .railwrap{margin-top:8px}
+  .railhead{display:flex;align-items:center;gap:14px;margin:22px 0 6px;color:#f3e5c3;font-size:14.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+  .railwrap:first-child .railhead{margin-top:6px}
+  .railhead::before,.railhead::after{content:"";flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(216,171,58,.55),transparent)}
+  .railhead .star{color:var(--gold);letter-spacing:0}
+  .rail{display:flex;gap:18px;overflow-x:auto;padding:14px 2px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{height:8px}
+  .rail::-webkit-scrollbar-thumb{background:#3d3016;border-radius:99px}
+  .rail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+  /* The video boxes hover — a gentle bob, each on its own timing like
+     the doors, and the diamond's light blooms around the one you touch */
+  .theatre .carditem{flex:0 0 auto;width:224px;scroll-snap-align:start;text-align:left;font:inherit;background:transparent;border:0;border-radius:0;overflow:visible;cursor:pointer;color:#f5efe0;padding:0;animation:cardbob 7s ease-in-out infinite}
+  .rail .carditem:nth-child(2){animation-delay:.9s}
+  .rail .carditem:nth-child(3){animation-delay:1.8s}
+  .rail .carditem:nth-child(4){animation-delay:2.7s}
+  .rail .carditem:nth-child(5){animation-delay:3.6s}
+  @keyframes cardbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .theatre .carditem img{width:100%;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);transition:border-color .15s ease,box-shadow .25s ease}
+  .theatre .carditem:hover img,.theatre .carditem:focus-visible img{border-color:rgba(245,198,92,.9);box-shadow:0 0 0 1px rgba(255,244,214,.5),0 0 18px rgba(234,242,255,.4),0 0 38px rgba(245,198,92,.35)}
+  .theatre .carditem.sel img{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 12px 28px rgba(0,0,0,.55)}
+  .theatre .carditem .cbody{display:block;padding:10px 2px 0}
+  .theatre .carditem .ct{display:block;font-weight:700;font-size:16.5px;line-height:1.3;color:#fdf8ea}
+  .theatre .carditem .cm{display:block;font-size:12.5px;color:#cbb26a;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-top:4px}
+  .theatre .carditem .gtag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:rgba(216,171,58,.14);color:#ecd28a;border:1px solid rgba(216,171,58,.45)}
+  .theatre .carditem .playhint{display:block;font-size:12.5px;color:#9d968a;margin-top:7px;font-weight:600}
+  .theatre .comingcard{flex:0 0 auto;width:224px;scroll-snap-align:start;border:1.5px dashed rgba(216,171,58,.5);border-radius:10px;padding:18px 16px;background:rgba(255,255,255,.03)}
+  .theatre .comingcard .ct{color:#fdf8ea}
+  .theatre .comingcard .cs{color:#b7ad9c}
+  .theatre .linkcard{background:rgba(255,255,255,.04);border-color:rgba(216,171,58,.4)}
+  .theatre .linkcard .ct{color:#fdf8ea}
+  .theatre .linkcard .cs{color:#cfc6b4}
+  @media (max-width:560px){.theatre .carditem,.theatre .comingcard{width:176px}}
+  .comingcard{border:1.5px dashed rgba(255,255,255,.25);border-radius:var(--radius-card);padding:22px 18px;background:#000}
+  .comingcard .ct{font-weight:700;font-size:17px;display:block}
+  .comingcard .cs{font-size:14.5px;color:var(--muted);display:block;margin-top:5px;line-height:1.45}
+  .linkcard{border:1.5px solid rgba(255,255,255,.16);border-radius:var(--radius-card);padding:22px 18px;background:#000;margin-top:14px}
+  .linkcard .ct{font-weight:700;font-size:17px;display:block}
+  .linkcard .cm{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+  .linkcard .cs{display:block;font-size:14.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+  .linkcard ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+  .linkcard a{font-weight:600;text-decoration:none}
+  .linkcard a:hover{text-decoration:underline}
+  .closeline{text-align:center;padding:28px 24px}
+  .closeline .big{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+
+  footer{max-width:1080px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+    .vol{display:none}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .theatre .carditem{animation:none}
+    .btn{transition:none}
+  }
+
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"VideoObject","name":"The Harbour Answers Back — Juno Park's Pier Walk",
+  "description":"Juno Park walks the pier on a snowy night and the harbour answers back — a scene from Harbour of Lights, the Lux Christmas series. A reel: a tall picture, made for the tall screen.",
+  "thumbnailUrl":"https://ailux.ca/reels/assets/pier-walk.jpg",
+  "contentUrl":"https://ailux.ca/reels/assets/pier-walk.mp4","duration":"PT25S","uploadDate":"2026-11-11"
+}
+</script>
+</head>
+<body>
+
+
+<main>
+
+  <h1 class="roomtitle">Lux <span class="goldline">Reels</span></h1>
+
+
+  <!-- ============ THE SCREEN ============ -->
+  <section>
+    <div class="player" id="player">
+    <div class="stage" id="stage">
+      <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
+      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome to my favourite room. Pick a picture from the shelf and it rolls up here — everything on the shelf is finished work from the house.</div>
+    </div>
+    <div class="controls" role="group" aria-label="Player controls">
+      <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">0:25</span></span>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔊</button>
+      <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="speedsel" id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
+      <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    </div>
+    <div class="screenmeta">
+      <h2 id="screentitle" style="margin:0 0 4px">The Harbour Answers Back</h2>
+      <p class="songline" id="screensong"></p>
+      <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
+    </div>
+    <a class="stamp" href="../loyalty/" aria-label="Loyalty — see the golden ticket">
+      <div class="seal" aria-hidden="true">✦</div>
+      <h2>LOYALTY LIVES HERE</h2>
+      <p>Join the Playground and loyalty comes with it. Members who are good, truthful, and stay a while earn a special discount — for being pleasant on our network. Bring a friend who joins and stays, and loyalty rewards that too.</p>
+      <small>Full details when the doors open — January 1.</small>
+      <span class="tapline">See the golden ticket →</span>
+    </a>
+    <div class="soonline">Coming soon — join the Playground and make your own reels, movies and shows, with the same tools and the same quality as ours.</div>
+  </section>
+
+  <!-- ============ THE SHELF ============ -->
+  <section class="theatre">
+    <p class="eyebrow blue">On the shelf</p>
+    <h2>Pick a picture</h2>
+    <div class="shelf" id="shelf" role="list"></div>
+    <div class="linkcard">
+      <span class="ct">The wide room — the Cinema</span>
+      <span class="cm">Films and movies live there, in full widescreen. Reels live here, tall. Two rooms, two screen shapes — each picture in the frame made for it.</span>
+      <ul>
+        <li><a href="../cinema/">Step into the Cinema</a></li>
+      </ul>
+    </div>
+    <small style="margin-top:14px">Finished work only — the shelf grows as each new piece passes the house's eye. The series itself lives in the Playground, starting December 1; everything here in the Reels room stays free to watch.</small>
+  </section>
+
+  <!-- ============ THE ROOM ============ -->
+  <section>
+    <p class="eyebrow">The Cinema</p>
+    <h2>Take a seat — this screen is ours</h2>
+    <p class="lede">No rented player, no detours: the reels below play right here, on the house's own tall stage. Pick a reel from the shelf and it rolls up on the tall screen.</p>
+    <span class="openline">Now showing — always free · The series starts December 1 in the Playground</span>
+    <div class="hostline">
+      <div class="hi" aria-hidden="true">👋</div>
+      <p><strong>Aimée, your host:</strong> Welcome to my favourite room. Everything on this shelf is finished work from the house, and every piece names the song that plays under it — that's the house rule. Captions join each title as its caption file is finished; the CC button lights up when they're ready.</p>
+    </div>
+  </section>
+
+  <section class="closeline">
+    <p class="big">Join our adventure</p>
+    <p class="secondary" style="margin:0 0 6px">Leave your name in the guest book and we'll write when there's something new on the shelf — an episode, a song, a door opening in the house.</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn" href="../#guestbook">Join our adventure</a>
+    </div>
+  </section>
+
+</main>
+
+<header class="topbar bottom">
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a class="here" href="./">Reels</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="goldlink" href="../loyalty/">Loyalty</a>
+    <a href="../#guestbook">Guest Book</a>
+  </nav>
+</header>
+
+<footer>
+  Lux Automations · A Million Times Better<br>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="./">Reels</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+  </nav>
+  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
+  © 2026 Lux Automations
+</footer>
+
+<script>
+(function(){
+  var JUKEBOX='../stripe-wiring/music-store/jukebox.html';
+  /* Captions: to give a title captions, drop its WebVTT file in cinema/assets/
+     (e.g. assets/captions-pier-walk.en.vtt) and set that title's "captions"
+     value below to the file path. The CC button enables automatically. */
+  var TITLES=[
+    { slug:'pier-walk',
+      title:'The Harbour Answers Back',
+      heading:'The Harbour Answers Back — Juno Park\u2019s Pier Walk',
+      kind:'reel', genre:'Reel · Drama', addedAt:'2026-11-11T09:00:00',
+      series:'Harbour of Lights', dur:'0:25', ratio:'2 / 3',
+      src:'assets/pier-walk.mp4', poster:'assets/pier-walk.jpg',
+      captions:null,
+      song:'Song: <em>The Light That Came Home</em> · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
+      blurb:'Juno Park walks the pier on a snowy night, and the harbour answers back — a scene from our Christmas series. A reel: tall, quick, and made for this screen.' }
+  ];
+
+  var stage=document.getElementById('stage'),
+      video=document.getElementById('screen'),
+      bigplay=document.getElementById('bigplay'),
+      playbtn=document.getElementById('playbtn'),
+      seek=document.getElementById('seek'),
+      tcur=document.getElementById('tcur'),
+      ttot=document.getElementById('ttot'),
+      mutebtn=document.getElementById('mutebtn'),
+      vol=document.getElementById('vol'),
+      speed=document.getElementById('speed'),
+      ccbtn=document.getElementById('ccbtn'),
+      fsbtn=document.getElementById('fsbtn'),
+      playerEl=document.getElementById('player'),
+      hostchip=document.getElementById('hostchip'),
+      hostbubble=document.getElementById('hostbubble'),
+      titleEl=document.getElementById('screentitle'),
+      songEl=document.getElementById('screensong'),
+      blurbEl=document.getElementById('screenblurb'),
+      shelf=document.getElementById('shelf'),
+      current=-1, seeking=false, ccOn=false;
+
+  function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+  function setCCEnabled(on){
+    ccbtn.disabled=!on;
+    ccbtn.title=on?'Turn captions on or off':'Captions are on their way for this title';
+    if(!on){ ccOn=false; ccbtn.setAttribute('aria-pressed','false'); }
+  }
+  function applyCC(){
+    var tracks=video.textTracks;
+    for(var i=0;i<tracks.length;i++){ tracks[i].mode = ccOn ? 'showing' : 'hidden'; }
+    ccbtn.setAttribute('aria-pressed', ccOn?'true':'false');
+  }
+
+  function loadTitle(idx, autoplay){
+    var t=TITLES[idx]; if(!t) return;
+    current=idx;
+    var cards=shelf.querySelectorAll('.carditem');
+    for(var i=0;i<cards.length;i++){ cards[i].classList.toggle('sel', cards[i].getAttribute('data-slug')===t.slug); }
+    titleEl.textContent=t.heading;
+    songEl.innerHTML=t.song||'';
+    blurbEl.textContent=t.blurb||'';
+    stage.style.aspectRatio=t.ratio;
+    /* reset caption tracks, then wire this title's if it has one */
+    var old=video.querySelectorAll('track'); for(var j=0;j<old.length;j++){ old[j].remove(); }
+    if(t.captions){
+      var tr=document.createElement('track');
+      tr.kind='captions'; tr.label='English'; tr.srclang='en'; tr.src=t.captions;
+      video.appendChild(tr);
+      setCCEnabled(true);
+    } else { setCCEnabled(false); }
+    video.poster=t.poster;
+    video.src=t.src;
+    video.playbackRate=parseFloat(speed.value)||1;
+    video.load();
+    ttot.textContent=t.dur;
+    tcur.textContent='0:00';
+    seek.value=0;
+    bigplay.hidden=false;
+    playbtn.textContent='▶';
+    applyCC();
+    if(autoplay){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+  }
+
+  /* build the rows — fully data-driven from TITLES: a title's "kind" files it
+     under its row and "addedAt" sorts Newest Releases, so a finished title
+     (ours or a member's, off the same machine) joins the Cinema by adding one
+     TITLES entry — the rows build themselves, no markup is edited per title. */
+  var ROWS=[
+    { id:'newest', heading:'Fresh on the Rail', kind:null }
+  ];
+  function makeCard(t){
+    var idx=TITLES.indexOf(t);
+    var b=document.createElement('button');
+    b.type='button'; b.className='carditem'; b.setAttribute('role','listitem');
+    b.setAttribute('data-slug', t.slug);
+    b.innerHTML='<img src="'+t.poster+'" alt="Poster — '+t.title+'" loading="lazy" style="aspect-ratio:'+t.ratio+'">'
+      +'<span class="cbody"><span class="ct">'+t.title+'</span>'
+      +'<span class="cm">'+t.series+' · '+t.dur+'</span>'
+      +'<span class="gtag">'+t.genre+'</span>'
+      +'<span class="playhint">▶ Plays on the big screen</span></span>';
+    b.addEventListener('click', function(){
+      loadTitle(idx, true);
+      stage.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    return b;
+  }
+  ROWS.forEach(function(row){
+    var items;
+    if(row.kind){ items=TITLES.filter(function(t){ return t.kind===row.kind; }); }
+    else { items=TITLES.slice().sort(function(a,b){ return (b.addedAt||'').localeCompare(a.addedAt||''); }); }
+    if(!items.length) return;
+    var wrap=document.createElement('div');
+    wrap.className='railwrap'; wrap.setAttribute('role','group'); wrap.setAttribute('aria-label', row.heading);
+    var head=document.createElement('h3');
+    head.className='railhead';
+    head.innerHTML='<span class="star" aria-hidden="true">✦</span>'+row.heading+'<span class="star" aria-hidden="true">✦</span>';
+    var rail=document.createElement('div');
+    rail.className='rail'; rail.setAttribute('role','list');
+    items.forEach(function(t){ rail.appendChild(makeCard(t)); });
+    if(row.id==='newest'){
+      var coming=document.createElement('div');
+      coming.className='comingcard';
+      coming.innerHTML='<span class="ct">Your reels belong here</span><span class="cs">When the Playground opens January 1, members get a rail of their own — tall pictures, made with the house tools, shown on this stage. Until then, the rail fills as the house finishes each reel.</span>';
+      rail.appendChild(coming);
+    }
+    wrap.appendChild(head); wrap.appendChild(rail);
+    shelf.appendChild(wrap);
+  });
+
+  /* player wiring */
+  function togglePlay(){
+    if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+    else { video.pause(); }
+  }
+  playbtn.addEventListener('click', togglePlay);
+  bigplay.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+  video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+  video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+  video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+  video.addEventListener('loadedmetadata', function(){
+    ttot.textContent=fmt(video.duration);
+    if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+    applyCC();
+  });
+  video.addEventListener('timeupdate', function(){
+    if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+    tcur.textContent=fmt(video.currentTime);
+  });
+  seek.addEventListener('input', function(){
+    seeking=true;
+    if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+  });
+  seek.addEventListener('change', function(){
+    if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+    seeking=false;
+  });
+  mutebtn.addEventListener('click', function(){
+    video.muted=!video.muted;
+    mutebtn.textContent=video.muted?'🔇':'🔊';
+  });
+  vol.addEventListener('input', function(){
+    video.volume=vol.value/100;
+    if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+  });
+  speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+  ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+  hostchip.addEventListener('click', function(){
+    var open=hostbubble.hidden;
+    hostbubble.hidden=!open;
+    hostchip.setAttribute('aria-expanded', open?'true':'false');
+  });
+  fsbtn.addEventListener('click', function(){
+    if(document.fullscreenElement){ document.exitFullscreen(); return; }
+    var target=playerEl||stage;
+    var req=target.requestFullscreen||target.webkitRequestFullscreen;
+    if(req){ req.call(target); }
+  });
+  /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+  var idleTimer=null;
+  function poke(){
+    if(!document.fullscreenElement){ return; }
+    playerEl.classList.remove('idle');
+    if(idleTimer){ clearTimeout(idleTimer); }
+    idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+  }
+  ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+    playerEl.addEventListener(ev, poke, {passive:true});
+  });
+  document.addEventListener('fullscreenchange', function(){
+    if(document.fullscreenElement){ poke(); }
+    else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+  });
+  stage.addEventListener('keydown', function(ev){
+    if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+  });
+  stage.setAttribute('tabindex','0');
+
+  loadTitle(0, false);
+})();
+</script>
+</body>
+</html>
