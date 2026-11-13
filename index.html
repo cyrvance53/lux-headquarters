@@ -141,6 +141,19 @@
   .door p.desc{margin:0;color:var(--muted-2);font-size:16px;max-width:420px;position:relative}
   .door .go{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:20px;font-weight:700}
 
+  /* ---------- the founding pay card ---------- */
+  .paycard{margin:26px auto 0;max-width:860px;background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;z-index:2;text-align:left}
+  .paycard::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%);pointer-events:none}
+  .paycard>*{position:relative}
+  .paycard .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .paycard h3{font-size:clamp(25px,3.4vw,31px);line-height:1.12;margin:0 0 6px}
+  .paycard p.desc{margin:0;color:var(--muted-2);font-size:16px;max-width:560px}
+  .paytier{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .paytier .tname{font-family:var(--serif);font-weight:700;font-size:20px;min-width:158px;line-height:1.15}
+  .paytier .tname small{display:block;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--muted);margin-top:3px}
+  .paycard .fineprint{margin-top:18px;color:var(--muted);font-size:14px}
+  .paycard .fineprint a{color:var(--gold)}
+
   /* ---------- the two names, engraved into the black ----------
      Carved, not printed: the letters sit sunk into a recessed plate,
      dark in the cut with the diamond's light catching the lower edge
@@ -310,6 +323,28 @@
     </div>
 
     <p class="onehouse">One house.<span class="onehouse-sub">AI &amp; Humans</span></p>
+  </div>
+
+  <!-- ============ THE TILL — FOUNDING MEMBERSHIPS, OPEN NOW ============ -->
+  <div class="paycard">
+    <p class="dtag">The Till · Founders</p>
+    <h3>Founding memberships — open now</h3>
+    <p class="desc">The house opens January 1. Join before it opens and you’re a founder: <strong style="color:var(--ink)">30% off, honoured for your whole first year.</strong> When the doors open, the founder price closes for good. One membership covers the Workshop and the Playground — all tools included.</p>
+    <div class="paytier">
+      <span class="tname">Entry<small>$9.94 a month · a starter bundle of credits</small></span>
+      <!-- STRIPE SLOT — data-link="entry-monthly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/bJefZg4bFbb0duV5tP2B20k" data-link="entry-monthly">Join Entry — monthly</a>
+      <!-- STRIPE SLOT — data-link="entry-founder-yearly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/bJe14mfUnbb00I93lH2B20o" data-link="entry-founder-yearly">Founder year — $83.50</a>
+    </div>
+    <div class="paytier">
+      <span class="tname">Main<small>$27.97 a month · the big monthly credit bundle</small></span>
+      <!-- STRIPE SLOT — data-link="main-monthly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/3cI4gycIb7YOduVaO92B20m" data-link="main-monthly">Join Main — monthly</a>
+      <!-- STRIPE SLOT — data-link="main-founder-yearly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/6oUdR8eQjcf4eyZ8G12B20p" data-link="main-founder-yearly">Founder year — $234.95</a>
+    </div>
+    <p class="fineprint">Monthly joiners: use code <strong style="color:var(--ink)">FOUNDER</strong> at checkout for your 30%. One discount per member — the best one that applies to you; discounts never stack. Or put learning on the map: <a href="school-in-a-box/">sponsor a School in a Box, or a kid’s membership →</a></p>
   </div>
 
   <!-- The two names of the house, engraved into the black itself -->

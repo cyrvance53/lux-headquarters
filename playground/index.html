@@ -89,6 +89,24 @@
   .craft h3{font-size:18.5px;margin:0 0 4px}
   .craft p{margin:0;color:var(--muted);font-size:15px}
 
+  /* ---------- membership tiers ---------- */
+  .founderbanner{margin-top:18px;padding:16px 20px;background:#000;border-radius:14px;box-shadow:var(--aura-soft);font-size:15.5px;color:#e9dfc4}
+  .founderbanner b{color:var(--gold)}
+  .tiergrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+  .tier{background:#000;border-radius:14px;box-shadow:var(--aura-soft);padding:20px 22px}
+  .tier h3{font-size:21px;margin:0 0 2px}
+  .tier .price{font-family:var(--serif);font-size:27px;font-weight:700;color:var(--gold);margin:0 0 2px}
+  .tier .price span{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--muted-2)}
+  .tier .priceline{color:var(--muted-2);font-size:15px;margin:0 0 10px}
+  .tier ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
+  .tier li{margin-bottom:5px}
+  .tier .btnrow{margin-top:14px;gap:10px}
+  .tier .btnote{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+  .houserules{margin-top:16px;background:#000;border-radius:14px;box-shadow:var(--aura-soft);padding:18px 20px}
+  .houserules p{margin:0 0 8px;font-size:15.5px;color:var(--muted-2)}
+  .houserules p:last-child{margin-bottom:0}
+  @media (min-width:760px){.tiergrid{grid-template-columns:1fr 1fr}}
+
   .filmgrid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
   .moment{position:relative;border-radius:22px;overflow:hidden;min-height:280px;display:flex;align-items:flex-end;box-shadow:var(--aura-soft);background:#000}
   .moment img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -263,12 +281,68 @@
       </div>
 
       <p class="grouphead">Membership</p>
-      <p class="muted" style="max-width:700px;margin-top:10px">Two memberships, named for their sides: the <strong style="color:var(--ink)">Lux Automations membership</strong> (the Workshop) and the <strong style="color:var(--ink)">Lux Animations membership</strong> (the Playground) — and holding both may be a much better deal. There are <strong style="color:var(--ink)">no per-tool subscriptions</strong>, ever: one membership unlocks <strong style="color:var(--ink)">ALL</strong> of its side’s tools.</p>
+      <p class="muted" style="max-width:700px;margin-top:10px">One family of membership packages, offered at both doors — the Workshop and the Playground carry the same ladder. There are <strong style="color:var(--ink)">no per-tool subscriptions</strong>, ever: one membership unlocks <strong style="color:var(--ink)">ALL</strong> the tools on its tier.</p>
       <div class="craftrow">
-        <div class="craft"><h3>Founding prepay</h3><p>Pay now and take <strong style="color:var(--ink)">25% off the first month</strong> — it covers <strong style="color:var(--ink)">January 1 to February 1</strong>, and you are <strong style="color:var(--ink)">not charged again until February 1</strong>. Or buy a full founding year at <strong style="color:var(--ink)">25% off the year</strong>.</p></div>
+        <div class="craft"><h3>Founding members</h3><p>Join before the house opens and you are a <strong style="color:var(--ink)">founder</strong>: <strong style="color:var(--ink)">30% off, honoured for your whole first year</strong>. The founding offer closes when the doors open on <strong style="color:var(--ink)">January 1</strong> — after that, the regular ladder below is the only way in.</p></div>
         <div class="craft"><h3>Pick your billing day</h3><p>Each member picks their own monthly billing day — the 1st to the 28th — so the charge follows your payday. Founders’ renewals follow their picked day from February on.</p></div>
         <div class="craft"><h3>Look around free first</h3><p>Anyone can log in and look around the Playground free before paying — walk the rooms, see the tools, see the channel that could be yours. Making and posting unlock with membership. The Cinema stays free to view.</p></div>
         <div class="craft"><h3>Credits, in plain sight</h3><p>Membership includes a monthly credit allotment. Spend your credits, you buy more — packs and in-place top-up, with a ledger you can see: every credit in and out. No dark patterns. Credits live inside the house only — never a coin.</p></div>
+      </div>
+
+      <p class="grouphead">Membership — join as a founder</p>
+      <p class="muted" style="max-width:700px;margin-top:10px">The tiers, in plain numbers. One membership covers the Workshop and the Playground, all tools included — choose by the size of your making.</p>
+      <div class="founderbanner"><b>Founding memberships are open now</b> — from today until the house launches on <b>Friday, January 1, 2027</b>. Founders take <b>30% off</b>, honoured for their whole first year. After launch, the founder offer closes.</div>
+      <div class="tiergrid">
+        <div class="tier">
+          <h3>Entry</h3>
+          <p class="price">$9.94 <span>/ month</span></p>
+          <p class="priceline">Yearly: $89.46/yr — 25% off the year · Founder yearly: $83.50</p>
+          <ul>
+            <li>Every door open — the Workshop and the Playground, all tools included.</li>
+            <li>A starter bundle of credits, fresh each month.</li>
+            <li>Top up credits any time, at your own tier’s rate.</li>
+          </ul>
+          <div class="btnrow">
+            <!-- STRIPE SLOT — data-link="entry-monthly": replace href="#" with the live Stripe payment link. -->
+            <a class="btn" href="https://buy.stripe.com/bJefZg4bFbb0duV5tP2B20k" data-link="entry-monthly">Join Entry — $9.94/month</a>
+          </div>
+          <p class="btnote">Founders: use code FOUNDER at checkout for 30% off your first year.</p>
+          <div class="btnrow">
+            <!-- STRIPE SLOT — data-link="entry-founder-yearly": replace href="#" with the live Stripe payment link. -->
+            <a class="btn" href="https://buy.stripe.com/bJe14mfUnbb00I93lH2B20o" data-link="entry-founder-yearly">Founder yearly — $83.50</a>
+            <!-- STRIPE SLOT — data-link="entry-yearly": replace href="#" with the live Stripe payment link (the regular yearly, after launch). -->
+            <a class="btn small" href="https://buy.stripe.com/00wbJ0gYra6WaiJg8t2B20l" data-link="entry-yearly">Yearly — $89.46/yr</a>
+          </div>
+          <p class="btnote">The yearly button is the regular yearly price — the one that stands after the founder offer closes at launch.</p>
+        </div>
+        <div class="tier">
+          <h3>Main</h3>
+          <p class="price">$27.97 <span>/ month</span></p>
+          <p class="priceline">Yearly: $251.73/yr — 25% off the year · Founder yearly: $234.95</p>
+          <ul>
+            <li>Everything in Entry, plus the big monthly credit bundle.</li>
+            <li>A better per-credit price — bigger tiers get a better deal on every credit.</li>
+            <li>Top up credits any time, at your own tier’s rate.</li>
+          </ul>
+          <div class="btnrow">
+            <!-- STRIPE SLOT — data-link="main-monthly": replace href="#" with the live Stripe payment link. -->
+            <a class="btn" href="https://buy.stripe.com/3cI4gycIb7YOduVaO92B20m" data-link="main-monthly">Join Main — $27.97/month</a>
+          </div>
+          <p class="btnote">Founders: use code FOUNDER at checkout for 30% off your first year.</p>
+          <div class="btnrow">
+            <!-- STRIPE SLOT — data-link="main-founder-yearly": replace href="#" with the live Stripe payment link. -->
+            <a class="btn" href="https://buy.stripe.com/6oUdR8eQjcf4eyZ8G12B20p" data-link="main-founder-yearly">Founder yearly — $234.95</a>
+            <!-- STRIPE SLOT — data-link="main-yearly": replace href="#" with the live Stripe payment link (the regular yearly, after launch). -->
+            <a class="btn small" href="https://buy.stripe.com/dRm4gy5fJ0wm1Md5tP2B20n" data-link="main-yearly">Yearly — $251.73/yr</a>
+          </div>
+          <p class="btnote">The yearly button is the regular yearly price — the one that stands after the founder offer closes at launch.</p>
+        </div>
+      </div>
+      <div class="houserules">
+        <p>One discount per member — the best one that applies to you. Discounts never stack.</p>
+        <p>Your tier sets your credit price; topping up always costs your own tier’s rate.</p>
+        <p>Membership covers the Workshop and the Playground, all tools included.</p>
+        <p>All prices are in Canadian dollars (CAD).</p>
       </div>
 
       <h3 style="font-size:24px;margin-top:44px">A Million Times Better — the series starts December 1</h3>
