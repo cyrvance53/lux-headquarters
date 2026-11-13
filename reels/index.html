@@ -72,6 +72,13 @@
 
   /* ---------- the screen (our own player) ---------- */
   .stage{position:relative;width:min(430px,100%);background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:2/3;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
+  .setrow{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;width:min(430px,100%);margin:0 auto 12px}
+  .setlab{font-weight:600}
+  .setswitch{width:52px;height:28px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);position:relative;cursor:pointer;padding:0;flex:none}
+  .setswitch .knob{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s ease}
+  .setswitch[aria-checked="true"]{background:var(--gold);border-color:var(--gold)}
+  .setswitch[aria-checked="true"] .knob{left:26px}
+  .setnote{color:#9d9da8;font-size:13px;width:100%;text-align:center}
   .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
   .stage:fullscreen{max-height:none;border-radius:0}
   .stage:fullscreen video{object-fit:contain}
@@ -205,12 +212,17 @@
 
   <!-- ============ THE SCREEN ============ -->
   <section>
+    <div class="setrow">
+      <span class="setlab" id="autoplayLab">Autoplay</span>
+      <button type="button" class="setswitch" id="autoplayToggle" role="switch" aria-checked="true" aria-labelledby="autoplayLab"><span class="knob" aria-hidden="true"></span></button>
+      <span class="setnote" id="autoplayNote">Reels start on their own when you walk in — tap the picture for sound.</span>
+    </div>
     <div class="player" id="player">
     <div class="stage" id="stage">
       <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
       <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
       <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
-      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome to my favourite room. Pick a picture from the shelf and it rolls up here — everything on the shelf is finished work from the house.</div>
+      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome to my favourite room. Pick a picture from the shelf and it rolls up here — everything on the shelf is finished work from the house. The switch at the top is yours: leave Autoplay on and a reel starts as you walk in, or turn it off and browse the shelf first — I remember your choice.</div>
     </div>
     <div class="controls" role="group" aria-label="Player controls">
       <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
@@ -348,6 +360,10 @@
       blurbEl=document.getElementById('screenblurb'),
       shelf=document.getElementById('shelf'),
       current=-1, seeking=false, ccOn=false;
+  var autoplayOn=true;
+  try{ autoplayOn=localStorage.getItem('lux-reels-autoplay')!=='off'; }catch(e){}
+  var autoplayToggle=document.getElementById('autoplayToggle'),
+      autoplayNote=document.getElementById('autoplayNote');
 
   function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
 
@@ -382,6 +398,7 @@
     video.poster=t.poster;
     video.src=t.src;
     video.playbackRate=parseFloat(speed.value)||1;
+    video.loop=autoplayOn;
     video.load();
     ttot.textContent=t.dur;
     tcur.textContent='0:00';
@@ -507,7 +524,28 @@
   });
   stage.setAttribute('tabindex','0');
 
+  function autoplayNoteText(){
+    autoplayNote.textContent=autoplayOn
+      ? 'Reels start on their own when you walk in — tap the picture for sound.'
+      : 'Reels wait for your tap — browse the shelf first.';
+  }
+  function startMuted(){
+    video.muted=true; mutebtn.textContent='🔇';
+    var p=video.play(); if(p&&p.catch) p.catch(function(){});
+  }
+  autoplayToggle.setAttribute('aria-checked', autoplayOn?'true':'false');
+  autoplayNoteText();
+  autoplayToggle.addEventListener('click', function(){
+    autoplayOn=!autoplayOn;
+    try{ localStorage.setItem('lux-reels-autoplay', autoplayOn?'on':'off'); }catch(e){}
+    autoplayToggle.setAttribute('aria-checked', autoplayOn?'true':'false');
+    autoplayNoteText();
+    video.loop=autoplayOn;
+    if(autoplayOn && video.paused){ startMuted(); }
+  });
+
   loadTitle(0, false);
+  if(autoplayOn){ startMuted(); }
 })();
 </script>
 </body>
