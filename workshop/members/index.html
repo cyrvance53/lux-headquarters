@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workshop — Members · Lux</title>
+<meta name="description" content="The members' home of the AI Workshop — rooms, house nights, credits and your AI host.">
+<style>
+:root{--bg:#07080c;--panel:#101319;--line:#232838;--ink:#eef1f7;--mut:#9aa5b8;--gold:#e9c46a;--gold2:#f4d58a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.55}
+a{color:var(--gold2)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.06em}
+.invite{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 16px;font-size:.9rem;color:var(--mut)}
+.invite button{background:var(--gold);border:0;color:#14100a;font-weight:700;border-radius:999px;padding:8px 16px;cursor:pointer}
+.shell{display:flex;gap:0;max-width:1280px;margin:0 auto;align-items:stretch}
+.side{width:270px;flex:none;border-right:1px solid var(--line);padding:22px 18px;display:flex;flex-direction:column;gap:20px}
+.side h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.side nav a{display:block;color:var(--ink);text-decoration:none;padding:7px 10px;border-radius:10px;font-size:.95rem}
+.side nav a:hover{background:var(--panel)}
+.meter{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.meter .bar{height:10px;border-radius:99px;background:#1c2130;overflow:hidden;margin:8px 0}
+.meter .fill{height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.meter p{margin:4px 0;color:var(--mut);font-size:.85rem}
+.hostbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.hostbox .who{font-weight:700;font-size:1.05rem}
+.hostbox button{margin-top:8px;background:transparent;border:1px solid var(--gold);color:var(--gold2);border-radius:999px;padding:7px 14px;cursor:pointer;font-weight:600}
+.main{flex:1;padding:26px 28px;min-width:0}
+h1{font-size:2rem;margin:.1em 0}
+.sub{color:var(--mut);max-width:640px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}
+.card h3{margin:.1em 0 .4em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.room{background:#0b0e14;border:1px solid var(--line);border-radius:14px;padding:14px}
+.room h4{margin:.1em 0 .3em}
+.room p{color:var(--mut);font-size:.9rem;margin:.2em 0 .6em}
+.btn{display:inline-block;background:var(--gold);color:#14100a;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;margin:4px 6px 4px 0}
+.btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold2)}
+.btn.small{padding:8px 14px;font-size:.88rem}
+.tierrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.tier{border:1px solid var(--gold);border-radius:14px;padding:16px;background:#0b0e14}
+.tier .price{font-size:1.5rem;font-weight:800}
+.mut{color:var(--mut)} .fine{color:var(--mut);font-size:.82rem}
+#tonight{border-color:var(--gold)}
+.modal{display:none;position:fixed;inset:0;background:rgba(3,4,7,.8);align-items:center;justify-content:center;z-index:50}
+.modal.open{display:flex}
+.modal .box{background:var(--panel);border:1px solid var(--gold);border-radius:18px;padding:22px;max-width:520px;width:92%}
+.faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}
+.face{border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;cursor:pointer;background:#0b0e14}
+.face:hover{border-color:var(--gold)}
+.face .em{font-size:1.7rem}
+@media(max-width:820px){.shell{flex-direction:column}.side{width:auto;border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">◆ LUX — AI WORKSHOP</div>
+  <div class="invite"><span>Invite box — bring someone to the house:</span><button id="invbtn" onclick="copyInvite()">Copy my invite link</button></div>
+</div>
+<div class="shell">
+  <aside class="side">
+    <div>
+      <h4>Your rooms</h4>
+      <nav>
+        <a href="#tonight">Tonight at the house</a>
+        <a href="#rooms">Rooms &amp; benches</a>
+        <a href="#ladder">Membership</a>
+        <a href="#free">Free visits &amp; silent members</a>
+        <a href="https://ailux.ca/playground/members/">The other house — AI Playground</a>
+        <a href="https://ailux.ca/cinema/">The Cinema</a>
+        <a href="https://ailux.ca/school-in-a-box/">School in a Box</a>
+        <a href="https://ailux.ca/">Front door</a>
+      </nav>
+    </div>
+    <div class="meter">
+      <h4>Your credits</h4>
+      <div class="bar"><div class="fill"></div></div>
+      <p><strong style="color:var(--ink)">Founding member</strong> — your credit bundle fills when the doors open, January 1.</p>
+      <p>Playing on House Nights earns credits. The fuller the room, the bigger the pool.</p>
+    </div>
+    <div class="hostbox">
+      <h4>Your AI host</h4>
+      <div class="who" id="hostname">Aimée</div>
+      <p class="fine">Your host greets you, guides the rooms, and fronts your Talking Letters. Change her — or him — any time.</p>
+      <button onclick="openPicker()">Change my host</button>
+    </div>
+    <div class="hostbox">
+      <h4>The House Letter</h4>
+      <p class="fine">Aimée's letter: the week's night times, Sponsor a Kid, the deals, and what's new — with her voice inside it. It starts with the opening.</p>
+    </div>
+  </aside>
+  <main class="main">
+    <h1>AI Workshop</h1>
+    <p class="sub">Welcome to the working side of the house — the benches that earn. Your rooms are being furnished now; the doors open January 1, and founders are already on the list.</p>
+
+    <div class="card" id="tonight">
+      <h3>Tonight at the house: <span id="tonightname">House Night</span></h3>
+      <p class="mut" id="tonightnote"></p>
+      <p class="fine">Every night a room lights up — Trivia Night, Bingo Night, Movie Night, Game Night — and playing earns credits. Nights run when the house opens, January 1.</p>
+    </div>
+
+    <div class="card" id="rooms">
+      <h3>Rooms &amp; benches</h3>
+      <div class="grid">
+<div class="room"><h4>The Client Benches</h4><p>Automation that answers, books, files and follows up for real businesses.</p><a href="https://ailux.ca/workshop/">Visit</a></div>
+<div class="room"><h4>The Invoice Desk</h4><p>Photograph an invoice or a worksheet — the house reads it and pulls the numbers out.</p><a href="https://ailux.ca/workshop/">Visit</a></div>
+<div class="room"><h4>Talking Letters</h4><p>Your business letters with an AI host inside the mail itself. In the works.</p><a href="https://ailux.ca/workshop/">Visit</a></div>
+<div class="room"><h4>The Money Benches</h4><p>Currency, quotes, PDFs and the unglamorous tools a business runs on.</p><a href="https://ailux.ca/workshop/">Visit</a></div>
+<div class="room"><h4>Loyalty</h4><p>The house's thank-you program — credits, packs and top-ups.</p><a href="https://ailux.ca/loyalty/">Visit</a></div>
+<div class="room"><h4>School in a Box</h4><p>Sponsor a school that runs with no internet at all.</p><a href="https://ailux.ca/school-in-a-box/">Visit</a></div>
+      </div>
+    </div>
+
+    <div class="card" id="ladder">
+      <h3>Membership — one ladder, both doors</h3>
+      <p class="mut">The same packages live in the AI Workshop and the AI Playground. Founders join now at <strong style="color:var(--ink)">30% off, honoured for the whole first year</strong>; the founding offer closes when the doors open on January 1. One discount per person — the best single one. Prices in Canadian dollars (CAD).</p>
+      <div class="tierrow">
+        <div class="tier">
+          <strong>Entry — for solo members</strong>
+          <div class="price">$9.94<span class="mut" style="font-size:.9rem">/month</span></div>
+          <p class="mut">Every tool in the house on the Entry bundle of credits.</p>
+          <a class="btn" href="https://buy.stripe.com/bJefZg4bFbb0duV5tP2B20k">Join Entry — monthly</a>
+          <a class="btn ghost" href="https://buy.stripe.com/bJe14mfUnbb00I93lH2B20o">Founder yearly — $83.50</a>
+          <a class="btn ghost small" href="https://buy.stripe.com/00wbJ0gYra6WaiJg8t2B20l">Yearly — $89.46/yr</a>
+          <p class="fine">Monthly members: founder code <strong>FOUNDER</strong> at checkout takes 30% off your first year.</p>
+        </div>
+        <div class="tier">
+          <strong>Main — the full house</strong>
+          <div class="price">$27.97<span class="mut" style="font-size:.9rem">/month</span></div>
+          <p class="mut">A bigger credit bundle and a better per-credit price.</p>
+          <a class="btn" href="https://buy.stripe.com/3cI4gycIb7YOduVaO92B20m">Join Main — monthly</a>
+          <a class="btn ghost" href="https://buy.stripe.com/6oUdR8eQjcf4eyZ8G12B20p">Founder yearly — $234.95</a>
+          <a class="btn ghost small" href="https://buy.stripe.com/dRm4gy5fJ0wm1Md5tP2B20n">Yearly — $251.73/yr</a>
+          <p class="fine">Monthly members: founder code <strong>FOUNDER</strong> at checkout takes 30% off your first year.</p>
+        </div>
+      </div>
+      <p class="mut" style="margin-top:12px"><strong style="color:var(--ink)">Small Business</strong> and <strong style="color:var(--ink)">Corporate / Institutions</strong> packages open with the house — more seats, bigger bundles, the best per-credit price in the house. <a href="https://ailux.ca/">Sign the Guest Book at the front door</a> and the house writes back.</p>
+    </div>
+
+    <div class="card" id="free">
+      <h3>Free visits — and silent members</h3>
+      <p class="mut">A free visitor may <strong style="color:var(--ink)">try everything once — some things twice</strong>. Then what they tried locks, and the door is shown plainly: join as a member, or buy a small pack of credits and roam the house as a <strong style="color:var(--ink)">silent member</strong> — no subscription, pay-per-use. <strong style="color:var(--ink)">Members meet no locks at all</strong>: upgrade, and the whole house is simply open.</p>
+      <p class="mut">In the works, first look in the House Letter: <strong style="color:var(--ink)">Talking Letters</strong> (an AI host inside your mail) and <strong style="color:var(--ink)">Living Cards</strong> (greeting cards that speak in a loved one's voice and likeness).</p>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="picker">
+  <div class="box">
+    <h3 style="margin-top:0">Choose your host</h3>
+    <p class="mut">Any of our people can front your rooms and your mail. Your pick is saved on this device.</p>
+    <div class="faces">
+<div class="face" onclick="pickHost('Aimée')"><div class="em">🪔</div><strong>Aimée</strong><div class="fine">Front of house</div></div>
+<div class="face" onclick="pickHost('Lucian')"><div class="em">📖</div><strong>Lucian</strong><div class="fine">The keeper</div></div>
+<div class="face" onclick="pickHost('The Fisherman')"><div class="em">🎣</div><strong>The Fisherman</strong><div class="fine">Harbour of Lights</div></div>
+<div class="face" onclick="pickHost('Juno Park')"><div class="em">🌟</div><strong>Juno Park</strong><div class="fine">Harbour of Lights</div></div>
+<div class="face" onclick="pickHost('SHIELD')"><div class="em">🛡️</div><strong>SHIELD</strong><div class="fine">The General</div></div>
+<div class="face" onclick="pickHost('King Lux')"><div class="em">👑</div><strong>King Lux</strong><div class="fine">The engineer</div></div>
+    </div>
+    <p style="margin-top:14px"><button class="btn ghost small" onclick="closePicker()">Close</button></p>
+  </div>
+</div>
+<script>
+function copyInvite(){var t='https://ailux.ca';if(navigator.clipboard){navigator.clipboard.writeText(t);}var b=document.getElementById('invbtn');b.textContent='Link copied — ailux.ca';setTimeout(function(){b.textContent='Copy my invite link';},2600);}
+function openPicker(){document.getElementById('picker').classList.add('open');}
+function closePicker(){document.getElementById('picker').classList.remove('open');}
+function pickHost(name){try{localStorage.setItem('lux-host',name);}catch(e){}document.getElementById('hostname').textContent=name;closePicker();}
+(function(){var saved=null;try{saved=localStorage.getItem('lux-host');}catch(e){}if(saved){document.getElementById('hostname').textContent=saved;}
+var nights=['Trivia Night','Movie Night','Bingo Night','Game Night','Trivia Night','Movie Night','Bingo Night'];
+var notes=['Right answers earn credits — and the fuller the room, the bigger the pool.','The Cinema lights down: a film together, credits for the ones who stay for the show.','Cards out — play free on the house card, or buy cards with credits and play for the pot.','The Games Room tables open: tournaments and free play, credit prizes on the board.','Right answers earn credits — and the fuller the room, the bigger the pool.','The Cinema lights down: a film together, credits for the ones who stay for the show.','Cards out — play free on the house card, or buy cards with credits and play for the pot.'];
+var d=new Date().getDay();var idx=(d+6)%7;
+document.getElementById('tonightname').textContent=nights[idx];
+document.getElementById('tonightnote').textContent=notes[idx];})();
+</script>
+</body>
+</html>
