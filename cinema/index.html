@@ -194,11 +194,7 @@
      "description":"A private on a gun crew below Vimy Ridge, Canadian sailors among the rescuers at Dunkirk, and our own boys at Juno Beach — a tribute to the Canadians who stood in the worst places so we could live free.",
      "thumbnailUrl":"https://ailux.ca/cinema/assets/lest-we-forget.jpg",
      "contentUrl":"https://ailux.ca/cinema/assets/lest-we-forget.mp4","duration":"PT1M33S","uploadDate":"2026-11-11"},
-    {"@type":"VideoObject","position":2,"name":"The Harbour Answers Back — Juno Park's Pier Walk",
-     "description":"Juno Park walks the pier on a snowy night and the harbour answers back — a scene from Harbour of Lights, the Lux Christmas series.",
-     "thumbnailUrl":"https://ailux.ca/cinema/assets/pier-walk.jpg",
-     "contentUrl":"https://ailux.ca/cinema/assets/pier-walk.mp4","duration":"PT25S","uploadDate":"2026-11-11"},
-    {"@type":"VideoObject","position":3,"name":"The Morning Call",
+    {"@type":"VideoObject","position":2,"name":"The Morning Call",
      "description":"A morning in our world — the first feeder from the house of Lux, dreamed by Muse.",
      "thumbnailUrl":"https://ailux.ca/cinema/assets/morning-call.jpg",
      "contentUrl":"https://ailux.ca/cinema/assets/morning-call.mp4","duration":"PT25S","uploadDate":"2026-11-11"}
@@ -218,14 +214,14 @@
   <section>
     <div class="player" id="player">
     <div class="stage" id="stage">
-      <video id="screen" preload="none" playsinline poster="assets/pier-walk.jpg"></video>
+      <video id="screen" preload="none" playsinline poster="assets/lest-we-forget.jpg"></video>
       <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
       <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
       <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome to my favourite room. Pick a picture from the shelf and it rolls up here — everything on the shelf is finished work from the house.</div>
     </div>
     <div class="controls" role="group" aria-label="Player controls">
       <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
-      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">0:25</span></span>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">1:33</span></span>
       <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
       <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔊</button>
       <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
@@ -242,7 +238,7 @@
     </div>
     </div>
     <div class="screenmeta">
-      <h2 id="screentitle" style="margin:0 0 4px">The Harbour Answers Back</h2>
+      <h2 id="screentitle" style="margin:0 0 4px">Lest We Forget — Remembrance Day</h2>
       <p class="songline" id="screensong"></p>
       <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
     </div>
@@ -325,18 +321,18 @@
 (function(){
   var JUKEBOX='../stripe-wiring/music-store/jukebox.html';
   /* Captions: to give a title captions, drop its WebVTT file in cinema/assets/
-     (e.g. assets/captions-pier-walk.en.vtt) and set that title's "captions"
+     (e.g. assets/captions-lest-we-forget.en.vtt) and set that title's "captions"
      value below to the file path. The CC button enables automatically. */
   var TITLES=[
-    { slug:'pier-walk',
-      title:'The Harbour Answers Back',
-      heading:'The Harbour Answers Back — Juno Park\u2019s Pier Walk',
-      kind:'show', genre:'Series · Drama', addedAt:'2026-11-11T09:00:00',
-      series:'Harbour of Lights', dur:'0:25', ratio:'2 / 3',
-      src:'assets/pier-walk.mp4', poster:'assets/pier-walk.jpg',
+    { slug:'lest-we-forget',
+      title:'Lest We Forget — Remembrance Day',
+      heading:'Lest We Forget — Remembrance Day',
+      kind:'movie', genre:'Tribute · Short Film', addedAt:'2026-11-11T18:30:00',
+      series:'A Lux Film', dur:'1:33', ratio:'16 / 9',
+      src:'assets/lest-we-forget.mp4', poster:'assets/lest-we-forget.jpg',
       captions:null,
-      song:'Song: <em>The Light That Came Home</em> · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
-      blurb:'Juno Park walks the pier on a snowy night, and the harbour answers back — a scene from our Christmas series, rebuilt full-frame.' },
+      song:'Song: <em>A Million Times Better</em> — from the Haven soundtrack · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
+      blurb:'A private on a gun crew below Vimy Ridge, Canadian sailors among the rescuers at Dunkirk, and our own boys at Juno Beach — a tribute to the Canadians who stood in the worst places so we could live free.' },
     { slug:'morning-call',
       title:'The Morning Call',
       heading:'The Morning Call',
@@ -346,15 +342,6 @@
       captions:null,
       song:'',
       blurb:'A morning in our world — the first feeder from the house of Lux, dreamed by Muse.' },
-    { slug:'lest-we-forget',
-      title:'Lest We Forget — Remembrance Day',
-      heading:'Lest We Forget — Remembrance Day',
-      kind:'movie', genre:'Tribute · Short Film', addedAt:'2026-11-11T18:30:00',
-      series:'A Lux Film', dur:'1:33', ratio:'16 / 9',
-      src:'assets/lest-we-forget.mp4', poster:'assets/lest-we-forget.jpg',
-      captions:null,
-      song:'Song: <em>A Million Times Better</em> — from the Haven soundtrack · Find the song at the <a href="'+JUKEBOX+'">music store</a>',
-      blurb:'A private on a gun crew below Vimy Ridge, Canadian sailors among the rescuers at Dunkirk, and our own boys at Juno Beach — a tribute to the Canadians who stood in the worst places so we could live free.' }
   ];
 
   var stage=document.getElementById('stage'),
