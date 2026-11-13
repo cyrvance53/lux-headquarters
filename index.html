@@ -154,6 +154,17 @@
   .paycard .fineprint{margin-top:18px;color:var(--muted);font-size:14px}
   .paycard .fineprint a{color:var(--gold)}
 
+  /* ---------- School in a Box — the centre card (Vance, Nov 13):
+     sits in the middle of the doors grid, below the first row,
+     the bottom doors pulled down beneath it ---------- */
+  .schoolfeature{grid-column:1/-1;text-align:center;background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:36px 28px 30px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;margin:8px 0}
+  .schoolfeature::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%);pointer-events:none}
+  .schoolfeature>*{position:relative}
+  .schoolfeature .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .schoolfeature h3{font-size:clamp(27px,3.8vw,34px);line-height:1.12;margin:0 0 8px}
+  .schoolfeature p.desc{margin:0 auto;color:var(--muted-2);font-size:16.5px;max-width:640px}
+  .schoolfeature .btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+
   /* ---------- the two names, engraved into the black ----------
      Carved, not printed: the letters sit sunk into a recessed plate,
      dark in the cut with the diamond's light catching the lower edge
@@ -299,6 +310,15 @@
         <h3>AI Playground</h3>
         <p class="desc">Your own channel — free for now.</p>
       </a>
+      <div class="schoolfeature">
+        <p class="dtag">The Heart of the House · A Gift That Teaches</p>
+        <h3>School in a Box</h3>
+        <p class="desc">&ldquo;We want to be that adapter that the world plugs into.&rdquo; A whole school on one small computer, carried to the places the wires never reached — given, never sold. The first boxes are being built now, and sponsorships toward them are open today: sponsor one, and your name rises on the Wall of Heroes.</p>
+        <div class="btnrow">
+          <a class="btn" href="school-in-a-box/">Visit the School &rarr;</a>
+          <a class="btn" href="https://buy.stripe.com/00w6oG8rVfrgfD3g8t2B20j">Sponsor — any amount</a>
+        </div>
+      </div>
       <a class="door" href="cinema/">
         <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
