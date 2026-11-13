@@ -85,6 +85,13 @@
   /* ---------- the wall of honour ---------- */
   .honour{border:1.5px dashed rgba(245,198,92,.5);border-radius:var(--radius-card);background:rgba(245,198,92,.05);padding:20px;margin-top:14px}
   .honour-head{display:grid;grid-template-columns:1.2fr 1fr 1fr .6fr;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(245,198,92,.25);padding-bottom:10px;margin-bottom:14px}
+
+  form.host{display:grid;gap:14px;margin-top:20px;max-width:620px}
+  form.host label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--ink)}
+  form.host input[type="text"],form.host input[type="email"],form.host textarea{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#000;color:var(--ink);padding:12px 16px;width:100%}
+  form.host textarea{min-height:84px;resize:vertical}
+  form.host .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  #hostMsg{font-size:15px;color:var(--gold);min-height:22px;margin:4px 0 0}
   .honour-empty{margin:0;color:#e9dfc4;font-size:16px;line-height:1.55}
   @media (max-width:560px){.honour-head{grid-template-columns:1fr 1fr}}
 
@@ -169,6 +176,24 @@
   </section>
 
   <!-- ============ THE WALL OF HONOUR ============ -->
+
+  <section>
+    <p class="eyebrow">Receive a school</p>
+    <h2>Host a School — put your place on the list</h2>
+    <p>Sponsors give the boxes. <strong>Hosts receive them.</strong> If your school or your community would welcome a School in a Box, put your place on the host list, right here. The house reads every entry, and places boxes where the need is greatest.</p>
+    <p>Honest terms, up front: being on the list is <strong>not a promise of a box</strong> — need decides, and sponsors' gifts decide how many boxes there are to place. We will write to every place that lists, either way. And it costs the host nothing, ever: the school never pays, the learners never pay.</p>
+    <form class="host" id="hostForm" action="/api/join" method="post">
+      <label>Your name <input type="text" name="name" autocomplete="name" required></label>
+      <label>Email <input type="email" name="email" autocomplete="email" required></label>
+      <label>School or community <input type="text" name="place" required></label>
+      <label>Country / area <input type="text" name="country"></label>
+      <label>One line about your place <textarea name="about" maxlength="500"></textarea></label>
+      <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+      <button class="btn" type="submit" style="justify-self:start">Put our place on the host list</button>
+      <p id="hostMsg" role="status"></p>
+    </form>
+  </section>
+
   <section>
     <p class="eyebrow">The record</p>
     <h2>The Wall of Heroes</h2>
@@ -260,5 +285,41 @@
   © 2026 Lux Automations
 </footer>
 
+
+<script>
+(function(){
+  var form = document.getElementById('hostForm');
+  if(!form) return;
+  var msg = document.getElementById('hostMsg');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var fd = new FormData(form);
+    var payload = {
+      list: 'host',
+      name: (fd.get('name')||'').toString().trim(),
+      email: (fd.get('email')||'').toString().trim(),
+      place: (fd.get('place')||'').toString().trim(),
+      country: (fd.get('country')||'').toString().trim(),
+      about: (fd.get('about')||'').toString().trim(),
+      company: (fd.get('company')||'').toString()
+    };
+    var btn = form.querySelector('button[type="submit"]');
+    if(btn) btn.disabled = true;
+    if(msg) msg.textContent = 'One moment…';
+    fetch('/api/join', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(payload)})
+      .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+      .then(function(d){
+        if(d && d.ok){
+          if(msg) msg.textContent = 'Your place is on the list. We read every entry, and we will write to you — thank you for raising your hand.';
+          form.reset();
+        } else {
+          if(msg) msg.textContent = 'That did not go through — please check the fields and try once more.';
+        }
+      })
+      .catch(function(){ if(msg) msg.textContent = 'That did not go through — please try once more in a moment.'; })
+      .then(function(){ if(btn) btn.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>

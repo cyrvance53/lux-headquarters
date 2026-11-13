@@ -41,14 +41,17 @@ export async function onRequestPost(context) {
   const req = context.request;
   const env = context.env || {};
   let name = "", email = "", choice = "", trap = "";
+  let list = "", place = "", country = "", about = "";
   const ct = req.headers.get("content-type") || "";
   try {
     if (ct.includes("application/json")) {
       const b = await req.json();
       name = b.name || ""; email = b.email || ""; choice = b.choice || ""; trap = b.company || "";
+      list = b.list || ""; place = b.place || ""; country = b.country || ""; about = b.about || "";
     } else {
       const f = await req.formData();
       name = f.get("name") || ""; email = f.get("email") || ""; choice = f.get("choice") || ""; trap = f.get("company") || "";
+      list = f.get("list") || ""; place = f.get("place") || ""; country = f.get("country") || ""; about = f.get("about") || "";
     }
   } catch (e) {
     return json({ ok: false, error: "unreadable form" }, 400);
@@ -63,15 +66,33 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "name and a valid email are required" }, 400);
   }
 
+  // Host list (School in a Box): a place asking to receive a box.
+  const isHost = String(list).trim().toLowerCase() === "host";
+  place = String(place).trim().slice(0, 120);
+  country = String(country).trim().slice(0, 120);
+  about = String(about).trim().slice(0, 500);
+  if (isHost && !place) {
+    return json({ ok: false, error: "the school or community name is required" }, 400);
+  }
+
   const when = new Date().toISOString();
-  const record = { name: name, email: email, choice: choice, when: when, mailed: false };
-  const key = "signup:" + when + ":" + email;
-  const text =
-    "A new guest joined the adventure at ailux.ca\n\n" +
-    "Name:   " + name + "\n" +
-    "Email:  " + email + "\n" +
-    "Here for: " + choice + "\n" +
-    "When:   " + when + "\n";
+  const record = isHost
+    ? { kind: "host", name: name, email: email, place: place, country: country, about: about, when: when, mailed: false }
+    : { name: name, email: email, choice: choice, when: when, mailed: false };
+  const key = (isHost ? "host:" : "signup:") + when + ":" + email;
+  const text = isHost
+    ? "A place joined the School in a Box HOST LIST at ailux.ca\n\n" +
+      "Contact: " + name + "\n" +
+      "Email:   " + email + "\n" +
+      "School / community: " + place + "\n" +
+      "Country / area: " + (country || "(not given)") + "\n" +
+      "About:   " + (about || "(not given)") + "\n" +
+      "When:    " + when + "\n"
+    : "A new guest joined the adventure at ailux.ca\n\n" +
+      "Name:   " + name + "\n" +
+      "Email:  " + email + "\n" +
+      "Here for: " + choice + "\n" +
+      "When:   " + when + "\n";
 
   // Leg 1 — durable store in our own KV (the list we own).
   let stored = false;
@@ -92,7 +113,7 @@ export async function onRequestPost(context) {
         to: TO,
         from: FROM,
         replyTo: { email: email, name: name },
-        subject: "Join our adventure — " + name + " (" + choice + ")",
+        subject: isHost ? "Host list — " + place : "Join our adventure — " + name + " (" + choice + ")",
         text: text,
       });
       mailed = true;
