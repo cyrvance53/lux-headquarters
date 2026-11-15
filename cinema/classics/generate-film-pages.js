@@ -93,7 +93,8 @@ const CSS = `
   nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
   nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
   nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
-  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
   section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft)}
   .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
   h1{font-family:var(--serif);font-size:clamp(30px,6.4vw,44px);font-weight:700;line-height:1.12;margin:0 0 10px}
@@ -111,7 +112,7 @@ const CSS = `
   .sharerow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}.sharerow .shlabel{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .shbtn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:7px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer}.shbtn:hover{background:rgba(245,198,92,.14);border-color:var(--gold);color:var(--gold)}
   .roads{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:10px}.roadcard{text-decoration:none;color:var(--ink);font-weight:700;font-size:14.5px}.roadcard img{width:100%;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);aspect-ratio:2/3;object-fit:cover;margin-bottom:7px;background:#0b0b0e}.roadcard:hover img{border-color:var(--gold)}
-  .posterrail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .posterrail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
   .posterrail::-webkit-scrollbar{height:8px}
   .posterrail::-webkit-scrollbar-thumb{background:rgba(245,198,92,.35);border-radius:99px}
   .posterrail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}

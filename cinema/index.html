@@ -49,7 +49,8 @@
   nav.mainnav a.goldlink:hover{background:rgba(245,198,92,.12);color:var(--gold)}
   nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
 
-  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
   .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
   .roomtitle .goldline{color:var(--gold)}
   section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
@@ -96,7 +97,7 @@
   .soonline{margin-top:16px;text-align:center;padding:12px 16px;border:1.5px dashed rgba(245,198,92,.55);border-radius:var(--radius-card);background:rgba(245,198,92,.06);font-weight:600;font-size:16px;color:#e9dfc4}
   /* ---------- the Classics poster rail (Vance, 2026-11-15): one horizontal
      scrolling row under the screen — every poster a door to its film page ---------- */
-  .posterrail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .posterrail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
   .posterrail::-webkit-scrollbar{height:8px}
   .posterrail::-webkit-scrollbar-thumb{background:rgba(245,198,92,.35);border-radius:99px}
   .posterrail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
@@ -138,7 +139,7 @@
   .railwrap:first-child .railhead{margin-top:6px}
   .railhead::before,.railhead::after{content:"";flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(216,171,58,.55),transparent)}
   .railhead .star{color:var(--gold);letter-spacing:0}
-  .rail{display:flex;gap:18px;overflow-x:auto;padding:14px 2px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .rail{display:flex;gap:18px;overflow-x:auto;padding:14px 2px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
   .rail::-webkit-scrollbar{height:8px}
   .rail::-webkit-scrollbar-thumb{background:#3d3016;border-radius:99px}
   .rail::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
