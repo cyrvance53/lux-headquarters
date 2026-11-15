@@ -79,12 +79,21 @@ disagree, this test governs.
   bigger wall on shorthand.
 
 Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md`
-(Workstream F, as amended — Tier Map: Tier 1 = 23 · Tier 2-clean parked =
-33 · Fenced UNVERIFIED = 24). Clean List numbers below are that file's.
+(Workstream F, as amended and corrected by the F-Correction pass,
+2026-11-15 — Tier Map: Tier 1 = 16 · Tier 2-clean parked = 40 · Fenced
+UNVERIFIED = 24). Clean List numbers below are that file's.
 
 ---
 
-## BATCH 1 — LIVE (15 titles), by genre, with per-title basis
+## BATCH 1 — LIVE (14 titles), by genre, with per-title basis
+
+*Correction applied mid-deployment (F-Correction pass, received after
+the first push): the first push briefly carried two titles the
+correction demoted — The Cabinet of Dr. Caligari and The Son of the
+Sheik. Both were removed from the wall and their film pages deleted in
+the second push the same night; they sit in the parked list below with
+their demotion reasons. The Lost World, confirmed Tier 1 by the
+correction with its composer credit resolved, joined in the same pass.*
 
 ### Classic Animation
 - **Little Nemo (1911)** — Winsor McCay. Clean #49. US: pre-1931 term
@@ -117,7 +126,7 @@ Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
 - **Broken Blossoms (1919)** — D. W. Griffith. Clean #1. US: pre-1931
   term expired. Canada: director/screenplay Griffith (d. 1948); source
   stories Thomas Burke (d. 1949); original score Louis F. Gottschalk
-  (d. 1935). Last surviving author 1949 → life+70 itself expired 2019.
+  (d. 1934). Last surviving author 1949 → life+70 itself expired 2019.
   Print: IA `BrokenBlossoms`.
 - **Sunrise: A Song of Two Humans (1927)** — F. W. Murnau. Clean #4. US:
   pre-1931 term expired. Canada: director Murnau (d. 1931); screenplay
@@ -127,13 +136,6 @@ Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
   (feature_films).
 
 ### Horror — Classic (pre-1960)
-- **The Cabinet of Dr. Caligari (1920)** — Robert Wiene. Clean #2. US:
-  pre-1931 term expired. Canada: director Wiene (d. 1938); screenplay
-  Hans Janowitz (d. 1954), Carl Mayer (d. 1944); no single commissioned
-  score forms part of the 1920 work (premiere accompaniment was theatre
-  compilation; modern scores are edition layers). Last surviving author
-  1954 → life+70 expired end of 2024. Print: IA
-  `DasKabinettdesDoktorCaligariTheCabinetofDrCaligari`.
 - **Nosferatu (1922)** — F. W. Murnau. Clean #23. US: pre-1931 term
   expired. Canada: director Murnau (d. 1931); screenplay Henrik Galeen
   (d. 1949); original score Hans Erdmann (d. 1944); source novel Bram
@@ -154,13 +156,6 @@ Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
   Katterjohn (d. 1949); source novel E. M. Hull (d. 1947). Last
   surviving author 1961 → life+50 expired 2011, pre-extension. Print:
   IA `TheSheik` (feature_films, 86 min).
-- **The Son of the Sheik (1926)** — George Fitzmaurice. Clean #38. US:
-  pre-1931 term expired. Canada: director Fitzmaurice (d. 1940);
-  screenplay Fred de Gresac (d. 1943), George Marion Jr. (d. 1955);
-  source novel E. M. Hull (d. 1947). Last surviving author 1955 →
-  life+70 expired end of 2025 (and life+50 in 2005). Print: IA
-  `the-son-of-the-sheik-1926` (silent_films/feature_films).
-
 ### Adventure
 - **The Sea Hawk (1924)** — Frank Lloyd. Clean #41. US: pre-1931 term
   expired (Duke Public Domain Day 2020). Canada: director Lloyd
@@ -177,6 +172,16 @@ Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
   any reading. Print: IA `ATripToTheMoonGeorgeMelies` — the
   black-and-white original, NOT the 2011 hand-coloured restoration.
 
+- **The Lost World (1925)** — Harry O. Hoyt. Clean #34. US: pre-1931
+  term expired. Canada: director Hoyt (d. 1961); screenplay Marion
+  Fairfax (d. 1970); music for the 1925 release Cecil Copping
+  (d. 1966) — the correction pass resolved the composer credit to
+  Copping. Last surviving author Fairfax, 1970 → life+50 expired end
+  of 2020, before the Dec 30, 2022 extension; not revived (the closest
+  Tier 1 call on the 1972 line, per the catalogue). Print: IA
+  `lost_world` (feature_films) — the public-domain-era archival print;
+  longer restoration editions were NOT used (edition rights).
+
 ### War-Era / Documentary
 - **Nanook of the North (1922)** — Robert J. Flaherty. Clean #52. US:
   pre-1931 term expired. Canada, two independent bases: (1)
@@ -191,13 +196,27 @@ Source catalogue: `~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
   new compositions — edition layer). Last surviving author 1954 →
   life+70 expired end of 2024. Print: IA `man-with-a-movie-camera_1929`.
 
-**Batch-1 genre spread:** Animation 2 · Comedy 2 · Drama 2 · Horror 3 ·
-Romance 2 · Adventure 1 · Sci-Fi 1 · Documentary 2. Rows for Film Noir,
+**Batch-1 genre spread:** Animation 2 · Comedy 2 · Drama 2 · Horror 2 ·
+Romance 1 · Adventure 1 · Sci-Fi 2 · Documentary 2. Rows for Film Noir,
 Western, Musicals, and Silent Greats render per the twelve-family
 taxonomy (Silent Greats is full — every Batch-1 title is silent-era);
 empty rows carry the honest "no titles yet" card.
 
-## HELD — Tier 1 in the catalogue, NOT hung in Batch 1 (basis or print)
+## DEMOTED by the F-Correction pass — were Tier 1, now Tier 2-parked
+
+- **The Cabinet of Dr. Caligari (1920)** — Clean #2. Composer of music
+  created for the work Giuseppe Becce (d. 1973) → Canadian term could
+  run to end of 2043. (Hung in the first push on the superseded
+  shorthand; removed in the second push the same night.)
+- **The Son of the Sheik (1926)** — Clean #38. Screenwriter Frances
+  Marion (d. 1973) — past the pre-1972 line. (Same first-push history
+  as Caligari; removed in the second push.)
+- **The Passion of Joan of Arc (1928)**, **Safety Last! (1923)**,
+  **The Hunchback of Notre Dame (1923)**, **King of Jazz (1930)**,
+  **Captain Blood (1924)** — demoted by the same pass for the reasons
+  in the held list below; none was ever hung.
+
+## HELD — Tier 1 in the corrected catalogue, NOT hung in Batch 1 (print)
 
 - **My Man Godfrey (1936) — CANDIDATE, basis FAILS the corrected test.**
   Not in the catalogue. Director Gregory La Cava (d. 1952), but
@@ -216,16 +235,6 @@ empty rows carry the honest "no titles yet" card.
 - **The Hunchback of Notre Dame (1923)** — Clean #24. Director Worsley
   (d. 1944), but screenplay Edward T. Lowe Jr. (d. 1973) — past the
   pre-1972 line. Held for the basis check.
-- **The Lost World (1925)** — Clean #34. Screenplay Marion Fairfax
-  (d. 1970) passes, but the original score is attributed to Rudolf
-  Friml (d. 1972) — the exact boundary year the extension caught.
-  Print lengths also vary widely (restoration vs short prints). Held
-  for the basis + print check.
-- **King of Jazz (1930)** — Clean #45. US term expired Jan 1, 2026, but
-  music created for the film carries songwriters who died well past
-  the line (e.g. Milton Ager, d. 1979) — the composer class cannot be
-  written conclusively; Archive prints are split-part items. Held for
-  the basis + print check.
 - **Sherlock Jr. (1924)** — Clean #8. Basis is writable (Keaton
   d. 1966; Bruckman d. 1955), but the Archive items found are Blu-ray
   disc rips (.m2ts) or modern-score/contemporary-sound edits — no clean
@@ -234,20 +243,17 @@ empty rows carry the honest "no titles yet" card.
   d. 1962; Glazer d. 1956; Strong d. 1948), but the only Archive item
   found is a French Blu-ray rip of the Movietone version — an edition
   trap. Held for a clean archival print.
-- **Captain Blood (1924)** — Clean #42. Basis is writable, but the only
-  Archive copy found is the abridged ~30-minute 9.5mm reduction; the
-  complete print is a Library of Congress restoration edition. Held
-  for the print check (catalogue's own print trap).
 
 ## PARKED — Tier 2 (listed on the wall, no player / no page / no share)
 
-Wall parked section: **Battleship Potemkin (1925)** (Clean #3 — Tier 2
-in the amended catalogue: US status rests on a restored URAA term;
-moved OFF the draft wall in this deployment, per the brief),
-**Angel and the Badman (1947)** (#32, non-renewal), **D.O.A. (1950)**
-(#21, non-renewal). All other Tier 2-clean titles (33) and the fenced
-UNVERIFIED titles (24) remain parked in the catalogue — nothing hung,
-nothing paged. **Charade (1963)** stays in the fence (U11): US PD by
+Wall parked section: **Battleship Potemkin (1925)** (Clean #3 — Tier 2:
+US status rests on a restored URAA term; moved OFF the draft wall in
+this deployment, per the brief), **The Cabinet of Dr. Caligari (1920)**
+and **The Son of the Sheik (1926)** (demoted by the F-Correction pass —
+reasons above), **Angel and the Badman (1947)** (#32, non-renewal),
+**D.O.A. (1950)** (#21, non-renewal). All other Tier 2-clean titles
+(40 in the corrected catalogue) and the fenced UNVERIFIED titles (24)
+remain parked in the catalogue — nothing hung, nothing paged. **Charade (1963)** stays in the fence (U11): US PD by
 defective notice, but Donen (d. 2019) + Mancini score + Stone story —
 specifically NOT hung, per the brief.
 
@@ -269,12 +275,12 @@ never overlays).
 Local static server over the worktree; Archive checked by direct API
 calls from the machine (silent route — no house text sent to outside
 search):
-- Wall, all 15 film pages, Cinema front: HTTP 200 locally.
-- All 18 Archive items referenced (15 wall + 3 parked records): embed
-  endpoints HTTP 200; all 15 wall posters return image/jpeg from the
+- Wall, all 14 film pages, Cinema front: HTTP 200 locally.
+- All 19 Archive items referenced (14 wall + 5 parked records): embed
+  endpoints HTTP 200; all 14 wall posters return image/jpeg from the
   Archive thumbnail service; the default film's embed document carries
   real player markers.
-- Wall script syntax-checked (node --check); film-page count = 15,
+- Wall script syntax-checked (node --check); film-page count = 14,
   none for parked slugs; no DRAFT/noindex flags remain in any live
   file; share hrefs carry ailux.ca and none carries archive.org;
   canonical = house URL; exactly one membership road per film page;
