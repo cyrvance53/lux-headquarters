@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- House Classics — LIVE on Vance's word, 2026-11-15 (Workstream G-Deploy).
+     A separate wing of the Cinema: the Cinema front is the house's own films;
+     the Classics live here. Cross-linked both ways. -->
+<title>Classics — The Cinema · Lux Automations</title>
+<meta name="description" content="House Classics: public-domain classic films for the Lux Cinema, each playing from its own shelf at the Internet Archive.">
+<style>
+  /* Conventions copied from cinema/index.html — same house, same room. */
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar.bottom{position:static;margin-top:8px;border-bottom:0;border-top:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
+  .roomtitle .goldline{color:var(--gold)}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .draftflag{border:1.5px dashed rgba(245,198,92,.55);border-radius:var(--radius-card);background:rgba(245,198,92,.06);padding:12px 16px;font-weight:600;font-size:15.5px;color:#e9dfc4;text-align:center}
+
+  /* ---------- the screen: house 16:9 stage, film pillarboxed inside ----------
+     The film sits in a centred frame at its ORIGINAL aspect ratio (set per
+     title from JS) — never cropped, never stretched. */
+  .stage{position:relative;width:100%;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft);display:flex;align-items:stretch;justify-content:center}
+  .pillar{height:100%;margin:0 auto;max-width:100%;background:#000}
+  .pillar iframe{width:100%;height:100%;border:0;display:block;background:#000}
+  .screenmeta{margin-top:14px}
+  .screenmeta .songline{font-size:15px;color:var(--muted);margin:0}
+  .srcline{font-size:13.5px;color:var(--muted);margin-top:6px}
+
+  /* ---------- share row (house page link only — never the archive link) ---------- */
+  .sharerow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .sharerow .shlabel{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .shbtn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:7px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer}
+  .shbtn:hover{background:rgba(245,198,92,.14);border-color:var(--gold);color:var(--gold)}
+  .carditem .sharerow{margin-top:9px}
+  .carditem .shbtn{min-height:32px;padding:4px 10px;font-size:12.5px}
+
+  /* ---------- filters ---------- */
+  .filterbar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
+  .fgroup{display:flex;flex-direction:column;gap:5px}
+  .fgroup label{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#cbb26a}
+  .fsel,.fsearch{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:8px 14px;cursor:pointer}
+  .fsearch{cursor:text;min-width:min(240px,100%)}
+  .fsearch::placeholder{color:var(--muted)}
+  .yearbtn{font:inherit;font-size:15px;font-weight:800;min-height:44px;padding:8px 18px;border-radius:var(--radius-pill);border:1.5px solid rgba(216,171,58,.55);background:rgba(245,198,92,.08);color:var(--gold);cursor:pointer}
+  .yearbtn:hover{background:rgba(245,198,92,.16)}
+  .fcount{font-size:14px;color:#b7ad9c;margin-top:10px}
+
+  /* ---------- year panel: NEAR FULL-SCREEN, all years at once, no scroll ----------
+     Years run ACROSS in rows, line by line (1900s–1970s = 8 rows of 10 on
+     desktop). The grid fills the panel height (1fr rows) so nothing scrolls.
+     Tiles carry the film count; years with no films sit dimmed. There is NO
+     year pull-down anywhere on Classics — this panel is the only year picker. */
+  .yearpanel{position:fixed;inset:2.5vh 2.5vw;z-index:50;background:linear-gradient(165deg,#14100a,#050507 75%);border:1.5px solid rgba(245,198,92,.5);border-radius:var(--radius-section);box-shadow:var(--aura-soft);padding:20px;display:flex;flex-direction:column;gap:12px}
+  .yearpanel[hidden]{display:none}
+  .yearpanel .yphead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .yearpanel .yphead h2{margin:0;color:#fff6df}
+  .yearpanel .ypclose{margin-left:auto}
+  .yeargrid{flex:1;display:grid;grid-template-columns:repeat(10,1fr);grid-auto-rows:1fr;gap:7px;min-height:0}
+  .ytile{font:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:10px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;padding:4px 2px;min-height:0}
+  .ytile .yy{font-weight:800;font-size:clamp(13px,2.2vw,19px);line-height:1.1}
+  .ytile .yc{font-size:11px;color:#cbb26a;font-weight:700}
+  .ytile:hover{border-color:var(--gold)}
+  .ytile.sel{border-color:var(--gold);background:rgba(245,198,92,.16);color:var(--gold)}
+  .ytile.empty{opacity:.32;cursor:default}
+  .ytile.empty:hover{border-color:rgba(255,255,255,.18)}
+  .ytile.alltile{grid-column:span 2;border-style:dashed;border-color:rgba(216,171,58,.55);color:var(--gold);font-weight:800}
+  @media (max-width:640px){ .yeargrid{grid-template-columns:repeat(5,1fr)} .ytile.alltile{grid-column:span 5} }
+
+  /* ---------- the theatre shelf ---------- */
+  section.theatre{background:linear-gradient(180deg,#171106,#0d0a05 55%,#080604);border:1px solid rgba(245,198,92,.28);color:#f5efe0}
+  section.theatre .eyebrow{color:var(--gold-deep)}
+  section.theatre h2{color:#fff6df}
+  section.theatre small{color:#b7ad9c}
+  .railhead{display:flex;align-items:center;gap:14px;margin:26px 0 6px;color:#f3e5c3;font-size:14.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+  .genrewrap:first-of-type .railhead{margin-top:10px}
+  .railhead::before,.railhead::after{content:"";flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(216,171,58,.55),transparent)}
+  .railhead .star{color:var(--gold);letter-spacing:0}
+  .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px 18px;margin-top:12px}
+  .carditem{text-align:left;color:#f5efe0}
+  .posterbtn{display:block;width:100%;text-align:left;font:inherit;background:transparent;border:0;padding:0;cursor:pointer;color:inherit;animation:cardbob 7s ease-in-out infinite}
+  .wall .carditem:nth-child(2) .posterbtn{animation-delay:.9s}
+  .wall .carditem:nth-child(3) .posterbtn{animation-delay:1.8s}
+  .wall .carditem:nth-child(4) .posterbtn{animation-delay:2.7s}
+  @keyframes cardbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .carditem img{width:100%;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);transition:border-color .15s ease,box-shadow .25s ease;background:#0b0b0e}
+  .posterbtn:hover img,.posterbtn:focus-visible img{border-color:rgba(245,198,92,.9);box-shadow:0 0 0 1px rgba(255,244,214,.5),0 0 18px rgba(234,242,255,.4),0 0 38px rgba(245,198,92,.35)}
+  .carditem.sel .posterbtn img{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 12px 28px rgba(0,0,0,.55)}
+  .carditem .cbody{display:block;padding:10px 2px 0}
+  .carditem .ct{display:block;font-weight:700;font-size:16.5px;line-height:1.3;color:#fdf8ea}
+  .carditem .cm{display:block;font-size:12.5px;color:#cbb26a;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-top:4px}
+  .carditem .cnote{display:block;font-size:14px;line-height:1.45;color:#d8d2c2;margin-top:5px}
+  .carditem .gtag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:rgba(216,171,58,.14);color:#ecd28a;border:1px solid rgba(216,171,58,.45)}
+  .carditem .picktag{display:inline-block;margin-top:8px;margin-left:6px;padding:3px 10px;border-radius:var(--radius-pill);font-size:12px;font-weight:700;background:rgba(234,242,255,.12);color:var(--ice);border:1px solid rgba(234,242,255,.4)}
+  .carditem .playhint{display:block;font-size:12.5px;color:#9d968a;margin-top:7px;font-weight:600}
+  .carditem .filmpage{display:inline-block;margin-top:7px;font-size:13.5px;font-weight:700}
+  .emptycard{border:1.5px dashed rgba(216,171,58,.4);border-radius:10px;padding:16px;background:rgba(255,255,255,.03);color:#b7ad9c;font-size:14.5px}
+  .parkedcard{border:1.5px dashed rgba(255,255,255,.3);border-radius:10px;padding:16px;background:rgba(255,255,255,.02);color:#b7ad9c}
+  .parkedcard .ct{font-weight:700;font-size:16px;color:#d8d2c2;display:block}
+  .parkedcard .cs{font-size:14px;display:block;margin-top:4px;line-height:1.45}
+  .theatre .comingcard{border:1.5px dashed rgba(216,171,58,.5);border-radius:10px;padding:18px 16px;background:rgba(255,255,255,.03)}
+  .theatre .comingcard .ct{font-weight:700;font-size:17px;display:block;color:#fdf8ea}
+  .theatre .comingcard .cs{font-size:14.5px;color:#b7ad9c;display:block;margin-top:5px;line-height:1.45}
+  .shelfrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}
+  .noresults{padding:18px;border:1.5px dashed rgba(255,255,255,.25);border-radius:10px;color:#b7ad9c;text-align:center}
+
+  footer{max-width:1080px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+    .wall{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .posterbtn{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <h1 class="roomtitle">House <span class="goldline">Classics</span></h1>
+
+  <!-- ============ THE SCREEN ============ -->
+  <section>
+    <p class="eyebrow">Now on the classics screen</p>
+    <div class="stage" id="stage">
+      <div class="pillar" id="pillar">
+        <iframe id="classicscreen" title="Classic film player — plays from the Internet Archive"
+          src="" allow="fullscreen; autoplay" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div class="screenmeta">
+      <h2 id="screentitle" style="margin:0 0 4px"></h2>
+      <p class="songline" id="screenmeta-line"></p>
+      <p class="secondary" id="screenblurb" style="margin:6px 0 0;font-size:15.5px"></p>
+      <p class="srcline" id="screensource"></p>
+      <div class="sharerow" id="screenshare"></div>
+    </div>
+    <small style="margin-top:12px">Every classic plays from its own shelf at the Internet Archive — the house hosts no film files. Each film is shown in its original shape, pillarboxed on the big screen: never cropped, never stretched. Share buttons always link to the film's own page here at the house — never to the archive.</small>
+  </section>
+
+  <!-- ============ SHELF 1 OF 3: HOUSE CLASSICS (this page) ============ -->
+  <section class="theatre">
+    <p class="eyebrow">Shelf one · House Classics</p>
+    <h2>Pick a classic</h2>
+    <p style="color:#d8d2c2;margin:0">Public-domain classics, researched title by title for the house. Tap a poster and it rolls up on the screen above — straight from the archive that keeps it. Every film also has its own page (the door search engines index, and the link the share buttons send).</p>
+
+    <!-- Filters: genre pull-down · rating pull-down (both senses) · text
+         search · Year BUTTON opening the near-full-screen year panel.
+         There is NO year pull-down on Classics, by design. -->
+    <div class="filterbar" role="search">
+      <div class="fgroup">
+        <label for="fgenre">Genre</label>
+        <select class="fsel" id="fgenre"></select>
+      </div>
+      <div class="fgroup">
+        <label for="frating">Rating</label>
+        <select class="fsel" id="frating">
+          <option value="all">All ratings</option>
+          <optgroup label="Content rating">
+            <option value="content:family">Family-safe</option>
+            <option value="content:general">General</option>
+            <option value="content:mature">Mature themes</option>
+          </optgroup>
+          <optgroup label="House marks">
+            <option value="mark:aimee">Aimée's picks ✦</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label for="fsearch">Search</label>
+        <input class="fsearch" id="fsearch" type="search" placeholder="Title, director…" autocomplete="off">
+      </div>
+      <div class="fgroup">
+        <label>Year</label>
+        <button type="button" class="yearbtn" id="yearbtn" aria-haspopup="dialog">Year: <span id="yearbtnlabel">All years</span> ▾</button>
+      </div>
+      <div class="fgroup">
+        <label>&nbsp;</label>
+        <button type="button" class="yearbtn" id="clearfilters" style="border-color:rgba(255,255,255,.25);background:transparent;color:var(--muted-2)">Clear filters</button>
+      </div>
+    </div>
+    <p class="fcount" id="fcount" role="status"></p>
+
+    <div id="shelf"></div>
+    <div class="noresults" id="noresults" hidden>No classics match those filters yet — try clearing one. The shelf grows as each title clears.</div>
+
+    <h3 class="railhead"><span class="star" aria-hidden="true">✦</span>Parked — Tier 2, per-title check first<span class="star" aria-hidden="true">✦</span></h3>
+    <p style="color:#b7ad9c;margin:0 0 10px;font-size:14.5px">Verified-clean in the house catalogue, but their public-domain basis is the non-renewal class — so under the house's tiered clearance they stay parked (no player, no page, no share) until each one gets its own per-title check. Nothing doubtful goes up unchecked.</p>
+    <div class="wall" id="parkedwall"></div>
+
+    <small style="margin-top:16px">Wall titles are Tier 1 — public domain conclusive under both US and Canadian law, seeded from the verified Clean List in the house catalogue (Workstream F, 2026-11-15, as amended). Every title\u2019s per-title basis — the actual Canadian rule relied on, with last-surviving-author dates — is recorded in NOTES.md beside this page. Titles hang in verified batches as their checks clear.</small>
+  </section>
+
+  <!-- ============ TAKE A TOUR (show, don't tell) ============ -->
+  <section>
+    <p class="eyebrow">Take a tour</p>
+    <h2>See what you can do here</h2>
+    <p class="secondary" style="margin:0 0 6px">Aimée's route: first the things you can use yourself, then the watching — and it ends at the one membership door.</p>
+    <div class="hostline" style="display:flex;gap:12px;align-items:flex-start;background:#000;border-radius:14px;box-shadow:var(--aura-soft);padding:14px 16px;margin:12px 0">
+      <div aria-hidden="true" style="flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px">🎬</div>
+      <p style="margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)"><strong style="color:var(--ink)">First, watch this — the house made it:</strong> <em>The Morning Call</em>, a feeder dreamed up by the house. What you're seeing was made with the very tools the tour is about to put in front of you.</p>
+    </div>
+    <video controls preload="none" playsinline poster="../assets/morning-call.jpg" style="width:100%;border-radius:12px;background:#000" src="../assets/morning-call.mp4"></video>
+    <div class="shelfrow">
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">1 · The Playground &amp; the Maker</span><span class="cs" style="color:#b7ad9c">Make your own videos, music videos and music — the tools that made the piece above. <strong>Being readied — opens January 1.</strong> When the doors open, the house free taste rides with you: try everything once. <a href="../../playground/">The Playground →</a></span></div>
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">2 · Workshop tools</span><span class="cs" style="color:#b7ad9c">AI tools and automation for real work and real businesses. <strong>Being readied — opens January 1,</strong> with the same free taste when it opens. <a href="../../workshop/">The Workshop →</a></span></div>
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">3 · The School</span><span class="cs" style="color:#b7ad9c">School-in-a-Box: learn anything, with a teacher in the room and certificates that count. <strong>Being readied.</strong> <a href="../../school-in-a-box/">School-in-a-Box →</a></span></div>
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">4 · Your own collections &amp; the NFT Box</span><span class="cs" style="color:#b7ad9c">Members keep their own collections on their own Cinema shelf, and what they make is certified theirs in the NFT Box. <strong>Coming with membership — being readied.</strong></span></div>
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">5 · House Originals</span><span class="cs" style="color:#b7ad9c">Then the watching: films the house made itself, on the Cinema's own stage. <strong>Open now — always free.</strong> <a href="../">The Cinema →</a></span></div>
+      <div class="comingcard" style="border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 16px;background:#000"><span class="ct" style="color:#fdf8ea">6 · The Classics — and the door</span><span class="cs" style="color:#b7ad9c">The shelf you're standing at — free for everyone. <strong>Open now.</strong> The tour ends at the one membership door: <a href="../../site-pages/membership.html">See membership →</a></span></div>
+    </div>
+  </section>
+
+  <!-- ============ THE THREE SHELVES ============ -->
+  <section class="theatre">
+    <p class="eyebrow">The Cinema's three shelves</p>
+    <h2>One room, three shelves</h2>
+    <div class="shelfrow">
+      <div class="comingcard">
+        <span class="ct">Shelf 1 — House Classics</span>
+        <span class="cs">You are here. Lane 1: public-domain classics (this shelf). Lane 2 — licensed classics: a position is held in this shelf's structure for licensed catalogue films; no titles are shown until a licence is actually in hand.</span>
+      </div>
+      <div class="comingcard">
+        <span class="ct">Shelf 2 — House Originals</span>
+        <span class="cs">The house's own finished films — they live on the main Cinema shelf today, and take their place here as the second shelf when the room opens.</span>
+      </div>
+      <div class="comingcard">
+        <span class="ct">Shelf 3 — Member Collections</span>
+        <span class="cs">Coming with membership: members keep their own collections on their own shelf, built on the same pattern — a title joins by adding one entry, and the shelf builds itself.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE ROOM ============ -->
+  <section>
+    <p class="eyebrow">The Cinema</p>
+    <h2>Old films, kept properly</h2>
+    <p class="lede">These are the films that taught cinema how to dream — kept in their original shape and played from the public archive that preserves them, on the house's own stage.</p>
+  </section>
+
+</main>
+
+<!-- ============ YEAR PANEL (near full-screen; NOT a pull-down) ============ -->
+<div class="yearpanel" id="yearpanel" role="dialog" aria-modal="true" aria-label="Pick a year" hidden>
+  <div class="yphead">
+    <h2>Pick a year</h2>
+    <span style="color:#b7ad9c;font-size:14.5px">Every year of the collection at a glance — the number under a year is how many films the shelf holds from it. Dimmed years are empty for now.</span>
+    <button type="button" class="yearbtn ypclose" id="yearclose">Close ✕</button>
+  </div>
+  <div class="yeargrid" id="yeargrid"></div>
+</div>
+
+<header class="topbar bottom">
+  <a class="brand" href="../../">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="The house">
+    <a href="../../">Home</a>
+    <a href="../">Free Cinema</a>
+    <a class="here" href="./" aria-current="page">Classics</a>
+  </nav>
+</header>
+
+<footer>
+  Lux Automations · A Million Times Better<br>
+  ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
+  © 2026 Lux Automations
+</footer>
+
+<script>
+(function(){
+  /* ===== Catalogue data — the single seed source for this shelf. =====
+     Wall titles: Tier 1 ONLY — public domain conclusive by publication
+     date / term expiry under BOTH US and Canadian law (all pre-1931),
+     each also on the verified Clean List in
+     ~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
+     (Workstream F). "clean" = that catalogue's Clean List number.
+     Players embed from the Internet Archive only:
+       player: https://archive.org/embed/<ia>
+       poster: https://archive.org/services/img/<ia>
+     "ratio" is the film's ORIGINAL aspect ratio from the catalogue.
+     "content" is the draft content rating (family | general | mature);
+     "aimee" is the house curated mark (Aimée's picks). Both are house values
+     set by the house.
+     The per-film pages under film/<slug>/ are generated from THIS array
+     by generate-film-pages.js — one door per film. */
+  var CLASSICS=[
+    { slug:'a-trip-to-the-moon', clean:33, tier:1,
+      title:'A Trip to the Moon', year:1902, director:'Georges Méliès',
+      family:'sci-fi', genre:'Sci-Fi · Short', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'ATripToTheMoonGeorgeMelies',
+      content:'family', aimee:false,
+      note:'The first science-fiction film — a cannon-fired capsule, a face in the Moon, and cinema learning it can dream.' },
+    { slug:'little-nemo', clean:49, tier:1,
+      title:'Little Nemo', year:1911, director:'Winsor McCay',
+      family:'animation', genre:'Animation · Short', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'LittleNemo_548',
+      content:'family', aimee:false,
+      note:'McCay\u2019s first film — a bet, 4,000 drawings, and his Slumberland characters stretching, morphing, and riding a dragon through the dawn of animation.' },
+    { slug:'gertie-the-dinosaur', clean:48, tier:1,
+      title:'Gertie the Dinosaur', year:1914, director:'Winsor McCay',
+      family:'animation', genre:'Animation · Short', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'silent-gertie-the-dinosaur',
+      content:'family', aimee:false,
+      note:'The first animated character with a personality — McCay conducts his hand-drawn brontosaurus through tricks, tears, and a mammoth-toss; character animation starts here.' },
+    { slug:'broken-blossoms', clean:1, tier:1,
+      title:'Broken Blossoms', year:1919, director:'D. W. Griffith',
+      family:'drama', genre:'Drama · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'BrokenBlossoms',
+      content:'mature', aimee:false,
+      note:'Griffith at his most tender — Lillian Gish in a fragile, devastating Limehouse melodrama; proof silent drama could be intimate.' },
+    { slug:'the-cabinet-of-dr-caligari', clean:2, tier:1,
+      title:'The Cabinet of Dr. Caligari', year:1920, director:'Robert Wiene',
+      family:'horror', genre:'Horror · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'DasKabinettdesDoktorCaligariTheCabinetofDrCaligari',
+      content:'mature', aimee:false,
+      note:'The founding nightmare of German Expressionism — jagged painted sets and a somnambulist killer; horror and art film start here.' },
+    { slug:'the-sheik', clean:37, tier:1,
+      title:'The Sheik', year:1921, director:'George Melford',
+      family:'romance', genre:'Romance · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'TheSheik',
+      content:'general', aimee:false,
+      note:'Rudolph Valentino\u2019s star-making desert romance with Agnes Ayres — the silent era\u2019s definitive romantic melodrama.' },
+    { slug:'nosferatu', clean:23, tier:1,
+      title:'Nosferatu', year:1922, director:'F. W. Murnau',
+      family:'horror', genre:'Horror · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'nosferatu.-1922',
+      content:'mature', aimee:true,
+      note:'The unauthorised Dracula a court ordered destroyed — Max Schreck\u2019s plague-haunted Count Orlok still chills a century on.' },
+    { slug:'nanook-of-the-north', clean:52, tier:1,
+      title:'Nanook of the North', year:1922, director:'Robert J. Flaherty',
+      family:'documentary', genre:'Documentary · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'nanookOfTheNorth1922',
+      content:'family', aimee:true,
+      note:'Allakariallak (\u201cNanook\u201d) and his family hunt, build, and endure in the Canadian Arctic — the film that invented the feature documentary.' },
+    { slug:'the-sea-hawk', clean:41, tier:1,
+      title:'The Sea Hawk', year:1924, director:'Frank Lloyd',
+      family:'adventure', genre:'Adventure · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'my-movie_202006',
+      content:'general', aimee:false,
+      note:'An English nobleman sold into slavery escapes to become a Barbary pirate king — real ships and ship-to-ship combat; the silent swashbuckler at full sail.' },
+    { slug:'the-phantom-of-the-opera', clean:25, tier:1,
+      title:'The Phantom of the Opera', year:1925, director:'Rupert Julian (Lon Chaney)',
+      family:'horror', genre:'Horror · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'silent-the-phantom-of-the-opera',
+      content:'mature', aimee:false,
+      note:'Chaney\u2019s self-designed skull-face and the Masque of the Red Death — the silent era\u2019s grandest horror spectacle.' },
+    { slug:'the-general', clean:9, tier:1,
+      title:'The General', year:1926, director:'Buster Keaton & Clyde Bruckman',
+      family:'comedy', genre:'Comedy · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'TheGeneral_201312',
+      content:'family', aimee:true,
+      note:'A Civil War train chase staged with real locomotives and deadpan perfection — regularly named the greatest silent comedy.' },
+    { slug:'the-son-of-the-sheik', clean:38, tier:1,
+      title:'The Son of the Sheik', year:1926, director:'George Fitzmaurice',
+      family:'romance', genre:'Romance · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'the-son-of-the-sheik-1926',
+      content:'general', aimee:false,
+      note:'Valentino\u2019s final film, playing father and son in a swashbuckling sequel that out-romances the original — released weeks after his death.' },
+    { slug:'sunrise', clean:4, tier:1,
+      title:'Sunrise: A Song of Two Humans', year:1927, director:'F. W. Murnau',
+      family:'drama', genre:'Drama · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'sunrise_1927',
+      content:'mature', aimee:true,
+      note:'Murnau\u2019s Hollywood masterpiece — a marriage nearly destroyed and remade in one luminous day; routinely voted among the greatest films ever made.' },
+    { slug:'steamboat-bill-jr', clean:10, tier:1,
+      title:'Steamboat Bill, Jr.', year:1928, director:'Charles Reisner, with Buster Keaton',
+      family:'comedy', genre:'Comedy · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'SteamboatBillJr',
+      content:'family', aimee:false,
+      note:'The cyclone finale — including the falling house-front stunt — is silent comedy\u2019s most famous piece of engineering.' },
+    { slug:'man-with-a-movie-camera', clean:6, tier:1,
+      title:'Man with a Movie Camera', year:1929, director:'Dziga Vertov',
+      family:'documentary', genre:'Documentary · Silent', silent:true,
+      ratio:'4 / 3', ratioLabel:'1.33:1', ia:'man-with-a-movie-camera_1929',
+      content:'family', aimee:true,
+      note:'A city symphony with no actors and no intertitles — Vertov invents half the visual language of documentary in 68 minutes.' }
+  ];
+  /* Tier 2 — F-verified-clean, but non-renewal-class basis: PARKED.
+     No player, no film page, no share until a per-title check clears each. */
+  var PARKED=[
+    { slug:'battleship-potemkin', clean:3, tier:2,
+      title:'Battleship Potemkin', year:1925, director:'Sergei Eisenstein',
+      family:'drama', genre:'Drama · Silent', ia:'BattleshipPotemkin_644',
+      basis:'Tier 2 in the amended catalogue — its US status rests on a restored (URAA) term that expired in 2020 (Clean List #3): parked for a per-title check before any wall place.',
+      note:'The Odessa Steps sequence rewired how every editor since has cut film — still the most influential montage ever made.' },
+    { slug:'angel-and-the-badman', clean:32, tier:2,
+      title:'Angel and the Badman', year:1947, director:'James Edward Grant',
+      family:'western', genre:'Western', ia:'angel_and_the_badman',
+      basis:'US public domain by non-renewal (Clean List #32) — Tier 2 class: parked for a per-title check before any wall place.',
+      note:'A wounded gunfighter is nursed — and nearly reformed — by a Quaker family; John Wayne\u2019s most romantic western.' },
+    { slug:'doa', clean:21, tier:2,
+      title:'D.O.A.', year:1950, director:'Rudolph Maté',
+      family:'noir', genre:'Film Noir', ia:'doa-1950',
+      basis:'US public domain by non-renewal (Clean List #21) — Tier 2 class: parked for a per-title check before any wall place.',
+      note:'A poisoned man has days to solve his own murder — the purest high-concept noir ever made.' }
+  ];
+  /* The twelve-genre taxonomy. Every family gets a labelled row in the
+     draft, even where the seed set doesn't cover it yet. "silent-greats"
+     is the curated cross-cutting row (all silent titles). */
+  var FAMILIES=[
+    { id:'silent-greats', label:'Silent Greats' },
+    { id:'comedy', label:'Comedy' },
+    { id:'drama', label:'Drama' },
+    { id:'noir', label:'Film Noir' },
+    { id:'horror', label:'Horror — Classic (pre-1960)' },
+    { id:'western', label:'Western' },
+    { id:'sci-fi', label:'Sci-Fi' },
+    { id:'romance', label:'Romance' },
+    { id:'adventure', label:'Adventure' },
+    { id:'musicals', label:'Musicals' },
+    { id:'animation', label:'Classic Animation' },
+    { id:'documentary', label:'War-Era / Documentary' }
+  ];
+  var CONTENT_LABEL={ family:'Family-safe', general:'General', mature:'Mature themes' };
+  var SITE='https://ailux.ca';
+  function filmUrl(t){ return SITE+'/cinema/classics/film/'+t.slug+'/'; }
+  function embedUrl(ia){ return 'https://archive.org/embed/'+ia; }
+  function posterUrl(ia){ return 'https://archive.org/services/img/'+ia; }
+
+  /* ===== Share row — ALWAYS the house film page, never the archive. ===== */
+  function shareRow(t, extraClass){
+    var u=encodeURIComponent(filmUrl(t));
+    var txt=encodeURIComponent(t.title+' ('+t.year+') — watch it in the Lux Cinema Classics');
+    var row=document.createElement('div');
+    row.className='sharerow '+(extraClass||'');
+    row.innerHTML='<span class="shlabel">Share</span>'
+      +'<button type="button" class="shbtn" data-copy="'+filmUrl(t)+'">Copy link</button>'
+      +'<a class="shbtn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u='+u+'">Facebook</a>'
+      +'<a class="shbtn" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url='+u+'&text='+txt+'">X</a>'
+      +'<a class="shbtn" target="_blank" rel="noopener" href="https://wa.me/?text='+txt+'%20'+u+'">WhatsApp</a>'
+      +'<a class="shbtn" target="_blank" rel="noopener" href="https://www.facebook.com/dialog/send?link='+u+'&redirect_uri='+u+'">Messenger</a>'
+      +'<a class="shbtn" target="_blank" rel="noopener" href="https://t.me/share/url?url='+u+'&text='+txt+'">Telegram</a>'
+      +'<a class="shbtn" href="mailto:?subject='+txt+'&body='+u+'">Email</a>';
+    var cp=row.querySelector('[data-copy]');
+    cp.addEventListener('click', function(){
+      var link=cp.getAttribute('data-copy');
+      function done(){ cp.textContent='Copied ✓'; setTimeout(function(){ cp.textContent='Copy link'; }, 2000); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(link).then(done, function(){ window.prompt('Copy this link:', link); }); }
+      else { window.prompt('Copy this link:', link); }
+    });
+    return row;
+  }
+
+  /* ===== The screen ===== */
+  var pillar=document.getElementById('pillar'),
+      frame=document.getElementById('classicscreen'),
+      stage=document.getElementById('stage'),
+      titleEl=document.getElementById('screentitle'),
+      metaEl=document.getElementById('screenmeta-line'),
+      blurbEl=document.getElementById('screenblurb'),
+      srcEl=document.getElementById('screensource'),
+      screenShare=document.getElementById('screenshare'),
+      shelf=document.getElementById('shelf'),
+      current=-1;
+
+  function loadFilm(idx, scroll){
+    var t=CLASSICS[idx]; if(!t) return;
+    current=idx;
+    var cards=shelf.querySelectorAll('.carditem');
+    for(var i=0;i<cards.length;i++){ cards[i].classList.toggle('sel', cards[i].getAttribute('data-slug')===t.slug); }
+    titleEl.textContent=t.title+' ('+t.year+')';
+    metaEl.textContent='Directed by '+t.director+' · '+t.genre+' · '+CONTENT_LABEL[t.content]+(t.aimee?' · Aimée\u2019s pick ✦':'')+' · Original aspect '+t.ratioLabel;
+    blurbEl.textContent=t.note;
+    srcEl.textContent='Plays from the Internet Archive (item: '+t.ia+') · Tier 1 — public domain conclusive by date (US + Canada) · Clean List #'+t.clean+' (Workstream F, 2026-11-15)';
+    pillar.style.aspectRatio=t.ratio;
+    frame.title='Classic film player — '+t.title+' — plays from the Internet Archive';
+    frame.src=embedUrl(t.ia);
+    screenShare.innerHTML='';
+    var sr=shareRow(t); sr.querySelector('.shlabel').textContent='Share this film';
+    screenShare.appendChild(sr);
+    var fp=document.createElement('a');
+    fp.className='shbtn'; fp.href='film/'+t.slug+'/'; fp.textContent='Open its own page →';
+    screenShare.querySelector('.sharerow').appendChild(fp);
+    if(scroll){ stage.scrollIntoView({behavior:'smooth', block:'center'}); }
+  }
+
+  /* ===== The wall, organised by the twelve-genre taxonomy ===== */
+  function familyTitles(fam){
+    if(fam.id==='silent-greats'){ return CLASSICS.filter(function(t){ return t.silent; }); }
+    return CLASSICS.filter(function(t){ return t.family===fam.id; });
+  }
+  function makeCard(t){
+    var idx=CLASSICS.indexOf(t);
+    var card=document.createElement('div');
+    card.className='carditem'; card.setAttribute('role','listitem');
+    card.setAttribute('data-slug', t.slug);
+    card.setAttribute('data-family', t.family);
+    card.setAttribute('data-year', t.year);
+    card.setAttribute('data-content', t.content);
+    card.setAttribute('data-aimee', t.aimee?'1':'');
+    card.setAttribute('data-search', (t.title+' '+t.director+' '+t.genre+' '+t.year).toLowerCase());
+    var pb=document.createElement('button');
+    pb.type='button'; pb.className='posterbtn';
+    pb.setAttribute('aria-label','Play '+t.title+' on the big screen');
+    pb.innerHTML='<img src="'+posterUrl(t.ia)+'" alt="Poster — '+t.title+' ('+t.year+')" loading="lazy" style="aspect-ratio:2/3">'
+      +'<span class="cbody"><span class="ct">'+t.title+'</span>'
+      +'<span class="cm">'+t.year+' · '+t.director+'</span>'
+      +'<span class="cnote">'+t.note+'</span>'
+      +'<span><span class="gtag">'+t.genre+' · '+CONTENT_LABEL[t.content]+' · '+t.ratioLabel+'</span>'
+      +(t.aimee?'<span class="picktag">Aimée\u2019s pick ✦</span>':'')+'</span>'
+      +'<span class="playhint">▶ Plays on the big screen, from the Archive</span></span>';
+    pb.addEventListener('click', function(){ loadFilm(idx, true); });
+    card.appendChild(pb);
+    var link=document.createElement('a');
+    link.className='filmpage'; link.href='film/'+t.slug+'/';
+    link.textContent='Its own page →';
+    card.appendChild(link);
+    card.appendChild(shareRow(t));
+    return card;
+  }
+  FAMILIES.forEach(function(fam){
+    var wrap=document.createElement('div');
+    wrap.className='genrewrap'; wrap.setAttribute('data-genre', fam.id);
+    var head=document.createElement('h3');
+    head.className='railhead';
+    head.innerHTML='<span class="star" aria-hidden="true">✦</span>'+fam.label+'<span class="star" aria-hidden="true">✦</span>';
+    wrap.appendChild(head);
+    var items=familyTitles(fam);
+    if(items.length){
+      var wall=document.createElement('div');
+      wall.className='wall'; wall.setAttribute('role','list');
+      items.forEach(function(t){ wall.appendChild(makeCard(t)); });
+      wrap.appendChild(wall);
+    } else {
+      var parkedHere=PARKED.filter(function(t){ return t.family===fam.id; });
+      var empty=document.createElement('div');
+      empty.className='emptycard';
+      empty.textContent = parkedHere.length
+        ? 'No wall titles yet in this row — '+parkedHere.map(function(t){ return t.title+' ('+t.year+')'; }).join(', ')+' sit'+(parkedHere.length>1?'':'s')+' parked below (Tier 2) until their per-title check clears.'
+        : 'No titles yet — this row fills as titles clear and join the shelf.';
+      wrap.appendChild(empty);
+    }
+    shelf.appendChild(wrap);
+  });
+
+  /* ===== Parked (Tier 2) — listed, never playable ===== */
+  var parkedWall=document.getElementById('parkedwall');
+  PARKED.forEach(function(t){
+    var d=document.createElement('div');
+    d.className='parkedcard';
+    d.innerHTML='<span class="ct">'+t.title+' ('+t.year+') — PARKED · Tier 2</span>'
+      +'<span class="cs">'+t.note+'</span>'
+      +'<span class="cs"><strong>Basis:</strong> '+t.basis+'</span>';
+    parkedWall.appendChild(d);
+  });
+
+  /* ===== Filters: genre pull-down · rating pull-down · search · year panel ===== */
+  var fgenre=document.getElementById('fgenre'),
+      frating=document.getElementById('frating'),
+      fsearch=document.getElementById('fsearch'),
+      fcount=document.getElementById('fcount'),
+      noresults=document.getElementById('noresults'),
+      yearState={ year:null };
+  var allOpt=document.createElement('option');
+  allOpt.value='all'; allOpt.textContent='All genres';
+  fgenre.appendChild(allOpt);
+  FAMILIES.forEach(function(fam){
+    var o=document.createElement('option');
+    o.value=fam.id; o.textContent=fam.label;
+    fgenre.appendChild(o);
+  });
+  function titleMatches(t){
+    var g=fgenre.value;
+    if(g!=='all'){
+      if(g==='silent-greats'){ if(!t.silent) return false; }
+      else if(t.family!==g) return false;
+    }
+    var r=frating.value;
+    if(r.indexOf('content:')===0){ if(t.content!==r.slice(8)) return false; }
+    if(r==='mark:aimee'){ if(!t.aimee) return false; }
+    if(yearState.year!==null && t.year!==yearState.year) return false;
+    var q=fsearch.value.trim().toLowerCase();
+    if(q && (t.title+' '+t.director+' '+t.genre+' '+t.year).toLowerCase().indexOf(q)===-1) return false;
+    return true;
+  }
+  function applyFilters(){
+    var visible=0;
+    shelf.querySelectorAll('.genrewrap').forEach(function(wrap){
+      var any=false;
+      wrap.querySelectorAll('.carditem').forEach(function(card){
+        var t=CLASSICS.filter(function(x){ return x.slug===card.getAttribute('data-slug'); })[0];
+        var show=t && titleMatches(t);
+        card.style.display=show?'':'none';
+        if(show){ any=true; visible++; }
+      });
+      var empty=wrap.querySelector('.emptycard');
+      var filtering = fgenre.value!=='all' || frating.value!=='all' || yearState.year!==null || fsearch.value.trim()!=='';
+      wrap.style.display = (any || (empty && !filtering)) ? '' : 'none';
+    });
+    /* the Silent Greats row duplicates titles; count unique films shown */
+    var unique={};
+    shelf.querySelectorAll('.carditem').forEach(function(card){
+      if(card.style.display!=='none'){ unique[card.getAttribute('data-slug')]=1; }
+    });
+    var n=Object.keys(unique).length;
+    fcount.textContent='Showing '+n+' of '+CLASSICS.length+' wall titles (Tier 1). Parked Tier 2 titles are listed below and never filtered onto the wall.';
+    noresults.hidden = n!==0;
+  }
+  fgenre.addEventListener('change', applyFilters);
+  frating.addEventListener('change', applyFilters);
+  fsearch.addEventListener('input', applyFilters);
+  document.getElementById('clearfilters').addEventListener('click', function(){
+    fgenre.value='all'; frating.value='all'; fsearch.value='';
+    setYear(null); applyFilters();
+  });
+
+  /* ===== Year panel — button + near-full-screen tile grid. NO pull-down. ===== */
+  var yearpanel=document.getElementById('yearpanel'),
+      yeargrid=document.getElementById('yeargrid'),
+      yearbtn=document.getElementById('yearbtn'),
+      yearbtnlabel=document.getElementById('yearbtnlabel');
+  var counts={};
+  CLASSICS.forEach(function(t){ counts[t.year]=(counts[t.year]||0)+1; });
+  function setYear(y){
+    yearState.year=y;
+    yearbtnlabel.textContent = y===null ? 'All years' : String(y);
+    yeargrid.querySelectorAll('.ytile').forEach(function(tile){
+      var ty=tile.getAttribute('data-year');
+      tile.classList.toggle('sel', (y===null && ty==='all') || (y!==null && ty===String(y)));
+    });
+  }
+  var allTile=document.createElement('button');
+  allTile.type='button'; allTile.className='ytile alltile sel'; allTile.setAttribute('data-year','all');
+  allTile.innerHTML='<span class="yy">All years</span><span class="yc">'+CLASSICS.length+' films</span>';
+  allTile.addEventListener('click', function(){ setYear(null); applyFilters(); closeYearPanel(); });
+  yeargrid.appendChild(allTile);
+  for(var y=1900; y<=1979; y++){
+    (function(y){
+      var c=counts[y]||0;
+      var tile=document.createElement('button');
+      tile.type='button'; tile.className='ytile'+(c?'':' empty');
+      tile.setAttribute('data-year', String(y));
+      tile.innerHTML='<span class="yy">'+y+'</span><span class="yc">'+(c? c+(c===1?' film':' films') : '—')+'</span>';
+      if(c){ tile.addEventListener('click', function(){ setYear(y); applyFilters(); closeYearPanel(); }); }
+      else { tile.setAttribute('aria-disabled','true'); }
+      yeargrid.appendChild(tile);
+    })(y);
+  }
+  function openYearPanel(){ yearpanel.hidden=false; document.getElementById('yearclose').focus(); }
+  function closeYearPanel(){ yearpanel.hidden=true; yearbtn.focus(); }
+  yearbtn.addEventListener('click', openYearPanel);
+  document.getElementById('yearclose').addEventListener('click', closeYearPanel);
+  document.addEventListener('keydown', function(ev){ if(ev.key==='Escape' && !yearpanel.hidden){ closeYearPanel(); } });
+
+  applyFilters();
+  loadFilm(0, false);
+})();
+</script>
+</body>
+</html>
