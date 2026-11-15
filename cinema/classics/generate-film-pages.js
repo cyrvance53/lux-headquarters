@@ -199,6 +199,12 @@ function page(t) {
     + '    <small style="margin-top:6px">Tier 1 — public domain conclusive by date under US and Canadian law · Source list: Cinema Classics catalogue, Clean List #' + t.clean + ' (Workstream F, 2026-11-15).</small>\n'
     + shareRow(t) + '\n'
     + '  </section>\n'
+    /* Showcase arrival (Vance, 2026-11-15): arriving from the Cinema front's
+       clip showcase (?play=1) — scroll to the stage, ask the Archive embed
+       to autoplay, and take the stage fullscreen. Fullscreen without a
+       visitor gesture is refused by browsers, so it is also armed on the
+       visitor's first tap/click anywhere on the page. */
+    + '  <script>(function(){try{if(new URLSearchParams(location.search).get("play")!=="1")return;var stage=document.querySelector(".stage");var f=stage?stage.querySelector("iframe"):null;if(!stage||!f)return;stage.scrollIntoView({behavior:"smooth",block:"center"});var src=f.getAttribute("src");if(src&&src.indexOf("autoplay=")===-1)f.setAttribute("src",src+(src.indexOf("?")===-1?"?":"&")+"autoplay=1");function fs(){if(document.fullscreenElement)return;if(stage.requestFullscreen){var p=stage.requestFullscreen();if(p&&p.catch)p.catch(function(){});}else if(stage.webkitRequestFullscreen)stage.webkitRequestFullscreen();}fs();document.addEventListener("pointerdown",fs,{once:true});}catch(e){}})();</script>\n'
     /* More Classics — the poster rail, directly under the player */
     + '  <section>\n    <p class="eyebrow">The Classics shelf</p>\n    <h2>More Classics</h2>\n'
     + '    <div class="posterrail">' + railCards + '</div>\n'

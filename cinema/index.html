@@ -106,6 +106,21 @@
   .postercard:hover img{border-color:var(--gold)}
   .postercard span{display:block;line-height:1.35}
   @media (max-width:560px){.postercard{width:124px}}
+  /* ---------- the clip showcase (Vance, 2026-11-15): Classics clips rotate
+     on a screen at the very top of the room; Play Now takes the visitor to
+     that film's own page, where it starts big. Muted segments only — the
+     films themselves live one click away. ---------- */
+  section.showcase{padding:0;overflow:hidden;background:#000}
+  .showstage{position:relative;aspect-ratio:16/9;max-height:62vh;margin:0 auto;background:#000}
+  .showstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;transition:opacity .7s ease}
+  .showstage video.fading{opacity:0}
+  .showshade{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.85));display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+  .showmeta{flex:1 1 220px;min-width:0}
+  .showmeta .showkicker{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+  .showmeta .showtitle{font-family:var(--serif);font-size:clamp(21px,4.4vw,30px);font-weight:700;line-height:1.15;margin:0;color:#fff}
+  .showplay{flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#171106;font-weight:800;font-size:17px;text-decoration:none;padding:13px 24px;border-radius:var(--radius-pill);box-shadow:0 6px 24px rgba(0,0,0,.5)}
+  .showplay:hover{background:#ffd97a}
+  @media (max-width:560px){.showstage{max-height:none}.showshade{padding:30px 14px 12px}}
   /* ---------- the loyalty stamp — a golden seal; tap it for the ticket ---------- */
   a.stamp{display:block;text-decoration:none;color:var(--ink);margin-top:20px;border:3px solid var(--gold);border-radius:var(--radius-card);background:linear-gradient(160deg,#2a1f06,#171106 70%);box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.4),0 0 26px rgba(245,198,92,.22);padding:24px 24px 20px;text-align:center;transition:box-shadow .25s ease}
   a.stamp:hover{box-shadow:inset 0 0 0 4px #0d0a04,inset 0 0 0 6.5px rgba(245,198,92,.55),0 0 40px rgba(245,198,92,.4)}
@@ -222,6 +237,19 @@
 
   <h1 class="roomtitle">Free <span class="goldline">Cinema</span></h1>
 
+  <!-- ============ THE CLIP SHOWCASE — Classics clips on the big screen (Vance, 2026-11-15) ============ -->
+  <section class="showcase" aria-label="Classics clip showcase">
+    <div class="showstage">
+      <video id="showvideo" muted playsinline preload="auto" poster="https://archive.org/services/img/ATripToTheMoonGeorgeMelies"></video>
+      <div class="showshade">
+        <div class="showmeta">
+          <p class="showkicker">Now showing a clip · The Classics</p>
+          <p class="showtitle" id="showtitle">A Trip to the Moon (1902)</p>
+        </div>
+        <a class="showplay" id="showplay" href="classics/film/a-trip-to-the-moon/?play=1"><span aria-hidden="true">▶</span> Play Now</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ THE SCREEN ============ -->
   <section>
@@ -616,6 +644,57 @@
   stage.setAttribute('tabindex','0');
 
   loadTitle(0, false);
+})();
+</script>
+<script>
+/* The clip showcase (Vance, 2026-11-15): muted ~24-second segments from the
+   Classics shelf rotate on the top screen, crossfading title to title. The
+   clips stream from the films' own Internet Archive items (range requests —
+   only the segment's bytes are fetched). Play Now rides to the film's own
+   page with ?play=1, where the arrival script starts it big. */
+(function(){
+  var CLIPS=[
+    {slug:"a-trip-to-the-moon",title:"A Trip to the Moon",year:1902,start:270,ia:"ATripToTheMoonGeorgeMelies",src:"https://archive.org/download/ATripToTheMoonGeorgeMelies/A%20Trip%20to%20the%20Moon-George%20M%C3%A9li%C3%A8s.mp4"},
+    {slug:"nosferatu",title:"Nosferatu",year:1922,start:600,ia:"nosferatu.-1922",src:"https://archive.org/download/nosferatu.-1922/Nosferatu.1922.ia.mp4"},
+    {slug:"the-phantom-of-the-opera",title:"The Phantom of the Opera",year:1925,start:900,ia:"silent-the-phantom-of-the-opera",src:"https://archive.org/download/silent-the-phantom-of-the-opera/The%20Phantom%20of%20the%20Opera.mp4"},
+    {slug:"the-lost-world",title:"The Lost World",year:1925,start:1200,ia:"lost_world",src:"https://archive.org/download/lost_world/lost_world_512kb.mp4"},
+    {slug:"the-general",title:"The General",year:1926,start:1500,ia:"TheGeneral_201312",src:"https://archive.org/download/TheGeneral_201312/The-General-v2.mp4"}
+  ];
+  var SEG=24;
+  var v=document.getElementById("showvideo"), t=document.getElementById("showtitle"), b=document.getElementById("showplay");
+  if(!v||!t||!b) return;
+  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var i=0, segStart=0, switching=false;
+  function show(n){
+    if(switching) return; switching=true;
+    i=(n+CLIPS.length)%CLIPS.length;
+    var c=CLIPS[i];
+    v.classList.add("fading");
+    setTimeout(function(){
+      t.textContent=c.title+" ("+c.year+")";
+      b.setAttribute("href","classics/film/"+c.slug+"/?play=1");
+      v.poster="https://archive.org/services/img/"+c.ia;
+      v.src=c.src;
+      v.load();
+      switching=false;
+    }, reduced?0:650);
+  }
+  v.addEventListener("loadedmetadata",function(){
+    var c=CLIPS[i], d=v.duration||0;
+    segStart=(d&&c.start<d-30)?c.start:(d?Math.floor(d/3):c.start);
+    try{ v.currentTime=segStart; }catch(e){}
+  });
+  v.addEventListener("canplay",function(){
+    v.classList.remove("fading");
+    if(!reduced){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  });
+  v.addEventListener("timeupdate",function(){
+    if(!v.duration) return;
+    if(v.currentTime>=segStart+SEG||v.currentTime>=v.duration-0.6) show(i+1);
+  });
+  v.addEventListener("ended",function(){ show(i+1); });
+  v.addEventListener("error",function(){ show(i+1); },true);
+  show(0);
 })();
 </script>
 </body>
