@@ -76,14 +76,23 @@ h1{font-size:2rem;margin:.1em 0}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="brand">◆ LUX — AI WORKSHOP</div>
+  <div class="luxmenus">
   <div class="luxdoors">
     <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
     <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
     <div class="luxdoors-grid">
       <a class="luxdoor-tile" href="../../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
       <a class="luxdoor-tile" href="../../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
@@ -95,6 +104,7 @@ h1{font-size:2rem;margin:.1em 0}
       <a class="luxdoor-tile" href="../../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
     </div>
     </div>
+  </div>
   </div>
   <div class="invite"><a class="callbtn" href="https://ailux.ca/">📞 Call the house</a><button id="invbtn" onclick="copyInvite()">✉️ Invite</button></div>
 </div>

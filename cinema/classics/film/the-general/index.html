@@ -89,12 +89,21 @@
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
 </style>
 </head>
 <body>
-<header class="topbar"><a class="brand" href="../../../../">Lux<small>ailux.ca</small></a><div class="luxdoors">
+<header class="topbar"><a class="brand" href="../../../../">Lux<small>ailux.ca</small></a><div class="luxmenus">
+  <div class="luxdoors">
     <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
     <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
     <div class="luxdoors-grid">
       <a class="luxdoor-tile" href="../../../../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
       <a class="luxdoor-tile here" href="../../../../cinema/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
@@ -106,6 +115,7 @@
       <a class="luxdoor-tile" href="../../../../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
     </div>
     </div>
+  </div>
   </div></header>
 <main>
   <div class="hostline"><div class="hi" aria-hidden="true">👋</div><p><strong>Aimée, your host:</strong> Welcome in — you’ve found one of our Classics. The film is below, the whole house is around it: more classics on the wall, our own films in the Cinema, and the Workshop, Playground and School through the doors at the bottom. Stay as long as you like — the Cinema is always free. <strong>New here? Take the tour below</strong> — I’ll show you what you can make yourself, then the watching, in that order.</p></div>
@@ -160,9 +170,11 @@
       <a class="btn" href="../../../../">Lux — ailux.ca</a>
     </div>
 </main>
-<header class="topbar bottom"><a class="brand" href="../../../../">Lux<small>ailux.ca</small></a><div class="luxdoors">
+<header class="topbar bottom"><a class="brand" href="../../../../">Lux<small>ailux.ca</small></a><div class="luxmenus">
+  <div class="luxdoors">
     <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
     <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
     <div class="luxdoors-grid">
       <a class="luxdoor-tile" href="../../../../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
       <a class="luxdoor-tile here" href="../../../../cinema/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
@@ -174,6 +186,7 @@
       <a class="luxdoor-tile" href="../../../../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
     </div>
     </div>
+  </div>
   </div></header>
 <footer>Lux Automations · A Million Times Better<br><nav class="doorlinks" aria-label="The doors"><a href="../../../../">Home</a><a href="../../../../workshop/">Business AI Workshop</a><a href="../../../../playground/">AI Playground</a><a href="../../../">Free Cinema</a><a href="../../../../stripe-wiring/music-store/jukebox.html">Store</a><a href="../../../../site-pages/membership.html">Membership</a><a href="../../../../school-in-a-box/">School in a Box</a><a href="../../../../patch/">The Security Patch</a><a href="../../../../papers/">Papers</a></nav>ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>© 2026 Lux Automations</footer>
 
