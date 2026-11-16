@@ -255,6 +255,70 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lux">
+
+<style>
+  /* ---------- AMOS PAGE — the house colour scheme (Vance, 2026-11-16) ----------
+     Cream page, white and soft-colour boxes down the page, warm dark lettering,
+     no glow junk. Each box carries its own soft colour; everything for that
+     section lives inside it. The shield is the one strong pop. The film stage
+     and the flow diagram stay black — they are pictures, not page. */
+  body{background:#FAF8F2;background-color:#FAF8F2;color:#1C1917}
+  a{color:#8A6D1F}
+  :focus-visible{outline-color:#7FB3D9}
+  .topbar{background:rgba(250,248,242,.94);border-bottom:1px solid #E7E1D2}
+  .brand{color:#1C1917}
+  .brand small{color:#8A8578}
+  nav.mainnav a{color:#55504A}
+  nav.mainnav a:hover{background:#EFEAE0;color:#1C1917}
+  nav.mainnav a.here{background:#EFEAE0;color:#1C1917}
+  nav.mainnav a.goldlink{color:#8A6D1F}
+  nav.mainnav a.goldlink:hover{background:#F3ECD8;color:#8A6D1F}
+  main{gap:22px;padding:22px 16px}
+  section{background:#FFFFFF;color:#1C1917;border-radius:26px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05)}
+  main>section:nth-of-type(2){background:#FAF8F2}
+  main>section:nth-of-type(3){background:#EFF3EA}
+  main>section:nth-of-type(5){background:#EDF1F6}
+  main>section:nth-of-type(7){background:#F1EFE9}
+  main>section:nth-of-type(9){background:#EAF3EF}
+  main>section:nth-of-type(10){background:#F7EDE6}
+  .amosemblem{width:min(300px,78%);height:auto;margin:2px auto 12px}
+  .eyebrow{color:#A8862C}
+  p.lede{color:#3E3A34}
+  .secondary,small,figure.beatfig figcaption,.diagramcap,.legend,.ctime,.videohint{color:#6B665C}
+  .diagramcap strong{color:#1C1917}
+  .btn{background:#1C1917;color:#F6F3EC;box-shadow:0 6px 18px rgba(28,25,23,.18)}
+  .btn:hover{box-shadow:0 8px 22px rgba(28,25,23,.24)}
+  .btn.buy{background:#F5C65C;color:#000;box-shadow:0 8px 22px rgba(168,134,44,.35)}
+  .btn.buy:hover{background:#E9BC4B;box-shadow:0 10px 26px rgba(168,134,44,.45)}
+  .cbtn{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
+  .cbtn:hover{background:#F3F0E7}
+  .cbtn[aria-pressed="true"]{background:#FBF0D2;border-color:#A8862C;color:#8A6D1F}
+  .cbtn:disabled:hover{background:#FFFFFF}
+  .speedsel{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
+  .hostbubble{background:#FFFFFF;color:#1C1917;box-shadow:0 10px 28px rgba(28,25,23,.18)}
+  .flag{background:#FFFFFF;border-color:#E1DCCF;color:#3E3A34}
+  .flag.first{color:#1C1917;box-shadow:0 4px 14px rgba(28,25,23,.08)}
+  .flag.more{color:#8A6D1F}
+  .pcard{background:#FFFFFF;border:1px solid #E9E5D9;box-shadow:0 4px 16px rgba(28,25,23,.05)}
+  .pcard h3 span{color:#A8862C}
+  .pcard p{color:#55504A}
+  ol.steps li,ul.charge li,ol.docs li{color:#3E3A34}
+  ol.steps li strong,ul.charge li strong,ol.docs li strong{color:#1C1917}
+  details.detail{background:#FFFFFF;border-color:#E1DCCF}
+  details.detail summary{color:#8A6D1F}
+  details.detail summary::after{color:#6B665C}
+  table.map{background:#FFFFFF}
+  table.map th,table.map td{border-color:#E7E2D6}
+  table.map th{color:#8A6D1F;background:#F4F2EC}
+  table.map td{color:#3E3A34}
+  table.map td strong{color:#1C1917}
+  table.map td .ev{color:#6B665C}
+  .limits{background:#F4F2EC;border-color:#A8862C;color:#3E3A34}
+  figure.beatfig img{background:#EFEFEC;box-shadow:0 8px 24px rgba(28,25,23,.10)}
+  footer{color:#6B665C}
+  footer .flogo{color:#1C1917}
+  footer .flogo em{color:#A8862C}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -457,6 +521,7 @@
   <!-- ================= HERO (the wall of flags lives in the header's Nations dropdown) ================= -->
   <section>
     <p class="eyebrow">Lux Automations · Agent trust &amp; payment protection</p>
+    <img class="amosemblem" src="assets/amos-emblem.png" alt="Amos — the double shield: Amos and AgentPay, double protection">
     <h1>The Security Patch</h1>
     <p class="lede">Built in Canada. Offered to every nation that needs it — because the problem does not carry a passport, so the defence can&rsquo;t either.</p>
     <small>Two flags stand first because two neighbours built the road — the wall behind them is the point: one patch, all nations.</small>
