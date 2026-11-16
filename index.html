@@ -459,6 +459,10 @@
         <div class="choices">
           <label><input type="radio" name="choice" value="films"> Films</label>
           <label><input type="radio" name="choice" value="automation"> Automation</label>
+          <label><input type="radio" name="choice" value="amos"> Amos</label>
+          <label><input type="radio" name="choice" value="school"> School in a Box</label>
+          <label><input type="radio" name="choice" value="audio"> Audio</label>
+          <label><input type="radio" name="choice" value="music"> Music</label>
           <label><input type="radio" name="choice" value="both"> Both</label>
         </div>
       </div>
@@ -505,7 +509,7 @@
   var form = document.getElementById('joinForm');
   if(!form) return;
   var msg = document.getElementById('joinMsg');
-  var MAP = {films:'Films', automation:'Automation', both:'Both'};
+  var MAP = {films:'Films', automation:'Automation', amos:'Amos', school:'School in a Box', audio:'Audio', music:'Music', both:'Both'};
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
     var fd = new FormData(form);

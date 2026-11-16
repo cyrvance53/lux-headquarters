@@ -1,5 +1,5 @@
 // ailux.ca — "Join our adventure" guest-book endpoint (Cloudflare Pages Function)
-// Route: POST /api/join  (form fields: name, email, choice=Films|Automation|Both)
+// Route: POST /api/join  (form fields: name, email, choice=Films|Automation|Amos|School in a Box|Audio|Music|Both)
 //
 // FIX (2026-11-05): the original version sent through MailChannels' free
 // Cloudflare integration. MailChannels ended that free service on 2024-06-30
@@ -28,7 +28,7 @@
 
 const TO = "cyrvance53@gmail.com"; // verified destination = the inbox hello@ailux.ca routes to
 const FROM = { email: "guestbook@ailux.ca", name: "ailux.ca guest book" };
-const CHOICES = ["Films", "Automation", "Both"];
+const CHOICES = ["Films", "Automation", "Amos", "School in a Box", "Audio", "Music", "Both"];
 
 function json(body, status) {
   return new Response(JSON.stringify(body), {
