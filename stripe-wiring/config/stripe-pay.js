@@ -17,6 +17,10 @@
       note.className = "lux-pay-note";
       note.textContent = "Secure checkout by Stripe — cards, Google Pay and Apple Pay accepted.";
       wrap.appendChild(note);
+      var docs = document.createElement("p");
+      docs.className = "lux-pay-note";
+      docs.innerHTML = "The terms come in writing, and you agree to them before you pay anything. <a href=\"https://ailux.ca/terms/\">Terms of sale &amp; refunds</a> · <a href=\"https://ailux.ca/privacy/\">Privacy policy</a>.";
+      wrap.appendChild(docs);
     } else {
       var b = document.createElement("button");
       b.className = "lux-pay-btn lux-pay-soon";

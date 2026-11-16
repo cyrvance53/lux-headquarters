@@ -22,6 +22,12 @@
     p.textContent = text;
     return p;
   }
+  function docsNote() {
+    var p = document.createElement("p");
+    p.className = "lux-pay-note";
+    p.innerHTML = "The terms come in writing, and you agree to them before you pay anything. <a href=\"https://ailux.ca/terms/\">Terms of sale &amp; refunds</a> · <a href=\"https://ailux.ca/privacy/\">Privacy policy</a>.";
+    return p;
+  }
 
   function render(product) {
     var wrap = document.createElement("div");
@@ -48,6 +54,7 @@
       wrap.appendChild(note(anyLive
         ? "Secure checkout by Stripe — cards, Google Pay and Apple Pay accepted. Printed and shipped by our print partner; made to order."
         : "Checkout opens with the store on December 1 — Lux Automations."));
+      if (anyLive) wrap.appendChild(docsNote());
       return wrap;
     }
 
@@ -60,6 +67,7 @@
       }
       if (bits.length) wrap.appendChild(note(bits.join(" · ") + " — tell us yours at checkout."));
       wrap.appendChild(note("Secure checkout by Stripe — cards, Google Pay and Apple Pay accepted. Printed and shipped by our print partner; made to order."));
+      wrap.appendChild(docsNote());
     } else {
       var b2 = document.createElement("button");
       b2.className = "lux-pay-btn lux-pay-soon";

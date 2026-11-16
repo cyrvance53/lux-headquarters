@@ -85,6 +85,13 @@
       "Send only on the chain you picked — an address cannot recover coins sent on the wrong network.";
     wrap.appendChild(note);
 
+    var docs = document.createElement("p");
+    docs.className = "lux-crypto-note";
+    docs.innerHTML =
+      "The same terms cover crypto payments: <a href=\"https://ailux.ca/terms/\">Terms of sale &amp; refunds</a> · " +
+      "<a href=\"https://ailux.ca/privacy/\">Privacy policy</a>. The exact amount is agreed with you in writing before you send anything.";
+    wrap.appendChild(docs);
+
     function show(chain) {
       addr.textContent = chain.address;
       assets.textContent = chain.networks + ". Accepts: " + chain.assets + ".";
