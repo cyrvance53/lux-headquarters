@@ -75,6 +75,10 @@
   h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
   .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
 
+  /* ---------- the one door to the Read page — the front page stays
+     a glance; the full writing lives on read/ (Vance, 2026-11-16) ---------- */
+  .readdoor{margin:52px auto 0;text-align:center}
+
   /* ---------- buttons: black, ringed with light ---------- */
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
   .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
@@ -120,11 +124,11 @@
 
   /* ---------- "One house." — centred between the doors and the
      engraving, in the same headline writing it had up top ---------- */
-  .onehouse{text-align:center;font-family:var(--serif);font-size:clamp(40px,7.4vw,68px);font-weight:700;color:var(--ink);margin:44px 0 0;position:relative;z-index:2;line-height:1.04;letter-spacing:-.015em;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+  .onehouse{text-align:center;font-family:var(--serif);font-size:clamp(40px,7.4vw,68px);font-weight:700;color:var(--ink);margin:60px 0 0;position:relative;z-index:2;line-height:1.04;letter-spacing:-.015em;text-shadow:0 2px 14px rgba(0,0,0,.9)}
   .onehouse .onehouse-sub{display:block;font-size:clamp(21px,3.6vw,32px);color:var(--gold);margin-top:8px;letter-spacing:.01em;line-height:1.15}
 
   /* ---------- the four doors ---------- */
-  .doors{display:grid;grid-template-columns:1fr;gap:22px;margin-top:16px;position:relative;z-index:2}
+  .doors{display:grid;grid-template-columns:1fr;gap:28px;margin-top:16px;position:relative;z-index:2}
   /* The doors as polished black — smooth dark panels with a soft
      sheen, ringed with the diamond's light, hovering over it. */
   .door{position:relative;display:block;text-decoration:none;color:var(--ink);background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);overflow:hidden;transition:box-shadow .25s ease;animation:doorhover 7s ease-in-out infinite}
@@ -142,7 +146,7 @@
   .door .go{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:20px;font-weight:700}
 
   /* ---------- the founding pay card ---------- */
-  .paycard{margin:26px auto 0;max-width:860px;background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;z-index:2;text-align:left}
+  .paycard{margin:52px auto 0;max-width:860px;background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;z-index:2;text-align:left}
   .paycard::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%);pointer-events:none}
   .paycard>*{position:relative}
   .paycard .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
@@ -169,7 +173,7 @@
      Carved, not printed: the letters sit sunk into a recessed plate,
      dark in the cut with the diamond's light catching the lower edge
      of every chisel stroke — the way a name is cut into polished stone. */
-  .engraving{margin:12px auto 0;max-width:860px;text-align:center;border-radius:20px;padding:28px 26px 20px;
+  .engraving{margin:44px auto 0;max-width:860px;text-align:center;border-radius:20px;padding:28px 26px 20px;
     background:linear-gradient(180deg,#040405 0%,#0a0a0f 78%,#0d0d13 100%);
     box-shadow:inset 0 2px 3px rgba(0,0,0,.95),inset 0 14px 30px rgba(0,0,0,.75),inset 0 -1px 0 rgba(255,255,255,.07),inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8)}
   .engraving .eng-row{display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,44px);flex-wrap:wrap}
@@ -197,7 +201,7 @@
   .room>*{position:relative}
 
   /* ---------- guest book ---------- */
-  .guestbook{margin-top:44px;scroll-margin-top:96px}
+  .guestbook{margin-top:68px;scroll-margin-top:96px}
   form.gb{display:grid;gap:14px;margin-top:20px;max-width:620px}
   form.gb label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--muted-2)}
   /* Text fields only — this rule must never reach the choice radios,
@@ -343,6 +347,30 @@
     <h1><span class="goldline">Four doors.</span></h1>
   </div>
 
+  <!-- ============ THE TILL — FOUNDING MEMBERSHIPS, OPEN NOW ============ -->
+  <div class="paycard">
+    <p class="dtag">The Till · Founders</p>
+    <h3>Founding memberships — open now</h3>
+    <p class="desc">Join before the house opens and you’re a founder: <strong style="color:var(--ink)">30% off, honoured for your whole first year.</strong></p>
+    <div class="paytier">
+      <span class="tname">Entry<small>$9.94 a month · a starter bundle of credits</small></span>
+      <!-- STRIPE SLOT — data-link="entry-monthly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/bJefZg4bFbb0duV5tP2B20k" data-link="entry-monthly">Join Entry — monthly</a>
+      <!-- STRIPE SLOT — data-link="entry-founder-yearly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/bJe14mfUnbb00I93lH2B20o" data-link="entry-founder-yearly">Founder year — $83.50</a>
+    </div>
+    <div class="paytier">
+      <span class="tname">Main<small>$27.97 a month · the big monthly credit bundle</small></span>
+      <!-- STRIPE SLOT — data-link="main-monthly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/3cI4gycIb7YOduVaO92B20m" data-link="main-monthly">Join Main — monthly</a>
+      <!-- STRIPE SLOT — data-link="main-founder-yearly": the live Stripe payment link drops in here. -->
+      <a class="btn" href="https://buy.stripe.com/6oUdR8eQjcf4eyZ8G12B20p" data-link="main-founder-yearly">Founder year — $234.95</a>
+    </div>
+    <p class="fineprint">Prices are in US dollars; Canadian buyers are charged the same value in Canadian dollars at checkout. <a href="terms/">Terms of sale &amp; refunds</a> — plain, and fair both ways.</p>
+    <p class="fineprint">The terms come in writing, and you agree to them before you pay anything. <a href="privacy/">Privacy policy</a>.</p>
+    <p class="fineprint">Monthly joiners: use code <strong style="color:var(--ink)">FOUNDER</strong> at checkout for your 30%.</p>
+  </div>
+
   <div class="stage">
     <div class="diamond">
       <span class="heartspin"><img src="assets/heart-diamond.webp" alt="A heart-cut diamond ringed with light, on black" width="1600" height="1600"></span>
@@ -372,7 +400,7 @@
       <div class="schoolfeature">
         <p class="dtag">The Heart of the House · A Gift That Teaches</p>
         <h3>School in a Box</h3>
-        <p class="desc">&ldquo;We want to be that adapter that the world plugs into.&rdquo; A whole school on one small computer, carried to the places the wires never reached — given, never sold. The first boxes are being built now, and sponsorships toward them are open today: sponsor one, and your name rises on the Wall of Heroes.</p>
+        <p class="desc">A whole school on one small computer — carried where the wires never reached. Given, never sold.</p>
         <div class="btnrow">
           <a class="btn" href="school-in-a-box/">Visit the School &rarr;</a>
           <a class="btn" href="https://buy.stripe.com/00w6oG8rVfrgfD3g8t2B20j">Sponsor — any amount</a>
@@ -393,46 +421,15 @@
         <h3>Store</h3>
         <p class="desc">Music &amp; merch — from us and our members.</p>
       </a>
-      <a class="door" href="school-in-a-box/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-        <span class="go" aria-hidden="true">›</span>
-        <p class="dtag">Door Five · A gift that teaches</p>
-        <h3>School in a Box</h3>
-        <p class="desc">A whole school on one small computer — sponsor a box for a place that needs it most.</p>
-      </a>
     </div>
 
     <p class="onehouse">One house.<span class="onehouse-sub">AI &amp; Humans</span></p>
   </div>
 
-  <!-- ============ THE TILL — FOUNDING MEMBERSHIPS, OPEN NOW ============ -->
-  <div class="paycard">
-    <p class="dtag">The Till · Founders</p>
-    <h3>Founding memberships — open now</h3>
-    <p class="desc">The house opens January 1. Join before it opens and you’re a founder: <strong style="color:var(--ink)">30% off, honoured for your whole first year.</strong> When the doors open, the founder price closes for good. One membership covers the Workshop and the Playground — all tools included.</p>
-    <div class="paytier">
-      <span class="tname">Entry<small>$9.94 a month · a starter bundle of credits</small></span>
-      <!-- STRIPE SLOT — data-link="entry-monthly": the live Stripe payment link drops in here. -->
-      <a class="btn" href="https://buy.stripe.com/bJefZg4bFbb0duV5tP2B20k" data-link="entry-monthly">Join Entry — monthly</a>
-      <!-- STRIPE SLOT — data-link="entry-founder-yearly": the live Stripe payment link drops in here. -->
-      <a class="btn" href="https://buy.stripe.com/bJe14mfUnbb00I93lH2B20o" data-link="entry-founder-yearly">Founder year — $83.50</a>
-    </div>
-    <div class="paytier">
-      <span class="tname">Main<small>$27.97 a month · the big monthly credit bundle</small></span>
-      <!-- STRIPE SLOT — data-link="main-monthly": the live Stripe payment link drops in here. -->
-      <a class="btn" href="https://buy.stripe.com/3cI4gycIb7YOduVaO92B20m" data-link="main-monthly">Join Main — monthly</a>
-      <!-- STRIPE SLOT — data-link="main-founder-yearly": the live Stripe payment link drops in here. -->
-      <a class="btn" href="https://buy.stripe.com/6oUdR8eQjcf4eyZ8G12B20p" data-link="main-founder-yearly">Founder year — $234.95</a>
-    </div>
-    <p class="fineprint">Prices are in US dollars; Canadian buyers are charged the same value in Canadian dollars at checkout. <a href="terms/">Terms of sale &amp; refunds</a> — plain, and fair both ways.</p>
-    <p class="fineprint">The terms come in writing, and you agree to them before you pay anything. <a href="privacy/">Privacy policy</a>.</p>
-    <p class="fineprint">Monthly joiners: use code <strong style="color:var(--ink)">FOUNDER</strong> at checkout for your 30%. One discount per member — the best one that applies to you; discounts never stack. Or put learning on the map: <a href="school-in-a-box/">sponsor a School in a Box, or a kid’s membership →</a></p>
-  </div>
-
   <div class="paycard" id="rewards">
     <p class="dtag">Rewards</p>
     <h3>Bring people — the house thanks you twice</h3>
-    <p class="desc"><strong style="color:var(--ink)">Affiliate rewards:</strong> share the house and earn on the memberships, store buys and advertising your people bring in — one system, one ledger, paid on verified money. <strong style="color:var(--ink)">House Loyalty:</strong> members earn as they go — credits, packs and the house's thanks, kept on your account. Both open with the house; founders are on the list first.</p>
+    <p class="desc">Share the house and earn. Members earn as they go.</p>
     <p class="fineprint"><a href="loyalty/">See the Loyalty program →</a> &nbsp;·&nbsp; <a href="playground/members/">Affiliate rewards, on the members' board →</a></p>
   </div>
 
@@ -452,11 +449,16 @@
     <p class="eng-line">Two names, one house — cut into the stone, not printed on it.</p>
   </div>
 
+  <!-- The front page stays a glance — the full writing lives on the Read page -->
+  <div class="readdoor">
+    <a class="btn" href="read/">Read more</a>
+  </div>
+
   <!-- ============ AIMÉE'S DESK — THE GUEST BOOK ============ -->
   <div class="room guestbook" id="guestbook">
     <p class="kicker">Aimée’s Desk · The Guest Book</p>
     <h2 class="section-title">Join our adventure.</h2>
-    <p class="section-lede">Aimée — an AI, and the host at the front desk — is live here January 1. Until then, leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
+    <p class="section-lede">Aimée — an AI, and the host at the front desk — arrives January 1. Leave your name; we write only when there’s something new. No noise, ever.</p>
     <form class="gb" id="joinForm" action="/api/join" method="post">
       <label>Your name
         <input type="text" name="name" autocomplete="name" required>

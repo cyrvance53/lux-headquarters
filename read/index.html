@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Read — the full writing | Lux — ailux.ca</title>
+<meta name="description" content="The front page, in full: School in a Box, founding memberships, rewards, and the guest book — written out, plain and quiet.">
+<style>
+  :root{
+    --black:#000;
+    --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff;
+    --gold:#f5c65c;
+    --ink:#f6f3ec;
+    --muted:#a9a5b5;
+    --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{
+    font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);
+    background-attachment:fixed;
+  }
+  a{color:var(--gold)}
+  h1,h2{font-family:var(--serif);font-weight:700;margin:0}
+  p{margin:0 0 12px}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+
+  main{max-width:720px;margin:0 auto;padding:0 22px 8px}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+  h1{font-size:clamp(38px,6.4vw,56px);line-height:1.06;letter-spacing:-.015em;margin:44px 0 12px}
+  .intro{font-size:18px;color:var(--muted-2);max-width:620px}
+  .readsec{margin-top:64px}
+  .readsec h2{font-size:clamp(27px,4vw,36px);line-height:1.14;margin:0 0 12px}
+  .readsec p{color:var(--muted-2);font-size:17.5px;line-height:1.65}
+  .readsec p strong{color:var(--ink)}
+
+  footer{max-width:1080px;margin:72px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+  footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
+  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+
+  @media (max-width:560px){
+    main{padding:0 14px 8px}
+    .topbar{padding:11px 14px}
+  }
+</style>
+
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#e9c46a;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#f4d58a}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #e9c46a;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#e9c46a;background:#171b26}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#e9c46a;background:#1a2030;box-shadow:inset 0 0 0 1px #e9c46a}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+</style>
+<style id="luxlang-css">
+.gtranslate_wrapper{display:inline-flex;align-items:center}
+</style>
+<!-- Lux app (PWA) - stage 1, 2026-11-16 -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lux">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../">Lux<small>ailux.ca</small></a>
+  <div class="luxmenus">
+  <div class="luxdoors">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true">🛡️</span><span class="lb">Amos</span></a>
+      <a class="luxdoor-tile" href="../workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
+      <a class="luxdoor-tile" href="../playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
+      <a class="luxdoor-tile" href="../site-pages/membership.html" role="menuitem"><span class="ic" aria-hidden="true">⭐</span><span class="lb">Membership</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      <a class="luxdoor-tile" href="../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
+      <a class="luxdoor-tile" href="../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
+    </div>
+    </div>
+  </div>
+    <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16): a visitor picks their language and the page re-languages itself. -->
+  <div class="gtranslate_wrapper"></div>
+  <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+</div>
+</header>
+
+<main id="top">
+
+  <!-- ================================================================
+       THE READ PAGE — the front page stays a glance; the full
+       writing lives here, under plain headings, with nothing
+       else competing. (Vance, 2026-11-16)
+       ================================================================ -->
+  <p class="kicker" style="margin-top:40px">The full writing</p>
+  <h1 style="margin-top:0">Read.</h1>
+  <p class="intro">Everything the front page says in short lines, written out in full. Nothing here is for sale — the tills are on the <a href="../">front page</a>.</p>
+
+  <section class="readsec">
+    <h2>School in a Box</h2>
+    <p>&ldquo;We want to be that adapter that the world plugs into.&rdquo; A whole school on one small computer, carried to the places the wires never reached — given, never sold. The first boxes are being built now, and sponsorships toward them are open today: sponsor one, and your name rises on the Wall of Heroes.</p>
+  </section>
+
+  <section class="readsec">
+    <h2>Founding memberships</h2>
+    <p>The house opens January 1. Join before it opens and you’re a founder: <strong>30% off, honoured for your whole first year.</strong> When the doors open, the founder price closes for good. One membership covers the Workshop and the Playground — all tools included.</p>
+    <p>One discount per member — the best one that applies to you; discounts never stack. Or put learning on the map: <a href="../school-in-a-box/">sponsor a School in a Box, or a kid’s membership →</a></p>
+  </section>
+
+  <section class="readsec">
+    <h2>Rewards</h2>
+    <p><strong>Affiliate rewards:</strong> share the house and earn on the memberships, store buys and advertising your people bring in — one system, one ledger, paid on verified money. <strong>House Loyalty:</strong> members earn as they go — credits, packs and the house's thanks, kept on your account. Both open with the house; founders are on the list first.</p>
+    <p><a href="../loyalty/">See the Loyalty program →</a> &nbsp;·&nbsp; <a href="../playground/members/">Affiliate rewards, on the members' board →</a></p>
+  </section>
+
+  <section class="readsec">
+    <h2>The Guest Book</h2>
+    <p>Aimée — an AI, and the host at the front desk — is live here January 1. Until then, leave your name in the guest book and we’ll write when there’s something new to see — an episode, a song, a door opening in the house. One short letter, only when it matters. No noise, ever.</p>
+    <p><a href="../#guestbook">Leave your name in the guest book →</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <p class="flogo">Lux <em>Automations</em> · Lux <em>Animations</em></p>
+  <nav class="doorlinks" aria-label="The four doors">
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a href="../school-in-a-box/">School in a Box</a>
+    <a href="../patch/">Amos</a>
+    <a href="../papers/">Papers</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+  </nav>
+  A Million Times Better · ailux.ca — Edmonton, Alberta<br>
+  © 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+</body>
+</html>
