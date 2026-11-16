@@ -478,6 +478,49 @@
       }
     ]
   },
+  "security_patch_note": "THE SECURITY PATCH — the people's package, priced and stamped by Vance 2026-11-16: US$29.97/month, with AgentPay included free ('Order the Patch and you get our free smarter system for payments.'). Longer shapes carry the stamped discount ladder (3 months 10% off, 6 months 15% off, yearly 20% off) and NO setup fee; the one-time setup fee rides the monthly shape only and its amount is NOT yet stamped. All four links created 2026-11-16 with terms-of-service consent collection enabled (the buyer must agree to ailux.ca/terms before paying). Wired live on ailux.ca/patch 2026-11-16.",
+  "security_patch": [
+    {
+      "billing": "subscription",
+      "id": "patch-monthly",
+      "label": "The Security Patch — monthly (the people's package)",
+      "price": 29.97,
+      "price_currency": "USD",
+      "price_display": "US$29.97/month — VANCE-STAMPED 2026-11-16; plus a one-time setup fee (amount not yet stamped)",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/dRm3cucIb3Iy62t9K52B20q"
+    },
+    {
+      "billing": "subscription",
+      "id": "patch-3-months",
+      "label": "The Security Patch — every 3 months (the people's package)",
+      "price": 80.92,
+      "price_currency": "USD",
+      "price_display": "US$80.92 every 3 months — 10% off the monthly rate; no setup fee — VANCE-STAMPED 2026-11-16",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/aFacN4bE792SduVe0l2B20r"
+    },
+    {
+      "billing": "subscription",
+      "id": "patch-6-months",
+      "label": "The Security Patch — every 6 months (the people's package)",
+      "price": 152.85,
+      "price_currency": "USD",
+      "price_display": "US$152.85 every 6 months — 15% off the monthly rate; no setup fee — VANCE-STAMPED 2026-11-16",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/dRm4gydMf7YO76xcWh2B20s"
+    },
+    {
+      "billing": "subscription",
+      "id": "patch-yearly",
+      "label": "The Security Patch — yearly (the people's package)",
+      "price": 287.71,
+      "price_currency": "USD",
+      "price_display": "US$287.71/year — 20% off the monthly rate; no setup fee — VANCE-STAMPED 2026-11-16",
+      "status": "LIVE-LINK-SET",
+      "url": "https://buy.stripe.com/3cI3cubE792SeyZ2hD2B20t"
+    }
+  ],
   "research_subscription": [
     {
       "billing": "subscription",
