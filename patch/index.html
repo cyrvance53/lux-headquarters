@@ -17,7 +17,7 @@
 <style>
   :root{
     --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
-    --ice:#eaf2ff; --gold:#F2D7CB; --gold-deep:#D89C86; --ink:#f6f3ec;
+    --ice:#eaf2ff; --gold:#B9CCE6; --gold-deep:#84A3CC; --ink:#f6f3ec;
     --muted:#a9a5b5; --muted-2:#cfcbd9;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -26,12 +26,12 @@
       0 0 0 1px rgba(255,244,214,.65),
       0 0 6px rgba(255,255,255,.75),
       0 0 18px rgba(234,242,255,.55),
-      0 0 38px rgba(216,156,134,.40),
-      0 0 72px rgba(216,156,134,.22);
+      0 0 38px rgba(132,163,204,.40),
+      0 0 72px rgba(132,163,204,.22);
     --aura-soft:
       0 0 0 1px rgba(255,244,214,.4),
       0 0 12px rgba(234,242,255,.28),
-      0 0 30px rgba(216,156,134,.20);
+      0 0 30px rgba(132,163,204,.20);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -39,7 +39,7 @@
   body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
     background:
       radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
-      radial-gradient(900px 480px at 50% 0%, rgba(216,156,134,.08), rgba(216,156,134,0) 62%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
       linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
     background-color:var(--black);background-attachment:fixed}
   a{color:var(--gold)}
@@ -55,7 +55,7 @@
   nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
   nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
   nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
-  nav.mainnav a.goldlink:hover{background:rgba(216,156,134,.12);color:var(--gold)}
+  nav.mainnav a.goldlink:hover{background:rgba(132,163,204,.12);color:var(--gold)}
 
   /* ---------- layout (containment per the 2026-11-15 Cinema fix) ---------- */
   main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
@@ -70,14 +70,14 @@
   .secondary{color:var(--muted)}
   small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
-  .btn:hover{box-shadow:0 0 0 1px rgba(255,244,238,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(216,156,134,.5),0 0 96px rgba(216,156,134,.3)}
+  .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(132,163,204,.3)}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
   /* ---------- strong payment buttons (house standard, Vance 2026-11-15):
      big, high-contrast, unmissable; plain labels; generous tap targets;
      visible focus — some visitors are blind, and everybody deserves
      a button they can find ---------- */
   .btn.buy{background:var(--gold);color:#000;font-size:19px;min-height:64px;padding:18px 38px;box-shadow:var(--aura)}
-  .btn.buy:hover{background:var(--gold-deep);box-shadow:0 0 0 2px rgba(255,244,238,.95),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(216,156,134,.65),0 0 72px rgba(216,156,134,.3)}
+  .btn.buy:hover{background:var(--gold-deep);box-shadow:0 0 0 2px rgba(240,245,252,.95),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.65),0 0 72px rgba(132,163,204,.3)}
   .btn:focus-visible,.btn.buy:focus-visible{outline:3px solid var(--ice);outline-offset:4px}
   .buyline{text-align:center;margin-top:18px}
   .buyline small{margin-top:10px}
@@ -112,12 +112,12 @@
   .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:contain}
   .bigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
   .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
-  .bigplay:hover span{box-shadow:0 0 0 1px rgba(255,244,238,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(216,156,134,.55)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.55)}
   .bigplay[hidden]{display:none}
   .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
   .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
   .cbtn:hover{background:rgba(255,255,255,.08)}
-  .cbtn[aria-pressed="true"]{background:rgba(216,156,134,.16);border-color:var(--gold);color:var(--gold)}
+  .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
   .cbtn:disabled{opacity:.45;cursor:default}
   .cbtn:disabled:hover{background:#000}
   .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -149,7 +149,7 @@
   .leg{display:inline-flex;align-items:center;gap:9px}
   .sw{display:inline-block;width:28px;height:0;border-top:2px solid var(--gold-deep)}
   .sw-dash{border-top:2px dashed #e0655a}
-  .sw-tab{height:10px;border:1px solid var(--gold-deep);background:rgba(216,156,134,.08)}
+  .sw-tab{height:10px;border:1px solid var(--gold-deep);background:rgba(132,163,204,.08)}
 
   /* ---------- the flags (Vance, 2026-11-15; folded into the header's
      Nations dropdown 2026-11-16): Canada and the US first, then Mexico,
@@ -182,11 +182,11 @@
   .tablewrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
   table.map{border-collapse:collapse;width:100%;min-width:760px;background:#000;font-size:15px}
   table.map th,table.map td{border:1px solid var(--line);padding:11px 12px;vertical-align:top;text-align:left}
-  table.map th{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(216,156,134,.06)}
+  table.map th{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(132,163,204,.06)}
   table.map td{color:var(--muted-2)}
   table.map td strong{color:var(--ink)}
   table.map td .ev{color:var(--muted);font-size:13.5px;display:block;margin-top:5px}
-  .limits{border:1.5px dashed rgba(216,156,134,.55);border-radius:var(--radius-card);background:rgba(216,156,134,.06);padding:14px 16px;margin-top:16px;color:#e9dfc4;font-size:15.5px}
+  .limits{border:1.5px dashed rgba(132,163,204,.55);border-radius:var(--radius-card);background:rgba(132,163,204,.06);padding:14px 16px;margin-top:16px;color:#e9dfc4;font-size:15.5px}
   .limits p{margin:0}
 
   ol.docs li{margin-bottom:12px;color:var(--muted-2);overflow-wrap:anywhere}
@@ -203,20 +203,20 @@
 
 <style id="luxdoors-css">
 .luxdoors{position:relative;display:inline-block;text-align:left}
-.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#F2D7CB;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
-.luxdoors-btn:hover{background:#F5DED3}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #F2D7CB;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#F2D7CB;background:#171b26}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#F2D7CB;background:#1a2030;box-shadow:inset 0 0 0 1px #F2D7CB}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -263,7 +263,7 @@
      section lives inside it. The shield is the one strong pop. The film stage
      and the flow diagram stay black — they are pictures, not page. */
   body{background:#FAF8F2;background-color:#FAF8F2;color:#1C1917}
-  a{color:#8A4B36}
+  a{color:#38587E}
   :focus-visible{outline-color:#7FB3D9}
   .topbar{background:rgba(250,248,242,.94);border-bottom:1px solid #E7E1D2}
   .brand{color:#1C1917}
@@ -271,8 +271,8 @@
   nav.mainnav a{color:#55504A}
   nav.mainnav a:hover{background:#EFEAE0;color:#1C1917}
   nav.mainnav a.here{background:#EFEAE0;color:#1C1917}
-  nav.mainnav a.goldlink{color:#8A4B36}
-  nav.mainnav a.goldlink:hover{background:#F9E9E2;color:#8A4B36}
+  nav.mainnav a.goldlink{color:#38587E}
+  nav.mainnav a.goldlink:hover{background:#E7EEF7;color:#38587E}
   main{gap:22px;padding:22px 16px}
   section{background:#FFFFFF;color:#1C1917;border-radius:26px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05)}
   main>section:nth-of-type(2){background:#FAF8F2}
@@ -282,42 +282,42 @@
   main>section:nth-of-type(9){background:#EAF3EF}
   main>section:nth-of-type(10){background:#F7EDE6}
   .amosemblem{width:min(300px,78%);height:auto;margin:2px auto 12px}
-  .eyebrow{color:#A05A41}
+  .eyebrow{color:#476B96}
   p.lede{color:#3E3A34}
   .secondary,small,figure.beatfig figcaption,.diagramcap,.legend,.ctime,.videohint{color:#6B665C}
   .diagramcap strong{color:#1C1917}
   .btn{background:#1C1917;color:#F6F3EC;box-shadow:0 6px 18px rgba(28,25,23,.18)}
   .btn:hover{box-shadow:0 8px 22px rgba(28,25,23,.24)}
-  .btn.buy{background:#F2D7CB;color:#000;box-shadow:0 8px 22px rgba(160,90,65,.35)}
-  .btn.buy:hover{background:#E9BC4B;box-shadow:0 10px 26px rgba(160,90,65,.45)}
+  .btn.buy{background:#B9CCE6;color:#000;box-shadow:0 8px 22px rgba(71,107,150,.35)}
+  .btn.buy:hover{background:#E9BC4B;box-shadow:0 10px 26px rgba(71,107,150,.45)}
   .cbtn{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
   .cbtn:hover{background:#F3F0E7}
-  .cbtn[aria-pressed="true"]{background:#FBEFE9;border-color:#A05A41;color:#8A4B36}
+  .cbtn[aria-pressed="true"]{background:#EDF2F9;border-color:#476B96;color:#38587E}
   .cbtn:disabled:hover{background:#FFFFFF}
   .speedsel{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
   .hostbubble{background:#FFFFFF;color:#1C1917;box-shadow:0 10px 28px rgba(28,25,23,.18)}
   .flag{background:#FFFFFF;border-color:#E1DCCF;color:#3E3A34}
   .flag.first{color:#1C1917;box-shadow:0 4px 14px rgba(28,25,23,.08)}
-  .flag.more{color:#8A4B36}
+  .flag.more{color:#38587E}
   .pcard{background:#FFFFFF;border:1px solid #E9E5D9;box-shadow:0 4px 16px rgba(28,25,23,.05)}
-  .pcard h3 span{color:#A05A41}
+  .pcard h3 span{color:#476B96}
   .pcard p{color:#55504A}
   ol.steps li,ul.charge li,ol.docs li{color:#3E3A34}
   ol.steps li strong,ul.charge li strong,ol.docs li strong{color:#1C1917}
   details.detail{background:#FFFFFF;border-color:#E1DCCF}
-  details.detail summary{color:#8A4B36}
+  details.detail summary{color:#38587E}
   details.detail summary::after{color:#6B665C}
   table.map{background:#FFFFFF}
   table.map th,table.map td{border-color:#E7E2D6}
-  table.map th{color:#8A4B36;background:#F4F2EC}
+  table.map th{color:#38587E;background:#F4F2EC}
   table.map td{color:#3E3A34}
   table.map td strong{color:#1C1917}
   table.map td .ev{color:#6B665C}
-  .limits{background:#F4F2EC;border-color:#A05A41;color:#3E3A34}
+  .limits{background:#F4F2EC;border-color:#476B96;color:#3E3A34}
   figure.beatfig img{background:#EFEFEC;box-shadow:0 8px 24px rgba(28,25,23,.10)}
   footer{color:#6B665C}
   footer .flogo{color:#1C1917}
-  footer .flogo em{color:#A05A41}
+  footer .flogo em{color:#476B96}
 </style>
 </head>
 <body>
@@ -458,7 +458,7 @@
     <p class="lede">Built in Canada. Offered to every nation that needs it — because the problem does not carry a passport, so the defence can&rsquo;t either.</p>
     <small>Two flags stand first because two neighbours built the road — the wall behind them is the point: one patch, all nations.</small>
     <div style="max-width:640px;margin:26px auto 4px;background:#fff;border-radius:16px;padding:18px 20px 14px;text-align:left">
-      <p style="margin:0 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#A05A41"><strong>Listen — 90 seconds</strong></p>
+      <p style="margin:0 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#476B96"><strong>Listen — 90 seconds</strong></p>
       <p style="margin:0 0 10px;font-size:16px;line-height:1.5">Lucian explains it: what&rsquo;s happening out there right now, how Amos protects you, and why Amos and AgentPay are what stops it.</p>
       <audio controls preload="metadata" src="assets/lucian-explains.mp3" style="width:100%" aria-label="Lucian explains the Security Patch — audio, about 90 seconds"></audio>
     </div>
@@ -536,7 +536,7 @@
       <svg viewBox="0 0 760 628" role="img" aria-label="Schematic of the pair's flow: an agent arrives; its identity is issued, checked and carded; the door check asks whether the identity is valid, unrevoked, and really this agent; behaviour is watched in use; a payment moves only inside the owner's mandate and limits; and the receipt is a tamper-evident record anyone can verify. If the agent steps out of pattern it is flagged, then revoked, and a revoked identity is refused at every door that checks. Every step lands on the tab.">
         <desc>Left-to-right schematic in two rows. Row one: Agent arrives, 1 Identity issued, 2 The door check. Row two: 3 Behaviour watch, 4 Payment in mandate, 5 The receipt. A dashed red stop path branches down from Behaviour watch: Out of pattern, Flagged, Revoked, Refused at every door that checks. A foundation bar under the whole chain reads: The tab — every step lands on the tab.</desc>
         <defs>
-          <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D89C86"/></marker>
+          <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#84A3CC"/></marker>
           <marker id="arrR" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e0655a"/></marker>
         </defs>
         <rect x="0" y="0" width="760" height="628" rx="14" fill="#000" stroke="rgba(255,255,255,.14)"/>
@@ -549,20 +549,20 @@
           <text x="90" y="112" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#a9a5b5">to work, or</text>
           <text x="90" y="130" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#a9a5b5">to be paid</text>
         </g>
-        <line x1="164" y1="86" x2="186" y2="86" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="164" y1="86" x2="186" y2="86" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
         <g>
-          <rect x="190" y="24" width="262" height="124" rx="10" fill="#0b0b10" stroke="#D89C86" stroke-width="1.5"/>
-          <circle cx="216" cy="50" r="13" fill="#F2D7CB"/>
+          <rect x="190" y="24" width="262" height="124" rx="10" fill="#0b0b10" stroke="#84A3CC" stroke-width="1.5"/>
+          <circle cx="216" cy="50" r="13" fill="#B9CCE6"/>
           <text x="216" y="55.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">1</text>
           <text x="238" y="57" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">IDENTITY ISSUED</text>
           <text x="210" y="84" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Checked and carded. Built to be</text>
           <text x="210" y="104" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">issued only after the agent and</text>
           <text x="210" y="124" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">its owner pass the gate.</text>
         </g>
-        <line x1="452" y1="86" x2="474" y2="86" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="452" y1="86" x2="474" y2="86" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
         <g>
-          <rect x="478" y="24" width="266" height="124" rx="10" fill="#0b0b10" stroke="#D89C86" stroke-width="1.5"/>
-          <circle cx="504" cy="50" r="13" fill="#F2D7CB"/>
+          <rect x="478" y="24" width="266" height="124" rx="10" fill="#0b0b10" stroke="#84A3CC" stroke-width="1.5"/>
+          <circle cx="504" cy="50" r="13" fill="#B9CCE6"/>
           <text x="504" y="55.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">2</text>
           <text x="526" y="57" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">THE DOOR CHECK</text>
           <text x="498" y="84" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Valid? Unrevoked? Really this</text>
@@ -570,12 +570,12 @@
           <text x="498" y="120" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">yes or no.</text>
           <text x="498" y="140" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#e0655a">A revoked name fails here.</text>
         </g>
-        <line x1="611" y1="148" x2="611" y2="180" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="611" y1="148" x2="611" y2="180" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
 
         <!-- ======== ROW 2 ======== -->
         <g>
-          <rect x="478" y="184" width="266" height="124" rx="10" fill="#0b0b10" stroke="#D89C86" stroke-width="1.5"/>
-          <circle cx="504" cy="210" r="13" fill="#F2D7CB"/>
+          <rect x="478" y="184" width="266" height="124" rx="10" fill="#0b0b10" stroke="#84A3CC" stroke-width="1.5"/>
+          <circle cx="504" cy="210" r="13" fill="#B9CCE6"/>
           <text x="504" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">3</text>
           <text x="526" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">BEHAVIOUR WATCH</text>
           <text x="498" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Watched in use — the check is</text>
@@ -583,10 +583,10 @@
           <text x="498" y="280" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">agent works. Out of pattern:</text>
           <text x="498" y="298" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">the stop path, below.</text>
         </g>
-        <line x1="476" y1="246" x2="454" y2="246" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="476" y1="246" x2="454" y2="246" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
         <g>
-          <rect x="218" y="184" width="234" height="124" rx="10" fill="#0b0b10" stroke="#D89C86" stroke-width="1.5"/>
-          <circle cx="244" cy="210" r="13" fill="#F2D7CB"/>
+          <rect x="218" y="184" width="234" height="124" rx="10" fill="#0b0b10" stroke="#84A3CC" stroke-width="1.5"/>
+          <circle cx="244" cy="210" r="13" fill="#B9CCE6"/>
           <text x="244" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">4</text>
           <text x="266" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#f6f3ec">PAYMENT IN MANDATE</text>
           <text x="238" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Only inside the owner&rsquo;s</text>
@@ -594,10 +594,10 @@
           <text x="238" y="280" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">limit: refused and recorded</text>
           <text x="238" y="298" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">before money moves.</text>
         </g>
-        <line x1="216" y1="246" x2="194" y2="246" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="216" y1="246" x2="194" y2="246" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
         <g>
-          <rect x="16" y="184" width="176" height="124" rx="10" fill="#0b0b10" stroke="#D89C86" stroke-width="1.5"/>
-          <circle cx="42" cy="210" r="13" fill="#F2D7CB"/>
+          <rect x="16" y="184" width="176" height="124" rx="10" fill="#0b0b10" stroke="#84A3CC" stroke-width="1.5"/>
+          <circle cx="42" cy="210" r="13" fill="#B9CCE6"/>
           <text x="42" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">5</text>
           <text x="64" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#f6f3ec">THE RECEIPT</text>
           <text x="36" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Tamper-evident record</text>
@@ -641,10 +641,10 @@
         </g>
 
         <!-- ======== THE FOUNDATION: THE TAB ======== -->
-        <line x1="380" y1="538" x2="380" y2="548" stroke="#D89C86" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="380" y1="538" x2="380" y2="548" stroke="#84A3CC" stroke-width="2" marker-end="url(#arr)"/>
         <g>
-          <rect x="16" y="552" width="728" height="58" rx="10" fill="rgba(216,156,134,.07)" stroke="#D89C86" stroke-width="1.5"/>
-          <text x="380" y="577" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="700" fill="#F2D7CB" style="letter-spacing:.03em">THE TAB — EVERY STEP LANDS ON THE TAB</text>
+          <rect x="16" y="552" width="728" height="58" rx="10" fill="rgba(132,163,204,.07)" stroke="#84A3CC" stroke-width="1.5"/>
+          <text x="380" y="577" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="700" fill="#B9CCE6" style="letter-spacing:.03em">THE TAB — EVERY STEP LANDS ON THE TAB</text>
           <text x="380" y="598" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">Counts, timestamps, outcomes. Rewrite one entry, and the chain no longer verifies.</text>
         </g>
       </svg>
@@ -876,7 +876,7 @@
     <p class="lede">We run our payment ceremony inside other systems&rsquo; own test grounds — sandboxes — under our own name, by their rules. A system joins this shelf only with a clean, full pass. Anything less gets fixed and run again.</p>
     <div style="max-width:640px;margin:22px auto 6px">
       <div style="display:flex;justify-content:space-between;font-size:13px;letter-spacing:.04em"><span><strong>Systems passed at 100%</strong></span><span>2 networks</span></div>
-      <div style="height:14px;border-radius:999px;background:#E7DFCE;margin-top:8px;overflow:hidden"><div style="height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#A05A41,#D89C86)"></div></div>
+      <div style="height:14px;border-radius:999px;background:#E7DFCE;margin-top:8px;overflow:hidden"><div style="height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#476B96,#84A3CC)"></div></div>
       <p style="font-size:14px;margin-top:12px;line-height:1.6"><strong>HashKey Chain testnet</strong> — the full escrow ceremony: clean deal settled, staged dispute refunded by the arbiter. <strong>XRP Ledger testnet</strong> — escrow released, and escrow cancelled, both directions. Every receipt is public — they are listed under <em>Check it yourself</em>, above.</p>
       <p style="font-size:14px;margin-top:10px;line-height:1.6"><strong>The tour is running:</strong> sixty-plus payment systems mapped worldwide — processors, banks and instant rails across Canada, the United States, the United Kingdom, Europe, Africa and Asia-Pacific. Each one gets the same bar: 100%, or it doesn&rsquo;t join the shelf.</p>
     </div>
