@@ -38,17 +38,17 @@
 </nav>
 <p class="tag">Staging — not live · Lux Automations</p>
 <h1>The Music Store — Haven</h1>
-<p>The headline single is sold two ways: the full bundle (the song, its music video, and the cover), or the light Song + Cover edition (the song and its cover art). Bought here, it's yours from Lux directly.</p>
+<p>The headline single is sold as the light Song + Cover edition (the song and its cover art). Bought here, it's yours from Lux directly.</p>
 
-<div class="card">
-  <h2>A Million Times Better</h2>
-  <p>The single — song + music video + cover. From the soundtrack of the series — credit lives in this text, never burned into the art.</p>
-  <div data-lux-pay="music_store.amtb-single-bundle"></div>
-</div>
+<!-- Bundle card removed 2026-11-15 (Vance's order): the US$4.99 bundle
+     (song + music video + cover, slot music_store.amtb-single-bundle) is
+     OFF sale because the bundle's music video isn't finished. Its Stripe
+     link stays untouched in ../config/payment-links.json — restore by
+     re-adding the card here with its data-lux-pay slot. -->
 
 <div class="card">
   <h2>A Million Times Better — Song + Cover</h2>
-  <p>The light door — US$1.29: the song and its cover art. No video in this edition — the music video comes only with the bundle above.</p>
+  <p>The light door — US$1.29: the song and its cover art.</p>
   <div data-lux-pay="music_store.amtb-single-song-cover"></div>
 </div>
 
@@ -66,7 +66,7 @@
 
 <div class="card">
   <h2>Prefer crypto?</h2>
-  <p>Every bundle in this store can be paid in crypto instead of by card. Pick your chain below, send to the address shown, and the desk confirms by hand once the payment lands on-chain — then your bundle is released.</p>
+  <p>Everything in this store can be paid in crypto instead of by card. Pick your chain below, send to the address shown, and the desk confirms by hand once the payment lands on-chain — then your order is released.</p>
   <div data-lux-crypto="music-store"></div>
 </div>
 <script src="../config/crypto-pay.js"></script>
