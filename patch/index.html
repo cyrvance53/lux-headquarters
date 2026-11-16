@@ -97,9 +97,38 @@
   details.detail .dwrap{padding-bottom:16px}
   details.detail .dwrap p:last-child,details.detail .dwrap ol:last-child,details.detail .dwrap ul:last-child{margin-bottom:0}
 
-  /* ---------- hero video player: modest, centred, the page's only video ---------- */
+  /* ---------- the film, on the house stage (Vance, 2026-11-16): the Cinema's
+     own player frame — a black 16:9 stage, the film filling it — capped a
+     little smaller than the Cinema's screen, centred, first on the page ---------- */
   .videowrap{max-width:720px;margin:0 auto;min-width:0}
-  .videowrap video{width:100%;aspect-ratio:16/9;display:block;border-radius:var(--radius-card);box-shadow:var(--aura-soft);background:#000}
+  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
+  .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:contain}
+  .bigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(245,198,92,.55)}
+  .bigplay[hidden]{display:none}
+  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:rgba(255,255,255,.08)}
+  .cbtn[aria-pressed="true"]{background:rgba(245,198,92,.16);border-color:var(--gold);color:var(--gold)}
+  .cbtn:disabled{opacity:.45;cursor:default}
+  .cbtn:disabled:hover{background:#000}
+  .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .vol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
+  .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
+  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
+  .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
+  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
+  .player{position:relative}
+  .player:fullscreen{background:#000;width:100%;height:100%}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
+  .player:fullscreen .stage video{object-fit:contain}
+  .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .player:fullscreen.idle{cursor:none}
+  .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
+  .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
   .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
 
   /* ---------- the schematic: scrolls inside its wrapper on narrow
@@ -284,21 +313,136 @@
 </header>
 <main>
 
+  <!-- ================= THE FILM — first thing on the page (Vance, 2026-11-16),
+       on the house's own stage: the Cinema's player, one fixed film ================= -->
+  <section>
+    <p class="eyebrow">Watch — ninety seconds</p>
+    <div class="videowrap">
+    <div class="player" id="player">
+    <div class="stage" id="stage">
+      <video id="patchfilm" autoplay muted playsinline preload="metadata" poster="assets/patch-hero-poster.jpg" src="assets/patch-hero-video-web.mp4" aria-label="The Security Patch film: the attacks, the losses, and the fix"></video>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
+      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome — this short film shows what&rsquo;s happening out there, and the fix we built. Everything it claims is written down in the Documentation, further down this page.</div>
+    </div>
+    <div class="controls" role="group" aria-label="Player controls">
+      <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">1:27</span></span>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔇</button>
+      <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="speedsel" id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this film">CC</button>
+      <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    </div>
+      <p class="videohint">The film plays on its own — tap the speaker for sound.</p>
+    </div>
+  </section>
+  <script>
+  /* The Patch film player — the Cinema's own player component (same stage,
+     same controls bar, same fullscreen manners), wired to this one film. */
+  (function(){
+    var stage=document.getElementById('stage'),
+        video=document.getElementById('patchfilm'),
+        bigplay=document.getElementById('bigplay'),
+        playbtn=document.getElementById('playbtn'),
+        seek=document.getElementById('seek'),
+        tcur=document.getElementById('tcur'),
+        ttot=document.getElementById('ttot'),
+        mutebtn=document.getElementById('mutebtn'),
+        vol=document.getElementById('vol'),
+        speed=document.getElementById('speed'),
+        fsbtn=document.getElementById('fsbtn'),
+        playerEl=document.getElementById('player'),
+        hostchip=document.getElementById('hostchip'),
+        hostbubble=document.getElementById('hostbubble'),
+        seeking=false;
+
+    function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+    function togglePlay(){
+      if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+      else { video.pause(); }
+    }
+    playbtn.addEventListener('click', togglePlay);
+    bigplay.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+    video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+    video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+    video.addEventListener('loadedmetadata', function(){
+      ttot.textContent=fmt(video.duration);
+      if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+    });
+    video.addEventListener('timeupdate', function(){
+      if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+      tcur.textContent=fmt(video.currentTime);
+    });
+    seek.addEventListener('input', function(){
+      seeking=true;
+      if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+    });
+    seek.addEventListener('change', function(){
+      if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+      seeking=false;
+    });
+    mutebtn.addEventListener('click', function(){
+      video.muted=!video.muted;
+      mutebtn.textContent=video.muted?'🔇':'🔊';
+    });
+    vol.addEventListener('input', function(){
+      video.volume=vol.value/100;
+      if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+    });
+    speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+    hostchip.addEventListener('click', function(){
+      var open=hostbubble.hidden;
+      hostbubble.hidden=!open;
+      hostchip.setAttribute('aria-expanded', open?'true':'false');
+    });
+    fsbtn.addEventListener('click', function(){
+      if(document.fullscreenElement){ document.exitFullscreen(); return; }
+      var target=playerEl||stage;
+      var req=target.requestFullscreen||target.webkitRequestFullscreen;
+      if(req){ req.call(target); }
+    });
+    /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+    var idleTimer=null;
+    function poke(){
+      if(!document.fullscreenElement){ return; }
+      playerEl.classList.remove('idle');
+      if(idleTimer){ clearTimeout(idleTimer); }
+      idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+    }
+    ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+      playerEl.addEventListener(ev, poke, {passive:true});
+    });
+    document.addEventListener('fullscreenchange', function(){
+      if(document.fullscreenElement){ poke(); }
+      else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+    });
+    stage.addEventListener('keydown', function(ev){
+      if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+    });
+    stage.setAttribute('tabindex','0');
+    mutebtn.textContent=video.muted?'🔇':'🔊';
+  })();
+  </script>
+
   <!-- ================= HERO (the wall of flags lives in the header's Nations dropdown) ================= -->
   <section>
     <p class="eyebrow">Lux Automations · Agent trust &amp; payment protection</p>
     <h1>The Security Patch</h1>
     <p class="lede">Built in Canada. Offered to every nation that needs it — because the problem does not carry a passport, so the defence can&rsquo;t either.</p>
     <small>Two flags stand first because two neighbours built the road — the wall behind them is the point: one patch, all nations.</small>
-  </section>
-
-  <!-- ================= THE FILM — the page's only video ================= -->
-  <section>
-    <p class="eyebrow">Watch — ninety seconds</p>
-    <div class="videowrap">
-      <video controls autoplay muted playsinline preload="metadata" poster="assets/patch-hero-poster.jpg" src="assets/patch-hero-video-web.mp4" aria-label="The Security Patch film: the attacks, the losses, and the fix"></video>
-      <p class="videohint">The film plays on its own — tap the speaker for sound.</p>
-    </div>
   </section>
 
   <!-- ================= BEAT 1 — WHAT'S GOING ON ================= -->
