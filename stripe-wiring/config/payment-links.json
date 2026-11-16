@@ -478,7 +478,7 @@
       }
     ]
   },
-  "security_patch_note": "THE SECURITY PATCH — the people's package, priced and stamped by Vance 2026-11-16: US$29.97/month, with AgentPay included free ('Order the Patch and you get our free smarter system for payments.'). Longer shapes carry the stamped discount ladder (3 months 10% off, 6 months 15% off, yearly 20% off) and NO setup fee; the one-time setup fee rides the monthly shape only and its amount is NOT yet stamped. All four links created 2026-11-16 with terms-of-service consent collection enabled (the buyer must agree to ailux.ca/terms before paying). Wired live on ailux.ca/patch 2026-11-16.",
+  "security_patch_note": "THE SECURITY PATCH — the people's package, priced and stamped by Vance 2026-11-16: US$29.97/month, with AgentPay included free ('Order the Patch and you get our free smarter system for payments.'). Longer shapes carry the stamped discount ladder (3 months 10% off, 6 months 15% off, yearly 20% off) and NO setup fee; the one-time setup fee rides the monthly shape only: US$9.97, stamped by Vance 2026-11-16 and live on the monthly link (sign-up total US$39.94, then US$29.97/month). All four links created 2026-11-16 with terms-of-service consent collection enabled (the buyer must agree to ailux.ca/terms before paying). Wired live on ailux.ca/patch 2026-11-16.",
   "security_patch": [
     {
       "billing": "subscription",
@@ -486,7 +486,7 @@
       "label": "The Security Patch — monthly (the people's package)",
       "price": 29.97,
       "price_currency": "USD",
-      "price_display": "US$29.97/month — VANCE-STAMPED 2026-11-16; plus a one-time setup fee (amount not yet stamped)",
+      "price_display": "US$29.97/month — VANCE-STAMPED 2026-11-16; plus a one-time setup fee of US$9.97 (VANCE-STAMPED 2026-11-16, live on the link)",
       "status": "LIVE-LINK-SET",
       "url": "https://buy.stripe.com/dRm3cucIb3Iy62t9K52B20q"
     },
