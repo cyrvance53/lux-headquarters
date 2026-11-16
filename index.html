@@ -12,7 +12,7 @@
     --panel-2:#101017;
     --line:rgba(255,255,255,.14);
     --ice:#eaf2ff;
-    --gold:#f5c65c;
+    --gold:#B9CCE6;
     --ink:#f6f3ec;
     --muted:#a9a5b5;
     --muted-2:#cfcbd9;
@@ -25,12 +25,12 @@
       0 0 0 1px rgba(255,244,214,.65),
       0 0 6px rgba(255,255,255,.75),
       0 0 18px rgba(234,242,255,.55),
-      0 0 38px rgba(245,198,92,.40),
+      0 0 38px rgba(132,163,204,.40),
       0 0 72px rgba(160,195,255,.22);
     --aura-soft:
       0 0 0 1px rgba(255,244,214,.4),
       0 0 12px rgba(234,242,255,.28),
-      0 0 30px rgba(245,198,92,.20);
+      0 0 30px rgba(132,163,204,.20);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -41,7 +41,7 @@
     /* Shiny black: a polished surface with one soft sheen of light across it */
     background:
       radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
-      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
       linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
     background-color:var(--black);
     background-attachment:fixed;
@@ -63,7 +63,7 @@
   nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
   /* The Loyalty tap — small, quiet, gold, top right. No box. */
   nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em}
-  nav.mainnav a.loyaltap:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:var(--gold)}
   /* Buttons stay black — only the light around them shines */
   nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
   nav.mainnav a.cta:hover{box-shadow:var(--aura)}
@@ -71,7 +71,7 @@
   /* ---------- layout ---------- */
   main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
   .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
-  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(245,198,92,.4),transparent)}
+  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(132,163,204,.4),transparent)}
   h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
   .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
 
@@ -81,7 +81,7 @@
 
   /* ---------- buttons: black, ringed with light ---------- */
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
-  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(160,195,255,.3)}
   .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 
   /* ---------- hero: the heart diamond ---------- */
@@ -92,14 +92,14 @@
      four doors float over it — lifted on their light, gently hovering. */
   .stage{position:relative;margin-top:-4px;padding-top:10px;overflow-x:clip}
   .diamond{position:absolute;left:50%;top:-58px;transform:translateX(-50%);width:min(560px,98vw);margin:0;z-index:0;pointer-events:none}
-  .diamond::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(245,198,92,.20) 0%,rgba(190,215,255,.10) 42%,rgba(0,0,0,0) 68%);pointer-events:none}
+  .diamond::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(132,163,204,.20) 0%,rgba(190,215,255,.10) 42%,rgba(0,0,0,0) 68%);pointer-events:none}
   /* The heart turns, slowly, behind the doors — a gentle rock, never
      a full spin, so the heart always stays a heart — while a ring of
      its light rotates all the way around it. */
   .diamond .heartspin{display:block;animation:heartrock 11s ease-in-out infinite}
   @keyframes heartrock{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(3.5deg)}}
   .diamond::after{content:"";position:absolute;inset:-9%;border-radius:50%;pointer-events:none;
-    background:conic-gradient(from 0deg,rgba(245,198,92,0) 0deg,rgba(245,198,92,.16) 40deg,rgba(255,255,255,0) 90deg,rgba(190,215,255,.12) 170deg,rgba(245,198,92,0) 230deg,rgba(255,244,214,.14) 300deg,rgba(245,198,92,0) 360deg);
+    background:conic-gradient(from 0deg,rgba(132,163,204,0) 0deg,rgba(132,163,204,.16) 40deg,rgba(255,255,255,0) 90deg,rgba(190,215,255,.12) 170deg,rgba(132,163,204,0) 230deg,rgba(255,244,214,.14) 300deg,rgba(132,163,204,0) 360deg);
     -webkit-mask-image:radial-gradient(circle,transparent 52%,#000 68%,transparent 88%);mask-image:radial-gradient(circle,transparent 52%,#000 68%,transparent 88%);
     animation:ringspin 46s linear infinite}
   @keyframes ringspin{to{transform:rotate(360deg)}}
@@ -110,7 +110,7 @@
   .diamond .spark{position:absolute;width:22px;height:22px;pointer-events:none;opacity:0;
     background:#fff3d0;
     clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
-    filter:drop-shadow(0 0 6px rgba(245,198,92,.85));
+    filter:drop-shadow(0 0 6px rgba(132,163,204,.85));
     animation:sparkle 4.6s ease-in-out infinite}
   .diamond .s1{top:12%;left:16%;animation-delay:.2s}
   .diamond .s2{top:6%;left:58%;width:15px;height:15px;animation-delay:1.5s;animation-duration:3.9s}
@@ -139,7 +139,7 @@
   .door::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%),linear-gradient(180deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,0) 22%);pointer-events:none;z-index:0}
   .door>*{position:relative;z-index:1}
   .door:hover{box-shadow:var(--aura)}
-  .door .heartmark{width:44px;height:40px;margin-bottom:16px;filter:drop-shadow(0 0 7px rgba(245,198,92,.75))}
+  .door .heartmark{width:44px;height:40px;margin-bottom:16px;filter:drop-shadow(0 0 7px rgba(132,163,204,.75))}
   .door .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px;position:relative}
   .door h3{font-size:clamp(25px,3.4vw,31px);line-height:1.12;margin:0 0 6px;position:relative}
   .door p.desc{margin:0;color:var(--muted-2);font-size:16px;max-width:420px;position:relative}
@@ -186,12 +186,12 @@
   .engraving a.eng-link:hover .eng-name{color:#2c2c36}
   .engraving .eng-name{font-family:var(--serif);font-weight:700;font-size:clamp(27px,4.6vw,42px);line-height:1.1;letter-spacing:.015em;
     color:#22222b;
-    text-shadow:0 1px 0 rgba(238,244,255,.42),0 2px 1px rgba(245,198,92,.18),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
+    text-shadow:0 1px 0 rgba(238,244,255,.42),0 2px 1px rgba(132,163,204,.18),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
   .engraving .eng-name em{font-style:normal;
-    text-shadow:0 1px 0 rgba(255,236,190,.38),0 2px 1px rgba(245,198,92,.22),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
+    text-shadow:0 1px 0 rgba(255,236,190,.38),0 2px 1px rgba(132,163,204,.22),0 -1px 2px rgba(0,0,0,1),0 3px 8px rgba(0,0,0,.85)}
   .engraving .eng-cap{display:block;margin-top:9px;font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
     color:#1b1b22;text-shadow:0 1px 0 rgba(238,244,255,.34),0 -1px 1px rgba(0,0,0,1)}
-  .engraving .eng-heart{align-self:center;width:34px;height:31px;flex:none;filter:drop-shadow(0 1px 0 rgba(238,244,255,.25)) drop-shadow(0 0 6px rgba(245,198,92,.35))}
+  .engraving .eng-heart{align-self:center;width:34px;height:31px;flex:none;filter:drop-shadow(0 1px 0 rgba(238,244,255,.25)) drop-shadow(0 0 6px rgba(132,163,204,.35))}
   .engraving .eng-line{margin:14px 0 0;font-size:14.5px;color:var(--muted)}
   @media (max-width:560px){ .engraving .eng-heart{order:-1;width:100%} }
 
@@ -264,20 +264,20 @@
 
 <style id="luxdoors-css">
 .luxdoors{position:relative;display:inline-block;text-align:left}
-.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#e9c46a;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
-.luxdoors-btn:hover{background:#f4d58a}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #e9c46a;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#e9c46a;background:#171b26}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#e9c46a;background:#1a2030;box-shadow:inset 0 0 0 1px #e9c46a}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -385,14 +385,14 @@
 
     <div class="doors">
       <a class="door" href="workshop/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
         <p class="dtag">Door One · Lux Automations</p>
         <h3>Business AI Workshop</h3>
         <p class="desc">Automation that carries the work.</p>
       </a>
       <a class="door" href="playground/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
         <p class="dtag">Door Two · Lux Animations</p>
         <h3>AI Playground</h3>
@@ -409,14 +409,14 @@
         <p class="fineprint">Sponsorships are gifts, not tax-deductible donations. The terms come in writing, and you agree to them before you give anything. <a href="terms/">Terms of sale &amp; refunds</a> · <a href="privacy/">Privacy policy</a>.</p>
       </div>
       <a class="door" href="cinema/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
         <p class="dtag">Door Three · Free</p>
         <h3>Free Cinema</h3>
         <p class="desc">Watch — free, while we build.</p>
       </a>
       <a class="door" href="stripe-wiring/music-store/jukebox.html">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <span class="go" aria-hidden="true">›</span>
         <p class="dtag">Door Four · Music &amp; merch</p>
         <h3>Store</h3>

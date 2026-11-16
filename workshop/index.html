@@ -8,19 +8,19 @@
 <style>
   :root{
     --black:#000; --panel-2:#101017; --line:rgba(255,255,255,.14);
-    --ice:#eaf2ff; --gold:#f5c65c; --ink:#f6f3ec; --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --ice:#eaf2ff; --gold:#B9CCE6; --ink:#f6f3ec; --muted:#a9a5b5; --muted-2:#cfcbd9;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
     --aura:
       0 0 0 1px rgba(255,244,214,.65),
       0 0 6px rgba(255,255,255,.75),
       0 0 18px rgba(234,242,255,.55),
-      0 0 38px rgba(245,198,92,.40),
+      0 0 38px rgba(132,163,204,.40),
       0 0 72px rgba(160,195,255,.22);
     --aura-soft:
       0 0 0 1px rgba(255,244,214,.4),
       0 0 12px rgba(234,242,255,.28),
-      0 0 30px rgba(245,198,92,.20);
+      0 0 30px rgba(132,163,204,.20);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -28,7 +28,7 @@
   body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
     background:
       radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
-      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
       linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
     background-color:var(--black);background-attachment:fixed}
   a{color:var(--gold)}
@@ -47,20 +47,20 @@
   nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
   nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
   nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em}
-  nav.mainnav a.loyaltap:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:var(--gold)}
   nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
   nav.mainnav a.cta:hover{box-shadow:var(--aura)}
 
   main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
   .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
-  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(245,198,92,.4),transparent)}
+  .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(132,163,204,.4),transparent)}
   h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
   .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
   .soundline{margin-top:18px;padding:13px 18px;background:#000;border-radius:14px;box-shadow:var(--aura-soft);font-size:15.5px;color:#e9dfc4}
   .soundline b{color:var(--gold)}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
-  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(160,195,255,.3)}
   .btn.small{min-height:48px;padding:11px 22px;font-size:15.5px}
   .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 
@@ -77,7 +77,7 @@
   .aimee blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:var(--ink)}
 
   .videoslot{margin-top:26px;background:#000;border-radius:20px;box-shadow:var(--aura-soft);padding:30px 26px;text-align:center}
-  .videoslot .heartmark{width:40px;height:36px;margin:0 auto 12px;filter:drop-shadow(0 0 7px rgba(245,198,92,.75))}
+  .videoslot .heartmark{width:40px;height:36px;margin:0 auto 12px;filter:drop-shadow(0 0 7px rgba(132,163,204,.75))}
   .videoslot .vlabel{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
   .videowrap{max-width:720px;margin:18px auto 0}
   .videowrap video{width:100%;aspect-ratio:16/9;display:block;border-radius:12px;background:#0b0b0e;box-shadow:var(--aura-soft)}
@@ -177,20 +177,20 @@
 
 <style id="luxdoors-css">
 .luxdoors{position:relative;display:inline-block;text-align:left}
-.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#e9c46a;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
-.luxdoors-btn:hover{background:#f4d58a}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #e9c46a;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#e9c46a;background:#171b26}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#e9c46a;background:#1a2030;box-shadow:inset 0 0 0 1px #e9c46a}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -289,7 +289,7 @@
       <p class="muted" style="max-width:700px">This is the Workshop’s front room while the full Workshop is being built. The work below is real, and jobs are quoted per project, in writing.</p>
 
       <div class="videoslot">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#f5c65c" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
+        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
         <p class="vlabel">Video · The film</p>
         <h3>Dream it in the Playground — it comes out of the Workshop made real</h3>
         <div class="videowrap">
