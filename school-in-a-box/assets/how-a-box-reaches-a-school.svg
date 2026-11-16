@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-label="Schematic: how a box reaches a school. A sponsor gives a monthly gift — the box's upkeep, a donation, never a purchase. The Wall of Heroes records the giver's name, marked Sponsored. A box is readied — a whole school on one small computer, built and tested by the house. Placement is by need: the house decides where each box goes. The box is delivered to the school and set up by local hands. A classroom learns — the teacher works with no internet at all. The room reports back: the placement joins the name on the Wall of Heroes — the place, the hero, the local business, the date. Stage, stated plainly: no boxes have been placed yet; the first placements are promised for the first quarter of 2027.">
+  <desc>Model-level schematic of School in a Box: sponsor gift, Wall of Heroes, box readied, placement by need, delivery, classroom learning, report back. No method or insides are drawn.</desc>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d8ab3a"/></marker>
+  </defs>
+  <rect x="1" y="1" width="758" height="428" rx="16" fill="#050507" stroke="rgba(245,198,92,.45)" stroke-width="1.5"/>
+  <text x="380" y="42" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="21" font-weight="700" fill="#f6f3ec" letter-spacing="1">HOW A BOX REACHES A SCHOOL</text>
+  <text x="380" y="64" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#a9a5b5">The model, drawn plainly — what happens, step by step. Nothing inside the box is drawn, here or anywhere.</text>
+
+  <!-- Row 1 : left to right -->
+  <g font-family="Helvetica,Arial,sans-serif">
+    <rect x="24" y="86" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="48" cy="110" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="48" y="115" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">1</text>
+    <text x="68" y="115" font-size="14.5" font-weight="800" fill="#f6f3ec">A SPONSOR GIVES</text>
+    <text x="40" y="140" font-size="12" fill="#cfcbd9">A monthly gift — the box's</text>
+    <text x="40" y="157" font-size="12" fill="#cfcbd9">upkeep. A donation,</text>
+    <text x="40" y="174" font-size="12" fill="#cfcbd9">never a purchase.</text>
+
+    <rect x="272" y="86" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="296" cy="110" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="296" y="115" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">2</text>
+    <text x="316" y="115" font-size="14.5" font-weight="800" fill="#f6f3ec">THE NAME RISES</text>
+    <text x="288" y="140" font-size="12" fill="#cfcbd9">The Wall of Heroes records</text>
+    <text x="288" y="157" font-size="12" fill="#cfcbd9">the giver's name, marked</text>
+    <text x="288" y="174" font-size="12" fill="#cfcbd9">Sponsored, from that moment.</text>
+
+    <rect x="520" y="86" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="544" cy="110" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="544" y="115" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">3</text>
+    <text x="564" y="115" font-size="14.5" font-weight="800" fill="#f6f3ec">A BOX IS READIED</text>
+    <text x="536" y="140" font-size="12" fill="#cfcbd9">A whole school on one small</text>
+    <text x="536" y="157" font-size="12" fill="#cfcbd9">computer — built and tested</text>
+    <text x="536" y="174" font-size="12" fill="#cfcbd9">by the house, ready to turn on.</text>
+  </g>
+  <line x1="240" y1="138" x2="268" y2="138" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="488" y1="138" x2="516" y2="138" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M628,190 L628,214" stroke="#d8ab3a" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Row 2 : right to left -->
+  <g font-family="Helvetica,Arial,sans-serif">
+    <rect x="520" y="222" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="544" cy="246" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="544" y="251" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">4</text>
+    <text x="564" y="251" font-size="14.5" font-weight="800" fill="#f6f3ec">PLACEMENT BY NEED</text>
+    <text x="536" y="276" font-size="12" fill="#cfcbd9">The house decides where each</text>
+    <text x="536" y="293" font-size="12" fill="#cfcbd9">box goes — need decides,</text>
+    <text x="536" y="310" font-size="12" fill="#cfcbd9">and the judgement is careful.</text>
+
+    <rect x="272" y="222" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="296" cy="246" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="296" y="251" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">5</text>
+    <text x="316" y="251" font-size="14.5" font-weight="800" fill="#f6f3ec">DELIVERED</text>
+    <text x="288" y="276" font-size="12" fill="#cfcbd9">Delivered to the school and</text>
+    <text x="288" y="293" font-size="12" fill="#cfcbd9">set up by local hands — the</text>
+    <text x="288" y="310" font-size="12" fill="#cfcbd9">work and the pride stay local.</text>
+
+    <rect x="24" y="222" width="216" height="104" rx="12" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+    <circle cx="48" cy="246" r="12" fill="#000" stroke="#f5c65c" stroke-width="1.5"/><text x="48" y="251" text-anchor="middle" font-size="13" font-weight="800" fill="#f5c65c">6</text>
+    <text x="68" y="251" font-size="12.5" font-weight="800" fill="#f6f3ec">A CLASSROOM LEARNS</text>
+    <text x="40" y="276" font-size="12" fill="#cfcbd9">The teacher works with no</text>
+    <text x="40" y="293" font-size="12" fill="#cfcbd9">internet at all — lessons, books</text>
+    <text x="40" y="310" font-size="12" fill="#cfcbd9">and tools for real skills.</text>
+  </g>
+  <line x1="520" y1="274" x2="492" y2="274" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="272" y1="274" x2="244" y2="274" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Foundation bar : the report back -->
+  <rect x="24" y="342" width="712" height="44" rx="10" fill="rgba(245,198,92,.10)" stroke="#f5c65c" stroke-width="1.5"/>
+  <text x="380" y="362" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13.5" font-weight="800" fill="#f5c65c" letter-spacing=".06em">THE ROOM REPORTS BACK — THE PLACEMENT JOINS THE NAME ON THE WALL</text>
+  <text x="380" y="379" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11.5" fill="#cfcbd9">The place, the hero, the local business, the date — the promise and the proof, in the same place.</text>
+
+  <text x="380" y="412" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11.5" fill="#a9a5b5">Stage, stated plainly: no boxes have been placed yet. The first placements are promised for the first quarter of 2027.</text>
+</svg>

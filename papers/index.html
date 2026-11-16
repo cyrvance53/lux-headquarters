@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papers · Lux Automations</title>
+<meta name="description" content="The Lux white papers shelf: the research report, the Security Patch technical brief, and the School in a Box model brief — published in the open, at the stage the work has honestly reached.">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
+  .goldline{color:var(--gold)}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  .meta{font-size:14.5px;color:var(--muted);font-weight:600;margin:0 0 12px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 24px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+  @media (max-width:560px){
+    main{padding:12px;gap:12px}
+    section{padding:20px 18px}
+    .topbar{padding:10px 14px}
+    nav.mainnav a{padding:7px 9px;font-size:14px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav">
+    <a href="../index.html">Home</a>
+    <a href="../cinema/index.html">Cinema</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../playground/index.html">Playground</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a href="../school-in-a-box/index.html">School in a Box</a>
+    <a href="../patch/index.html">The Security Patch</a>
+    <a href="./" class="here">Papers</a>
+  </nav>
+</header>
+<main>
+
+  <h1 class="roomtitle">The <span class="goldline">Papers</span> Shelf</h1>
+
+  <!-- ============ THE SHELF, EXPLAINED ============ -->
+  <section>
+    <p class="eyebrow">White papers · Lux Automations</p>
+    <h1>Our work, written down and put in the open</h1>
+    <p class="lede">This house publishes its papers the way it publishes its receipts: in the open, at the stage the work has honestly reached, with the limits printed in the same ink as the claims. Every paper below is a PDF. Read them, check them, argue with them — that is what they are for.</p>
+  </section>
+
+  <!-- ============ PAPER No. 1 ============ -->
+  <section>
+    <p class="eyebrow">Paper No. 1 · Research report</p>
+    <h2>Who Do You Believe When the Worker Is an Agent?</h2>
+    <p class="meta">A Tamper-Evident Audit Layer for Agent Payments · Vance Cyr — Lux Automations · Filed with the Apart Research &ldquo;AI x Epistemics&rdquo; Sprint, Track 2: Trust Infrastructure · November 2026</p>
+    <p>Autonomous agents now negotiate, deliver digital work, and settle payments in seconds, but the evidence those transactions rest on has not kept pace: a log written by the party it describes can be rewritten by that party. This report presents a tamper-evident audit layer for agent payments, built by extending an escrow pattern executed end-to-end on a public test network — signed, hash-anchored deal terms; hash-chained event logs; content fingerprints bound to proof-of-delivery hashes; and a public proof shelf of verifiable receipts — together with three mechanisms adopted from an external design review that close the layer's sharpest holes: transparency-log anchoring, independent witness cosigning, and decision-context commitments. The evidence is limited, and stated as such — including a real design flaw our own audit found. The layer proves continuity and provenance of the record, not the truth of what was fed into it.</p>
+    <div class="btnrow">
+      <a class="btn" href="who-do-you-believe-when-the-worker-is-an-agent.pdf">Read the paper (PDF)</a>
+    </div>
+  </section>
+
+  <!-- ============ PAPER No. 2 ============ -->
+  <section>
+    <p class="eyebrow">Paper No. 2 · Technical brief</p>
+    <h2>The Security Patch — Technical Brief</h2>
+    <p class="meta">A checked identity for agents, and payments that carry their own proof · Lux Automations · November 2026</p>
+    <p>The Security Patch pairs a checked identity for agents with payments that carry their own proof. This brief sets out, at behaviour level only, what each half does — issuance, door checks, behaviour watch, revocation, and the tab on the identity side; mandate-bound escrow, no custody, and a tamper-evident audit layer on the money side — and then shows the evidence that exists today: public testnet receipts on two networks, including a first escrow-cancel attempt that failed and was corrected in the open, and the in-house drill record with its limits stated beside it. It closes with what has not run yet, in a plain list. The pair is at prototype stage; it has not run live, and the independent audit has not yet been performed.</p>
+    <div class="btnrow">
+      <a class="btn" href="the-security-patch-technical-brief.pdf">Read the brief (PDF)</a>
+      <a class="btn" href="../patch/index.html">The Security Patch page</a>
+    </div>
+  </section>
+
+  <!-- ============ PAPER No. 3 ============ -->
+  <section>
+    <p class="eyebrow">Paper No. 3 · Model brief</p>
+    <h2>School in a Box — The Model in the Open</h2>
+    <p class="meta">A whole school on one small computer · Lux Automations · November 2026</p>
+    <p>Some schools have no internet, no library, and no way to reach either. School in a Box puts a whole school on one small computer — an AI teacher who works with no internet at all — and carries it to the places the wires never reached. This brief puts the model in the open: how a box reaches a school (need decides, local hands deliver, every name recorded on the Wall of Heroes), how sponsorship works (a gift of monthly upkeep, never a sale — and no figure printed, because none has been set), the safeguards that are structural rather than promised (parents are verified, not kids; a child's profile rides under a parent's account, and the parent approves and pays), and the honest limits — one classroom's reach, the first boxes still in proof, no boxes placed yet, and first placements promised only from the first quarter of 2027.</p>
+    <div class="btnrow">
+      <a class="btn" href="school-in-a-box-brief.pdf">Read the brief (PDF)</a>
+      <a class="btn" href="../school-in-a-box/index.html">The School in a Box page</a>
+    </div>
+  </section>
+
+  <!-- ============ HOW TO READ OUR PAPERS ============ -->
+  <section>
+    <p class="eyebrow">How to read our papers</p>
+    <h2>Receipts where they exist; our records, labelled, where they don't</h2>
+    <p class="secondary" style="margin:0">Everything we claim comes with the best evidence that exists for it. Public receipts are linked so a stranger can check them. In-house records are labelled as ours — real, and watched by nobody but us, and we say so. Where a thing has not been done yet, the paper says that too, in the same size of type. If you find a claim in any of these papers that the evidence doesn't carry, we want to know: the door is <a href="mailto:patch@ailux.ca">patch@ailux.ca</a>.</p>
+  </section>
+
+</main>
+<footer>
+  <p class="flogo">Lux <em>Automations</em></p>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+</body>
+</html>

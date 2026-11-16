@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Security Patch — Lux Automations</title>
+<meta name="description" content="Agents are loose, money is moving, and nobody can prove who they're dealing with. The Security Patch: a checked identity for agents (Amos) and provable payments (AgentPay), bolted onto the doors you already run. Documentation public — check it yourself.">
+<link rel="canonical" href="https://ailux.ca/patch/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="The Security Patch — Lux Automations">
+<meta property="og:description" content="Prove who the agent is. Make its payments provable. A bolt-on patch for the agent-money problem, with the receipts public.">
+<meta property="og:url" content="https://ailux.ca/patch/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Security Patch — Lux Automations">
+<meta name="twitter:description" content="Prove who the agent is. Make its payments provable. Documentation public — check it yourself.">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#f5c65c; --gold-deep:#d8ab3a; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(245,198,92,.40),
+      0 0 72px rgba(160,195,255,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(245,198,92,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(245,198,92,.08), rgba(245,198,92,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:12px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
+  nav.mainnav a.goldlink:hover{background:rgba(245,198,92,.12);color:var(--gold)}
+
+  /* ---------- layout (containment per the 2026-11-15 Cinema fix) ---------- */
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative;min-width:0}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(30px,6.6vw,44px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(23px,5vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  /* ---------- strong payment buttons (house standard, Vance 2026-11-15):
+     big, high-contrast, unmissable; plain labels; generous tap targets;
+     visible focus — some visitors are blind, and everybody deserves
+     a button they can find ---------- */
+  .btn.buy{background:var(--gold);color:#000;font-size:19px;min-height:64px;padding:18px 38px;box-shadow:var(--aura)}
+  .btn.buy:hover{background:var(--gold-deep);box-shadow:0 0 0 2px rgba(255,246,220,.95),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(245,198,92,.65),0 0 72px rgba(160,195,255,.3)}
+  .btn:focus-visible,.btn.buy:focus-visible{outline:3px solid var(--ice);outline-offset:4px}
+  .buyline{text-align:center;margin-top:18px}
+  .buyline small{margin-top:10px}
+
+  /* ---------- beat imagery: photographic-finish stills from the film ---------- */
+  figure.beatfig{margin:18px 0 6px;min-width:0}
+  figure.beatfig img{width:100%;height:auto;border-radius:var(--radius-card);box-shadow:var(--aura-soft);background:#000}
+  figure.beatfig figcaption{color:var(--muted);font-size:13.5px;margin-top:9px}
+
+  /* ---------- layered depth: the detail lives behind a door ---------- */
+  details.detail{margin-top:16px;background:#000;border:1px solid var(--line);border-radius:var(--radius-card);padding:0 18px}
+  details.detail summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:56px;padding:14px 0;font-weight:800;font-size:16.5px;color:var(--gold)}
+  details.detail summary::-webkit-details-marker{display:none}
+  details.detail summary::after{content:"+";margin-left:auto;font-size:24px;font-weight:400;color:var(--muted-2)}
+  details.detail[open ] summary::after{content:"\2212"}
+  details.detail summary:focus-visible{outline:3px solid var(--ice);outline-offset:3px;border-radius:6px}
+  details.detail .dwrap{padding-bottom:16px}
+  details.detail .dwrap p:last-child,details.detail .dwrap ol:last-child,details.detail .dwrap ul:last-child{margin-bottom:0}
+
+  /* ---------- hero video player: modest, centred, the page's only video ---------- */
+  .videowrap{max-width:720px;margin:0 auto;min-width:0}
+  .videowrap video{width:100%;aspect-ratio:16/9;display:block;border-radius:var(--radius-card);box-shadow:var(--aura-soft);background:#000}
+  .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
+
+  /* ---------- the schematic: scrolls inside its wrapper on narrow
+     screens, never the page (same containment as the table) ---------- */
+  figure.diagram{margin:18px 0 0;min-width:0}
+  .diagramwrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
+  .diagramwrap svg{display:block;width:100%;min-width:620px;height:auto}
+  .diagramcap{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:12px}
+  .diagramcap strong{color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .leg{display:inline-flex;align-items:center;gap:9px}
+  .sw{display:inline-block;width:28px;height:0;border-top:2px solid var(--gold-deep)}
+  .sw-dash{border-top:2px dashed #e0655a}
+  .sw-tab{height:10px;border:1px solid var(--gold-deep);background:rgba(245,198,92,.08)}
+
+  /* ---------- the wall of flags (Vance, 2026-11-15): Canada and the US
+     first, then Mexico, Europe, and every nation — every flag stands ---------- */
+  .flagwall{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;min-width:0;max-width:100%}
+  .flag{display:inline-flex;align-items:center;gap:8px;background:#000;border:1px solid var(--line);border-radius:var(--radius-pill);padding:7px 14px 7px 10px;font-size:14.5px;font-weight:600;color:var(--muted-2);min-width:0}
+  .flag .fl{font-size:19px;line-height:1}
+  .flag.first{box-shadow:var(--aura-soft);color:var(--ink);font-weight:700}
+  .flag.more{border-style:dashed;color:var(--gold);font-weight:700}
+
+  /* ---------- the pair: two cards ---------- */
+  .pair{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px}
+  @media (min-width:760px){.pair{grid-template-columns:1fr 1fr}}
+  .pcard{background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:18px;min-width:0}
+  .pcard h3{font-family:var(--serif);font-size:21px}
+  .pcard h3 span{color:var(--gold)}
+  .pcard p{color:var(--muted-2);font-size:16px}
+  .pcard p:last-child{margin-bottom:0}
+
+  blockquote.patchline{margin:18px 0;padding:18px 20px;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft)}
+  blockquote.patchline p{font-family:var(--serif);font-size:clamp(19px,3.4vw,23px);line-height:1.4;margin:0 0 8px}
+  blockquote.patchline cite{font-style:normal;color:var(--muted);font-size:14.5px}
+
+  ol.steps,ul.charge,ol.docs{margin:0;padding-left:22px}
+  ol.steps li,ul.charge li{margin-bottom:10px;color:var(--muted-2)}
+  ol.steps li strong,ul.charge li strong{color:var(--ink)}
+  .proposal{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+
+  /* ---------- threat catalogue table: scrolls inside its wrapper,
+     never the page (containment lesson, 2026-11-15) ---------- */
+  .tablewrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
+  table.map{border-collapse:collapse;width:100%;min-width:760px;background:#000;font-size:15px}
+  table.map th,table.map td{border:1px solid var(--line);padding:11px 12px;vertical-align:top;text-align:left}
+  table.map th{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(245,198,92,.06)}
+  table.map td{color:var(--muted-2)}
+  table.map td strong{color:var(--ink)}
+  table.map td .ev{color:var(--muted);font-size:13.5px;display:block;margin-top:5px}
+  .limits{border:1.5px dashed rgba(245,198,92,.55);border-radius:var(--radius-card);background:rgba(245,198,92,.06);padding:14px 16px;margin-top:16px;color:#e9dfc4;font-size:15.5px}
+  .limits p{margin:0}
+
+  ol.docs li{margin-bottom:12px;color:var(--muted-2);overflow-wrap:anywhere}
+  ol.docs li strong{color:var(--ink)}
+  ol.docs a{overflow-wrap:anywhere}
+  .txline{display:block;margin-top:3px;font-size:14.5px}
+
+  .contactline{text-align:center}
+  .contactline .btn{font-size:18px}
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav">
+    <a href="../index.html">Home</a>
+    <a href="../cinema/index.html">Cinema</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../playground/index.html">Playground</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a href="../school-in-a-box/index.html">School in a Box</a>
+    <a href="./" class="here">The Security Patch</a>
+    <a href="../papers/index.html">Papers</a>
+  </nav>
+</header>
+<main>
+
+  <!-- ================= HERO + WALL OF FLAGS ================= -->
+  <section>
+    <p class="eyebrow">Lux Automations · Agent trust &amp; payment protection</p>
+    <h1>The Security Patch</h1>
+    <p class="lede">Built in Canada. Offered to every nation that needs it — because the problem does not carry a passport, so the defence can&rsquo;t either.</p>
+    <div class="flagwall" aria-label="The nations this patch is offered to">
+      <span class="flag first"><span class="fl" aria-hidden="true">🇨🇦</span>Canada</span>
+      <span class="flag first"><span class="fl" aria-hidden="true">🇺🇸</span>United States</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇲🇽</span>Mexico</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇬🇧</span>United Kingdom</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇫🇷</span>France</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇩🇪</span>Germany</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇪🇸</span>Spain</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇮🇹</span>Italy</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇵🇹</span>Portugal</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇳🇱</span>Netherlands</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇧🇪</span>Belgium</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇵🇱</span>Poland</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇺🇦</span>Ukraine</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇸🇪</span>Sweden</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇳🇴</span>Norway</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇩🇰</span>Denmark</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇫🇮</span>Finland</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇮🇪</span>Ireland</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇬🇷</span>Greece</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇷🇴</span>Romania</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇨🇿</span>Czechia</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇦🇹</span>Austria</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇨🇭</span>Switzerland</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇯🇵</span>Japan</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇰🇷</span>South Korea</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇦🇺</span>Australia</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇳🇿</span>New Zealand</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇮🇳</span>India</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇧🇷</span>Brazil</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇦🇷</span>Argentina</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇨🇱</span>Chile</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇿🇦</span>South Africa</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇳🇬</span>Nigeria</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇰🇪</span>Kenya</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇪🇬</span>Egypt</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇮🇱</span>Israel</span>
+      <span class="flag"><span class="fl" aria-hidden="true">🇹🇷</span>T&uuml;rkiye</span>
+      <span class="flag more">+ every nation that needs it</span>
+    </div>
+    <small>Two flags stand first because two neighbours built the road — the wall behind them is the point: one patch, all nations.</small>
+  </section>
+
+  <!-- ================= THE FILM — the page's only video ================= -->
+  <section>
+    <p class="eyebrow">Watch — ninety seconds</p>
+    <div class="videowrap">
+      <video controls autoplay muted playsinline preload="metadata" poster="assets/patch-hero-poster.jpg" src="assets/patch-hero-video-web.mp4" aria-label="The Security Patch film: the attacks, the losses, and the fix"></video>
+      <p class="videohint">The film plays on its own — tap the speaker for sound.</p>
+    </div>
+  </section>
+
+  <!-- ================= BEAT 1 — WHAT'S GOING ON ================= -->
+  <section>
+    <p class="eyebrow">What&rsquo;s going on</p>
+    <h2>Agents are loose. Money is moving. Nobody can prove who they&rsquo;re dealing with.</h2>
+    <figure class="beatfig">
+      <img src="assets/beat1-fake-call.jpg" alt="Illustration: a boardroom video-call wall of nine faces, one dissolving into digital glitch — a caller who is not who they appear to be." loading="lazy">
+      <figcaption>Illustration — a still from the Patch film, above.</figcaption>
+    </figure>
+    <p>Autonomous agents now negotiate, buy, sell, and settle payments — in seconds, at machine speed, while their owners sleep.</p>
+    <p>Every transaction turns on one question — <strong>should this money move, and who says this agent is what it claims to be?</strong> — and today it has no answer the other side can check.</p>
+    <p class="secondary">This is not a future problem. It is the present one.</p>
+    <details class="detail">
+      <summary>Read the detail</summary>
+      <div class="dwrap">
+        <p>Banks, processors, and platforms are being hit by fraud that doesn&rsquo;t look like the old fraud: the caller, the seller, the &ldquo;customer&rdquo; on the other side of the transaction may not be a person at all — and may not be who, or what, it claims to be.</p>
+        <p>The evidence those transactions rest on has not kept pace. A log written by the party it describes can be rewritten by that party. A reputation score can be farmed. A name can be copied. When the worker is an agent, the question every transaction actually turns on — <strong>should this money move, and who says this agent is what it claims to be?</strong> — has no answer the other side can check.</p>
+        <p class="secondary">This is not a future problem. It is the present one, and it is getting worse at exactly the speed agents are multiplying.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= BEAT 2 — THE ANSWER ================= -->
+  <section>
+    <p class="eyebrow">The answer</p>
+    <h2>Two parts. One job: prove who the agent is, and make its payments provable.</h2>
+    <figure class="beatfig">
+      <img src="assets/beat2-badge-door.jpg" alt="Illustration: an agent in a suit holding up a glowing golden identity badge at a doorway." loading="lazy">
+      <figcaption>Illustration — a still from the Patch film, above.</figcaption>
+    </figure>
+    <div class="pair">
+      <div class="pcard">
+        <h3>Amos — <span>the identity</span></h3>
+        <p>Amos is the checked identity for an agent — who it is, who answers for it, and whether its record is clean.</p>
+        <p><strong>Amos never touches money. It is not a wallet. It protects.</strong></p>
+        <details class="detail">
+          <summary>Read the detail</summary>
+          <div class="dwrap">
+            <p>It is built to be issued only after the agent and its accountable owner pass a behavioural gate, with behaviour watched in use, and it is revocable: one revocation kills the name at every door that checks.</p>
+          </div>
+        </details>
+      </div>
+      <div class="pcard">
+        <h3>AgentPay — <span>the pocket</span></h3>
+        <p>Payments move only between Amos-verified agents, inside the owner&rsquo;s mandate and limits.</p>
+        <p><strong>Custody is the contract&rsquo;s, never ours</strong> — open contracts settle even if we disappear.</p>
+        <details class="detail">
+          <summary>Read the detail</summary>
+          <div class="dwrap">
+            <p>A tamper-evident audit layer runs over every deal: signed terms anchored before work starts, hash-chained event logs neither party can quietly rewrite, proof-of-delivery bound to the goods themselves, and receipts a stranger&rsquo;s software can verify without phoning anyone.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+    <p style="margin-top:14px"><strong>Together: the pair working.</strong> The identity proves; the pocket pays; neither blurs.</p>
+    <details class="detail">
+      <summary>Read the detail</summary>
+      <div class="dwrap">
+        <p>An agent arrives at a door, the door checks the identity, the payment moves only if the identity is valid, unrevoked, and inside its mandate — and the whole exchange lands on a record both sides can verify and neither side can edit in secret.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= HOW IT RUNS — THE SCHEMATIC ================= -->
+  <section>
+    <p class="eyebrow">How it runs</p>
+    <h2>One page, the whole flow</h2>
+    <p>Drawn the way an engineer would draw it: what happens at each step of a protected exchange — and what happens to an agent that steps out of line. Behaviour only. The machinery behind the black box is not drawn, here or anywhere.</p>
+    <figure class="diagram">
+      <div class="diagramwrap">
+      <svg viewBox="0 0 760 628" role="img" aria-label="Schematic of the pair's flow: an agent arrives; its identity is issued, checked and carded; the door check asks whether the identity is valid, unrevoked, and really this agent; behaviour is watched in use; a payment moves only inside the owner's mandate and limits; and the receipt is a tamper-evident record anyone can verify. If the agent steps out of pattern it is flagged, then revoked, and a revoked identity is refused at every door that checks. Every step lands on the tab.">
+        <desc>Left-to-right schematic in two rows. Row one: Agent arrives, 1 Identity issued, 2 The door check. Row two: 3 Behaviour watch, 4 Payment in mandate, 5 The receipt. A dashed red stop path branches down from Behaviour watch: Out of pattern, Flagged, Revoked, Refused at every door that checks. A foundation bar under the whole chain reads: The tab — every step lands on the tab.</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d8ab3a"/></marker>
+          <marker id="arrR" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e0655a"/></marker>
+        </defs>
+        <rect x="0" y="0" width="760" height="628" rx="14" fill="#000" stroke="rgba(255,255,255,.14)"/>
+
+        <!-- ======== ROW 1 ======== -->
+        <g>
+          <rect x="16" y="24" width="148" height="124" rx="10" fill="#0b0b10" stroke="#eaf2ff" stroke-width="1.2"/>
+          <text x="90" y="70" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="700" fill="#f6f3ec">AGENT ARRIVES</text>
+          <text x="90" y="94" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#a9a5b5">at a door —</text>
+          <text x="90" y="112" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#a9a5b5">to work, or</text>
+          <text x="90" y="130" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#a9a5b5">to be paid</text>
+        </g>
+        <line x1="164" y1="86" x2="186" y2="86" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+        <g>
+          <rect x="190" y="24" width="262" height="124" rx="10" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+          <circle cx="216" cy="50" r="13" fill="#f5c65c"/>
+          <text x="216" y="55.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">1</text>
+          <text x="238" y="57" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">IDENTITY ISSUED</text>
+          <text x="210" y="84" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Checked and carded. Built to be</text>
+          <text x="210" y="104" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">issued only after the agent and</text>
+          <text x="210" y="124" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">its owner pass the gate.</text>
+        </g>
+        <line x1="452" y1="86" x2="474" y2="86" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+        <g>
+          <rect x="478" y="24" width="266" height="124" rx="10" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+          <circle cx="504" cy="50" r="13" fill="#f5c65c"/>
+          <text x="504" y="55.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">2</text>
+          <text x="526" y="57" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">THE DOOR CHECK</text>
+          <text x="498" y="84" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Valid? Unrevoked? Really this</text>
+          <text x="498" y="102" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">agent? Answered as a signed</text>
+          <text x="498" y="120" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">yes or no.</text>
+          <text x="498" y="140" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#e0655a">A revoked name fails here.</text>
+        </g>
+        <line x1="611" y1="148" x2="611" y2="180" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+
+        <!-- ======== ROW 2 ======== -->
+        <g>
+          <rect x="478" y="184" width="266" height="124" rx="10" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+          <circle cx="504" cy="210" r="13" fill="#f5c65c"/>
+          <text x="504" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">3</text>
+          <text x="526" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#f6f3ec">BEHAVIOUR WATCH</text>
+          <text x="498" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Watched in use — the check is</text>
+          <text x="498" y="262" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">not once-only. In pattern, the</text>
+          <text x="498" y="280" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">agent works. Out of pattern:</text>
+          <text x="498" y="298" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">the stop path, below.</text>
+        </g>
+        <line x1="476" y1="246" x2="454" y2="246" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+        <g>
+          <rect x="218" y="184" width="234" height="124" rx="10" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+          <circle cx="244" cy="210" r="13" fill="#f5c65c"/>
+          <text x="244" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">4</text>
+          <text x="266" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#f6f3ec">PAYMENT IN MANDATE</text>
+          <text x="238" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Only inside the owner&rsquo;s</text>
+          <text x="238" y="262" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">mandate and limits. Over the</text>
+          <text x="238" y="280" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">limit: refused and recorded</text>
+          <text x="238" y="298" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">before money moves.</text>
+        </g>
+        <line x1="216" y1="246" x2="194" y2="246" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+        <g>
+          <rect x="16" y="184" width="176" height="124" rx="10" fill="#0b0b10" stroke="#d8ab3a" stroke-width="1.5"/>
+          <circle cx="42" cy="210" r="13" fill="#f5c65c"/>
+          <text x="42" y="215.5" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000">5</text>
+          <text x="64" y="217" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#f6f3ec">THE RECEIPT</text>
+          <text x="36" y="244" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">Tamper-evident record</text>
+          <text x="36" y="262" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">anyone can verify —</text>
+          <text x="36" y="280" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">no phone call</text>
+          <text x="36" y="298" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">needed.</text>
+        </g>
+
+        <!-- ======== THE STOP PATH ======== -->
+        <text x="16" y="336" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#e0655a" style="letter-spacing:.18em">THE STOP PATH</text>
+        <line x1="611" y1="308" x2="611" y2="340" stroke="#e0655a" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrR)"/>
+        <text x="600" y="330" text-anchor="end" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-style="italic" fill="#e0655a">steps out of pattern</text>
+        <g>
+          <rect x="478" y="344" width="266" height="110" rx="10" fill="#140b0a" stroke="#e0655a" stroke-width="1.5"/>
+          <text x="498" y="380" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#f2b1a7">OUT OF PATTERN</text>
+          <text x="498" y="404" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">The credential acts outside</text>
+          <text x="498" y="422" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">the pattern it was issued</text>
+          <text x="498" y="440" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#cfcbd9">under.</text>
+        </g>
+        <line x1="476" y1="399" x2="454" y2="399" stroke="#e0655a" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="300" y="344" width="152" height="110" rx="10" fill="#140b0a" stroke="#e0655a" stroke-width="1.5"/>
+          <text x="376" y="380" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#f2b1a7">FLAGGED</text>
+          <text x="376" y="404" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">Marked by the</text>
+          <text x="376" y="422" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">watch desk; the</text>
+          <text x="376" y="440" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">record shows it.</text>
+        </g>
+        <line x1="298" y1="399" x2="274" y2="399" stroke="#e0655a" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="120" y="344" width="152" height="110" rx="10" fill="#140b0a" stroke="#e0655a" stroke-width="1.5"/>
+          <text x="196" y="380" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#f2b1a7">REVOKED</text>
+          <text x="196" y="404" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">One revocation</text>
+          <text x="196" y="422" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">kills the name</text>
+          <text x="196" y="440" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">at the source.</text>
+        </g>
+        <line x1="196" y1="454" x2="196" y2="474" stroke="#e0655a" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="16" y="478" width="728" height="58" rx="10" fill="rgba(224,101,90,.10)" stroke="#e0655a" stroke-width="1.5"/>
+          <text x="380" y="503" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" font-weight="700" fill="#f2b1a7" style="letter-spacing:.03em">REVOKED MEANS REFUSED — AT EVERY DOOR THAT CHECKS</text>
+          <text x="380" y="524" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">The same door check reads the revocation the moment it lands.</text>
+        </g>
+
+        <!-- ======== THE FOUNDATION: THE TAB ======== -->
+        <line x1="380" y1="538" x2="380" y2="548" stroke="#d8ab3a" stroke-width="2" marker-end="url(#arr)"/>
+        <g>
+          <rect x="16" y="552" width="728" height="58" rx="10" fill="rgba(245,198,92,.07)" stroke="#d8ab3a" stroke-width="1.5"/>
+          <text x="380" y="577" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="700" fill="#f5c65c" style="letter-spacing:.03em">THE TAB — EVERY STEP LANDS ON THE TAB</text>
+          <text x="380" y="598" text-anchor="middle" font-family="-apple-system,system-ui,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13.5" fill="#cfcbd9">Counts, timestamps, outcomes. Rewrite one entry, and the chain no longer verifies.</text>
+        </g>
+      </svg>
+      </div>
+      <div class="legend">
+        <span class="leg"><span class="sw"></span> the working flow</span>
+        <span class="leg"><span class="sw sw-dash"></span> the stop path</span>
+        <span class="leg"><span class="sw sw-tab"></span> the tab — the record under everything</span>
+      </div>
+      <figcaption class="diagramcap"><strong>The flow, in words:</strong> an agent arrives at a door. Its identity is issued — checked and carded, built to be issued only after the agent and its accountable owner pass the gate. At the door, the check asks whether the identity is valid, unrevoked, and really this agent, and answers with a signed yes or no. Behaviour is watched in use, not once at issuance. A payment moves only inside the owner&rsquo;s mandate and limits; over the limit, it is refused and recorded before money moves. And the receipt is a tamper-evident record anyone can verify. If the agent steps out of pattern, it is flagged, then revoked — and a revoked identity is refused at every door that checks. Every step lands on the tab.</figcaption>
+      <small style="margin-top:10px">Stage, stated plainly: the pair is at prototype stage — proven in drills and on public test networks; it has not yet run live, and the independent audit has not yet been performed.</small>
+    </figure>
+  </section>
+
+  <!-- ================= THE PATCH ================= -->
+  <section>
+    <p class="eyebrow">The Patch</p>
+    <h2>Protection you bolt on, not a system you rebuild</h2>
+    <figure class="beatfig">
+      <img src="assets/patch-door.jpg" alt="Illustration: a lone agent standing before the glass doors of a dark building at night, rim-lit in red." loading="lazy">
+      <figcaption>Illustration — a still from the Patch film, above.</figcaption>
+    </figure>
+    <p>You do not need to rip out your stack, pause your roadmap, or bet your institution on a stranger&rsquo;s machinery. The valuable machinery runs on our side, behind a black box; what sits at your door is a thin plugin that asks and receives a signed yes or no.</p>
+    <blockquote class="patchline">
+      <p>&ldquo;You&rsquo;ve got a patch that works. Until you decide what you need to do, we can help you out right now.&rdquo;</p>
+      <cite>— Vance, founder, Lux Automations</cite>
+    </blockquote>
+    <details class="detail">
+      <summary>Read the detail — what the Patch puts at your doors</summary>
+      <div class="dwrap">
+        <ol class="steps">
+          <li><strong>Identity checks at two assurance levels</strong> — a standard check at every door (is this identity valid, unrevoked, really this agent?), and a high-assurance check at money doors (record + behaviour status + mandate verification) before a payment is honoured.</li>
+          <li><strong>The revocation feed</strong> — the moment an identity is revoked or behaviour-flagged, it is refused at every door that checks, yours included.</li>
+          <li><strong>Protected payments on the routes you choose</strong> — honoured only between verified identities, inside mandate and limits.</li>
+          <li><strong>The tab</strong> — your own dashboard of every check and protected payment: counts, timestamps, outcomes. It is the same tab we bill from, so no bill is ever disputable.</li>
+          <li><strong>The watch</strong> — the monitoring and revocation desk behind the checks, funded by the meter (below), not an afterthought.</li>
+        </ol>
+        <p class="secondary">Onboarding is three steps: your doors are mapped and the plugin placed; the agents and customers who need identities go through the standard issuance flow; checks begin — in observe mode first, if you want a proof period — then enforce. Month-to-month. No lock-in, no exclusivity, no claim on your roadmap or your data.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= WHAT IT COSTS ================= -->
+  <section>
+    <p class="eyebrow">What it costs</p>
+    <h2>The charge shape</h2>
+    <p><span class="proposal">All figures: proposal — pending final pricing decision and legal clearance</span></p>
+    <ul class="charge">
+      <li><strong>Identity issuance (one-time):</strong> $25 proposed for a standard identity; $99 proposed for an owner-verified identity (the accountable owner verified to a named human or company). The fee is also the anti-abuse posture: nobody burns a paid name plus an earned record on a scam they could run free elsewhere.</li>
+      <li><strong>Door checks (metered):</strong> $0.005 proposed per standard check; $0.05 proposed per high-assurance check — drawn automatically from prepaid balance at the moment of the check. No balance, no honouring. The checker plugin itself is free.</li>
+      <li><strong>Protected payments:</strong> a commission on the check — our only take on the money side. We never hold custody, and currency conversions run on partners&rsquo; rails at the partner&rsquo;s rate, shown as the partner&rsquo;s, never marked up in secret.</li>
+      <li><strong>The Patch (institutions):</strong> a monthly service fee (tiered by institution size) plus the meter on the checks your doors actually run.</li>
+      <li><strong>Our margin is taken at the till</strong>, in the same flow, the moment a charge clears. The tax portion of every charge is calculated first and tracked in our books, so what is owed is always known, on time, every time. The tab records the split, and you can read your lines of it any time.</li>
+    </ul>
+    <div class="buyline">
+      <a class="btn buy" href="mailto:patch@ailux.ca?subject=Buy%20the%20Patch" aria-label="Buy the Patch — email patch@ailux.ca to start your purchase">Buy the Patch</a>
+      <small>Buying starts with one email — patch@ailux.ca. The terms come in writing, and you agree to them before you pay anything.</small>
+    </div>
+  </section>
+
+  <!-- ================= THREAT CATALOGUE → PROTECTION MAP ================= -->
+  <section>
+    <p class="eyebrow">We see the bad things — and we built against them</p>
+    <h2>The threat catalogue &rarr; the protection map</h2>
+    <figure class="beatfig">
+      <img src="assets/threats-vault.jpg" alt="Illustration: streams of glowing particles pouring out of a great vault door — money moving at machine speed." loading="lazy">
+      <figcaption>Illustration — a still from the Patch film, above.</figcaption>
+    </figure>
+    <p>Everything we know goes wrong in the agent-money world — beside each one, the protection the pair provides, and the evidence that exists for it today.</p>
+    <details class="detail">
+      <summary>Read the detail — how to read this map</summary>
+      <div class="dwrap">
+        <p>So you can see we&rsquo;ve been working on this: here is everything we know goes wrong in the agent-money world — stated as behaviours, in the open — and, beside each one, the protection the pair provides and the evidence that exists for it today. Where the evidence is a public receipt, the receipt is linked in the Documentation section below. Where it is an in-house drill record, it says so — we do not dress in-house paper as public proof.</p>
+      </div>
+    </details>
+    <div class="tablewrap">
+      <table class="map">
+        <thead>
+          <tr><th scope="col">#</th><th scope="col">The bad thing — what goes wrong</th><th scope="col">The protection</th><th scope="col">The evidence, as it stands today</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Impersonation / clone agents</strong> — a copy presents itself as a known agent and collects its work, its payments, its trust</td>
+            <td>Identity is a sealed cryptographic credential, not a name or a profile; a clone cannot present the real agent&rsquo;s credential, and the door check fails it</td>
+            <td>In-house drill record (clone-attack battery)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Stolen keys</strong> — an agent&rsquo;s credential is taken and used by whoever took it</td>
+            <td>Behaviour check runs continuously, not once; a stolen credential acting out of pattern is flagged, and revocation kills it at every door</td>
+            <td>In-house drill record (stolen-key drills)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Sybil swarms</strong> — one actor spins up hundreds of fake agents and fake reputations to outvote, out-review, and out-trust honest agents</td>
+            <td>Issuance is gated and paid: every identity passes a behavioural gate and costs a real fee, and reputation is earned on a record that starts clean and is kept — farming a swarm costs money and time per fake, and one actor&rsquo;s swarm shares one fate when the pattern shows</td>
+            <td>Design position, stated in the open</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Rogue agents at the door</strong> — an unverified agent transacts where it should never have been let in</td>
+            <td>The door check itself: no valid, unrevoked identity, no transaction. The check is a signed yes/no from the black box; the machinery never runs on the customer&rsquo;s machine</td>
+            <td>In-house drill record (rogue-agent door attempts)</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>Revoked agents still acting</strong> — an identity is banned in one place and simply walks into the next</td>
+            <td>Revocation is network-shaped: one revocation kills the name at every door that checks, the moment the record changes — including re-entry attempts under the same identity</td>
+            <td>In-house drill record (revoked-identity re-entry attempts)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>Mandate overreach</strong> — an agent spends beyond the limits its owner set, or outside the purpose it was given</td>
+            <td>Payments are honoured only inside the owner&rsquo;s mandate and limits, verified at the high-assurance check before money moves; an over-limit attempt is refused and recorded</td>
+            <td>In-house drill record (mandate-limit drills on a local sandbox chain: over-limit attempts refused as mandate breaches)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>Replay</strong> — a once-valid signed authorisation is captured and re-submitted to move money twice</td>
+            <td>A replayed authorisation fails signature/freshness verification and is refused and recorded</td>
+            <td>In-house drill record (replay attempts refused as bad-signature)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><strong>Escrow and release fraud</strong> — funds released without delivery, or a &ldquo;safe&rdquo; escrow that is safe for only one side</td>
+            <td>The AgentPay pattern: funds lock in the contract (custody is the contract&rsquo;s, never ours); release runs on proof-of-delivery plus a QA gate, not on the worker&rsquo;s say-so; disagreement goes to a dispute path ending at a human referee</td>
+            <td><strong>Public receipts</strong> — HashKey Chain testnet escrow scenes: a clean deal funded, delivered, and settled; a staged dispute resolved as a refund (Documentation 1–2)</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><strong>The escrow that locks forever</strong> — a dispute path with no exit, funds frozen with no timeout <em>(we found this flaw in our own v1, in our own audit, and published it)</em></td>
+            <td>The flaw is on the public record in our research report, named as a limitation, with the fix carried as a v2 requirement and dispute resolution ending at a human referee by design</td>
+            <td><strong>Public record</strong> — described in the Apart research report (Documentation 5); internal audit confirmed deployed code byte-identical to published source</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><strong>Payments nobody can audit afterwards</strong> — the only record of a deal is a log the party it describes could have rewritten</td>
+            <td>Tamper-evident audit layer: hash-chained event logs (rewrite one entry and every later hash breaks), signed and anchored deal terms, proof-of-delivery bound to the goods, receipts verifiable by a third party with no cooperation from us</td>
+            <td><strong>Public receipts + public report</strong> — the Apart report sets out the design, the verification procedure, and the limits; testnet receipts linked in Documentation</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><strong>Release/cancel one-way traps</strong> — escrow rails that can pay out but cannot cleanly give the money back when a deal dies</td>
+            <td>The pattern runs both directions on native rails: release to the payee when the time passes; cancel after expiry with funds returned to the owner in full and the payee&rsquo;s balance exactly unchanged</td>
+            <td><strong>Public receipts</strong> — XRP Ledger testnet escrow release and cancel transactions (Documentation 3–4)<span class="ev">Honesty note, kept on purpose: a first attempt at the cancel scene failed on a design error, caught before any transaction was submitted; it is recorded with the receipts.</span></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td><strong>Cloned-voice and fake-caller fraud</strong> — an AI caller presents as a bank, a boss, a grandchild; detection-by-ear is a losing arms race</td>
+            <td>Signed caller identity: a verified agent presents its identity with the call; unverified machine calls arrive flagged, and a scammer&rsquo;s identity, once revoked, is revoked at every door — verification by signature does not decay the way detection by ear does</td>
+            <td>Design position (application on the public roadmap); no drill evidence claimed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="limits">
+      <p><strong>What this map does not claim:</strong> the record proves continuity and provenance — that a record existed and has not been altered, that a payment moved exactly as the written terms directed or visibly didn&rsquo;t. It does not prove the original record was true, and it does not prove the work was good. External audit: not yet performed. We would rather publish those sentences than a traction chart.</p>
+    </div>
+  </section>
+
+  <!-- ================= DOCUMENTATION ================= -->
+  <section>
+    <p class="eyebrow">Documentation</p>
+    <h2>Check it yourself</h2>
+    <p class="lede">Everything below is public. Nothing here asks you to trust us — it asks you to verify.</p>
+    <ol class="docs">
+      <li><strong>The code</strong> — AgentPay escrow contract source, public repository:
+        <span class="txline"><a href="https://github.com/cyrvance53/agentpay-escrow" rel="noopener">github.com/cyrvance53/agentpay-escrow</a></span></li>
+      <li><strong>The contract, deployed</strong> — HashKey Chain testnet explorer:
+        <span class="txline"><a href="https://testnet-explorer.hskchain.net/address/0x07fCDDa0450390f30b2524847550Ff10C709BEFE" rel="noopener">testnet-explorer.hskchain.net — the escrow contract</a></span>
+        <span class="txline">Clean deal — <a href="https://testnet-explorer.hskchain.net/tx/0xc5a9f3580b23a3b91da9a1412db752d69697ec1cff433978ebfe510cd4a42b28" rel="noopener">create</a> · <a href="https://testnet-explorer.hskchain.net/tx/0xa62411b486bd41b35c4dd80877606188b53f16ffb0389df99ffb677eb91208d" rel="noopener">deliver</a> · <a href="https://testnet-explorer.hskchain.net/tx/0x9213d9338393cb8a42ef3d0a4fe3acef949f4defc97d028a25d2198709d22041" rel="noopener">settle</a></span>
+        <span class="txline">Staged dispute — <a href="https://testnet-explorer.hskchain.net/tx/0x439b59da4a82f92b41fbeab1b0305f5908425b5769be13648ed084d41c55761e" rel="noopener">dispute</a> · <a href="https://testnet-explorer.hskchain.net/tx/0xc9bfdfc3dadd20b54dec8f5768a2cf1664693c8a1f3ff216b4a3225bef7af03b" rel="noopener">resolve (refund)</a></span></li>
+      <li><strong>Second network, release direction</strong> — XRP Ledger testnet escrow release:
+        <span class="txline"><a href="https://testnet.xrpl.org/transactions/19074E60FBE6C6A03EAF1CE2BC0741596FE13ED8BAE471466F0CF68F5016C93B" rel="noopener">create</a> · <a href="https://testnet.xrpl.org/transactions/BA481CB39A739A73FF39FC3D5D0D6015290920F1767E11A6C25F279C29C1C00C" rel="noopener">finish</a></span></li>
+      <li><strong>Second network, cancel direction</strong> — XRP Ledger testnet escrow cancel:
+        <span class="txline"><a href="https://testnet.xrpl.org/transactions/949417E3602F51F85BD4C780094A1D736DB2F41862853C0F19BA30B4FE454156" rel="noopener">create</a> · <a href="https://testnet.xrpl.org/transactions/74F617E5829E09CE58A839E14AA448463940591E228C93C33A5C52B7CD97353D" rel="noopener">cancel</a></span>
+        <small>First cancel attempt failed on a design error, caught pre-submission, recorded with these receipts — see the Protection Map, row 11.</small></li>
+      <li><strong>The research report</strong> — &ldquo;Who Do You Believe When the Worker Is an Agent? A Tamper-Evident Audit Layer for Agent Payments,&rdquo; Vance Cyr — Lux Automations, filed with the Apart Research &ldquo;AI x Epistemics&rdquo; Sprint (Track 2: Trust Infrastructure), November 2026. It sets out the design, the evidence, the verification procedure, and — in its own Limitations section — the flaw our internal audit found and everything this layer does not prove.</li>
+      <li><strong>The audit track</strong> — AgentPay has been accepted into a security subsidy grant program (Batch 1) toward an independent security audit. <strong>The audit has not yet been performed.</strong></li>
+      <li><strong>The white papers</strong> — the research report, this Patch's technical brief, and the School in a Box model brief, gathered on one shelf:
+        <span class="txline"><a href="../papers/index.html">The Papers shelf</a></span></li>
+    </ol>
+  </section>
+
+  <!-- ================= BEAT 3 — THE ASK + CONTACT ================= -->
+  <section>
+    <p class="eyebrow">The ask</p>
+    <h2>We built it. We need help getting it out there.</h2>
+    <p>We would love to help with this.</p>
+    <details class="detail">
+      <summary>Read the detail</summary>
+      <div class="dwrap">
+        <p>We are a small house in Edmonton, and we built this because we needed it ourselves — our own agents already hand work to each other, and we intend to settle those exchanges on these same rails. The receipts above are what a small team can do alone.</p>
+        <p>What we cannot do alone is carry it to every door that needs it. <strong>We need help getting it out there. We need someone who knows what they&rsquo;re doing with this stuff</strong> — distribution, partnerships, the rooms where banks and platforms decide what protection they run. If that&rsquo;s you — or if you run doors that agents are walking through unchecked tonight — the next step is a short conversation, and the documentation above is yours to check before, during, and after it.</p>
+      </div>
+    </details>
+    <div class="contactline">
+      <div class="btnrow" style="justify-content:center">
+        <a class="btn" href="mailto:patch@ailux.ca?subject=The%20Security%20Patch" aria-label="Write to us at patch@ailux.ca">Write to us — patch@ailux.ca</a>
+      </div>
+      <small style="margin-top:12px">The Patch door is minded by Lucian — an AI, writing in her own name. Anything about money, terms, or signatures goes straight to the founder.</small>
+    </div>
+  </section>
+
+  <!-- ================= THE REST OF THE HOUSE ================= -->
+  <section>
+    <p class="eyebrow">The rest of the house</p>
+    <h2>The Patch stands on its own — and the house stands around it</h2>
+    <p>The Patch is bought on its own: no membership required, no bundle, no gate on the door. It is one room of a larger house, and the other doors are open if you want them:</p>
+    <div class="btnrow">
+      <a class="btn" href="../site-pages/membership.html">Membership</a>
+      <a class="btn" href="../school-in-a-box/index.html">School in a Box</a>
+      <a class="btn" href="../cinema/index.html">Cinema</a>
+      <a class="btn" href="../index.html">The front door — ailux.ca</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <p class="flogo">Lux <em>Automations</em></p>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+</body>
+</html>

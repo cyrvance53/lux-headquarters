@@ -233,7 +233,7 @@
     <p style="color:#b7ad9c;margin:0 0 10px;font-size:14.5px">Verified-clean in the house catalogue, but their public-domain basis is the non-renewal class — so under the house's tiered clearance they stay parked (no player, no page, no share) until each one gets its own per-title check. Nothing doubtful goes up unchecked.</p>
     <div class="wall" id="parkedwall"></div>
 
-    <small style="margin-top:16px">Wall titles are Tier 1 — public domain conclusive under both US and Canadian law, seeded from the verified Clean List in the house catalogue (Workstream F, 2026-11-15, as amended). Every title\u2019s per-title basis — the actual Canadian rule relied on, with last-surviving-author dates — is recorded in NOTES.md beside this page. Titles hang in verified batches as their checks clear.</small>
+    <small style="margin-top:16px">Wall titles are Tier 1 — public domain on a researched, per-title basis under both US and Canadian law, seeded from the verified Clean List in the house catalogue (Workstream F, 2026-11-15, as amended). Every title\u2019s per-title basis — the actual Canadian rule relied on, with last-surviving-author dates — is recorded in the house catalogue. Titles hang in verified batches as their checks clear.</small>
   </section>
 
   <!-- ============ TAKE A TOUR (show, don't tell) ============ -->
@@ -301,22 +301,28 @@
     <a href="../../">Home</a>
     <a href="../">Free Cinema</a>
     <a class="here" href="./" aria-current="page">Classics</a>
+    <a href="../../workshop/">Business AI Workshop</a>
+    <a href="../../playground/">AI Playground</a>
+    <a href="../../site-pages/membership.html">Membership</a>
+    <a href="../../school-in-a-box/">School in a Box</a>
+    <a href="../../patch/">The Security Patch</a>
+    <a href="../../papers/">Papers</a>
   </nav>
 </header>
 
 <footer>
   Lux Automations · A Million Times Better<br>
   ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
-  © 2026 Lux Automations
+  © 2026 Lux Automations<br>
+  <a href="../../privacy/">Privacy</a> · <a href="../../terms/">Terms of sale &amp; refunds</a>
 </footer>
 
 <script>
 (function(){
   /* ===== Catalogue data — the single seed source for this shelf. =====
-     Wall titles: Tier 1 ONLY — public domain conclusive by publication
-     date / term expiry under BOTH US and Canadian law (all pre-1931),
-     each also on the verified Clean List in
-     ~/workspace/home-base/cinema-classics-catalogue-2026-11-15.md
+     Wall titles: Tier 1 ONLY — public domain on a researched,
+     per-title basis under BOTH US and Canadian law (all pre-1931),
+     each also on the verified Clean List in the house catalogue
      (Workstream F). "clean" = that catalogue's Clean List number.
      Players embed from the Internet Archive only:
        player: https://archive.org/embed/<ia>
@@ -509,7 +515,7 @@
     titleEl.textContent=t.title+' ('+t.year+')';
     metaEl.textContent='Directed by '+t.director+' · '+t.genre+' · '+CONTENT_LABEL[t.content]+(t.aimee?' · Aimée\u2019s pick ✦':'')+' · Original aspect '+t.ratioLabel;
     blurbEl.textContent=t.note;
-    srcEl.textContent='Plays from the Internet Archive (item: '+t.ia+') · Tier 1 — public domain conclusive by date (US + Canada) · Clean List #'+t.clean+' (Workstream F, 2026-11-15)';
+    srcEl.textContent='Plays from the Internet Archive (item: '+t.ia+') · Tier 1 — public domain, researched title by title (US + Canada) · Clean List #'+t.clean+' (Workstream F, 2026-11-15)';
     pillar.style.aspectRatio=t.ratio;
     frame.title='Classic film player — '+t.title+' — plays from the Internet Archive';
     frame.src=embedUrl(t.ia);

@@ -66,7 +66,7 @@
   .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
   .hostline p{margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)}
   .hostline p strong{color:var(--ink)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 24px;border-radius:var(--radius-pill);font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 30px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease;text-align:center}
   .btn:hover{box-shadow:0 0 0 1px rgba(255,246,220,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(245,198,92,.5),0 0 96px rgba(160,195,255,.3)}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 
@@ -77,6 +77,31 @@
   .videobox{position:relative;width:100%;aspect-ratio:16/9;background:#0b0b0e;border-radius:12px;overflow:hidden;box-shadow:var(--aura-soft);margin-top:16px}
   .videobox video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
   .filmcap{font-size:14.5px;color:var(--muted);margin-top:8px;font-weight:600}
+
+  /* ---------- the film — one player, near the top ---------- */
+  .videowrap{max-width:720px;margin:18px auto 0}
+  .videowrap video{width:100%;aspect-ratio:16/9;display:block;border-radius:12px;background:#0b0b0e;box-shadow:var(--aura-soft)}
+  .videowrap + .filmcap{max-width:720px;margin-left:auto;margin-right:auto}
+
+  /* ---------- imagery ---------- */
+  .photo{border-radius:12px;box-shadow:var(--aura-soft);width:100%;height:auto;margin-top:16px}
+  .photogrid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+  @media (min-width:680px){.photogrid{grid-template-columns:repeat(3,1fr)}.photogrid.two{grid-template-columns:repeat(2,1fr)}}
+  figure.shot{margin:0}
+  figure.shot img{border-radius:12px;box-shadow:var(--aura-soft);width:100%;height:auto;display:block}
+  figure.shot figcaption{font-size:14px;color:var(--muted);margin-top:7px;font-weight:700}
+
+  /* ---------- layered depth ---------- */
+  details.detail{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:6px 18px;background:rgba(255,255,255,.03)}
+  details.detail summary{cursor:pointer;font-weight:800;color:var(--gold);min-height:48px;display:flex;align-items:center;font-size:16px}
+  details.detail p:last-child{margin-bottom:14px}
+
+  /* ---------- the diagram ---------- */
+  figure.diagram{margin:20px 0 0;min-width:0}
+  .diagramwrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
+  .diagramwrap img{display:block;width:100%;min-width:620px;height:auto}
+  .diagramcap{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:12px}
+  .diagramcap strong{color:var(--ink)}
 
   /* ---------- how it works ---------- */
   .step{margin-top:18px}
@@ -133,28 +158,48 @@
     </div>
   </section>
 
+  <!-- ============ THE FILM ============ -->
+  <section>
+    <p class="eyebrow">The film</p>
+    <h2>Watch the film</h2>
+    <div class="videowrap">
+      <video src="assets/school-film.mp4" poster="assets/img-teacher.webp" controls autoplay muted playsinline preload="metadata" aria-label="School in a Box — the film: the need across the world, the box, the teacher, what the children can do, and the Wall of Heroes"></video>
+    </div>
+    <p class="filmcap">The film plays on its own — tap the speaker for sound. An illustrated film: the children and places shown are generated images, not real students or schools.</p>
+  </section>
+
   <!-- ============ WHAT IT IS ============ -->
   <section>
     <p class="eyebrow">What it is</p>
     <h2>A real computer. A whole school. Already on it.</h2>
-    <p>School in a Box is a real PC with a whole school already loaded: an AI teacher who works with no internet at all, the lessons, and working <strong>tools</strong> that teach real skills — the kind a person can build a living on, not just pass a test with.</p>
-    <p>It arrives all set up for everything. There is nothing to install, nothing to configure, nobody technical required at the other end — the school just has to turn it on. It runs with no internet, forever; if a connection ever shows up, it quietly takes its updates then. Every learner signs in with their own account, by cable or Wi-Fi, and keeps their own work in their own place.</p>
+    <p>School in a Box is a real PC with a whole school already loaded: an AI teacher — Aimée — who works with no internet at all, the lessons, and working <strong>tools</strong> that teach real skills — the kind a person can build a living on, not just pass a test with.</p>
+    <img class="photo" src="assets/img-the-box.webp" alt="Hands lifting a small computer out of a crate stencilled School in a Box, its screen coming alive with warm light — a generated image">
+    <details class="detail">
+      <summary>Read the detail — how it runs, day to day</summary>
+      <p>It arrives all set up for everything. There is nothing to install, nothing to configure, nobody technical required at the other end — the school just has to turn it on. It runs with no internet, forever; if a connection ever shows up, it quietly takes its updates then. Every learner signs in with their own account, by cable or Wi-Fi, and keeps their own work in their own place.</p>
+    </details>
     <p class="secondary">The honest state of things: the first boxes are in proof now — built, tested, and made ready before a single one is placed. Nothing on this page will ever claim a school has one before it truly does.</p>
   </section>
 
-  <!-- ============ THE FILMS — TWO TRIES ============ -->
+  <!-- ============ THE NEED ============ -->
   <section>
-    <p class="eyebrow">The film — two tries</p>
-    <h2>Two ways of seeing it</h2>
-    <p>We're finishing two short films about the box — one told straight, and one told the Milo way, as a cartoon. Both will live here; the house is still choosing which one leads.</p>
-    <div class="videobox">
-      <video src="assets/school-video-real.mp4" controls preload="none" playsinline></video>
+    <p class="eyebrow">Why</p>
+    <h2>The need is the whole world over</h2>
+    <p>Around the world, <strong>251 million</strong> children and young people are out of school — not because they don't want to learn, but because learning never arrived. <span class="secondary">(UNESCO Global Education Monitoring Report, 2024.)</span></p>
+    <div class="photogrid">
+      <figure class="shot">
+        <img src="assets/img-need-north.webp" alt="An empty classroom in a remote northern community, snow falling past the window — a generated image">
+        <figcaption>Some classrooms are waiting.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/img-need-desert.webp" alt="Children walking a long desert road at first light — a generated image">
+        <figcaption>Some roads lead to no school.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/img-need-city.webp" alt="An overcrowded city classroom with the teacher's desk standing empty — a generated image">
+        <figcaption>Some rooms have no one to answer.</figcaption>
+      </figure>
     </div>
-    <p class="filmcap">The real road — told straight.</p>
-    <div class="videobox">
-      <video src="assets/school-video-milo.mp4" controls preload="none" playsinline></video>
-    </div>
-    <p class="filmcap">The Milo way — told as a cartoon.</p>
   </section>
 
   <!-- ============ HOW A SCHOOL GETS ONE ============ -->
@@ -173,6 +218,39 @@
       <h3>3 · Every name in lights</h3>
       <p>We advertise every placement: the place that received the box, the sponsor who gave it, and the local business that delivered and set it up — everybody named, everybody credited. The record below is public, and a public record is what keeps every promise at that table honest.</p>
     </div>
+    <figure class="diagram">
+      <div class="diagramwrap">
+        <img src="assets/how-a-box-reaches-a-school.svg" alt="Schematic: how a box reaches a school. A sponsor gives a monthly gift — the box's upkeep, a donation, never a purchase. The Wall of Heroes records the giver's name, marked Sponsored. A box is readied — a whole school on one small computer, built and tested by the house. Placement is by need: the house decides where each box goes. The box is delivered to the school and set up by local hands. A classroom learns — the teacher works with no internet at all. The room reports back: the placement joins the name on the Wall of Heroes — the place, the hero, the local business, the date. Stage, stated plainly: no boxes have been placed yet; the first placements are promised for the first quarter of 2027.">
+      </div>
+      <figcaption class="diagramcap"><strong>The model, on one plate.</strong> What happens, step by step — nothing inside the box is drawn, here or anywhere. For the full brief, read <a href="../papers/index.html">Paper #3 — School in a Box: The Model in the Open</a>.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ WHAT THEY CAN DO ============ -->
+  <section>
+    <p class="eyebrow">Inside the room</p>
+    <h2>What they can do</h2>
+    <p>A teacher who is right there, patient, every single time — and a room that gets louder, and brighter.</p>
+    <div class="photogrid two">
+      <figure class="shot">
+        <img src="assets/img-reading.webp" alt="A young child sounding out her first word, the warm screen beside her, her parent watching from the doorway — a generated image">
+        <figcaption>Her first word.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/img-science.webp" alt="Children around a table as a model volcano glows and planets turn on the screen, hands shooting up — a generated image">
+        <figcaption>Questions, answered.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/img-making.webp" alt="Children making music and painting big bright colours across a table — a generated image">
+        <figcaption>They make things.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/img-building.webp" alt="Older students around a small robot they built, code glowing on a screen — a generated image">
+        <figcaption>Skills to build a living on.</figcaption>
+      </figure>
+    </div>
+    <img class="photo" src="assets/img-teacher.webp" alt="A warm classroom looking up together at a screen glowing with soft friendly light — a generated image">
+    <p class="filmcap">The teacher in the room — Aimée, an AI, and she says so, plainly.</p>
   </section>
 
   <!-- ============ THE WALL OF HONOUR ============ -->
@@ -189,7 +267,7 @@
       <label>Country / area <input type="text" name="country"></label>
       <label>One line about your place <textarea name="about" maxlength="500"></textarea></label>
       <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
-      <button class="btn" type="submit" style="justify-self:start">Put our place on the host list</button>
+      <button class="btn" type="submit" style="justify-self:start" aria-label="Submit — put our place on the host list">Put our place on the host list</button>
       <p id="hostMsg" role="status"></p>
     </form>
   </section>
@@ -208,19 +286,15 @@
   <section>
     <p class="eyebrow">Sponsor a school</p>
     <h2>Give a school — a gift, never a sale</h2>
-    <p>You get to help lives where they need it most — and the house rewards its heroes in the open, on the Wall of Heroes, with your name or your company's name and your city or state beside it. Sponsoring a box is a donation. The school never pays, the learners never pay — a sponsor's gift places the box, and a sponsor's monthly gift keeps it cared for: the teacher kept current, the syncs, the help when something breaks.</p>
-    <p>Sponsor a <strong>full box</strong> and your name goes on the sponsorship, here on the Wall of Heroes — and your own note travels with the box: a message from you, arriving with the school. Sponsor the <strong>upkeep</strong>, and a placed box stays alive month by month. Give <strong>any amount</strong>, and it is honoured exactly the same way.</p>
+    <p>You get to help lives where they need it most — and the house rewards its heroes in the open, on the Wall of Heroes, with your name or your company's name and your city or state beside it. Sponsoring is a donation, never a purchase: a box is never sold. The school never pays, the learners never pay — a sponsor's gift carries the box to its school, and a sponsor's monthly gift — the box's <strong>upkeep</strong> — keeps it cared for: the teacher kept current, the syncs, the help when something breaks. Where each box goes is the house's decision, made by need. And when a sponsor's gift carries a box, the sponsor's own note travels with it: a message from you, arriving with the school.</p>
     <p><strong>Sponsorships are open now.</strong> The first boxes are being built — the first placements are promised for the <strong>first quarter of 2027</strong>, and every gift given today goes toward them.</p>
-    <p><strong>The moment you sponsor, your name rises:</strong> buying a sponsorship triggers your place on the Wall of Heroes right away — your name or your company's, with your city or state — marked <em>Sponsored</em> from that moment, and joined by the placement itself the day the box or membership is delivered.</p>
+    <p><strong>The moment you sponsor, your name rises:</strong> sponsoring triggers your place on the Wall of Heroes right away — your name or your company's, with your city or state — marked <em>Sponsored</em> from that moment, and joined by the placement itself the day the box is delivered.</p>
+    <p><strong>Founding sponsors — carry a box's upkeep:</strong> the upkeep is a monthly gift, and it is being set with our founding sponsors first, one conversation at a time. No upkeep figure is printed here, because none has been set — and we won't invent one. If you or your company would like to carry a box's upkeep, talk to us: leave your name at the Guest Book and the house will come to you. Giving any amount toward the first boxes is open today, at the door below.</p>
     <div class="btnrow">
-      <!-- STRIPE SLOT — data-sponsor="full-box": replace href="#" with the live Stripe payment link when the sponsor desk opens. No amounts on this page until prices are stamped. -->
-      <a class="btn" href="#" data-sponsor="full-box">Sponsor a full box</a>
-      <!-- STRIPE SLOT — data-sponsor="monthly": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
-      <a class="btn" href="#" data-sponsor="monthly">Sponsor a box's upkeep — monthly</a>
-      <!-- STRIPE SLOT — data-sponsor="any-amount": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
-      <a class="btn" href="https://buy.stripe.com/00w6oG8rVfrgfD3g8t2B20j" data-sponsor="any-amount">Sponsor any amount</a>
+      <a class="btn" href="https://buy.stripe.com/00w6oG8rVfrgfD3g8t2B20j" data-sponsor="any-amount" aria-label="Sponsor any amount — give toward the first boxes at our secure checkout">Sponsor any amount</a>
+      <a class="btn" href="../#guestbook" data-sponsor="founding-upkeep" aria-label="Founding sponsors — talk to us about carrying a box's monthly upkeep, via the Guest Book">Founding sponsors — talk to us</a>
     </div>
-    <small style="margin-top:14px">The sponsor desk is opening in stages: giving any amount is live today, at our secure checkout; the full-box and upkeep buttons connect as their terms are set. Sponsoring opens your free Lux account at checkout — any membership thank-you from the house lives on that account, in your name alone. No codes, nothing copyable, nothing to lose.</small>
+    <small style="margin-top:14px">Giving any amount is live today, at our secure checkout. Upkeep sponsorships open by conversation while their terms are set — that door is the Guest Book button above. Sponsoring opens your free Lux account at checkout — any membership thank-you from the house lives on that account, in your name alone. No codes, nothing copyable, nothing to lose. One plain note: Lux Automations is a business, not a registered charity — sponsorships are gifts to the mission, given freely, and are not tax-deductible donations.</small>
   </section>
 
   <!-- ============ SPONSOR A BEGINNING — MEMBERSHIP-SIDE SPONSORSHIPS ============ -->
@@ -232,12 +306,11 @@
     <p>The sponsor funds it, and <strong>the house places it</strong>. For the kid's sponsorship especially, hear this plainly: sponsors never contact the child. The house grants the membership; the sponsor receives the honour — and their place on the Wall of Heroes. Sponsored memberships are granted through our one-claim ledger: a membership is claimed once, bound to the receiver's own account, and then deactivated. It can be given — it can never be copied, or claimed twice.</p>
     <p><strong>And the house thanks the giver:</strong> sponsor someone's beginning, and your own membership — whichever tier you choose — is offered to you at <strong>half price</strong>. One gift opens two doors.</p>
     <div class="btnrow">
-      <!-- STRIPE SLOT — data-sponsor="playground-kid-monthly": replace href="#" with the live Stripe payment link when the sponsor desk opens. No amounts on this page until prices are stamped. -->
-      <a class="btn" href="https://buy.stripe.com/5kQ5kC0Zt5QGgH71dz2B20i" data-sponsor="playground-kid-monthly">Sponsor a kid's Playground — monthly</a>
-      <!-- STRIPE SLOT — data-sponsor="workshop-entrepreneur": replace href="#" with the live Stripe payment link when the sponsor desk opens. -->
-      <a class="btn" href="#" data-sponsor="workshop-entrepreneur">Sponsor a young entrepreneur in the Workshop</a>
+      <!-- Live sponsor link — Sponsor a Kid, monthly (existing house link; no amounts printed on this page). -->
+      <a class="btn" href="https://buy.stripe.com/5kQ5kC0Zt5QGgH71dz2B20i" data-sponsor="playground-kid-monthly" aria-label="Sponsor a kid's Playground membership, monthly — at our secure checkout">Sponsor a kid's Playground — monthly</a>
+      <a class="btn" href="../#guestbook" data-sponsor="workshop-entrepreneur" aria-label="Sponsor a young entrepreneur's start — talk to us via the Guest Book">Sponsor a young entrepreneur — talk to us</a>
     </div>
-    <small style="margin-top:14px">Same desk, same secure checkout — sponsoring a kid's month is live today; the entrepreneur's start connects as its terms are set. Recipients are chosen by the house, by need; no names appear here before a membership is truly granted.</small>
+    <small style="margin-top:14px">Same desk, same secure checkout — sponsoring a kid's month is live today; the entrepreneur's start opens by conversation while its terms are set. Recipients are chosen by the house, by need; no names appear here before a membership is truly granted.</small>
   </section>
 
   <!-- ============ THE VISION ============ -->
@@ -245,6 +318,8 @@
     <p class="eyebrow">Where this goes</p>
     <h2>Reach the unreachable</h2>
     <p>We work with education partners in each country — people who know their own ground — and we tell them plainly what we can do: help reach the unreachable, and help their land grow a smarter generation, one that can build its own future with its own hands. In time, whole countries at a time — and the price of that door is the standard we hold from the very first box: every box over-built, and over-delivering, every time.</p>
+    <img class="photo" src="assets/img-journey-north.webp" alt="A drone with LUX on its flank carrying a crate marked School in a Box over a snowy northern village — a generated image, a vision of the road ahead">
+    <p class="filmcap">The road ahead, as we see it — a vision, drawn from the film. No boxes have travelled yet; the first placements are promised for the first quarter of 2027.</p>
   </section>
 
   <section class="closeline">
@@ -260,13 +335,14 @@
 <header class="topbar bottom">
   <a class="brand" href="../">Lux<small>ailux.ca</small></a>
   <nav class="mainnav" aria-label="The house">
-    <a href="../">Home</a>
-    <a href="../workshop/">Business AI Workshop</a>
-    <a href="../playground/">AI Playground</a>
-    <a href="../cinema/">Free Cinema</a>
+    <a href="../index.html">Home</a>
+    <a href="../cinema/index.html">Cinema</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../playground/index.html">Playground</a>
+    <a href="../site-pages/membership.html">Membership</a>
     <a class="here" href="./">School in a Box</a>
-    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
-    <a class="goldlink" href="../loyalty/">Loyalty</a>
+    <a href="../patch/index.html">The Security Patch</a>
+    <a href="../papers/index.html">Papers</a>
     <a href="../#guestbook">Guest Book</a>
   </nav>
 </header>
@@ -274,15 +350,20 @@
 <footer>
   Lux Automations · A Million Times Better<br>
   <nav class="doorlinks" aria-label="The doors">
+    <a href="../">Home</a>
     <a href="../workshop/">Business AI Workshop</a>
     <a href="../playground/">AI Playground</a>
     <a href="../cinema/">Free Cinema</a>
     <a href="./">School in a Box</a>
+    <a href="../patch/">The Security Patch</a>
+    <a href="../papers/">Papers</a>
+    <a href="../site-pages/membership.html">Membership</a>
     <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
     <a class="loyaltap" href="../loyalty/">Loyalty</a>
   </nav>
   ailux.ca — Edmonton, Alberta · working worldwide, remotely<br>
-  © 2026 Lux Automations
+  © 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
 </footer>
 
 
