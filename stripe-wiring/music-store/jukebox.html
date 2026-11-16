@@ -192,15 +192,18 @@ var TRACKS = [
     cover: "assets/cover-amtb-final2.png",
     sample: "assets/sample-amtb.mp3",
     sampleNote: "A taste of the song — a few favourite moments, on the house.",
-    bundleNote: "The bundle: the full song, its music video, and the cover — yours from Lux directly.",
+    offerNote: "Just the song? The Song + Cover edition — US$1.29: the song and its cover art.",
     full: "assets/sample-amtb.mp3",
     celebrate: {
       shoutOut: "It's yours — thank you for bringing \u201CA Million Times Better\u201D home.",
-      note: "The full song is playing now, because it's yours. Your bundle — the song, its music video, and the cover — is on its way to your inbox from Lux Automations."
+      note: "The full song is playing now, because it's yours. Your song and its cover are on their way to your inbox from Lux Automations."
     },
-    paySlot: "music_store.amtb-single-bundle",
-    paySlotAlt: "music_store.amtb-single-song-cover",
-    altOfferNote: "Just the song? The Song + Cover edition — US$1.29: the song and its cover art. The music video comes only with the bundle above."
+    /* Bundle offer removed from the page 2026-11-15 (Vance's order): the
+       bundle's music video isn't finished, so it must not be sold yet.
+       Its slot (music_store.amtb-single-bundle, US$4.99) and its Stripe
+       link stay in ../config/payment-links.json — restore by pointing
+       paySlot back at the bundle slot and re-adding the bundle note. */
+    paySlot: "music_store.amtb-single-song-cover"
   },
   { id: "next-1", status: "coming", note: "The next single stands here" },
   { id: "next-2", status: "coming", note: "A pedestal kept warm" },
@@ -249,10 +252,8 @@ function renderHero(track) {
           '<button class="play-btn" id="play-btn" aria-label="Play a sample of ' + track.title + '">▶</button>' +
           '<div class="play-note">' + track.sampleNote + '</div>' +
         '</div>' +
+        '<p class="bundle-note">' + track.offerNote + '</p>' +
         '<div class="buy-row"><div data-lux-pay="' + track.paySlot + '"></div></div>' +
-        '<p class="bundle-note">' + track.bundleNote + '</p>' +
-        (track.paySlotAlt ? '<div class="buy-row"><div data-lux-pay="' + track.paySlotAlt + '"></div></div>' +
-        '<p class="bundle-note">' + track.altOfferNote + '</p>' : '') +
         (track.celebrate ? '<p class="celeb-note">After checkout, this pedestal celebrates — <a href="?celebrate=1" style="color:var(--gold2);">preview the thank-you moment</a>.</p>' : '') +
       '</div>' +
     '</div>' +
