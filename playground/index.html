@@ -153,6 +153,38 @@
     html{scroll-behavior:auto}
     .btn{transition:none}
   }
+
+  /* Member colour choice (Vance, 2026-11-16): page ground + box colours from the house chart. */
+  .luxcolours{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .luxcolours label{font-size:13px;font-weight:700;color:var(--muted-2);display:flex;gap:7px;align-items:center}
+  .luxcolours select{min-height:40px;border-radius:999px;border:1px solid var(--line);background:#1a1a20;color:var(--ink);font:inherit;font-size:14px;font-weight:700;padding:6px 12px;cursor:pointer}
+  html[data-bg="cream"] body{background:#FAF8F2}
+  html[data-bg="white"] body{background:#FFFFFF}
+  html[data-bg="gray"] body{background:#E4E4E2}
+  html[data-bg="sage"] body{background:#D8E4D2}
+  html[data-bg="blue"] body{background:#CEDBEB}
+  html[data-bg="sand"] body{background:#EAD8BA}
+  html[data-bg="clay"] body{background:#F0DBCE}
+  html[data-bg="lilac"] body{background:#E2DBEE}
+  html[data-bg="teal"] body{background:#CDE5DD}
+  html[data-box="cream"] .craft,html[data-box="cream"] .tier,html[data-box="cream"] .aimee,html[data-box="cream"] .videoslot,html[data-box="cream"] .soundline,html[data-box="cream"] .founderbanner,html[data-box="cream"] .step{background:#FAF8F2;color:#1C1917}
+  html[data-box="cream"] .craft .muted,html[data-box="cream"] .tier .muted,html[data-box="cream"] .aimee .muted,html[data-box="cream"] .videoslot .muted,html[data-box="cream"] .soundline .muted,html[data-box="cream"] .founderbanner .muted,html[data-box="cream"] .step .muted{color:#55504A}
+  html[data-box="white"] .craft,html[data-box="white"] .tier,html[data-box="white"] .aimee,html[data-box="white"] .videoslot,html[data-box="white"] .soundline,html[data-box="white"] .founderbanner,html[data-box="white"] .step{background:#FFFFFF;color:#1C1917}
+  html[data-box="white"] .craft .muted,html[data-box="white"] .tier .muted,html[data-box="white"] .aimee .muted,html[data-box="white"] .videoslot .muted,html[data-box="white"] .soundline .muted,html[data-box="white"] .founderbanner .muted,html[data-box="white"] .step .muted{color:#55504A}
+  html[data-box="gray"] .craft,html[data-box="gray"] .tier,html[data-box="gray"] .aimee,html[data-box="gray"] .videoslot,html[data-box="gray"] .soundline,html[data-box="gray"] .founderbanner,html[data-box="gray"] .step{background:#E4E4E2;color:#1C1917}
+  html[data-box="gray"] .craft .muted,html[data-box="gray"] .tier .muted,html[data-box="gray"] .aimee .muted,html[data-box="gray"] .videoslot .muted,html[data-box="gray"] .soundline .muted,html[data-box="gray"] .founderbanner .muted,html[data-box="gray"] .step .muted{color:#55504A}
+  html[data-box="sage"] .craft,html[data-box="sage"] .tier,html[data-box="sage"] .aimee,html[data-box="sage"] .videoslot,html[data-box="sage"] .soundline,html[data-box="sage"] .founderbanner,html[data-box="sage"] .step{background:#D8E4D2;color:#1C1917}
+  html[data-box="sage"] .craft .muted,html[data-box="sage"] .tier .muted,html[data-box="sage"] .aimee .muted,html[data-box="sage"] .videoslot .muted,html[data-box="sage"] .soundline .muted,html[data-box="sage"] .founderbanner .muted,html[data-box="sage"] .step .muted{color:#55504A}
+  html[data-box="blue"] .craft,html[data-box="blue"] .tier,html[data-box="blue"] .aimee,html[data-box="blue"] .videoslot,html[data-box="blue"] .soundline,html[data-box="blue"] .founderbanner,html[data-box="blue"] .step{background:#CEDBEB;color:#1C1917}
+  html[data-box="blue"] .craft .muted,html[data-box="blue"] .tier .muted,html[data-box="blue"] .aimee .muted,html[data-box="blue"] .videoslot .muted,html[data-box="blue"] .soundline .muted,html[data-box="blue"] .founderbanner .muted,html[data-box="blue"] .step .muted{color:#55504A}
+  html[data-box="sand"] .craft,html[data-box="sand"] .tier,html[data-box="sand"] .aimee,html[data-box="sand"] .videoslot,html[data-box="sand"] .soundline,html[data-box="sand"] .founderbanner,html[data-box="sand"] .step{background:#EAD8BA;color:#1C1917}
+  html[data-box="sand"] .craft .muted,html[data-box="sand"] .tier .muted,html[data-box="sand"] .aimee .muted,html[data-box="sand"] .videoslot .muted,html[data-box="sand"] .soundline .muted,html[data-box="sand"] .founderbanner .muted,html[data-box="sand"] .step .muted{color:#55504A}
+  html[data-box="clay"] .craft,html[data-box="clay"] .tier,html[data-box="clay"] .aimee,html[data-box="clay"] .videoslot,html[data-box="clay"] .soundline,html[data-box="clay"] .founderbanner,html[data-box="clay"] .step{background:#F0DBCE;color:#1C1917}
+  html[data-box="clay"] .craft .muted,html[data-box="clay"] .tier .muted,html[data-box="clay"] .aimee .muted,html[data-box="clay"] .videoslot .muted,html[data-box="clay"] .soundline .muted,html[data-box="clay"] .founderbanner .muted,html[data-box="clay"] .step .muted{color:#55504A}
+  html[data-box="lilac"] .craft,html[data-box="lilac"] .tier,html[data-box="lilac"] .aimee,html[data-box="lilac"] .videoslot,html[data-box="lilac"] .soundline,html[data-box="lilac"] .founderbanner,html[data-box="lilac"] .step{background:#E2DBEE;color:#1C1917}
+  html[data-box="lilac"] .craft .muted,html[data-box="lilac"] .tier .muted,html[data-box="lilac"] .aimee .muted,html[data-box="lilac"] .videoslot .muted,html[data-box="lilac"] .soundline .muted,html[data-box="lilac"] .founderbanner .muted,html[data-box="lilac"] .step .muted{color:#55504A}
+  html[data-box="teal"] .craft,html[data-box="teal"] .tier,html[data-box="teal"] .aimee,html[data-box="teal"] .videoslot,html[data-box="teal"] .soundline,html[data-box="teal"] .founderbanner,html[data-box="teal"] .step{background:#CDE5DD;color:#1C1917}
+  html[data-box="teal"] .craft .muted,html[data-box="teal"] .tier .muted,html[data-box="teal"] .aimee .muted,html[data-box="teal"] .videoslot .muted,html[data-box="teal"] .soundline .muted,html[data-box="teal"] .founderbanner .muted,html[data-box="teal"] .step .muted{color:#55504A}
 </style>
 
 <style id="luxdoors-css">
@@ -226,6 +258,27 @@
   <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
   <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
 </div>
+
+  <div class="luxcolours">
+    <label>Page colour <select id="luxBgColour" aria-label="Change the page background colour"><option value="house">House Dark</option><option value="cream">Cream</option><option value="white">White</option><option value="gray">Light Gray</option><option value="sage">Soft Sage</option><option value="blue">Dusty Blue</option><option value="sand">Warm Sand</option><option value="clay">Blush Clay</option><option value="lilac">Pale Lilac</option><option value="teal">Soft Teal</option></select></label>
+    <label>Box colour <select id="luxBoxColour" aria-label="Change the box colours"><option value="house">House Dark</option><option value="cream">Cream</option><option value="white">White</option><option value="gray">Light Gray</option><option value="sage">Soft Sage</option><option value="blue">Dusty Blue</option><option value="sand">Warm Sand</option><option value="clay">Blush Clay</option><option value="lilac">Pale Lilac</option><option value="teal">Soft Teal</option></select></label>
+  </div>
+  <script>
+  (function(){
+    var H=document.documentElement;
+    var bg=document.getElementById('luxBgColour'), bx=document.getElementById('luxBoxColour');
+    function apply(){
+      var b='cream', x='house';
+      try{ b=localStorage.getItem('lux-bg')||'cream'; x=localStorage.getItem('lux-box')||'house'; }catch(e){}
+      if(b==='house'){H.removeAttribute('data-bg')}else{H.setAttribute('data-bg',b)}
+      if(x==='house'){H.removeAttribute('data-box')}else{H.setAttribute('data-box',x)}
+      if(bg)bg.value=b; if(bx)bx.value=x;
+    }
+    if(bg)bg.addEventListener('change',function(){try{localStorage.setItem('lux-bg',bg.value)}catch(e){}apply()});
+    if(bx)bx.addEventListener('change',function(){try{localStorage.setItem('lux-box',bx.value)}catch(e){}apply()});
+    apply();
+  })();
+  </script>
 </header>
 
 <main>
