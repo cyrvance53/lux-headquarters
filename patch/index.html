@@ -115,9 +115,9 @@
   .sw-dash{border-top:2px dashed #e0655a}
   .sw-tab{height:10px;border:1px solid var(--gold-deep);background:rgba(245,198,92,.08)}
 
-  /* ---------- the wall of flags (Vance, 2026-11-15): Canada and the US
-     first, then Mexico, Europe, and every nation — every flag stands ---------- */
-  .flagwall{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;min-width:0;max-width:100%}
+  /* ---------- the flags (Vance, 2026-11-15; folded into the header's
+     Nations dropdown 2026-11-16): Canada and the US first, then Mexico,
+     Europe, and every nation — every flag stands ---------- */
   .flag{display:inline-flex;align-items:center;gap:8px;background:#000;border:1px solid var(--line);border-radius:var(--radius-pill);padding:7px 14px 7px 10px;font-size:14.5px;font-weight:600;color:var(--muted-2);min-width:0}
   .flag .fl{font-size:19px;line-height:1}
   .flag.first{box-shadow:var(--aura-soft);color:var(--ink);font-weight:700}
@@ -192,6 +192,16 @@
    tile grid outgrows the screen, so new doors never push it off-page. */
 .luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
+   small compact text; the full country names ride in each flag's title.
+   The panel cap, internal scroll and the ≤640px fixed-panel fix above
+   all apply to this panel as they do to Doors. */
+.luxnations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.luxnations-grid .flag{justify-content:center;padding:6px 4px;gap:6px;border-radius:10px;font-size:13px}
+.luxnations-grid .flag .fl{font-size:17px}
+.luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
+@media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -214,55 +224,61 @@
     </div>
     </div>
   </div>
+  <div class="luxdoors luxnations">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">🌐 Nations <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden aria-label="The nations this patch is offered to">
+    <!-- ADD A NATION: copy one flag span below — flag emoji + ISO alpha-2 code as the visible text, the full country name in the title. Keep the order; Canada and the United States stand first. -->
+    <div class="luxnations-grid">
+      <span class="flag first" title="Canada" aria-label="Canada"><span class="fl" aria-hidden="true">🇨🇦</span>CA</span>
+      <span class="flag first" title="United States" aria-label="United States"><span class="fl" aria-hidden="true">🇺🇸</span>US</span>
+      <span class="flag" title="Mexico" aria-label="Mexico"><span class="fl" aria-hidden="true">🇲🇽</span>MX</span>
+      <span class="flag" title="United Kingdom" aria-label="United Kingdom"><span class="fl" aria-hidden="true">🇬🇧</span>GB</span>
+      <span class="flag" title="France" aria-label="France"><span class="fl" aria-hidden="true">🇫🇷</span>FR</span>
+      <span class="flag" title="Germany" aria-label="Germany"><span class="fl" aria-hidden="true">🇩🇪</span>DE</span>
+      <span class="flag" title="Spain" aria-label="Spain"><span class="fl" aria-hidden="true">🇪🇸</span>ES</span>
+      <span class="flag" title="Italy" aria-label="Italy"><span class="fl" aria-hidden="true">🇮🇹</span>IT</span>
+      <span class="flag" title="Portugal" aria-label="Portugal"><span class="fl" aria-hidden="true">🇵🇹</span>PT</span>
+      <span class="flag" title="Netherlands" aria-label="Netherlands"><span class="fl" aria-hidden="true">🇳🇱</span>NL</span>
+      <span class="flag" title="Belgium" aria-label="Belgium"><span class="fl" aria-hidden="true">🇧🇪</span>BE</span>
+      <span class="flag" title="Poland" aria-label="Poland"><span class="fl" aria-hidden="true">🇵🇱</span>PL</span>
+      <span class="flag" title="Ukraine" aria-label="Ukraine"><span class="fl" aria-hidden="true">🇺🇦</span>UA</span>
+      <span class="flag" title="Sweden" aria-label="Sweden"><span class="fl" aria-hidden="true">🇸🇪</span>SE</span>
+      <span class="flag" title="Norway" aria-label="Norway"><span class="fl" aria-hidden="true">🇳🇴</span>NO</span>
+      <span class="flag" title="Denmark" aria-label="Denmark"><span class="fl" aria-hidden="true">🇩🇰</span>DK</span>
+      <span class="flag" title="Finland" aria-label="Finland"><span class="fl" aria-hidden="true">🇫🇮</span>FI</span>
+      <span class="flag" title="Ireland" aria-label="Ireland"><span class="fl" aria-hidden="true">🇮🇪</span>IE</span>
+      <span class="flag" title="Greece" aria-label="Greece"><span class="fl" aria-hidden="true">🇬🇷</span>GR</span>
+      <span class="flag" title="Romania" aria-label="Romania"><span class="fl" aria-hidden="true">🇷🇴</span>RO</span>
+      <span class="flag" title="Czechia" aria-label="Czechia"><span class="fl" aria-hidden="true">🇨🇿</span>CZ</span>
+      <span class="flag" title="Austria" aria-label="Austria"><span class="fl" aria-hidden="true">🇦🇹</span>AT</span>
+      <span class="flag" title="Switzerland" aria-label="Switzerland"><span class="fl" aria-hidden="true">🇨🇭</span>CH</span>
+      <span class="flag" title="Japan" aria-label="Japan"><span class="fl" aria-hidden="true">🇯🇵</span>JP</span>
+      <span class="flag" title="South Korea" aria-label="South Korea"><span class="fl" aria-hidden="true">🇰🇷</span>KR</span>
+      <span class="flag" title="Australia" aria-label="Australia"><span class="fl" aria-hidden="true">🇦🇺</span>AU</span>
+      <span class="flag" title="New Zealand" aria-label="New Zealand"><span class="fl" aria-hidden="true">🇳🇿</span>NZ</span>
+      <span class="flag" title="India" aria-label="India"><span class="fl" aria-hidden="true">🇮🇳</span>IN</span>
+      <span class="flag" title="Brazil" aria-label="Brazil"><span class="fl" aria-hidden="true">🇧🇷</span>BR</span>
+      <span class="flag" title="Argentina" aria-label="Argentina"><span class="fl" aria-hidden="true">🇦🇷</span>AR</span>
+      <span class="flag" title="Chile" aria-label="Chile"><span class="fl" aria-hidden="true">🇨🇱</span>CL</span>
+      <span class="flag" title="South Africa" aria-label="South Africa"><span class="fl" aria-hidden="true">🇿🇦</span>ZA</span>
+      <span class="flag" title="Nigeria" aria-label="Nigeria"><span class="fl" aria-hidden="true">🇳🇬</span>NG</span>
+      <span class="flag" title="Kenya" aria-label="Kenya"><span class="fl" aria-hidden="true">🇰🇪</span>KE</span>
+      <span class="flag" title="Egypt" aria-label="Egypt"><span class="fl" aria-hidden="true">🇪🇬</span>EG</span>
+      <span class="flag" title="Israel" aria-label="Israel"><span class="fl" aria-hidden="true">🇮🇱</span>IL</span>
+      <span class="flag" title="T&uuml;rkiye" aria-label="Türkiye"><span class="fl" aria-hidden="true">🇹🇷</span>TR</span>
+      <span class="flag more">+ every nation that needs it</span>
+    </div>
+    </div>
+  </div>
   </div>
 </header>
 <main>
 
-  <!-- ================= HERO + WALL OF FLAGS ================= -->
+  <!-- ================= HERO (the wall of flags lives in the header's Nations dropdown) ================= -->
   <section>
     <p class="eyebrow">Lux Automations · Agent trust &amp; payment protection</p>
     <h1>The Security Patch</h1>
     <p class="lede">Built in Canada. Offered to every nation that needs it — because the problem does not carry a passport, so the defence can&rsquo;t either.</p>
-    <div class="flagwall" aria-label="The nations this patch is offered to">
-      <span class="flag first"><span class="fl" aria-hidden="true">🇨🇦</span>Canada</span>
-      <span class="flag first"><span class="fl" aria-hidden="true">🇺🇸</span>United States</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇲🇽</span>Mexico</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇬🇧</span>United Kingdom</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇫🇷</span>France</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇩🇪</span>Germany</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇪🇸</span>Spain</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇮🇹</span>Italy</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇵🇹</span>Portugal</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇳🇱</span>Netherlands</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇧🇪</span>Belgium</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇵🇱</span>Poland</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇺🇦</span>Ukraine</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇸🇪</span>Sweden</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇳🇴</span>Norway</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇩🇰</span>Denmark</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇫🇮</span>Finland</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇮🇪</span>Ireland</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇬🇷</span>Greece</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇷🇴</span>Romania</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇨🇿</span>Czechia</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇦🇹</span>Austria</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇨🇭</span>Switzerland</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇯🇵</span>Japan</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇰🇷</span>South Korea</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇦🇺</span>Australia</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇳🇿</span>New Zealand</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇮🇳</span>India</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇧🇷</span>Brazil</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇦🇷</span>Argentina</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇨🇱</span>Chile</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇿🇦</span>South Africa</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇳🇬</span>Nigeria</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇰🇪</span>Kenya</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇪🇬</span>Egypt</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇮🇱</span>Israel</span>
-      <span class="flag"><span class="fl" aria-hidden="true">🇹🇷</span>T&uuml;rkiye</span>
-      <span class="flag more">+ every nation that needs it</span>
-    </div>
     <small>Two flags stand first because two neighbours built the road — the wall behind them is the point: one patch, all nations.</small>
   </section>
 
