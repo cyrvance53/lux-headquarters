@@ -24,30 +24,30 @@
 <meta name="apple-mobile-web-app-title" content="Lux">
 <style>
   :root{
-    --fill:#B9CCE6; --mid:#84A3CC; --text:#8FB0DC; --dark:#A9C3E8;
-    --ink:#F2F4F8; --body:#C9D1DC; --muted:#9AA5B3; --line:#23262C;
+    --fill:#B9CCE6; --mid:#84A3CC; --text:#476B96; --dark:#38587E;
+    --ink:#1C1917; --body:#3E3A34; --muted:#6B665C; --line:#E7E1D2;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   html,body{overflow-x:clip}
-  body{font-family:var(--sans);margin:0;background:#050506;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--sans);margin:0;background:#FFFFFF;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
   a{color:var(--dark)}
   img{display:block;max-width:100%}
   :focus-visible{outline:2px solid #7FB3D9;outline-offset:3px;border-radius:6px}
 
-  .topbar{position:sticky;top:0;z-index:10;background:rgba(8,8,10,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(250,248,242,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
-  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:#8E97A3;letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:#8A8578;letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
   nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
-  nav.mainnav a{color:#B9C1CC;text-decoration:none;font-size:14.5px;font-weight:600;padding:12px 13px;border-radius:999px}
-  nav.mainnav a:hover{background:#1B1E24;color:var(--ink)}
-  nav.mainnav a.here{background:#1B1E24;color:var(--ink)}
+  nav.mainnav a{color:#55504A;text-decoration:none;font-size:14.5px;font-weight:600;padding:12px 13px;border-radius:999px}
+  nav.mainnav a:hover{background:#EFEAE0;color:var(--ink)}
+  nav.mainnav a.here{background:#EFEAE0;color:var(--ink)}
 
   main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding:22px 16px;max-width:1080px;margin:0 auto}
   main>*{min-width:0}
-  section{background:#0C0D10;color:var(--ink);border:1px solid #1D2026;border-radius:26px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.5),0 14px 34px rgba(0,0,0,.45);text-align:center;min-width:0}
+  section{background:#FFFFFF;color:var(--ink);border-radius:26px;padding:24px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05);text-align:center;min-width:0}
   section ul,section ol{text-align:left}
   .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--text);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
   h1{font-family:var(--serif);font-size:clamp(30px,6.6vw,44px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
@@ -55,7 +55,7 @@
   p{margin:0 0 12px;color:var(--body)}
   p.lede{font-size:19px;line-height:1.55;color:var(--body)}
   small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:999px;font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#22252B;color:#F6F3EC;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:999px;font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#1C1917;color:#F6F3EC;box-shadow:0 6px 18px rgba(28,25,23,.18)}
   .btn:hover{box-shadow:0 8px 22px rgba(28,25,23,.24)}
   .btn.buy{background:var(--fill);color:#000;box-shadow:0 8px 22px rgba(71,107,150,.35)}
   .btn.buy:hover{background:var(--mid);box-shadow:0 10px 26px rgba(71,107,150,.45)}
@@ -65,7 +65,7 @@
   ol.steps li strong,ul.plain li strong{color:var(--ink)}
 
   figure.kit{margin:22px auto;min-width:0}
-  figure.kit img{margin:0 auto;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.55)}
+  figure.kit img{margin:0 auto;border-radius:10px;box-shadow:0 8px 24px rgba(28,25,23,.10)}
   figure.kit figcaption{color:var(--muted);font-size:14px;margin-top:10px}
   figure.kit figcaption strong{color:var(--ink)}
   .dl{font-weight:700}
@@ -103,7 +103,7 @@
   </section>
 
   <!-- ================= THE DEAL ================= -->
-  <section style="background:#101216">
+  <section style="background:#EDF1F6">
     <p class="eyebrow">The deal</p>
     <h2>20% of the profit — on every payment, for as long as they stay</h2>
     <p>When a customer comes to us through you and pays, you receive <strong>20% of the profit on that payment</strong>. Not once — every time. The monthly payment, the yearly payment, and every renewal after that: as long as your customer keeps paying, you keep earning.</p>
@@ -128,7 +128,7 @@
   </section>
 
   <!-- ================= THE SHARE KIT ================= -->
-  <section style="background:#101216">
+  <section style="background:#F5EFE3">
     <p class="eyebrow">The share kit</p>
     <h2>Banners — take them and post them</h2>
     <p>Every graphic below is a free download. The sizes are labelled: the share size for posts and links, the square for feeds, the wide banner and the box for pages and sidebars.</p>
@@ -236,7 +236,7 @@
   </section>
 
   <!-- ================= JOINING ================= -->
-  <section style="background:#101216">
+  <section style="background:#EDF1F6">
     <p class="eyebrow">Joining</p>
     <h2>Joining starts with one email</h2>
     <p>The affiliate desk opens with the products&rsquo; launch. There is no sign-up form and no dashboard to promise you — joining is personal: write to us, and we issue your link ourselves.</p>
