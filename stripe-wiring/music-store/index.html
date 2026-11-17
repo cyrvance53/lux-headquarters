@@ -25,15 +25,15 @@
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -62,6 +62,24 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lux">
+<style>
+  /* ---------- LIGHT THEME — the house standard (Vance, 2026-11-17):
+     white page, ink lettering, Dusty Blue accents, content in clean
+     white boxes. Player stages and seal / ticket / machine artwork
+     stay dark — they are pictures, not page. ----------
+  body{background:#fff;color:#1C1917}
+  a{color:#476B96}
+  h1{color:#38587E}
+  .card{background:#fff;border-color:#E7E1D2;box-shadow:0 0 0 1px rgba(185,204,230,.55),0 1px 3px rgba(28,25,23,.06),0 14px 34px rgba(28,25,23,.07)}
+  .lux-pay-btn{background:#B9CCE6;color:#14100a}
+  .lux-pay-note{color:#6f6a5e}
+  .tag{color:#476B96}
+  .housenav{border-bottom-color:#E7E1D2}
+  .housenav a{color:#1C1917}
+  .housenav a:hover{background:#EDF1F6}
+  .housenav a.here{background:#EDF1F6;color:#38587E}
+  .housenav .hn-brand{color:#476B96}
+</style>
 </head>
 <body>
 <div class="luxbar"><span class="luxbar-brand">◆ LUX AUTOMATIONS</span>
