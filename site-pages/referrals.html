@@ -62,6 +62,15 @@
   .sharebtn.copied{background:var(--gold-tint);border-color:var(--gold);color:#7a5c10}
   footer{max-width:880px;margin:0 auto;padding:8px 24px 32px;color:var(--secondary);font-size:14px;text-align:center}
 </style>
+<style id="luxfoot-css">
+footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+footer .doorlinks a{color:#3f3a33;text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer .doorlinks a:hover{background:#EFEAE0;color:#1C1917}
+footer .doorlinks a.loyaltap{color:#476B96;font-weight:700}
+footer.luxfoot{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid rgba(28,25,23,.13);text-align:center;color:#6f6a5e;font-size:14.5px;line-height:1.7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer.luxfoot .flogo{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#1C1917;margin:0 0 4px}
+footer.luxfoot .flogo em{font-style:normal;color:#476B96}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -167,7 +176,22 @@
     </form>
   </section>
 </main>
-<footer>Lux Automations · Edmonton, Alberta — friends of the house are family of the house.<br>© 2026 Lux Automations.</footer>
+<footer>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../index.html">Home</a>
+    <a href="automation.html">Business AI Workshop</a>
+    <a href="games.html">AI Playground</a>
+    <a href="video.html">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="membership.html">Membership</a>
+    <a href="../school-in-a-box/index.html">School in a Box</a>
+    <a href="../patch/index.html">Amos</a>
+    <a href="../seamguard/">SeamGuard</a>
+    <a href="../papers/index.html">Papers</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+    <a href="../affiliates/">Affiliates</a>
+  </nav>Lux Automations · Edmonton, Alberta — friends of the house are family of the house.<br>© 2026 Lux Automations.  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
 <script>
 (function(){
   var btn = document.getElementById('share-copy');
