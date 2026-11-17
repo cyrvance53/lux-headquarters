@@ -248,6 +248,21 @@
   .diamond.humming::before{animation:halobreath 11s ease-in-out infinite}
   @keyframes halobreath{0%,100%{opacity:.75}50%{opacity:1}}
 
+
+  /* ---------- the Amos emblem on the front page (revamp, 2026-11-17) ---------- */
+  .amosemblem{width:148px;height:auto;margin:22px auto 2px}
+
+  /* ---------- the sliding row of doors (revamp, 2026-11-17):
+     one sideways slide of cards for every page and product in the
+     house. Scrolls sideways on a phone; the row is the whole map. ---------- */
+  .doorsrow{margin:36px auto 0}
+  .sliderow{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;padding:8px 2px 16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .slidecard{flex:0 0 auto;width:178px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px 14px;text-decoration:none;color:var(--ink);box-shadow:var(--aura-soft);transition:box-shadow .25s ease}
+  .slidecard:hover{box-shadow:var(--aura)}
+  .slidecard .ic{font-size:27px;line-height:1;display:block}
+  .slidecard h3{font-size:19px;margin:10px 0 4px}
+  .slidecard p{font-size:13.5px;color:var(--muted-2);margin:0;line-height:1.45}
+
   footer{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
   footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
   footer .flogo em{font-style:normal;color:var(--gold-text)}
@@ -356,15 +371,39 @@
 <main id="top">
 
   <!-- ================================================================
-       THE FRONT PAGE — almost nothing on it, on purpose.
-       The diamond, four doors, and the opening date.
-       Everything else lives behind the doors.
+       THE FRONT PAGE — light, on purpose (Vance's revamp, 2026-11-17:
+       "totally revamped… we won't put much on it"). The opening date,
+       one sliding row of every door in the house, the two products,
+       the membership till, rewards, and Aimée's guest book — the last
+       two stay because pages across the site link to #guestbook and
+       #rewards. Everything else lives behind the doors.
        ================================================================ -->
   <div class="hero">
     <span class="dateline"><span class="dot" aria-hidden="true"></span>The house opens Friday, January 1, 2027</span>
     <h1><span class="goldline">Four doors.</span></h1>
+    <img class="amosemblem" src="patch/assets/amos-emblem-transparent.png" alt="Amos — the double shield: Amos and AgentPay, double protection">
     <p style="max-width:620px;margin:18px auto 0;text-align:center;font-size:17px;line-height:1.55;color:var(--ink,#1C1917)"><strong>No key, no entry.</strong> Everybody who comes through these doors holds a key we issued — people and AIs alike. No AI gets in without one. That&rsquo;s Amos at the door, and the house is a sealed vault behind him.</p>
   </div>
+
+  <!-- ============ THE SLIDING ROW — EVERY DOOR, ONE SIDEWAYS SLIDE ============ -->
+  <section class="doorsrow" aria-label="The doors of the house">
+    <p class="kicker">The doors of the house — slide</p>
+    <div class="sliderow">
+      <a class="slidecard" href="./"><span class="ic" aria-hidden="true">🏠</span><h3>Home</h3><p>One house. AI &amp; Humans.</p></a>
+      <a class="slidecard" href="patch/"><span class="ic" aria-hidden="true">🛡️</span><h3>Amos</h3><p>Identity for your agents.</p></a>
+      <a class="slidecard" href="seamguard/"><span class="ic" aria-hidden="true">🔗</span><h3>SeamGuard</h3><p>The seams between your agents.</p></a>
+      <a class="slidecard" href="workshop/"><span class="ic" aria-hidden="true">🛠️</span><h3>Workshop</h3><p>Automation that carries the work.</p></a>
+      <a class="slidecard" href="playground/"><span class="ic" aria-hidden="true">🎨</span><h3>Playground</h3><p>Your own channel — free for now.</p></a>
+      <a class="slidecard" href="site-pages/membership.html"><span class="ic" aria-hidden="true">⭐</span><h3>Membership</h3><p>You can join now — your membership starts January 1, 2027.</p></a>
+      <a class="slidecard" href="school-in-a-box/"><span class="ic" aria-hidden="true">📦</span><h3>School in a Box</h3><p>A whole school on one small computer.</p></a>
+      <a class="slidecard" href="cinema/"><span class="ic" aria-hidden="true">🎬</span><h3>Cinema</h3><p>Watch — free, while we build.</p></a>
+      <a class="slidecard" href="stripe-wiring/music-store/jukebox.html"><span class="ic" aria-hidden="true">🎶</span><h3>Store</h3><p>Music &amp; merch — from us and our members.</p></a>
+      <a class="slidecard" href="papers/"><span class="ic" aria-hidden="true">📄</span><h3>Papers</h3><p>Our work, written down and put in the open.</p></a>
+      <a class="slidecard" href="loyalty/"><span class="ic" aria-hidden="true">🏅</span><h3>Loyalty</h3><p>Bring people — the house thanks you twice.</p></a>
+      <a class="slidecard" href="affiliates/"><span class="ic" aria-hidden="true">🤝</span><h3>Affiliates</h3><p>Affiliates earn 20% of the profit, for life.</p></a>
+      <a class="slidecard" href="read/"><span class="ic" aria-hidden="true">📖</span><h3>Read</h3><p>The full writing lives here.</p></a>
+    </div>
+  </section>
 
   <!-- ============ THE TWO SHIELDS — THE PRODUCTS ============ -->
   <section class="products" aria-label="The products">
@@ -414,87 +453,11 @@
     <p class="fineprint">Monthly joiners: use code <strong style="color:var(--ink)">FOUNDER</strong> at checkout for your 30%.</p>
   </div>
 
-  <div class="stage">
-    <div class="diamond">
-      <span class="heartspin"><img src="assets/heart-diamond.webp" alt="A heart-cut diamond ringed with light, on black" width="1600" height="1600"></span>
-      <span class="spark s1" aria-hidden="true"></span>
-      <span class="spark s2" aria-hidden="true"></span>
-      <span class="spark s3" aria-hidden="true"></span>
-      <span class="spark s4" aria-hidden="true"></span>
-      <span class="spark s5" aria-hidden="true"></span>
-      <span class="spark s6" aria-hidden="true"></span>
-    </div>
-
-    <div class="doors">
-      <a class="door" href="workshop/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-        <span class="go" aria-hidden="true">›</span>
-        <p class="dtag">Door One · Lux Automations</p>
-        <h3>Business AI Workshop</h3>
-        <p class="desc">Automation that carries the work.</p>
-      </a>
-      <a class="door" href="playground/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-        <span class="go" aria-hidden="true">›</span>
-        <p class="dtag">Door Two · Lux Animations</p>
-        <h3>AI Playground</h3>
-        <p class="desc">Your own channel — free for now.</p>
-      </a>
-      <div class="schoolfeature">
-        <p class="dtag">The Heart of the House · A Gift That Teaches</p>
-        <h3>School in a Box</h3>
-        <p class="desc">A whole school on one small computer — carried where the wires never reached. Given, never sold.</p>
-        <div class="btnrow">
-          <a class="btn" href="school-in-a-box/">Visit the School &rarr;</a>
-          <a class="btn" href="https://buy.stripe.com/00w6oG8rVfrgfD3g8t2B20j">Sponsor — any amount</a>
-        </div>
-        <p class="fineprint">Sponsorships are gifts, not tax-deductible donations. The terms come in writing, and you agree to them before you give anything. <a href="terms/">Terms of sale &amp; refunds</a> · <a href="privacy/">Privacy policy</a>.</p>
-      </div>
-      <a class="door" href="cinema/">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-        <span class="go" aria-hidden="true">›</span>
-        <p class="dtag">Door Three · Free</p>
-        <h3>Free Cinema</h3>
-        <p class="desc">Watch — free, while we build.</p>
-      </a>
-      <a class="door" href="stripe-wiring/music-store/jukebox.html">
-        <svg class="heartmark" viewBox="0 0 100 92" fill="none" stroke="#B9CCE6" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-        <span class="go" aria-hidden="true">›</span>
-        <p class="dtag">Door Four · Music &amp; merch</p>
-        <h3>Store</h3>
-        <p class="desc">Music &amp; merch — from us and our members.</p>
-      </a>
-    </div>
-
-    <p class="onehouse">One house.<span class="onehouse-sub">AI &amp; Humans</span></p>
-  </div>
-
   <div class="paycard" id="rewards">
     <p class="dtag">Rewards</p>
     <h3>Bring people — the house thanks you twice</h3>
     <p class="desc">Share the house and earn. Members earn as they go.</p>
     <p class="fineprint"><a href="loyalty/">See the Loyalty program →</a> &nbsp;·&nbsp; <a href="playground/members/">Affiliate rewards, on the members' board →</a></p>
-  </div>
-
-  <!-- The two names of the house, engraved into the black itself -->
-  <div class="engraving" aria-label="Lux Automations and Lux Animations — the two names of the house">
-    <div class="eng-row">
-      <a class="eng-link" href="workshop/">
-        <span class="eng-name">Lux <em>Automations</em></span>
-        <span class="eng-cap">The Business AI Workshop</span>
-      </a>
-      <svg class="eng-heart" viewBox="0 0 100 92" fill="none" stroke="#3a3a44" stroke-width="3.5" aria-hidden="true"><path d="M50 84C22 64 8 47 8 30 8 16 19 7 31 7c8 0 15 5 19 13 4-8 11-13 19-13 12 0 23 9 23 23 0 17-14 34-42 54Z"/><path d="M8 30h84M31 7l19 23 19-23M50 30v54" stroke-width="2" opacity=".55"/></svg>
-      <a class="eng-link" href="playground/">
-        <span class="eng-name">Lux <em>Animations</em></span>
-        <span class="eng-cap">The AI Playground</span>
-      </a>
-    </div>
-    <p class="eng-line">Two names, one house — cut into the stone, not printed on it.</p>
-  </div>
-
-  <!-- The front page stays a glance — the full writing lives on the Read page -->
-  <div class="readdoor">
-    <a class="btn" href="read/">Read more</a>
   </div>
 
   <!-- ============ AIMÉE'S DESK — THE GUEST BOOK ============ -->
@@ -534,11 +497,6 @@
 
 </main>
 
-<!-- The heart's hum — tap to hear the sound its turning makes -->
-<button class="humbtn" id="humBtn" type="button" aria-pressed="false" aria-label="Play the heart diamond's space hum">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19z" fill="currentColor" stroke="none"/><g class="waves"><path d="M14.5 9.2a4 4 0 0 1 0 5.6"/><path d="M17 6.8a7.4 7.4 0 0 1 0 10.4"/></g></svg>
-  <span id="humLabel">Hear the heart hum</span>
-</button>
 
 <footer>
   <p class="flogo">Lux <em>Automations</em> · Lux <em>Animations</em></p>
@@ -597,142 +555,6 @@
 })();
 </script>
 
-<script>
-  // The heart's hum: the sound the turning heart-diamond makes.
-  // Synthesised live with Web Audio — no audio file. A deep, warm
-  // space hum built for joy: a low root and its fifth (the heart
-  // beating far below), a soft major warmth above, and a faint
-  // 528 Hz shimmer — the love tone — floating on top. Everything
-  // breathes on the heart's own timing: the swell follows its
-  // 11-second rock, and the tone slowly opens and closes on the
-  // 46-second turn of its ring of light. Sound can only start on a
-  // tap (the browser's rule), so the corner button is the switch:
-  // tap to hear it, tap again for quiet. It rests while the tab is
-  // hidden, and returns with the page.
-  (function () {
-    var btn = document.getElementById("humBtn");
-    var label = document.getElementById("humLabel");
-    var diamond = document.querySelector(".diamond");
-    if (!btn) return;
-
-    var ctx = null, master = null, nodes = [];
-    var wantOn = false;   // the visitor's switch
-    var audible = false;  // actually sounding right now
-
-    function buildGraph() {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      master = ctx.createGain();
-      master.gain.value = 0;
-
-      // The tone slowly opens and closes — one full sweep per turn
-      // of the ring of light (46s). The edge sits high enough that
-      // the warmth of the hum actually reaches small speakers.
-      var filter = ctx.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.value = 680;
-      filter.Q.value = 0.6;
-      var filterLfo = ctx.createOscillator();
-      filterLfo.frequency.value = 1 / 46;
-      var filterDepth = ctx.createGain();
-      filterDepth.gain.value = 260;
-      filterLfo.connect(filterDepth);
-      filterDepth.connect(filter.frequency);
-      filterLfo.start();
-
-      // The swell of the hum follows the heart's rock (11s).
-      var swell = ctx.createGain();
-      swell.gain.value = 0.78;
-      var swellLfo = ctx.createOscillator();
-      swellLfo.frequency.value = 1 / 11;
-      var swellDepth = ctx.createGain();
-      swellDepth.gain.value = 0.22;
-      swellLfo.connect(swellDepth);
-      swellDepth.connect(swell.gain);
-      swellLfo.start();
-
-      filter.connect(swell);
-      swell.connect(master);
-      // A gentle compressor glues the voices together and keeps the
-      // hum smooth at its fuller level — warm, never harsh.
-      var comp = ctx.createDynamicsCompressor();
-      comp.threshold.value = -20;
-      comp.knee.value = 24;
-      comp.ratio.value = 6;
-      comp.attack.value = 0.08;
-      comp.release.value = 0.4;
-      master.connect(comp);
-      comp.connect(ctx.destination);
-      nodes = [filterLfo, swellLfo];
-
-      // The voices of the hum — warm, major, joyful. The deep root
-      // is still there to be felt, but the body of the sound now
-      // rides on the octave-up voices (216–432 Hz) that a phone
-      // speaker can actually play.
-      var voices = [
-        { f: 54,    g: 0.26, type: "sine",     bright: false },
-        { f: 108,   g: 0.30, type: "sine",     bright: false },
-        { f: 108.8, g: 0.15, type: "sine",     bright: false },
-        { f: 135,   g: 0.10, type: "sine",     bright: false },
-        { f: 162,   g: 0.15, type: "sine",     bright: false },
-        { f: 216,   g: 0.17, type: "sine",     bright: false },
-        { f: 270,   g: 0.09, type: "sine",     bright: false },
-        { f: 324,   g: 0.07, type: "sine",     bright: false },
-        { f: 432,   g: 0.045, type: "triangle", bright: true },
-        { f: 528,   g: 0.05, type: "sine",     bright: true }
-      ];
-      voices.forEach(function (v) {
-        var osc = ctx.createOscillator();
-        osc.type = v.type;
-        osc.frequency.value = v.f;
-        var g = ctx.createGain();
-        g.gain.value = v.g;
-        osc.connect(g);
-        g.connect(v.bright ? swell : filter);
-        osc.start();
-        nodes.push(osc);
-      });
-    }
-
-    function fadeTo(level, seconds) {
-      if (!ctx || !master) return;
-      var t = ctx.currentTime;
-      master.gain.cancelScheduledValues(t);
-      master.gain.setValueAtTime(master.gain.value, t);
-      master.gain.linearRampToValueAtTime(level, t + seconds);
-    }
-
-    function shouldSound() {
-      return wantOn && !document.hidden;
-    }
-
-    function applyState() {
-      var sound = shouldSound();
-      if (sound && !audible) {
-        if (!ctx) buildGraph();
-        ctx.resume();
-        fadeTo(0.26, 2.5);
-        audible = true;
-      } else if (!sound && audible) {
-        fadeTo(0, 1.1);
-        audible = false;
-        var c = ctx;
-        setTimeout(function () { if (!audible && c) c.suspend(); }, 1400);
-      }
-      btn.setAttribute("aria-pressed", wantOn ? "true" : "false");
-      btn.setAttribute("aria-label", wantOn
-        ? "Quiet the heart diamond's space hum"
-        : "Play the heart diamond's space hum");
-      label.textContent = wantOn ? "The heart is humming" : "Hear the heart hum";
-      if (diamond) diamond.classList.toggle("humming", audible);
-    }
-
-    btn.addEventListener("click", function () {
-      wantOn = !wantOn;
-      applyState();
-    });
-    document.addEventListener("visibilitychange", applyState);
-  })();
-</script>
 
 
 <script id="luxdoors-js">
