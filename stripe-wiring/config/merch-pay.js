@@ -47,13 +47,13 @@
           var b = document.createElement("button");
           b.className = "lux-pay-btn lux-pay-soon";
           b.disabled = true;
-          b.textContent = k + " · " + fmt(product.price_variants[k]) + " — opens December 1";
+          b.textContent = k + " · " + fmt(product.price_variants[k]) + " — opens January 1";
           wrap.appendChild(b);
         }
       });
       wrap.appendChild(note(anyLive
         ? "Secure checkout by Stripe — cards, Google Pay and Apple Pay accepted. Printed and shipped by our print partner; made to order."
-        : "Checkout opens with the store on December 1 — Lux Automations."));
+        : "Checkout opens with the store on January 1 — Lux Automations."));
       if (anyLive) wrap.appendChild(docsNote());
       return wrap;
     }
@@ -72,7 +72,7 @@
       var b2 = document.createElement("button");
       b2.className = "lux-pay-btn lux-pay-soon";
       b2.disabled = true;
-      b2.textContent = "Opens December 1 — " + fmt(product.price);
+      b2.textContent = "Opens January 1 — " + fmt(product.price);
       wrap.appendChild(b2);
       wrap.appendChild(note(product.price_display || ""));
     }

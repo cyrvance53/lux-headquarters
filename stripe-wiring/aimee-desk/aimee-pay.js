@@ -15,7 +15,7 @@ function loadConfig() {
 
 /* Fixed-price items: returns the Payment Link URL, or null while the slot is
    still AWAITING_TAP (desk then says the honest thing: "the desk opens
-   December 1" — never a fake link). */
+   January 1" — never a fake link). */
 function fixedLink(section, id) {
   const cfg = loadConfig();
   const list = cfg[section];

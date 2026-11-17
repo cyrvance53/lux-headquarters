@@ -1,5 +1,5 @@
 {
-  "_about": "Lux Automations — Stripe Payment Link slots for every own-site surface. STAGING ONLY — nothing here is live. Each slot holds the Payment Link URL created in the Stripe dashboard (Lux Automations account, payments + payouts verified active 2026-11-09). A null url means the link does not exist yet: the page renders the buy button in its honest 'opens December 1' state. NEVER put any API key (secret or publishable) in this file or anywhere in staging — Payment Links need no keys in page code.",
+  "_about": "Lux Automations — Stripe Payment Link slots for every own-site surface. STAGING ONLY — nothing here is live. Each slot holds the Payment Link URL created in the Stripe dashboard (Lux Automations account, payments + payouts verified active 2026-11-09). A null url means the link does not exist yet: the page renders the buy button in its honest 'opens January 1' state. NEVER put any API key (secret or publishable) in this file or anywhere in staging — Payment Links need no keys in page code.",
   "_how": "When a link is created in the dashboard, paste its https://buy.stripe.com/... URL into the matching slot, set status to LIVE-LINK-SET, and re-run ../verify.sh. See ../README.md and ../../stripe-everywhere-tap-list-2026-11-09.md.",
   "_merch_note": "MERCH STORE (Lux Visuals on ailux.ca) — added 2026-11-09 on Vance's direct order 'put it up for sale asap'. Buying stays ON our site: products display on ailux.ca, checkout runs through these Stripe Payment Link slots (our own Stripe), and the printer (Fourthwall/Printify) fulfils invisibly out back — the buyer is never sent to the Fourthwall storefront. All 12 products, names, prices and variants are copied from the Fourthwall build record (2026-10-29 + 2026-11-07 logs and the Nov 7 merch picture page) — nothing invented. ALL 16 LINKS SET 2026-11-10 (the Stripe link-creation task completed overnight): every slot below is LIVE-LINK-SET and the merch shelf renders live buy buttons for all 12 products. Link count at full wiring: 16 (10 single-price products × 1 + 2 mugs × 3 sizes). See merch-store/README.md for the exact creation steps and the variant law.",
   "account": {
@@ -434,7 +434,7 @@
       "billing": "subscription",
       "id": "founding-member",
       "label": "Lux Automations — Founding Membership",
-      "price_display": "BEING SET — founding terms (incl. price) are not stamped yet; Vance's stamp pending. The membership page shows 'being set' and this slot renders the honest Opens December 1 state.",
+      "price_display": "BEING SET — founding terms (incl. price) are not stamped yet; Vance's stamp pending. The membership page shows 'being set' and this slot renders the honest Opens January 1 state.",
       "status": "AWAITING_PRICE_STAMP_THEN_TAP",
       "url": null
     }

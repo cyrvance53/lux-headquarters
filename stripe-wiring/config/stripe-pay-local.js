@@ -25,7 +25,7 @@
       var b = document.createElement("button");
       b.className = "lux-pay-btn lux-pay-soon";
       b.disabled = true;
-      b.textContent = "Opens December 1 — Lux Automations";
+      b.textContent = "Opens January 1 — Lux Automations";
       wrap.appendChild(b);
       var note2 = document.createElement("p");
       note2.className = "lux-pay-note";
