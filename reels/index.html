@@ -209,15 +209,15 @@
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -246,6 +246,72 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lux">
+<style>
+  /* ---------- LIGHT THEME — the house standard (Vance, 2026-11-17):
+     white page, ink lettering, Dusty Blue accents, content in clean
+     white boxes. Player stages and seal / ticket / machine artwork
+     stay dark — they are pictures, not page. ----------
+  :root{--panel:#ffffff;--panel-2:#ffffff;--line:rgba(28,25,23,.13);--ice:#476B96;--ink:#1C1917;--muted:#6f6a5e;--muted-2:#3f3a33;
+    --aura:0 0 0 1px rgba(185,204,230,.9),0 0 6px rgba(255,255,255,.75),0 10px 26px rgba(71,107,150,.28),0 0 38px rgba(132,163,204,.35),0 0 72px rgba(160,195,255,.20);
+    --aura-soft:0 0 0 1px rgba(185,204,230,.55),0 1px 3px rgba(28,25,23,.06),0 14px 34px rgba(28,25,23,.07)}
+  body{background:radial-gradient(120% 46% at 50% -6%,rgba(185,204,230,.38),rgba(185,204,230,0) 55%),radial-gradient(900px 480px at 50% 0%,rgba(132,163,204,.10),rgba(132,163,204,0) 62%),linear-gradient(180deg,#F4F8FC 0%,#fff 34%,#fff 100%);background-color:#fff;color:var(--ink)}
+  a{color:#476B96}
+  .topbar{background:rgba(255,255,255,.92)}
+  nav.mainnav a:hover,nav.mainnav a.here{background:#EFEAE0;color:var(--ink)}
+  nav.mainnav a.goldlink{color:#476B96}
+  nav.mainnav a.goldlink:hover{background:rgba(132,163,204,.12);color:#476B96}
+  nav.mainnav a.loyaltap{color:#476B96}
+  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:#476B96}
+  section{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
+  .eyebrow{color:#476B96}
+  .kicker{color:#476B96}
+  .btn{background:#1C1917;color:#F6F3EC}
+  footer .doorlinks a:hover{background:#EFEAE0;color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:#476B96}
+  footer .flogo em{color:#476B96}
+  .hostline{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
+  .hostline .hi{background:#EDF1F6;box-shadow:none}
+  .hostbubble{background:#fff;color:var(--ink)}
+  .openline{background:#1C1917;color:#B9CCE6}
+  .soonline,.draftflag{color:#38587E}
+  .cbtn{background:#fff;color:var(--ink);border-color:#D8D3C6}
+  .cbtn:hover{background:#F3F0E7}
+  .cbtn[aria-pressed="true"]{background:#EDF2F9;border-color:#476B96;color:#38587E}
+  .cbtn:disabled:hover{background:#fff}
+  .speedsel{background:#fff;color:var(--ink);border-color:#D8D3C6}
+  .shbtn{background:#fff;color:var(--ink);border-color:#D8D3C6}
+  .shbtn:hover{background:#EDF2F9;border-color:#476B96;color:#38587E}
+  section.theatre,.theatre{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  section.theatre .eyebrow,.theatre .eyebrow{color:#476B96}
+  section.theatre h2,.theatre h2{color:var(--ink)}
+  section.theatre small,.theatre small{color:var(--muted)}
+  .railhead{color:#38587E}
+  .railhead::before,.railhead::after{background:linear-gradient(90deg,transparent,rgba(71,107,150,.45),transparent)}
+  .theatre .carditem,.carditem{color:var(--ink)}
+  .theatre .carditem .ct,.carditem .ct{color:var(--ink)}
+  .theatre .carditem .cm,.carditem .cm{color:#476B96}
+  .theatre .carditem .gtag,.carditem .gtag,.gtag{background:rgba(132,163,204,.16);color:#38587E;border-color:rgba(132,163,204,.45)}
+  .carditem .picktag,.picktag{background:rgba(132,163,204,.14);color:#476B96;border-color:rgba(132,163,204,.4)}
+  .carditem .cnote{color:var(--muted-2)}
+  .theatre .carditem .playhint,.carditem .playhint{color:var(--muted)}
+  .theatre .carditem img,.carditem img{border-color:rgba(28,25,23,.15);background:#EFEFEC}
+  .theatre .comingcard{background:#F7FAFD;border-color:rgba(132,163,204,.5)}
+  .theatre .comingcard .ct{color:var(--ink)}
+  .theatre .comingcard .cs{color:var(--muted)}
+  .theatre .linkcard{background:#F7FAFD;border-color:rgba(132,163,204,.45)}
+  .theatre .linkcard .ct{color:var(--ink)}
+  .theatre .linkcard .cs{color:var(--muted-2)}
+  .comingcard{background:#fff;border-color:rgba(28,25,23,.25)}
+  .comingcard .cs{color:var(--muted)}
+  .linkcard{background:#fff;border-color:var(--line)}
+  .linkcard .cm{color:#476B96}
+  .linkcard .cs{color:var(--muted)}
+  .rail::-webkit-scrollbar-thumb,.posterrail::-webkit-scrollbar-thumb{background:rgba(132,163,204,.45)}
+  .rail::-webkit-scrollbar-track,.posterrail::-webkit-scrollbar-track{background:rgba(28,25,23,.05)}
+  .postercard img{border-color:rgba(28,25,23,.15);background:#EFEFEC}
+  .setswitch{background:#E4E9F0;border-color:#B9CCE6}
+  .setswitch .knob{background:#fff;box-shadow:0 1px 3px rgba(28,25,23,.35)}
+</style>
 </head>
 <body>
 

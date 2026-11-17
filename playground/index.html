@@ -194,15 +194,15 @@
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -231,6 +231,53 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lux">
+<style>
+  /* ---------- LIGHT THEME — the house standard (Vance, 2026-11-17):
+     white page, ink lettering, Dusty Blue accents, content in clean
+     white boxes. Player stages and seal / ticket / machine artwork
+     stay dark — they are pictures, not page. ----------
+  :root{--panel:#ffffff;--panel-2:#ffffff;--line:rgba(28,25,23,.13);--ice:#476B96;--ink:#1C1917;--muted:#6f6a5e;--muted-2:#3f3a33;
+    --aura:0 0 0 1px rgba(185,204,230,.9),0 0 6px rgba(255,255,255,.75),0 10px 26px rgba(71,107,150,.28),0 0 38px rgba(132,163,204,.35),0 0 72px rgba(160,195,255,.20);
+    --aura-soft:0 0 0 1px rgba(185,204,230,.55),0 1px 3px rgba(28,25,23,.06),0 14px 34px rgba(28,25,23,.07)}
+  body{background:radial-gradient(120% 46% at 50% -6%,rgba(185,204,230,.38),rgba(185,204,230,0) 55%),radial-gradient(900px 480px at 50% 0%,rgba(132,163,204,.10),rgba(132,163,204,0) 62%),linear-gradient(180deg,#F4F8FC 0%,#fff 34%,#fff 100%);background-color:#fff;color:var(--ink)}
+  a{color:#476B96}
+  .topbar{background:rgba(255,255,255,.92)}
+  nav.mainnav a:hover,nav.mainnav a.here{background:#EFEAE0;color:var(--ink)}
+  nav.mainnav a.goldlink{color:#476B96}
+  nav.mainnav a.goldlink:hover{background:rgba(132,163,204,.12);color:#476B96}
+  nav.mainnav a.loyaltap{color:#476B96}
+  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:#476B96}
+  section{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
+  .eyebrow{color:#476B96}
+  .kicker{color:#476B96}
+  .btn{background:#1C1917;color:#F6F3EC}
+  footer .doorlinks a:hover{background:#EFEAE0;color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:#476B96}
+  footer .flogo em{color:#476B96}
+  .room{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
+  .soundline{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .soundline b{color:#476B96}
+  .backlink{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
+  .aimee{background:#fff;border:1px solid var(--line)}
+  .aimee .who{color:#476B96}
+  .videoslot{background:#fff;border:1px solid var(--line)}
+  .videoslot .vlabel{color:#476B96}
+  .vnote{background:#EDF1F6;color:#3f3a33}
+  .craft{background:#fff;border:1px solid var(--line)}
+  .founderbanner{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .founderbanner b{color:#476B96}
+  .tier{background:#fff;border:1px solid var(--line)}
+  .tier .price{color:#476B96}
+  .houserules{background:#fff;border:1px solid var(--line)}
+  nav.mainnav a.cta{background:#1C1917;color:#F6F3EC}
+  .grouphead{color:#476B96}
+  .moment{color:#F6F3EC}
+  .moment h3{color:#F6F3EC}
+  form.gb input[type="text"],form.gb input[type="email"]{background:#fff;border-color:#D8D3C6;color:var(--ink)}
+  form.gb .choices label{background:#fff;border:1px solid var(--line)}
+  #joinMsg{color:#38587E}
+  .luxcolours select{background:#fff;color:var(--ink)}
+</style>
 </head>
 <body>
 
