@@ -4,33 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lux — One House, Four Doors | ailux.ca</title>
-<meta name="description" content="Lux on a black diamond: four doors — the Business AI Workshop, the AI Playground, the free Cinema, and the Store. The house opens Friday, January 1, 2027, with Aimée at the desk.">
+<meta name="description" content="Lux — home of Amos, the Patch, and SeamGuard: identity and seam guards for AI agents. Four doors — the Business AI Workshop, the AI Playground, the free Cinema, and the Store. The house opens January 1, 2027, with Aimée at the desk.">
 <style>
   :root{
     --black:#000;
-    --panel:#0b0b10;
-    --panel-2:#101017;
-    --line:rgba(255,255,255,.14);
-    --ice:#eaf2ff;
+    --panel:#ffffff;
+    --panel-2:#ffffff;
+    --line:rgba(28,25,23,.13);
+    --ice:#476B96;
     --gold:#B9CCE6;
-    --ink:#f6f3ec;
-    --muted:#a9a5b5;
-    --muted-2:#cfcbd9;
+    --gold-text:#476B96;
+    --ink:#1C1917;
+    --muted:#6f6a5e;
+    --muted-2:#3f3a33;
     --radius:22px;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
     /* The diamond's light — a ring of white-gold brilliance, used as the
        aura around buttons, doors and panels. Never a diamond fill. */
     --aura:
-      0 0 0 1px rgba(255,244,214,.65),
+      0 0 0 1px rgba(185,204,230,.9),
       0 0 6px rgba(255,255,255,.75),
-      0 0 18px rgba(234,242,255,.55),
-      0 0 38px rgba(132,163,204,.40),
-      0 0 72px rgba(160,195,255,.22);
+      0 10px 26px rgba(71,107,150,.28),
+      0 0 38px rgba(132,163,204,.35),
+      0 0 72px rgba(160,195,255,.20);
     --aura-soft:
-      0 0 0 1px rgba(255,244,214,.4),
-      0 0 12px rgba(234,242,255,.28),
-      0 0 30px rgba(132,163,204,.20);
+      0 0 0 1px rgba(185,204,230,.55),
+      0 1px 3px rgba(28,25,23,.06),
+      0 14px 34px rgba(28,25,23,.07);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -38,15 +39,16 @@
   body{
     font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;
     -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
-    /* Shiny black: a polished surface with one soft sheen of light across it */
+    /* Light, like the affiliates page: white with one soft sheen of
+       Dusty Blue light across the top */
     background:
-      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
-      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
-      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
-    background-color:var(--black);
+      radial-gradient(120% 46% at 50% -6%, rgba(185,204,230,.38), rgba(185,204,230,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.10), rgba(132,163,204,0) 62%),
+      linear-gradient(180deg,#F4F8FC 0%, #fff 34%, #fff 100%);
+    background-color:#fff;
     background-attachment:fixed;
   }
-  a{color:var(--gold)}
+  a{color:var(--gold-text)}
   img{display:block;max-width:100%}
   h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
   p{margin:0 0 12px}
@@ -55,22 +57,22 @@
   :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
 
   /* ---------- top bar ---------- */
-  .topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
   .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
   nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
   nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:999px}
-  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a:hover{background:#EFEAE0;color:var(--ink)}
   /* The Loyalty tap — small, quiet, gold, top right. No box. */
-  nav.mainnav a.loyaltap{color:var(--gold);font-weight:700;letter-spacing:.04em}
-  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:var(--gold)}
+  nav.mainnav a.loyaltap{color:var(--gold-text);font-weight:700;letter-spacing:.04em}
+  nav.mainnav a.loyaltap:hover{background:rgba(132,163,204,.12);color:var(--gold-text)}
   /* Buttons stay black — only the light around them shines */
-  nav.mainnav a.cta{background:#000;color:var(--ink);font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
+  nav.mainnav a.cta{background:#1C1917;color:#F6F3EC;font-weight:800;box-shadow:var(--aura-soft);margin-left:6px}
   nav.mainnav a.cta:hover{box-shadow:var(--aura)}
 
   /* ---------- layout ---------- */
   main{max-width:1080px;margin:0 auto;padding:0 22px 8px}
-  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-text);margin:0 0 14px;display:flex;align-items:center;gap:12px}
   .kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(132,163,204,.4),transparent)}
   h2.section-title{font-size:clamp(29px,4.4vw,42px);letter-spacing:-.01em;line-height:1.12;margin:0 0 12px}
   .section-lede{font-size:18px;color:var(--muted-2);max-width:700px}
@@ -80,18 +82,18 @@
   .readdoor{margin:52px auto 0;text-align:center}
 
   /* ---------- buttons: black, ringed with light ---------- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 28px;border-radius:999px;font-size:16.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;background:#1C1917;color:#F6F3EC;box-shadow:var(--aura);transition:box-shadow .25s ease}
   .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(160,195,255,.3)}
   .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 
   /* ---------- hero: the heart diamond ---------- */
   .hero{text-align:center;padding:10px 0 0;position:relative;z-index:2}
-  .hero .dateline{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;box-shadow:none;color:var(--gold);font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:0}
+  .hero .dateline{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;box-shadow:none;color:var(--gold-text);font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:0}
   .hero .dateline .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold)}
   /* The stage: the diamond sits high, right under the headline, and the
      four doors float over it — lifted on their light, gently hovering. */
-  .stage{position:relative;margin-top:-4px;padding-top:10px;overflow-x:clip}
-  .diamond{position:absolute;left:50%;top:-58px;transform:translateX(-50%);width:min(560px,98vw);margin:0;z-index:0;pointer-events:none}
+  .stage{position:relative;margin-top:26px;padding:30px 18px 34px;overflow-x:clip;background:linear-gradient(180deg,#0a0a0e 0%,#000 30%,#000 100%);border-radius:26px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
+  .diamond{position:absolute;left:50%;top:-24px;transform:translateX(-50%);width:min(560px,98vw);margin:0;z-index:0;pointer-events:none}
   .diamond::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(132,163,204,.20) 0%,rgba(190,215,255,.10) 42%,rgba(0,0,0,0) 68%);pointer-events:none}
   /* The heart turns, slowly, behind the doors — a gentle rock, never
      a full spin, so the heart always stays a heart — while a ring of
@@ -120,7 +122,7 @@
   .diamond .s6{top:20%;left:40%;width:13px;height:13px;animation-delay:2.1s;animation-duration:3.6s}
   @keyframes sparkle{0%,100%{opacity:0;transform:scale(.35) rotate(0deg)}12%{opacity:1;transform:scale(1) rotate(45deg)}26%{opacity:0;transform:scale(.35) rotate(90deg)}}
   .hero h1{font-size:clamp(40px,7.4vw,68px);line-height:1.04;letter-spacing:-.015em;margin-top:8px}
-  .hero h1 .goldline{color:var(--gold)}
+  .hero h1 .goldline{color:var(--gold-text)}
 
   /* ---------- "One house." — centred between the doors and the
      engraving, in the same headline writing it had up top ---------- */
@@ -146,17 +148,31 @@
   .door .go{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:20px;font-weight:700}
 
   /* ---------- the founding pay card ---------- */
-  .paycard{margin:52px auto 0;max-width:860px;background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;z-index:2;text-align:left}
-  .paycard::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,0) 48%);pointer-events:none}
+  .paycard{margin:52px auto 0;max-width:860px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);position:relative;overflow:hidden;z-index:2;text-align:left}
+  .paycard::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(185,204,230,.20) 0%,rgba(185,204,230,.05) 28%,rgba(185,204,230,0) 48%);pointer-events:none}
   .paycard>*{position:relative}
-  .paycard .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .paycard .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-text);margin:0 0 6px}
   .paycard h3{font-size:clamp(25px,3.4vw,31px);line-height:1.12;margin:0 0 6px}
   .paycard p.desc{margin:0;color:var(--muted-2);font-size:16px;max-width:560px}
   .paytier{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
   .paytier .tname{font-family:var(--serif);font-weight:700;font-size:20px;min-width:158px;line-height:1.15}
   .paytier .tname small{display:block;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--muted);margin-top:3px}
   .paycard .fineprint{margin-top:18px;color:var(--muted);font-size:14px}
-  .paycard .fineprint a{color:var(--gold)}
+  .paycard .fineprint a{color:var(--gold-text)}
+
+  /* ---------- the two shields — the products, on the front page
+     at last (Vance, 2026-11-17: "those two products aren't even on
+     there"). Light cards on the light page. ---------- */
+  .products{margin:52px auto 0}
+  .prodgrid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:22px}
+  @media (min-width:760px){.prodgrid{grid-template-columns:1fr 1fr}}
+  .prod{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 26px;box-shadow:var(--aura-soft);overflow:hidden}
+  .prod .dtag{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-text);margin:0 0 6px}
+  .prod h3{font-size:clamp(25px,3.4vw,31px);line-height:1.12;margin:0 0 6px}
+  .prod p.desc{margin:0;color:var(--muted-2);font-size:16px}
+  .prod .price{margin:16px 0 0;font-family:var(--serif);font-weight:700;font-size:21px}
+  .prod .price small{display:inline;font-family:var(--sans);font-weight:600;font-size:13.5px;color:var(--muted)}
+  .prod .btnrow{margin-top:18px}
 
   /* ---------- School in a Box — the centre card (Vance, Nov 13):
      sits in the middle of the doors grid, below the first row,
@@ -192,12 +208,12 @@
   .engraving .eng-cap{display:block;margin-top:9px;font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
     color:#1b1b22;text-shadow:0 1px 0 rgba(238,244,255,.34),0 -1px 1px rgba(0,0,0,1)}
   .engraving .eng-heart{align-self:center;width:34px;height:31px;flex:none;filter:drop-shadow(0 1px 0 rgba(238,244,255,.25)) drop-shadow(0 0 6px rgba(132,163,204,.35))}
-  .engraving .eng-line{margin:14px 0 0;font-size:14.5px;color:var(--muted)}
+  .engraving .eng-line{margin:14px 0 0;font-size:14.5px;color:#a9a5b5}
   @media (max-width:560px){ .engraving .eng-heart{order:-1;width:100%} }
 
   /* ---------- room panels ---------- */
-  .room{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:26px;padding:38px;box-shadow:var(--aura-soft);position:relative;overflow:hidden}
-  .room::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 40%);pointer-events:none}
+  .room{background:#fff;border:1px solid var(--line);border-radius:26px;padding:38px;box-shadow:var(--aura-soft);position:relative;overflow:hidden}
+  .room::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(185,204,230,.14) 0%,rgba(185,204,230,0) 40%);pointer-events:none}
   .room>*{position:relative}
 
   /* ---------- guest book ---------- */
@@ -206,22 +222,22 @@
   form.gb label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--muted-2)}
   /* Text fields only — this rule must never reach the choice radios,
      or they swell into giant blobs that bury their labels */
-  form.gb input[type="text"],form.gb input[type="email"]{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#000;color:var(--ink);padding:12px 16px;width:100%}
+  form.gb input[type="text"],form.gb input[type="email"]{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(28,25,23,.25);background:#fff;color:var(--ink);padding:12px 16px;width:100%}
   form.gb input[type="text"]:focus,form.gb input[type="email"]:focus{outline:2px solid var(--ice);outline-offset:1px}
   .choices{display:flex;gap:10px;flex-wrap:wrap}
-  form.gb .choices label{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;background:#000;box-shadow:var(--aura-soft);padding:10px 17px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  form.gb .choices label{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft);padding:10px 17px;border-radius:999px;cursor:pointer;color:var(--ink)}
   form.gb .choices input[type="radio"]{width:18px;height:18px;min-height:0;padding:0;border:0;background:none;flex:none;margin:0;accent-color:var(--gold)}
-  #joinMsg{font-size:15.5px;color:#f0e6cb;margin:6px 0 0}
+  #joinMsg{font-size:15.5px;color:#476B96;margin:6px 0 0}
 
   /* ---------- the heart's hum: a small fixed sound control ----------
      The hum itself is synthesised live (see the script) — a deep space
      tone that breathes on the heart's own 11-second rock. The button
      floats in the corner so it never takes space from the page. */
-  .humbtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 18px;border-radius:999px;background:#000;color:var(--muted-2);border:0;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.02em;box-shadow:var(--aura-soft);transition:box-shadow .25s ease,color .25s ease}
-  .humbtn:hover{box-shadow:var(--aura);color:var(--ink)}
+  .humbtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 18px;border-radius:999px;background:#1C1917;color:#EDEAE2;border:0;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.02em;box-shadow:var(--aura-soft);transition:box-shadow .25s ease,color .25s ease}
+  .humbtn:hover{box-shadow:var(--aura);color:#fff}
   .humbtn svg{width:18px;height:18px;flex:none;color:var(--gold)}
   .humbtn .waves{opacity:.35;transition:opacity .3s ease}
-  .humbtn[aria-pressed="true"]{color:var(--ink)}
+  .humbtn[aria-pressed="true"]{color:#fff}
   .humbtn[aria-pressed="true"] .waves{opacity:1}
   .humbtn[aria-pressed="true"] .waves path{animation:wavepulse 11s ease-in-out infinite}
   .humbtn[aria-pressed="true"] .waves path:nth-child(2){animation-delay:.5s}
@@ -233,12 +249,12 @@
 
   footer{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
   footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
-  footer .flogo em{font-style:normal;color:var(--gold)}
+  footer .flogo em{font-style:normal;color:var(--gold-text)}
   /* The four doors, linked again at the bottom of the page */
   footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
   footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
-  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
-  footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
+  footer .doorlinks a:hover{background:#EFEAE0;color:var(--ink)}
+  footer .doorlinks a.loyaltap{color:var(--gold-text);font-weight:700}
 
   @media (min-width:760px){
     .doors{grid-template-columns:1fr 1fr}
@@ -269,15 +285,15 @@
 .luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoors-caret{font-size:13px;transition:transform .18s ease}
 .luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
-.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
 .luxdoors-panel[hidden]{display:none}
 .topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
 .luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
-.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
 .luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
 .luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
-.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
 .luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
 .luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
 @media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
@@ -298,7 +314,7 @@
 </style>
 <!-- Lux app (PWA) - stage 1, 2026-11-16 -->
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -319,6 +335,7 @@
     <div class="luxdoors-grid">
       <a class="luxdoor-tile here" href="./" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
       <a class="luxdoor-tile" href="patch/" role="menuitem"><span class="ic" aria-hidden="true">🛡️</span><span class="lb">Amos</span></a>
+      <a class="luxdoor-tile" href="seamguard/" role="menuitem"><span class="ic" aria-hidden="true">🔗</span><span class="lb">SeamGuard</span></a>
       <a class="luxdoor-tile" href="workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
       <a class="luxdoor-tile" href="playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
       <a class="luxdoor-tile" href="site-pages/membership.html" role="menuitem"><span class="ic" aria-hidden="true">⭐</span><span class="lb">Membership</span></a>
@@ -347,6 +364,29 @@
     <h1><span class="goldline">Four doors.</span></h1>
     <p style="max-width:620px;margin:18px auto 0;text-align:center;font-size:17px;line-height:1.55;color:var(--ink,#1C1917)"><strong>No key, no entry.</strong> Everybody who comes through these doors holds a key we issued — people and AIs alike. No AI gets in without one. That&rsquo;s Amos at the door, and the house is a sealed vault behind him.</p>
   </div>
+
+  <!-- ============ THE TWO SHIELDS — THE PRODUCTS ============ -->
+  <section class="products" aria-label="The products">
+    <p class="kicker">For sale now · The two shields</p>
+    <h2 class="section-title">The products.</h2>
+    <p class="section-lede">Two guards for your agents — one for the door, one for the seams between them.</p>
+    <div class="prodgrid">
+      <div class="prod">
+        <p class="dtag">Amos · Identity for your agents</p>
+        <h3>The Patch</h3>
+        <p class="desc">Every agent shows ID before it gets in. Each of your agents gets its own card and PIN — no key, no entry — and every crossing leaves a signed receipt. AgentPay, our payment guard, comes with it free.</p>
+        <p class="price">US$29.97 <small>a month</small></p>
+        <div class="btnrow"><a class="btn" href="patch/">See the Patch &rarr;</a></div>
+      </div>
+      <div class="prod">
+        <p class="dtag">SeamGuard · The seams between your agents</p>
+        <h3>SeamGuard</h3>
+        <p class="desc">The guard that fuses the seams between your agents and brains. Every hand-off is checked by two keys — who the agent is, and what it is allowed to do. If the keys disagree, the crossing stops.</p>
+        <p class="price">Per brain <small>a month</small></p>
+        <div class="btnrow"><a class="btn" href="seamguard/">See SeamGuard &rarr;</a></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ THE TILL — FOUNDING MEMBERSHIPS, OPEN NOW ============ -->
   <div class="paycard">
@@ -509,8 +549,10 @@
     <a href="site-pages/membership.html">Membership</a>
     <a href="school-in-a-box/">School in a Box</a>
     <a href="patch/">Amos</a>
+    <a href="seamguard/">SeamGuard</a>
     <a href="papers/">Papers</a>
     <a class="loyaltap" href="loyalty/">Loyalty</a>
+    <a href="affiliates/">Affiliates</a>
   </nav>
   A Million Times Better · ailux.ca — Edmonton, Alberta<br>
   © 2026 Lux Automations<br>
