@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SeamGuard — Lux Automations</title>
+<meta name="description" content="SeamGuard guards the seams between your agents: every hand-off checked — who is passing the work, and whether it is allowed to — with a signed receipt at every crossing.">
+<link rel="canonical" href="https://ailux.ca/seamguard/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="SeamGuard — Lux Automations">
+<meta property="og:description" content="Every hand-off between your agents, checked: a verified identity and a permission check — both must say yes — and a signed receipt for the crossing.">
+<meta property="og:url" content="https://ailux.ca/seamguard/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SeamGuard — Lux Automations">
+<meta name="twitter:description" content="Every hand-off between your agents, checked — identity, permission, and a signed receipt at every crossing.">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#B9CCE6; --gold-deep:#84A3CC; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(132,163,204,.40),
+      0 0 72px rgba(132,163,204,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(132,163,204,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:12px 13px;border-radius:var(--radius-pill)}
+  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
+  nav.mainnav a.goldlink:hover{background:rgba(132,163,204,.12);color:var(--gold)}
+
+  /* ---------- layout (containment per the 2026-11-15 Cinema fix) ---------- */
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative;min-width:0}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(30px,6.6vw,44px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(23px,5vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(132,163,204,.3)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  /* ---------- strong payment buttons (house standard, Vance 2026-11-15):
+     big, high-contrast, unmissable; plain labels; generous tap targets;
+     visible focus — some visitors are blind, and everybody deserves
+     a button they can find ---------- */
+  .btn.buy{background:var(--gold);color:#000;font-size:19px;min-height:64px;padding:18px 38px;box-shadow:var(--aura)}
+  .btn.buy:hover{background:var(--gold-deep);box-shadow:0 0 0 2px rgba(240,245,252,.95),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.65),0 0 72px rgba(132,163,204,.3)}
+  .btn:focus-visible,.btn.buy:focus-visible{outline:3px solid var(--ice);outline-offset:4px}
+  .buyline{text-align:center;margin-top:18px}
+  .buyline small{margin-top:10px}
+  .buyline>small{display:block}
+  .tilllead{font-size:17px;margin:0 0 6px}
+  .bonusline{font-size:20px;font-weight:700;margin:0 0 18px}
+  .tillgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 22px;max-width:780px;margin:0 auto}
+  .tilldoor .btn.buy{width:100%}
+  .tilldoor small{display:block;margin-top:8px}
+  @media (max-width:640px){.tillgrid{grid-template-columns:1fr}}
+
+  /* ---------- beat imagery: photographic-finish stills from the film ---------- */
+  figure.beatfig{margin:18px 0 6px;min-width:0}
+  figure.beatfig img{width:100%;height:auto;border-radius:var(--radius-card);box-shadow:var(--aura-soft);background:#000}
+  figure.beatfig figcaption{color:var(--muted);font-size:13.5px;margin-top:9px}
+
+  /* ---------- layered depth: the detail lives behind a door ---------- */
+  details.detail{margin-top:16px;background:#000;border:1px solid var(--line);border-radius:var(--radius-card);padding:0 18px}
+  details.detail summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:56px;padding:14px 0;font-weight:800;font-size:16.5px;color:var(--gold)}
+  details.detail summary::-webkit-details-marker{display:none}
+  details.detail summary::after{content:"+";margin-left:auto;font-size:24px;font-weight:400;color:var(--muted-2)}
+  details.detail[open ] summary::after{content:"\2212"}
+  details.detail summary:focus-visible{outline:3px solid var(--ice);outline-offset:3px;border-radius:6px}
+  details.detail .dwrap{padding-bottom:16px}
+  details.detail .dwrap p:last-child,details.detail .dwrap ol:last-child,details.detail .dwrap ul:last-child{margin-bottom:0}
+
+  /* ---------- the film, on the house stage (Vance, 2026-11-16): the Cinema's
+     own player frame — a black 16:9 stage, the film filling it — capped a
+     little smaller than the Cinema's screen, centred, first on the page ---------- */
+  .videowrap{max-width:720px;margin:0 auto;min-width:0}
+  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
+  .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:contain}
+  .bigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.55)}
+  .bigplay[hidden]{display:none}
+  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:rgba(255,255,255,.08)}
+  .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
+  .cbtn:disabled{opacity:.45;cursor:default}
+  .cbtn:disabled:hover{background:#000}
+  .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .vol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
+  .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
+  .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
+  .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
+  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
+  .player{position:relative}
+  .player:fullscreen{background:#000;width:100%;height:100%}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
+  .player:fullscreen .stage video{object-fit:contain}
+  .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .player:fullscreen.idle{cursor:none}
+  .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
+  .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
+  .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
+
+  /* ---------- the schematic: scrolls inside its wrapper on narrow
+     screens, never the page (same containment as the table) ---------- */
+  figure.diagram{margin:18px 0 0;min-width:0}
+  .diagramwrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
+  .diagramwrap svg{display:block;width:100%;min-width:620px;height:auto}
+  .diagramcap{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:12px}
+  .diagramcap strong{color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .leg{display:inline-flex;align-items:center;gap:9px}
+  .sw{display:inline-block;width:28px;height:0;border-top:2px solid var(--gold-deep)}
+  .sw-dash{border-top:2px dashed #e0655a}
+  .sw-tab{height:10px;border:1px solid var(--gold-deep);background:rgba(132,163,204,.08)}
+
+  /* ---------- the flags (Vance, 2026-11-15; folded into the header's
+     Nations dropdown 2026-11-16): Canada and the US first, then Mexico,
+     Europe, and every nation — every flag stands ---------- */
+  .flag{display:inline-flex;align-items:center;gap:8px;background:#000;border:1px solid var(--line);border-radius:var(--radius-pill);padding:7px 14px 7px 10px;font-size:14.5px;font-weight:600;color:var(--muted-2);min-width:0}
+  .flag .fl{font-size:19px;line-height:1}
+  .flag.first{box-shadow:var(--aura-soft);color:var(--ink);font-weight:700}
+  .flag.more{border-style:dashed;color:var(--gold);font-weight:700}
+
+  /* ---------- the pair: two cards ---------- */
+  .pair{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px}
+  @media (min-width:760px){.pair{grid-template-columns:1fr 1fr}}
+  .pcard{background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:18px;min-width:0}
+  .pcard h3{font-family:var(--serif);font-size:21px}
+  .pcard h3 span{color:var(--gold)}
+  .pcard p{color:var(--muted-2);font-size:16px}
+  .pcard p:last-child{margin-bottom:0}
+
+  blockquote.patchline{margin:18px 0;padding:18px 20px;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft)}
+  blockquote.patchline p{font-family:var(--serif);font-size:clamp(19px,3.4vw,23px);line-height:1.4;margin:0 0 8px}
+  blockquote.patchline cite{font-style:normal;color:var(--muted);font-size:14.5px}
+
+  ol.steps,ul.charge,ol.docs{margin:0;padding-left:22px}
+  ol.steps li,ul.charge li{margin-bottom:10px;color:var(--muted-2)}
+  ol.steps li strong,ul.charge li strong{color:var(--ink)}
+  .proposal{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+
+  /* ---------- threat catalogue table: scrolls inside its wrapper,
+     never the page (containment lesson, 2026-11-15) ---------- */
+  .tablewrap{overflow-x:auto;min-width:0;max-width:100%;-webkit-overflow-scrolling:touch;border-radius:var(--radius-card)}
+  table.map{border-collapse:collapse;width:100%;min-width:760px;background:#000;font-size:15px}
+  table.map th,table.map td{border:1px solid var(--line);padding:11px 12px;vertical-align:top;text-align:left}
+  table.map th{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(132,163,204,.06)}
+  table.map td{color:var(--muted-2)}
+  table.map td strong{color:var(--ink)}
+  table.map td .ev{color:var(--muted);font-size:13.5px;display:block;margin-top:5px}
+  .limits{border:1.5px dashed rgba(132,163,204,.55);border-radius:var(--radius-card);background:rgba(132,163,204,.06);padding:14px 16px;margin-top:16px;color:#e9dfc4;font-size:15.5px}
+  .limits p{margin:0}
+
+  ol.docs li{margin-bottom:12px;color:var(--muted-2);overflow-wrap:anywhere}
+  ol.docs li strong{color:var(--ink)}
+  ol.docs a{overflow-wrap:anywhere}
+  .txline{display:block;margin-top:3px;font-size:14.5px}
+
+  .contactline{text-align:center}
+  .contactline .btn{font-size:18px}
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+</style>
+
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#0b0d12;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#12151d;border:1px solid #2a2f3f;border-radius:14px;color:#eef1f7;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#171b26}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#1a2030;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
+   small compact text; the full country names ride in each flag's title.
+   The panel cap, internal scroll and the ≤640px fixed-panel fix above
+   all apply to this panel as they do to Doors. */
+.luxnations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.luxnations-grid .flag{justify-content:center;padding:6px 4px;gap:6px;border-radius:10px;font-size:13px}
+.luxnations-grid .flag .fl{font-size:17px}
+.luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
+@media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+<style id="luxlang-css">
+/* Language switcher (GTranslate free, Vance 2026-11-16): the wrapper rides as a flex
+   item in .luxmenus beside Doors; the group already wraps on narrow screens, so the
+   switcher can never push the header off a phone. */
+.gtranslate_wrapper{display:inline-flex;align-items:center}
+</style>
+<!-- Lux app (PWA) - stage 1, 2026-11-16 -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lux">
+
+<style>
+  /* ---------- AMOS PAGE — the house colour scheme (Vance, 2026-11-16) ----------
+     Cream page, white and soft-colour boxes down the page, warm dark lettering,
+     no glow junk. Each box carries its own soft colour; everything for that
+     section lives inside it. The shield is the one strong pop. The film stage
+     and the flow diagram stay black — they are pictures, not page. */
+  body{background:#FFFFFF;background-color:#FFFFFF;color:#1C1917}
+  a{color:#38587E}
+  :focus-visible{outline-color:#7FB3D9}
+  .topbar{background:rgba(250,248,242,.94);border-bottom:1px solid #E7E1D2}
+  .brand{color:#1C1917}
+  .brand small{color:#8A8578}
+  nav.mainnav a{color:#55504A}
+  nav.mainnav a:hover{background:#EFEAE0;color:#1C1917}
+  nav.mainnav a.here{background:#EFEAE0;color:#1C1917}
+  nav.mainnav a.goldlink{color:#38587E}
+  nav.mainnav a.goldlink:hover{background:#E7EEF7;color:#38587E}
+  main{gap:22px;padding:22px 16px}
+  section{background:#FFFFFF;color:#1C1917;border-radius:26px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05)}
+  main>section:nth-of-type(2){background:#FFFFFF}
+  section{text-align:center}
+  section ul,section ol,section details.detail .dwrap,section table{text-align:left}
+  main>section:nth-of-type(3){background:#EFF3EA}
+  main>section:nth-of-type(5){background:#EDF1F6}
+  main>section:nth-of-type(7){background:#F1EFE9}
+  main>section:nth-of-type(9){background:#EAF3EF}
+  main>section:nth-of-type(10){background:#F7EDE6}
+  .amosemblem{width:min(300px,78%);height:auto;margin:2px auto 12px}
+  .filmrow{display:flex;gap:22px;align-items:center;max-width:1060px;margin:0 auto}
+  .filmrow .videowrap{flex:1 1 auto;max-width:none;margin:0;min-width:0}
+  .filmshield{flex:0 0 240px;text-align:center}
+  .filmshield img{width:100%;height:auto}
+  .filmshield{text-align:center}
+  .shieldline{margin:12px auto 0;font-weight:800;font-size:19px;letter-spacing:.05em;text-transform:uppercase;color:#1C1917;line-height:1.35;max-width:300px}
+  @media(max-width:820px){.filmrow{flex-direction:column}.filmshield{order:-1;flex:none;width:min(210px,58%)}}
+  .eyebrow{color:#476B96}
+  p.lede{color:#3E3A34}
+  .secondary,small,figure.beatfig figcaption,.diagramcap,.legend,.ctime,.videohint{color:#6B665C}
+  .diagramcap strong{color:#1C1917}
+  .btn{background:#1C1917;color:#F6F3EC;box-shadow:0 6px 18px rgba(28,25,23,.18)}
+  .btn:hover{box-shadow:0 8px 22px rgba(28,25,23,.24)}
+  .btn.buy{background:#B9CCE6;color:#000;box-shadow:0 8px 22px rgba(71,107,150,.35)}
+  .btn.buy:hover{background:#84A3CC;box-shadow:0 10px 26px rgba(71,107,150,.45)}
+  .cbtn{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
+  .cbtn:hover{background:#F3F0E7}
+  .cbtn[aria-pressed="true"]{background:#EDF2F9;border-color:#476B96;color:#38587E}
+  .cbtn:disabled:hover{background:#FFFFFF}
+  .speedsel{background:#FFFFFF;color:#1C1917;border-color:#D8D3C6}
+  .hostbubble{background:#FFFFFF;color:#1C1917;box-shadow:0 10px 28px rgba(28,25,23,.18)}
+  .flag{background:#FFFFFF;border-color:#E1DCCF;color:#3E3A34}
+  .flag.first{color:#1C1917;box-shadow:0 4px 14px rgba(28,25,23,.08)}
+  .flag.more{color:#38587E}
+  .pcard{background:#FFFFFF;border:1px solid #E9E5D9;box-shadow:0 4px 16px rgba(28,25,23,.05)}
+  .pcard h3 span{color:#476B96}
+  .pcard p{color:#55504A}
+  ol.steps li,ul.charge li,ol.docs li{color:#3E3A34}
+  ol.steps li strong,ul.charge li strong,ol.docs li strong{color:#1C1917}
+  details.detail{background:#FFFFFF;border-color:#E1DCCF}
+  details.detail summary{color:#38587E}
+  details.detail summary::after{color:#6B665C}
+  table.map{background:#FFFFFF}
+  table.map th,table.map td{border-color:#E7E2D6}
+  table.map th{color:#38587E;background:#F4F2EC}
+  table.map td{color:#3E3A34}
+  table.map td strong{color:#1C1917}
+  table.map td .ev{color:#6B665C}
+  .limits{background:#F4F2EC;border-color:#476B96;color:#3E3A34}
+  figure.beatfig img{background:#EFEFEC;box-shadow:0 8px 24px rgba(28,25,23,.10)}
+  footer{color:#6B665C}
+  footer .flogo{color:#1C1917}
+  footer .flogo em{color:#476B96}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux<small>ailux.ca</small></a>
+  <div class="luxmenus">
+  <div class="luxdoors">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">Amos</span></a>
+          <a class="luxdoor-tile here" href="../seamguard/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
+      <a class="luxdoor-tile" href="../playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
+      <a class="luxdoor-tile" href="../site-pages/membership.html" role="menuitem"><span class="ic" aria-hidden="true">⭐</span><span class="lb">Membership</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      <a class="luxdoor-tile" href="../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
+      <a class="luxdoor-tile" href="../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxnations">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">🌐 Nations <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden aria-label="The nations this patch is offered to">
+    <!-- ADD A NATION: copy one flag span below — flag emoji + ISO alpha-2 code as the visible text, the full country name in the title. Keep the order; Canada and the United States stand first. -->
+    <div class="luxnations-grid">
+      <span class="flag first" title="Canada" aria-label="Canada"><span class="fl" aria-hidden="true">🇨🇦</span>CA</span>
+      <span class="flag first" title="United States" aria-label="United States"><span class="fl" aria-hidden="true">🇺🇸</span>US</span>
+      <span class="flag" title="Mexico" aria-label="Mexico"><span class="fl" aria-hidden="true">🇲🇽</span>MX</span>
+      <span class="flag" title="United Kingdom" aria-label="United Kingdom"><span class="fl" aria-hidden="true">🇬🇧</span>GB</span>
+      <span class="flag" title="France" aria-label="France"><span class="fl" aria-hidden="true">🇫🇷</span>FR</span>
+      <span class="flag" title="Germany" aria-label="Germany"><span class="fl" aria-hidden="true">🇩🇪</span>DE</span>
+      <span class="flag" title="Spain" aria-label="Spain"><span class="fl" aria-hidden="true">🇪🇸</span>ES</span>
+      <span class="flag" title="Italy" aria-label="Italy"><span class="fl" aria-hidden="true">🇮🇹</span>IT</span>
+      <span class="flag" title="Portugal" aria-label="Portugal"><span class="fl" aria-hidden="true">🇵🇹</span>PT</span>
+      <span class="flag" title="Netherlands" aria-label="Netherlands"><span class="fl" aria-hidden="true">🇳🇱</span>NL</span>
+      <span class="flag" title="Belgium" aria-label="Belgium"><span class="fl" aria-hidden="true">🇧🇪</span>BE</span>
+      <span class="flag" title="Poland" aria-label="Poland"><span class="fl" aria-hidden="true">🇵🇱</span>PL</span>
+      <span class="flag" title="Ukraine" aria-label="Ukraine"><span class="fl" aria-hidden="true">🇺🇦</span>UA</span>
+      <span class="flag" title="Sweden" aria-label="Sweden"><span class="fl" aria-hidden="true">🇸🇪</span>SE</span>
+      <span class="flag" title="Norway" aria-label="Norway"><span class="fl" aria-hidden="true">🇳🇴</span>NO</span>
+      <span class="flag" title="Denmark" aria-label="Denmark"><span class="fl" aria-hidden="true">🇩🇰</span>DK</span>
+      <span class="flag" title="Finland" aria-label="Finland"><span class="fl" aria-hidden="true">🇫🇮</span>FI</span>
+      <span class="flag" title="Ireland" aria-label="Ireland"><span class="fl" aria-hidden="true">🇮🇪</span>IE</span>
+      <span class="flag" title="Greece" aria-label="Greece"><span class="fl" aria-hidden="true">🇬🇷</span>GR</span>
+      <span class="flag" title="Romania" aria-label="Romania"><span class="fl" aria-hidden="true">🇷🇴</span>RO</span>
+      <span class="flag" title="Czechia" aria-label="Czechia"><span class="fl" aria-hidden="true">🇨🇿</span>CZ</span>
+      <span class="flag" title="Austria" aria-label="Austria"><span class="fl" aria-hidden="true">🇦🇹</span>AT</span>
+      <span class="flag" title="Switzerland" aria-label="Switzerland"><span class="fl" aria-hidden="true">🇨🇭</span>CH</span>
+      <span class="flag" title="Japan" aria-label="Japan"><span class="fl" aria-hidden="true">🇯🇵</span>JP</span>
+      <span class="flag" title="South Korea" aria-label="South Korea"><span class="fl" aria-hidden="true">🇰🇷</span>KR</span>
+      <span class="flag" title="Australia" aria-label="Australia"><span class="fl" aria-hidden="true">🇦🇺</span>AU</span>
+      <span class="flag" title="New Zealand" aria-label="New Zealand"><span class="fl" aria-hidden="true">🇳🇿</span>NZ</span>
+      <span class="flag" title="India" aria-label="India"><span class="fl" aria-hidden="true">🇮🇳</span>IN</span>
+      <span class="flag" title="Brazil" aria-label="Brazil"><span class="fl" aria-hidden="true">🇧🇷</span>BR</span>
+      <span class="flag" title="Argentina" aria-label="Argentina"><span class="fl" aria-hidden="true">🇦🇷</span>AR</span>
+      <span class="flag" title="Chile" aria-label="Chile"><span class="fl" aria-hidden="true">🇨🇱</span>CL</span>
+      <span class="flag" title="South Africa" aria-label="South Africa"><span class="fl" aria-hidden="true">🇿🇦</span>ZA</span>
+      <span class="flag" title="Nigeria" aria-label="Nigeria"><span class="fl" aria-hidden="true">🇳🇬</span>NG</span>
+      <span class="flag" title="Kenya" aria-label="Kenya"><span class="fl" aria-hidden="true">🇰🇪</span>KE</span>
+      <span class="flag" title="Egypt" aria-label="Egypt"><span class="fl" aria-hidden="true">🇪🇬</span>EG</span>
+      <span class="flag" title="Israel" aria-label="Israel"><span class="fl" aria-hidden="true">🇮🇱</span>IL</span>
+      <span class="flag" title="T&uuml;rkiye" aria-label="Türkiye"><span class="fl" aria-hidden="true">🇹🇷</span>TR</span>
+      <span class="flag more">+ every nation that needs it</span>
+    </div>
+    </div>
+  </div>
+    <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16): a visitor picks their language and the page re-languages itself. -->
+  <div class="gtranslate_wrapper"></div>
+  <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+</div>
+</header>
+
+<main>
+
+  <!-- ================= HEADER — THE LOCKUP ================= -->
+  <section>
+    <p class="eyebrow">Lux Automations · Agent-to-agent protection</p>
+    <img src="assets/seamguard-brain-aura.webp" alt="SeamGuard — the house shield with a brain in its field, ringed by its aura" style="display:block;width:min(430px,88%);height:auto;margin:10px auto 0">
+    <p class="shieldline">SeamGuard</p>
+    <h1>The guard at the seams between your agents</h1>
+    <p class="lede">Your agents hand work to each other all day. SeamGuard checks every hand-off — who is passing it, and whether it is allowed to — before the work moves.</p>
+  </section>
+
+  <div style="background:#EDF2F9;border-radius:16px;padding:14px 22px;text-align:center">
+    <p style="margin:0;font-size:16px"><img src="/assets/icons/amos-shield.png" alt="" aria-hidden="true" style="height:22px;width:auto;vertical-align:-5px;margin-right:8px">And for the doors themselves: <a href="../patch/"><strong>Amos</strong></a> secures your doors — and the identity check on your money.</p>
+  </div>
+
+  <!-- ================= THE PROBLEM ================= -->
+  <section>
+    <p class="eyebrow">The problem</p>
+    <h2>Brains leak at the joins</h2>
+    <p>Your doors are not the only place agents meet. Inside your own system, your agents hand work to each other all day — and the joins between them are where things leak.</p>
+    <p>Context bleeds across from one job to the next. A figure one agent invented arrives at the next desk as fact. Two agents disagree, and the disagreement gets quietly settled by whichever one spoke last. Work gets done twice — or done, undone, and done again.</p>
+    <p>Nobody forged a key. Nobody broke a lock. The work simply crossed from one agent to another with nobody checking the crossing.</p>
+  </section>
+
+  <!-- ================= THE FIX ================= -->
+  <section>
+    <p class="eyebrow">The fix</p>
+    <h2>Every hand-off becomes a checked crossing</h2>
+    <p>SeamGuard puts a guard at those seams. Every hand-off between your agents becomes a checked crossing, with two keys that both have to turn:</p>
+    <div class="pair">
+      <div class="pcard">
+        <h3>Key one — who is knocking</h3>
+        <p>SeamGuard checks the identity: an issued key, a signature that verifies, and a signed receipt written for the crossing. An agent that cannot prove who it is does not get through — an unknown identity bounces.</p>
+      </div>
+      <div class="pcard">
+        <h3>Key two — what it is allowed to do</h3>
+        <p>The permission check: the crossing has to sit inside that agent&rsquo;s mandate — what its owner said it may ask, send, and set in motion. Outside the mandate, the crossing stops.</p>
+      </div>
+    </div>
+    <p><strong>Both checks must say yes.</strong> One yes is not enough, and there is no anonymous crossing anywhere.</p>
+  </section>
+
+  <!-- ================= HOW IT RUNS ================= -->
+  <section>
+    <p class="eyebrow">How it runs</p>
+    <h2>A crossing, step by step</h2>
+    <ol class="steps">
+      <li><strong>An agent knocks.</strong> It presents its issued key and signs the hand-off.</li>
+      <li><strong>SeamGuard checks the identity.</strong> The signature must verify against the key on record. If it cannot prove who it is, the crossing bounces — nothing passes.</li>
+      <li><strong>SeamGuard checks the mandate.</strong> The ask has to sit inside what that agent is allowed to do. Outside the mandate, the crossing stops.</li>
+      <li><strong>The crossing is written down.</strong> A signed receipt records who crossed, what crossed, and when — a record neither side can quietly rewrite afterwards.</li>
+      <li><strong>The work moves — once.</strong> Checked, receipted, and done a single time.</li>
+    </ol>
+    <div class="limits">
+      <p style="margin-top:0"><strong>And if the two checks ever disagree, the crossing stops and goes up to a human.</strong> It never settles itself, and no agent decides a dispute it is part of.</p>
+      <p style="margin-bottom:0">At your outside doors, nothing loosens: anything crossing in or out of your house gets the full checks, every time. The checks are kept cheap and local on purpose — a guard that slows the work down is a guard people switch off.</p>
+    </div>
+  </section>
+
+  <!-- ================= WHO IT SERVES ================= -->
+  <section>
+    <p class="eyebrow">Who it serves</p>
+    <h2>For anyone running more than one agent</h2>
+    <p>If a single agent does all your work alone, you may not need SeamGuard yet. The moment two or more agents hand work to each other — a researcher passing to a writer, a planner passing to a builder, a desk passing to an executor — the joins appear, and so do the leaks.</p>
+    <p>The payoff is plain: <strong>the work gets done once.</strong> No leaks to chase down, no re-renders, no rework — the guard pays for itself in the work you never have to do twice.</p>
+  </section>
+
+  <!-- ================= OUR OWN HOUSE ================= -->
+  <section>
+    <p class="eyebrow">Our own house</p>
+    <h2>We use our own products — every one of them</h2>
+    <p><strong>SeamGuard guards our own house first.</strong> The same checked crossings sold here are the ones our own agents work under. If a guard is not good enough for our own seams, it does not get sold for yours.</p>
+  </section>
+
+  <!-- ================= WHERE IT STANDS ================= -->
+  <section>
+    <p class="eyebrow">Where it stands</p>
+    <h2>Stated plainly</h2>
+    <p>SeamGuard stands on the same machinery as <a href="../patch/">Amos</a> — the identity check and the signed receipt behind the nine systems passed at 100% in the proof list on the Amos page. The seam guard itself is at prototype stage in our own house: it is not yet live for outside customers, and it has not yet had its outside audit.</p>
+    <p>It rolls out in stages, the same way Amos does: first it watches and reports, and only then does it step in and enforce. Orders taken now join that rollout — you are buying your place in it, on the same package as the Patch.</p>
+  </section>
+
+  <!-- ================= ORDER ================= -->
+  <section>
+    <p class="eyebrow">Order</p>
+    <h2>One SeamGuard for every brain</h2>
+    <p>SeamGuard is shaped per brain: every agent in your house gets its own guard at its seams, under its own mandate. It rides on the same monthly package as the Patch — order it here.</p>
+    <p class="tilllead">Order the package here:</p>
+    <div class="buyline"><a class="btn buy" href="https://buy.stripe.com/dRm3cucIb3Iy62t9K52B20q">Monthly — US$29.97/mo</a></div>
+    <p class="small">Billed monthly, plus a one-time setup fee of US$9.97.</p>
+    <p class="bonusline">SeamGuard is the sister of the door protection on the Amos page: Amos guards your doors, SeamGuard guards the joins inside. Same house, same discipline — a checked identity and a signed receipt at every crossing, and nothing anonymous anywhere.</p>
+    <p class="small">Questions before you order — or about a bigger house? Write to <a href="mailto:patch@ailux.ca">patch@ailux.ca</a>. Full terms: <a href="../terms/">ailux.ca/terms</a>.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p class="flogo">Lux <em>Automations</em></p>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<div aria-hidden="true" style="text-align:right;padding:2px 16px 12px 0;line-height:0"><img src="/assets/shields/sg-01-brain.webp" alt="" width="40" height="27" style="opacity:.45"><img src="/assets/shields/sg-02-circuit.webp" alt="" width="40" height="27" style="opacity:.45"><img src="/assets/shields/sg-03-chip.webp" alt="" width="40" height="27" style="opacity:.45"><img src="/assets/shields/sg-04-neuralweb.webp" alt="" width="40" height="27" style="opacity:.45"><img src="/assets/shields/sg-05-synapse.webp" alt="" width="40" height="27" style="opacity:.45"></div>
+</body>
+</html>
