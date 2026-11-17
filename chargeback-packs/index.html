@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chargeback Evidence Packs — Lux Automations</title>
+<meta name="description" content="Chargeback evidence packs for online sellers: buyer identity checked at purchase, acceptance signed, and the dispute fought with a signed chain instead of screenshots.">
+<link rel="canonical" href="https://ailux.ca/chargeback-packs/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="Chargeback Evidence Packs — Lux Automations">
+<meta property="og:description" content="Chargeback evidence packs for online sellers: buyer identity checked at purchase, acceptance signed, and the dispute fought with a signed chain instead of screenshots.">
+<meta property="og:url" content="https://ailux.ca/chargeback-packs/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chargeback Evidence Packs — Lux Automations">
+<meta name="twitter:description" content="Chargeback evidence packs for online sellers: buyer identity checked at purchase, acceptance signed, and the dispute fought with a signed chain instead of screenshots.">
+<style>
+  :root{
+    --paper:#F7FAFD; --card:#FFFFFF; --line:#D8E2EF;
+    --fill:#B9CCE6; --mid:#84A3CC; --bluetext:#476B96; --bluedark:#38587E;
+    --ink:#1C2733; --muted:#5A6B7C; --muted2:#42566B;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:Inter,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --soft:0 10px 30px rgba(56,88,126,.10),0 2px 6px rgba(56,88,126,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,#FFFFFF 0%,var(--paper) 340px);background-color:var(--paper)}
+  a{color:var(--bluedark)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--bluedark);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar (light) ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--bluetext);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  .luxmenus{margin-left:auto}
+
+  /* ---------- layout ---------- */
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-section);padding:28px;box-shadow:var(--soft);position:relative;min-width:0}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--bluetext);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(32px,6.6vw,46px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(24px,5vw,31px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  p{margin:0 0 12px}
+  p.lede{font-size:19.5px;line-height:1.55;color:var(--muted2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  ul.points{margin:0;padding-left:22px}
+  ul.points li{margin-bottom:10px;color:var(--muted2)}
+  ul.points li strong{color:var(--ink)}
+  ul.points li:last-child{margin-bottom:0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:var(--fill);color:#14100a;transition:background .2s ease}
+  .btn:hover{background:#CFE0F2}
+
+  /* ---------- the typographic hero ---------- */
+  .hero{text-align:center;padding:44px 28px}
+  .hero .glyph{font-size:64px;line-height:1;display:block;margin-bottom:14px}
+  .hero .ring{width:118px;height:118px;margin:0 auto 20px;border-radius:50%;border:2px solid var(--fill);background:radial-gradient(circle at 50% 38%,#FFFFFF 0%,#EDF3FA 68%,#DCE8F5 100%);display:flex;align-items:center;justify-content:center;box-shadow:var(--soft)}
+  .hero .ring .glyph{font-size:52px;margin:0}
+  .hero p.lede{max-width:640px;margin:0 auto}
+
+  /* ---------- strong payment buttons (house standard): big, plain, findable ---------- */
+  .btn.buy{background:var(--fill);color:#14100a;font-size:19px;min-height:64px;padding:18px 38px;box-shadow:var(--soft)}
+  .btn.buy:hover{background:var(--mid);color:#fff}
+  .btn:focus-visible,.btn.buy:focus-visible{outline:3px solid var(--bluedark);outline-offset:4px}
+  .buyline{text-align:center;margin-top:6px}
+  .buyline small{margin-top:10px}
+  .tilllead{font-size:17px;margin:0 0 6px}
+  .pilotline{font-size:15.5px;font-weight:700;color:var(--bluedark);margin:0 0 16px}
+  .tillgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 22px;max-width:780px;margin:0 auto}
+  .tilldoor .btn.buy{width:100%}
+  .tilldoor small{display:block;margin-top:8px}
+  @media (max-width:640px){.tillgrid{grid-template-columns:1fr}}
+
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--bluetext)}
+</style>
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
+   small compact text; the full country names ride in each flag's title.
+   The panel cap, internal scroll and the ≤640px fixed-panel fix above
+   all apply to this panel as they do to Doors. */
+.luxnations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.luxnations-grid .flag{justify-content:center;padding:6px 4px;gap:6px;border-radius:10px;font-size:13px}
+.luxnations-grid .flag .fl{font-size:17px}
+.luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
+@media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux<small>ailux.ca</small></a>
+  <div class="luxmenus">
+  <div class="luxdoors">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">Amos</span></a>
+      <a class="luxdoor-tile" href="../seamguard/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
+      <a class="luxdoor-tile" href="../playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
+      <a class="luxdoor-tile" href="../site-pages/membership.html" role="menuitem"><span class="ic" aria-hidden="true">⭐</span><span class="lb">Membership</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      <a class="luxdoor-tile" href="../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
+      <a class="luxdoor-tile" href="../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxsector">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Money &amp; Agents <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Money and Agents — the product shelf">
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile here" href="../chargeback-packs/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      <a class="luxdoor-tile" href="../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+    </div>
+    </div>
+  </div>
+  <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16) -->
+  <div class="gtranslate_wrapper"></div>
+  <script>window.gtranslateSettings = {"alt_flags":{"en":"usa"},"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+</div>
+</header>
+<main>
+
+  <!-- ================= THE HERO ================= -->
+  <section class="hero">
+    <div class="ring"><span class="glyph" aria-hidden="true">🗂️</span></div>
+    <p class="eyebrow">Money &amp; Agents · Pilot</p>
+    <h1>Chargeback Evidence Packs</h1>
+    <p class="lede">When a payment is disputed, win it with proof — not paperwork.</p>
+  </section>
+
+  <!-- ================= THE SCARE ================= -->
+  <section>
+    <p class="eyebrow">The fear is real</p>
+    <h2>Sellers lose twice: the goods, then the money</h2>
+    <p>Online sellers ship the goods, then watch the payment get clawed back — including 'friendly fraud,' where the real customer disputes a real purchase. Every $1 lost to fraud costs U.S. merchants $5.13 once fees, labour, and lost goods are counted, and 74% of merchants report friendly fraud increasing (LexisNexis and Chargebacks911 compilations).</p>
+  </section>
+
+  <!-- ================= PARADISE ================= -->
+  <section>
+    <p class="eyebrow">The relief</p>
+    <h2>A signed chain, from order to acceptance</h2>
+    <p>The buyer was verified at the moment of purchase, and the order and its acceptance are signed receipts. When a dispute lands, the evidence pack is already written — by the events themselves.</p>
+  </section>
+
+  <!-- ================= THE PRODUCT ================= -->
+  <section>
+    <p class="eyebrow">The product</p>
+    <h2>How Chargeback Evidence Packs works</h2>
+    <ul class="points">
+      <li><strong>Identity checked at purchase.</strong> Who ordered is a fact, not a guess.</li>
+      <li><strong>Acceptance, signed.</strong> Order and acceptance form one signed chain.</li>
+      <li><strong>The pack, ready-made.</strong> Formatted for the dispute, when a chargeback lands.</li>
+      <li><strong>Proof, not screenshots.</strong> An order page picture is weak evidence; a signed chain is not.</li>
+    </ul>
+    <p class="secondary" style="margin-top:14px">One engine runs under every door on this shelf: Amos checks who is knocking. SeamGuard checks the joins between systems. And every check leaves a signed receipt.</p>
+  </section>
+
+  <!-- ================= THE TILL ================= -->
+  <section>
+    <p class="eyebrow">Pilot pricing</p>
+    <h2>Get Chargeback Evidence Packs</h2>
+    <div class="buyline">
+      <p class="pilotline">Pilot pricing — full launch January 1, 2027. The pilot buttons below run in test mode: no real money moves yet.</p>
+      <div class="tillgrid">
+        <div class="tilldoor">
+          <a class="btn buy" href="https://buy.stripe.com/test_bJefZg4bFbb0duV5tP2B20k" aria-label="Get Chargeback Evidence Packs, monthly — US$14.99 per month, pilot">Monthly — US$14.99/mo</a>
+          <small>Billed monthly. Pilot pricing.</small>
+        </div>
+        <div class="tilldoor">
+          <a class="btn buy" href="https://buy.stripe.com/test_00wbJ0gYra6WaiJg8t2B20l" aria-label="Get Chargeback Evidence Packs, 3 months — US$40.47 every 3 months, pilot">3 months — US$40.47</a>
+          <small>US$40.47 every 3 months — Save 10%.</small>
+        </div>
+        <div class="tilldoor">
+          <a class="btn buy" href="https://buy.stripe.com/test_3cI4gycIb7YOduVaO92B20m" aria-label="Get Chargeback Evidence Packs, 6 months — US$76.45 every 6 months, pilot">6 months — US$76.45</a>
+          <small>US$76.45 every 6 months — Save 15%.</small>
+        </div>
+        <div class="tilldoor">
+          <a class="btn buy" href="https://buy.stripe.com/test_dRm4gy5fJ0wm1Md5tP2B20n" aria-label="Get Chargeback Evidence Packs, yearly — US$143.90 per year, pilot">Yearly — US$143.90/yr</a>
+          <small>US$143.90 every year — Save 20%.</small>
+        </div>
+      </div>
+      <small>The terms come in writing, and you agree to them before you pay anything. The full terms, in writing: <a href="../terms/">Terms of sale &amp; refunds</a> · <a href="../privacy/">Privacy policy</a>.</small>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p style="margin:0 0 10px">Want to sell it instead? <a href="../affiliates/">Affiliates earn 20% of the profit, for life &rarr;</a></p>
+  <p class="flogo">Lux <em>Automations</em></p>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a href="../school-in-a-box/">School in a Box</a>
+    <a href="../patch/">Amos</a>
+    <a href="../seamguard/">SeamGuard</a>
+    <a href="../papers/">Papers</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+    <a href="../affiliates/">Affiliates</a>
+  </nav>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+</body>
+</html>
