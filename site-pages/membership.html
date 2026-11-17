@@ -97,6 +97,13 @@
    tile grid outgrows the screen, so new doors never push it off-page. */
 .luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Products drop-down groups (Vance, 2026-11-17): ONE Products menu for the
+   whole shelf — sectors live as labelled groups inside the single panel.
+   ADD A SECTOR: add a .luxprod-group block in the panel; link only live pages. */
+.luxprod-sector{margin:0 2px 8px;font:700 11.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#476B96}
+.luxprod-group + .luxprod-group{margin-top:14px;border-top:1px solid #E3ECF7;padding-top:12px}
+.luxmenus.center{justify-content:center;padding:10px 16px}
 </style>
 <style id="luxfoot-css">
 footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
@@ -126,6 +133,36 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
       <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
       <a class="luxdoor-tile" href="../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
       <a class="luxdoor-tile" href="../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxproducts">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Products — the Lux shelf">
+    <!-- ADD A SECTOR: copy one luxprod-group block below, name its sector, add its tiles. Link only pages that are live — no placeholders. -->
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true">🛡️</span><span class="lb">The Patch</span></a>
+      <a class="luxdoor-tile" href="../seamguard/" role="menuitem"><span class="ic" aria-hidden="true">🔗</span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      <a class="luxdoor-tile" href="../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      </div>
     </div>
     </div>
   </div>

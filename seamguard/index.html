@@ -238,6 +238,24 @@
 .luxnations-grid .flag .fl{font-size:17px}
 .luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
 @media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Products drop-down groups (Vance, 2026-11-17): ONE Products menu for the
+   whole shelf — sectors live as labelled groups inside the single panel.
+   ADD A SECTOR: add a .luxprod-group block in the panel; link only live pages. */
+.luxprod-sector{margin:0 2px 8px;font:700 11.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#476B96}
+.luxprod-group + .luxprod-group{margin-top:14px;border-top:1px solid #E3ECF7;padding-top:12px}
+.luxmenus.center{justify-content:center;padding:10px 16px}
+
+/* Language control (Vance, 2026-11-17): ONE blue pill. The GTranslate switcher
+   wears the house Dusty Blue pill — the old dark square flag box is gone. The
+   flag inside the closed button is hidden; the button names the language and
+   still opens the same language list. */
+.gt_switcher{width:auto !important}
+.gt_switcher .gt_selected{background:#B9CCE6 !important;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.gt_switcher .gt_selected a{border:0 !important;border-radius:999px;color:#14100a !important;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif !important;letter-spacing:.02em;padding:11px 36px 11px 20px !important;width:auto !important}
+.gt_switcher .gt_selected a img{display:none !important}
+.gt_switcher .gt_selected a:after{right:13px !important}
+.gt_switcher .gt_option{border-radius:0 0 14px 14px}
 </style>
 <style id="luxlang-css">
 /* Language switcher (GTranslate free, Vance 2026-11-16): the wrapper rides as a flex
@@ -366,6 +384,36 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     </div>
     </div>
   </div>
+  <div class="luxdoors luxproducts">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Products — the Lux shelf">
+    <!-- ADD A SECTOR: copy one luxprod-group block below, name its sector, add its tiles. Link only pages that are live — no placeholders. -->
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">The Patch</span></a>
+      <a class="luxdoor-tile here" href="../seamguard/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      <a class="luxdoor-tile" href="../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
   <div class="luxdoors luxnations">
     <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">🌐 Nations <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
     <div class="luxdoors-panel" hidden aria-label="The nations this patch is offered to">
@@ -414,7 +462,7 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
   </div>
     <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16): a visitor picks their language and the page re-languages itself. -->
   <div class="gtranslate_wrapper"></div>
-  <script>window.gtranslateSettings = {"alt_flags":{"en":"usa"},"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script>window.gtranslateSettings = {"alt_flags":{"en":"usa"},"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#14100a","switcher_arrow_color":"#14100a","switcher_border_color":"#B9CCE6","switcher_background_color":"#B9CCE6","switcher_background_shadow_color":"#B9CCE6","switcher_background_hover_color":"#CFE0F2","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
   <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
 </div>
 </header>
