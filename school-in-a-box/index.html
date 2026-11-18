@@ -194,6 +194,8 @@
 </style>
 <!-- Lux app (PWA) - stage 1, 2026-11-16 -->
 <link rel="manifest" href="/manifest.webmanifest">
+<!-- Shelf carousel component (the rolling squares, 2026-11-17): stylesheet here, mount + script at the strip slot in <main> -->
+<link rel="stylesheet" href="../assets/shelf-carousel.css">
 <meta name="theme-color" content="#000000">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
@@ -249,6 +251,16 @@
 
   <h1 class="roomtitle">School in a <span class="goldline">Box</span></h1>
 
+  <!-- ============ THE FILM ============ -->
+  <section>
+    <p class="eyebrow">The film</p>
+    <h2>Watch the film</h2>
+    <div class="videowrap">
+      <video src="assets/school-film.mp4" poster="assets/img-teacher.webp" controls autoplay muted playsinline preload="metadata" aria-label="School in a Box — the film: the need across the world, the box, the teacher, what the children can do, and the Wall of Heroes"></video>
+    </div>
+    <p class="filmcap">The film plays on its own — tap the speaker for sound. An illustrated film: the children and places shown are generated images, not real students or schools.</p>
+  </section>
+
   <!-- ============ THE MISSION ============ -->
   <section>
     <p class="eyebrow">From the house of Lux</p>
@@ -261,17 +273,18 @@
     </div>
   </section>
 
-  <!-- ============ THE FILM ============ -->
-  <section>
-    <p class="eyebrow">The film</p>
-    <h2>Watch the film</h2>
-    <div class="videowrap">
-      <video src="assets/school-film.mp4" poster="assets/img-teacher.webp" controls autoplay muted playsinline preload="metadata" aria-label="School in a Box — the film: the need across the world, the box, the teacher, what the children can do, and the Wall of Heroes"></video>
-    </div>
-    <p class="filmcap">The film plays on its own — tap the speaker for sound. An illustrated film: the children and places shown are generated images, not real students or schools.</p>
+  <!-- ================= BROWSE THE SHELF — the rolling squares =================
+       The shelf carousel component (assets/shelf-carousel.js + .css), proved
+       on the Patch page 2026-11-17 and rolled here with the School tidy.
+       Tiles render from the component's ONE central product list; this page's
+       own tile (No. 3) self-marks "You're here". High on the page (Vance,
+       2026-11-17): seen early, right after the hero — not after a deep dive. -->
+  <section style="background:none;box-shadow:none;padding:0">
+    <div data-luxsc data-base="../"></div>
+    <script src="../assets/shelf-carousel.js" defer></script>
   </section>
 
-  <!-- ============ WHAT IT IS ============ -->
+  <!-- ============ WHAT IT IS — AND THE ROAD IT TRAVELS ============ -->
   <section>
     <p class="eyebrow">What it is</p>
     <h2>A real computer. A whole school. Already on it.</h2>
@@ -282,110 +295,17 @@
       <p>It arrives all set up for everything. There is nothing to install, nothing to configure, nobody technical required at the other end — the school just has to turn it on. It runs with no internet, forever; if a connection ever shows up, it quietly takes its updates then. Every learner signs in with their own account, by cable or Wi-Fi, and keeps their own work in their own place.</p>
     </details>
     <p class="secondary">The honest state of things: the first boxes are in proof now — built, tested, and made ready before a single one is placed. Nothing on this page will ever claim a school has one before it truly does.</p>
+    <h3 style="margin-top:24px">Why it matters</h3>
+    <p>Around the world, <strong>251 million</strong> children and young people are out of school — not because they don't want to learn, but because learning never arrived. Some classrooms are waiting; some roads lead to no school; some rooms have no one to answer. <span class="secondary">(UNESCO Global Education Monitoring Report, 2024.)</span></p>
+    <h3>How a box travels</h3>
+    <p><strong>Need decides.</strong> We place boxes where the need is greatest — that judgement is ours to make, and we make it carefully. A sponsor may instead name a country or an area in need, and the box their gift carries goes there. <strong>Local hands.</strong> The machines are bought from a local business, which downloads the school from us, delivers it, and sets it up — the sale, the work, and the pride stay in the community, and the school gains a shop it can walk back into. <strong>Every name in lights.</strong> Every placement is recorded in the open — the place, the sponsor, the local business — on the Wall of Heroes below, and a public record is what keeps every promise at that table honest. The full model, step by step: <a href="../papers/index.html">Paper #3 — School in a Box: The Model in the Open</a>.</p>
+    <h3>Inside the room</h3>
+    <p>A teacher who is right there, patient, every single time — a first word sounded out, questions answered, things made, and skills to build a living on. The teacher in the room is Aimée, an AI, and she says so, plainly.</p>
+    <h3>Where this goes</h3>
+    <p>We work with education partners in each country — people who know their own ground — to help reach the unreachable, and help their land grow a smarter generation that can build its own future with its own hands. In time, whole countries at a time — and every box over-built, and over-delivering, every time. No boxes have travelled yet; the first placements are promised for the first quarter of 2027.</p>
   </section>
 
-  <!-- ============ THE NEED ============ -->
-  <section>
-    <p class="eyebrow">Why</p>
-    <h2>The need is the whole world over</h2>
-    <p>Around the world, <strong>251 million</strong> children and young people are out of school — not because they don't want to learn, but because learning never arrived. <span class="secondary">(UNESCO Global Education Monitoring Report, 2024.)</span></p>
-    <div class="photogrid">
-      <figure class="shot">
-        <img src="assets/img-need-north.webp" alt="An empty classroom in a remote northern community, snow falling past the window — a generated image">
-        <figcaption>Some classrooms are waiting.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/img-need-desert.webp" alt="Children walking a long desert road at first light — a generated image">
-        <figcaption>Some roads lead to no school.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/img-need-city.webp" alt="An overcrowded city classroom with the teacher's desk standing empty — a generated image">
-        <figcaption>Some rooms have no one to answer.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ============ HOW A SCHOOL GETS ONE ============ -->
-  <section>
-    <p class="eyebrow">How it works</p>
-    <h2>Placed where the need is greatest</h2>
-    <div class="step">
-      <h3>1 · Need decides</h3>
-      <p>We place boxes where the need is greatest — that judgement is ours to make, and we make it carefully. A sponsor may instead name a country or an area in need, and the box their gift carries goes there; we make sure it is set up right.</p>
-    </div>
-    <div class="step">
-      <h3>2 · Local hands</h3>
-      <p>The machines are bought from a local business, which downloads the school from us, delivers it, and sets it up. The sale, the work, and the pride stay in the community — and the school gains a shop it can walk back into if anything ever needs fixing.</p>
-    </div>
-    <div class="step">
-      <h3>3 · Every name in lights</h3>
-      <p>We advertise every placement: the place that received the box, the sponsor who gave it, and the local business that delivered and set it up — everybody named, everybody credited. The record below is public, and a public record is what keeps every promise at that table honest.</p>
-    </div>
-    <figure class="diagram">
-      <div class="diagramwrap">
-        <img src="assets/how-a-box-reaches-a-school.svg" alt="Schematic: how a box reaches a school. A sponsor gives a monthly gift — the box's upkeep, a donation, never a purchase. The Wall of Heroes records the giver's name, marked Sponsored. A box is readied — a whole school on one small computer, built and tested by the house. Placement is by need: the house decides where each box goes. The box is delivered to the school and set up by local hands. A classroom learns — the teacher works with no internet at all. The room reports back: the placement joins the name on the Wall of Heroes — the place, the hero, the local business, the date. Stage, stated plainly: no boxes have been placed yet; the first placements are promised for the first quarter of 2027.">
-      </div>
-      <figcaption class="diagramcap"><strong>The model, on one plate.</strong> What happens, step by step — nothing inside the box is drawn, here or anywhere. For the full brief, read <a href="../papers/index.html">Paper #3 — School in a Box: The Model in the Open</a>.</figcaption>
-    </figure>
-  </section>
-
-  <!-- ============ WHAT THEY CAN DO ============ -->
-  <section>
-    <p class="eyebrow">Inside the room</p>
-    <h2>What they can do</h2>
-    <p>A teacher who is right there, patient, every single time — and a room that gets louder, and brighter.</p>
-    <div class="photogrid two">
-      <figure class="shot">
-        <img src="assets/img-reading.webp" alt="A young child sounding out her first word, the warm screen beside her, her parent watching from the doorway — a generated image">
-        <figcaption>Her first word.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/img-science.webp" alt="Children around a table as a model volcano glows and planets turn on the screen, hands shooting up — a generated image">
-        <figcaption>Questions, answered.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/img-making.webp" alt="Children making music and painting big bright colours across a table — a generated image">
-        <figcaption>They make things.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/img-building.webp" alt="Older students around a small robot they built, code glowing on a screen — a generated image">
-        <figcaption>Skills to build a living on.</figcaption>
-      </figure>
-    </div>
-    <img class="photo" src="assets/img-teacher.webp" alt="A warm classroom looking up together at a screen glowing with soft friendly light — a generated image">
-    <p class="filmcap">The teacher in the room — Aimée, an AI, and she says so, plainly.</p>
-  </section>
-
-  <!-- ============ THE WALL OF HONOUR ============ -->
-
-  <section>
-    <p class="eyebrow">Receive a school</p>
-    <h2>Host a School — put your place on the list</h2>
-    <p>Sponsors give the boxes. <strong>Hosts receive them.</strong> If your school or your community would welcome a School in a Box, put your place on the host list, right here. The house reads every entry, and places boxes where the need is greatest.</p>
-    <p>Honest terms, up front: being on the list is <strong>not a promise of a box</strong> — need decides, and sponsors' gifts decide how many boxes there are to place. We will write to every place that lists, either way. And it costs the host nothing, ever: the school never pays, the learners never pay.</p>
-    <form class="host" id="hostForm" action="/api/join" method="post">
-      <label>Your name <input type="text" name="name" autocomplete="name" required></label>
-      <label>Email <input type="email" name="email" autocomplete="email" required></label>
-      <label>School or community <input type="text" name="place" required></label>
-      <label>Country / area <input type="text" name="country"></label>
-      <label>One line about your place <textarea name="about" maxlength="500"></textarea></label>
-      <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
-      <button class="btn" type="submit" style="justify-self:start" aria-label="Submit — put our place on the host list">Put our place on the host list</button>
-      <p id="hostMsg" role="status"></p>
-    </form>
-  </section>
-
-  <section>
-    <p class="eyebrow">The record</p>
-    <h2>The Wall of Heroes</h2>
-    <p>Every placement will be written here — the place, the hero (their name or their company's), the hero's city or state, the local business, and the date — and it stays here. This wall is the promise and the proof, in the same place.</p>
-    <div class="honour">
-      <div class="honour-head" aria-hidden="true"><span>Place</span><span>Hero — name or company</span><span>City / State</span><span>Date</span></div>
-      <p class="honour-empty">No names yet — the first boxes are still in proof, and we won't write a name here before it's true. When the first school is placed, the first names will be written here.</p>
-    </div>
-  </section>
-
-  <!-- ============ SPONSOR A SCHOOL — A DONATION, NEVER A SALE ============ -->
+  <!-- ============ SPONSOR — A GIFT, NEVER A SALE ============ -->
   <section>
     <p class="eyebrow">Sponsor a school</p>
     <h2>Give a school — a gift, never a sale</h2>
@@ -406,10 +326,7 @@
     </p>
     <small style="margin-top:10px">The terms come in writing, and you agree to them before you give anything. <a href="../terms/">Terms of sale &amp; refunds</a> · <a href="../privacy/">Privacy policy</a>.</small>
     <small style="margin-top:14px">Giving any amount is live today, at our secure checkout. Upkeep sponsorships open by conversation while their terms are set — that door is the Guest Book button above. Sponsoring opens your free Lux account at checkout — any membership thank-you from the house lives on that account, in your name alone. No codes, nothing copyable, nothing to lose. One plain note: Lux Automations is a business, not a registered charity — sponsorships are gifts to the mission, given freely, and are not tax-deductible donations.</small>
-  </section>
-
-  <!-- ============ SPONSOR A BEGINNING — MEMBERSHIP-SIDE SPONSORSHIPS ============ -->
-  <section>
+    <!-- Sponsor a Beginning — folded into the one sponsor block in the short-slide tidy (2026-11-17); its words and its checkout link are unchanged. -->
     <p class="eyebrow">Sponsor a beginning</p>
     <h2>Sponsor a Beginning</h2>
     <p>Not every gift is a school. A sponsor can also cover a beginning: a kid's Playground membership, month by month — or a young entrepreneur's start in the Workshop, where a business of their own can begin.</p>
@@ -424,21 +341,30 @@
     <small style="margin-top:14px">Same desk, same secure checkout — sponsoring a kid's month is live today; the entrepreneur's start opens by conversation while its terms are set. Recipients are chosen by the house, by need; no names appear here before a membership is truly granted. Sponsorships are gifts to the mission, given freely, and are not tax-deductible donations. The terms come in writing, and you agree to them before you give anything. <a href="../terms/">Terms of sale &amp; refunds</a> · <a href="../privacy/">Privacy policy</a>.</small>
   </section>
 
-  <!-- ============ THE VISION ============ -->
+  <!-- ============ THE WALL OF HONOUR — AND THE HOST LIST ============ -->
   <section>
-    <p class="eyebrow">Where this goes</p>
-    <h2>Reach the unreachable</h2>
-    <p>We work with education partners in each country — people who know their own ground — and we tell them plainly what we can do: help reach the unreachable, and help their land grow a smarter generation, one that can build its own future with its own hands. In time, whole countries at a time — and the price of that door is the standard we hold from the very first box: every box over-built, and over-delivering, every time.</p>
-    <img class="photo" src="assets/img-journey-north.webp" alt="A drone with LUX on its flank carrying a crate marked School in a Box over a snowy northern village — a generated image, a vision of the road ahead">
-    <p class="filmcap">The road ahead, as we see it — a vision, drawn from the film. No boxes have travelled yet; the first placements are promised for the first quarter of 2027.</p>
-  </section>
-
-  <section class="closeline">
-    <p class="big">Join our adventure</p>
-    <p class="secondary" style="margin:0 0 6px">Leave your name in the guest book and we'll write when there's something new — a school placed, a door opening in the house.</p>
-    <div class="btnrow" style="justify-content:center">
-      <a class="btn" href="../#guestbook">Join our adventure</a>
+    <p class="eyebrow">The record</p>
+    <h2>The Wall of Heroes</h2>
+    <p>Every placement will be written here — the place, the hero (their name or their company's), the hero's city or state, the local business, and the date — and it stays here. This wall is the promise and the proof, in the same place.</p>
+    <div class="honour">
+      <div class="honour-head" aria-hidden="true"><span>Place</span><span>Hero — name or company</span><span>City / State</span><span>Date</span></div>
+      <p class="honour-empty">No names yet — the first boxes are still in proof, and we won't write a name here before it's true. When the first school is placed, the first names will be written here.</p>
     </div>
+    <!-- Receive a school — the host list, folded under the Wall in the short-slide tidy (2026-11-17); the form and its words are unchanged. -->
+    <p class="eyebrow">Receive a school</p>
+    <h2>Host a School — put your place on the list</h2>
+    <p>Sponsors give the boxes. <strong>Hosts receive them.</strong> If your school or your community would welcome a School in a Box, put your place on the host list, right here. The house reads every entry, and places boxes where the need is greatest.</p>
+    <p>Honest terms, up front: being on the list is <strong>not a promise of a box</strong> — need decides, and sponsors' gifts decide how many boxes there are to place. We will write to every place that lists, either way. And it costs the host nothing, ever: the school never pays, the learners never pay.</p>
+    <form class="host" id="hostForm" action="/api/join" method="post">
+      <label>Your name <input type="text" name="name" autocomplete="name" required></label>
+      <label>Email <input type="email" name="email" autocomplete="email" required></label>
+      <label>School or community <input type="text" name="place" required></label>
+      <label>Country / area <input type="text" name="country"></label>
+      <label>One line about your place <textarea name="about" maxlength="500"></textarea></label>
+      <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+      <button class="btn" type="submit" style="justify-self:start" aria-label="Submit — put our place on the host list">Put our place on the host list</button>
+      <p id="hostMsg" role="status"></p>
+    </form>
   </section>
 
   <section>
