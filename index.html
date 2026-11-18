@@ -269,6 +269,15 @@
      keyhole glow, light lettering. The SAME treatment on every box. The
      page itself stays light; only the boxes are dark stone. ---------- */
   .prodwall{margin:36px auto 0}
+  .entband{margin:30px auto 0;border-radius:26px;padding:40px 38px;text-align:center;color:#eef7f0;border:1px solid rgba(110,224,178,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -14px 26px rgba(0,0,0,.45),0 10px 24px rgba(6,40,28,.22);background-color:#07271e;background-image:linear-gradient(155deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,0) 42%),radial-gradient(130% 90% at 18% -10%,rgba(72,199,152,.34),rgba(72,199,152,0) 55%),radial-gradient(100% 80% at 88% 108%,rgba(16,94,70,.55),rgba(16,94,70,0) 62%),linear-gradient(165deg,#0a3a2b 0%,#06231a 58%,#04170f 100%)}
+  .entband .mark{width:52px;height:52px;filter:drop-shadow(0 0 9px rgba(47,191,143,.55))}
+  .entband .kicker{color:#8fe3bd}
+  .entband h2{font-family:var(--serif);font-size:34px;line-height:1.15;margin:10px 0 0;color:#f2fbf5}
+  .entband p{max-width:640px;margin:14px auto 0;font-size:16.5px;line-height:1.6;color:rgba(233,246,238,.92)}
+  .entband .btn{background:#e8c96a;color:#14100a;border-color:#e8c96a;margin-top:22px}
+  .entband .punch{font-family:var(--serif);font-size:21px;color:#e8c96a;margin-top:20px}
+  .entband .fineprint{font-size:13.5px;color:rgba(233,246,238,.65);margin-top:12px}
+  @media(max-width:640px){.entband{padding:30px 20px}.entband h2{font-size:27px}}
   .pgrid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
   .pbox{flex:0 0 calc((100% - 70px)/6);display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;border-radius:18px;padding:20px 14px 16px;position:relative;overflow:hidden;color:#eef7f0;
     background-color:#07271e;
@@ -557,6 +566,17 @@
     <div data-luxsc data-base=""></div>
     <script src="assets/shelf-carousel.js" defer></script>
   </section>
+
+  <!-- ============ ENTERPRISE & CONTRACTS — the front-page call to the big doors ============ -->
+  <div class="entband" id="enterprise">
+    <svg class="mark" aria-hidden="true"><use href="#luxshield"/></svg>
+    <p class="kicker">Enterprise · Government · Agencies</p>
+    <h2>The world is chaos. We have the cure.</h2>
+    <p>Rogue agents. Hijacked drones. Machines answering to no one. The chaos goes where the fleets are — governments, agencies, and big operations running thousands of machines with no ID and no check on what they do. We have the fix. We have the plumbing — identity at every door, every crossing checked, a receipt for everything — and it plugs into what you already run. If your fleet carries no ID, you are exposed right now. The cure is standing on this page.</p>
+    <a class="btn" href="mailto:lucian3@muse.ai?subject=Enterprise%20%2F%20contract%20enquiry">Contact us — enterprise &amp; contracts</a>
+    <p class="punch">Get it on. Protect yourself.</p>
+    <p class="fineprint">Contracts are scoped in writing before anything is signed. Write to Lucian, the front desk of the house: lucian3@muse.ai</p>
+  </div>
 
   <!-- ============ THE TWO SHIELDS — THE PRODUCTS ============ -->
   <section class="products" aria-label="The products">
