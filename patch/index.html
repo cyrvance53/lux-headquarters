@@ -269,6 +269,8 @@
 </style>
 <!-- Lux app (PWA) - stage 1, 2026-11-16 -->
 <link rel="manifest" href="/manifest.webmanifest">
+<!-- Shelf carousel component (the rolling squares, 2026-11-17): stylesheet here, mount + script at the strip slot before </main> -->
+<link rel="stylesheet" href="../assets/shelf-carousel.css">
 <meta name="theme-color" content="#000000">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
@@ -1032,6 +1034,16 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     <h2>How The Patch works</h2>
     <p>Every AI agent shows ID at the door before it acts or pays. Rogues stop here. Lucian writes it out in full — the problem, the technology, and what it changes.</p>
     <p><a href="../articles/patch/">Read: how it works &rarr;</a></p>
+  </section>
+
+  <!-- ================= BROWSE THE SHELF — the rolling squares =================
+       The shelf carousel component (assets/shelf-carousel.js + .css), proved
+       on this page 2026-11-17. Tiles render from the component's ONE central
+       product list; the full roll to every product page rides with the
+       template work. Template slot: last block inside <main>. -->
+  <section style="background:none;box-shadow:none;padding:0">
+    <div data-luxsc data-base="../"></div>
+    <script src="../assets/shelf-carousel.js" defer></script>
   </section>
 
 </main>
