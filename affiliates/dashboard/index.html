@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Dashboard — Affiliates · Lux Automations</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="The affiliate dashboard: open the door with your personal key and see your link, your articles and your numbers — yours alone.">
+<link rel="canonical" href="https://ailux.ca/affiliates/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="Affiliates — Lux Automations">
+<meta property="og:description" content="Bring a customer to the site, earn 20% of the profit on whatever they buy — for as long as they stay. One link, the whole site.">
+<meta property="og:url" content="https://ailux.ca/affiliates/">
+<meta property="og:image" content="https://ailux.ca/affiliates/assets/sell-both-share-1200x628-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Affiliates — Lux Automations">
+<meta name="twitter:description" content="Bring a customer, earn 20% of the profit on every payment they make — for as long as they stay.">
+<meta name="twitter:image" content="https://ailux.ca/affiliates/assets/sell-both-share-1200x628-v2.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lux">
+<style>
+  :root{
+    --fill:#B9CCE6; --mid:#84A3CC; --text:#476B96; --dark:#38587E;
+    --ink:#1C1917; --body:#3E3A34; --muted:#6B665C; --line:#E7E1D2;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;background:#FFFFFF;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--dark)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid #7FB3D9;outline-offset:3px;border-radius:6px}
+
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(250,248,242,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:#8A8578;letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  nav.mainnav a{color:#55504A;text-decoration:none;font-size:14.5px;font-weight:600;padding:12px 13px;border-radius:999px}
+  nav.mainnav a:hover{background:#EFEAE0;color:var(--ink)}
+  nav.mainnav a.here{background:#EFEAE0;color:var(--ink)}
+
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding:22px 16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:#FFFFFF;color:var(--ink);border-radius:26px;padding:24px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05);text-align:center;min-width:0}
+  section ul,section ol{text-align:left}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--text);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(30px,6.6vw,44px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(23px,5vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  p{margin:0 0 12px;color:var(--body)}
+  p.lede{font-size:19px;line-height:1.55;color:var(--body)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:999px;font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#1C1917;color:#F6F3EC;box-shadow:0 6px 18px rgba(28,25,23,.18)}
+  .btn:hover{box-shadow:0 8px 22px rgba(28,25,23,.24)}
+  .btn.buy{background:var(--fill);color:#000;box-shadow:0 8px 22px rgba(71,107,150,.35)}
+  .btn.buy:hover{background:var(--mid);box-shadow:0 10px 26px rgba(71,107,150,.45)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+  ol.steps,ul.plain{max-width:640px;margin:14px auto 4px;padding-left:22px}
+  ol.steps li,ul.plain li{color:var(--body);margin-bottom:9px}
+  ol.steps li strong,ul.plain li strong{color:var(--ink)}
+
+  figure.kit{margin:22px auto;min-width:0}
+  figure.kit img{margin:0 auto;border-radius:10px;box-shadow:0 8px 24px rgba(28,25,23,.10)}
+  figure.kit figcaption{color:var(--muted);font-size:14px;margin-top:10px}
+  figure.kit figcaption strong{color:var(--ink)}
+  .dl{font-weight:700}
+
+  footer{color:var(--muted);text-align:center;font-size:14.5px;line-height:1.7;padding:30px 16px 36px}
+  footer .flogo{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);margin:0 0 6px}
+  footer .flogo em{color:var(--text);font-style:normal}
+</style>
+<style id="luxfoot-css">
+footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+footer .doorlinks a{color:#3f3a33;text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer .doorlinks a:hover{background:#EFEAE0;color:#1C1917}
+footer .doorlinks a.loyaltap{color:#476B96;font-weight:700}
+footer.luxfoot{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid rgba(28,25,23,.13);text-align:center;color:#6f6a5e;font-size:14.5px;line-height:1.7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer.luxfoot .flogo{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#1C1917;margin:0 0 4px}
+footer.luxfoot .flogo em{font-style:normal;color:#476B96}
+</style>
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Products drop-down groups (Vance, 2026-11-17): ONE Products menu for the
+   whole shelf — sectors live as labelled groups inside the single panel.
+   ADD A SECTOR: add a .luxprod-group block in the panel; link only live pages. */
+.luxprod-sector{margin:0 2px 8px;font:700 11.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#476B96}
+.luxprod-group + .luxprod-group{margin-top:14px;border-top:1px solid #E3ECF7;padding-top:12px}
+.luxmenus.center{justify-content:center;padding:10px 16px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">Lux<small>ailux.ca</small></a>
+  <nav class="mainnav" aria-label="Main">
+    <a href="../../index.html">Home</a>
+    <a href="../../patch/">Amos</a>
+    <a href="../../seamguard/">SeamGuard</a>
+    <a href="../../workshop/">Workshop</a>
+    <a href="../../playground/">Playground</a>
+    <a href="../../site-pages/membership.html">Membership</a>
+    <a href="../../school-in-a-box/">School in a Box</a>
+    <a href="../../cinema/">Cinema</a>
+    <a href="../../papers/">Papers</a>
+    <a class="here" href="../../affiliates/" aria-current="page">Affiliates</a>
+  </nav>
+  <div class="luxmenus">
+  <div class="luxdoors luxproducts">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Products — the Lux shelf">
+    <!-- ADD A SECTOR: copy one luxprod-group block below, name its sector, add its tiles. Link only pages that are live — no placeholders. -->
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../patch/" role="menuitem"><span class="ic" aria-hidden="true">🛡️</span><span class="lb">The Patch</span></a>
+      <a class="luxdoor-tile" href="../../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      <a class="luxdoor-tile" href="../../machine-book/" role="menuitem"><span class="ic" aria-hidden="true">🏭</span><span class="lb">MachineBook</span></a>
+      <a class="luxdoor-tile" href="../../ward-door/" role="menuitem"><span class="ic" aria-hidden="true">🏥</span><span class="lb">WardDoor</span></a>
+      <a class="luxdoor-tile" href="../../tap-check/" role="menuitem"><span class="ic" aria-hidden="true">🚰</span><span class="lb">TapCheck</span></a>
+      <a class="luxdoor-tile" href="../../plug-check/" role="menuitem"><span class="ic" aria-hidden="true">🔌</span><span class="lb">PlugCheck</span></a>
+      <a class="luxdoor-tile" href="../../seamguard/" role="menuitem"><span class="ic" aria-hidden="true">🔗</span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../../chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Health &amp; Care</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../home-ward/" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">HomeWard</span></a>
+      <a class="luxdoor-tile" href="../../steady-home/" role="menuitem"><span class="ic" aria-hidden="true">🤲</span><span class="lb">SteadyHome</span></a>
+      <a class="luxdoor-tile" href="../../steady-hand/" role="menuitem"><span class="ic" aria-hidden="true">🦾</span><span class="lb">SteadyHand</span></a>
+      <a class="luxdoor-tile" href="../../play-check/" role="menuitem"><span class="ic" aria-hidden="true">🧸</span><span class="lb">PlayCheck</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Industry &amp; Machines</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../line-seam/" role="menuitem"><span class="ic" aria-hidden="true">⚙️</span><span class="lb">LineSeam</span></a>
+      <a class="luxdoor-tile" href="../../aisle-cross/" role="menuitem"><span class="ic" aria-hidden="true">🏬</span><span class="lb">AisleCross</span></a>
+      <a class="luxdoor-tile" href="../../field-door/" role="menuitem"><span class="ic" aria-hidden="true">🚜</span><span class="lb">FieldDoor</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Infrastructure &amp; Cities</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../tower-check/" role="menuitem"><span class="ic" aria-hidden="true">🏢</span><span class="lb">TowerCheck</span></a>
+      <a class="luxdoor-tile" href="../../depot-check/" role="menuitem"><span class="ic" aria-hidden="true">🚌</span><span class="lb">DepotCheck</span></a>
+      <a class="luxdoor-tile" href="../../ground-door/" role="menuitem"><span class="ic" aria-hidden="true">🛰️</span><span class="lb">GroundDoor</span></a>
+      <a class="luxdoor-tile" href="../../fleet-door/" role="menuitem"><span class="ic" aria-hidden="true">🚗</span><span class="lb">FleetDoor</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</header>
+<main>
+  <!-- ================= THE DOOR ================= -->
+  <section id="door">
+    <p class="eyebrow">Affiliates</p>
+    <h1>Your door</h1>
+    <p class="lede">Approved affiliates hold a personal key. Open your dashboard with the email you applied with and the key from the note the house sent you — your dashboard shows your record, and only yours.</p>
+    <form id="doorform" style="margin-top:18px">
+      <p><label for="demail"><strong>Email</strong></label><br>
+      <input id="demail" name="email" type="email" autocomplete="email" required maxlength="120" style="width:100%;max-width:480px;padding:12px 14px;border:1px solid #d2d2d7;border-radius:10px;font-size:16px;margin-top:6px"></p>
+      <p><label for="dkey"><strong>Your key</strong></label><br>
+      <input id="dkey" name="key" type="text" autocomplete="off" required maxlength="64" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" style="width:100%;max-width:480px;padding:12px 14px;border:1px solid #d2d2d7;border-radius:10px;font-size:16px;margin-top:6px;letter-spacing:.04em"></p>
+      <div class="btnrow"><button class="btn buy" type="submit" id="doorbtn">Open my dashboard</button></div>
+      <small id="doormsg" style="margin-top:10px"></small>
+    </form>
+    <small style="margin-top:14px">Not an affiliate yet? <a href="../">Apply on the affiliates page</a> — the house reads every application and issues keys personally. Lost your key? Write to <a href="mailto:patch@ailux.ca?subject=Affiliates%20%E2%80%94%20my%20dashboard%20key">patch@ailux.ca</a> and we will sort it out.</small>
+  </section>
+
+  <!-- ================= THE DASHBOARD ================= -->
+  <div id="dash" hidden style="display:none;gap:22px">
+  <section>
+    <p class="eyebrow">Your dashboard</p>
+    <h2 id="dhello">Your door is open</h2>
+    <p id="dmeta"></p>
+    <h3 style="margin-top:22px">Your link</h3>
+    <p style="word-break:break-all"><strong id="dreflink"></strong></p>
+    <div class="btnrow">
+      <button class="btn" type="button" id="dcopy">Copy my link</button>
+      <a class="btn" href="../spin/">Spin for an article</a>
+    </div>
+    <small id="dcopymsg" style="margin-top:10px"></small>
+    <small style="margin-top:10px">The same code rides on any page of the site — put it after any product page address, like <span id="drefexample"></span>, and the sale is marked as yours.</small>
+  </section>
+
+  <section style="background:#EDF1F6">
+    <p class="eyebrow">Your numbers</p>
+    <h2>Exactly as they stand</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:760px;margin:16px auto 6px">
+      <div style="background:#fff;border:1px solid #D8E2EF;border-radius:14px;padding:16px"><div style="font-size:30px;font-weight:800" id="dclicks">0</div><small>Clicks recorded</small></div>
+      <div style="background:#fff;border:1px solid #D8E2EF;border-radius:14px;padding:16px"><div style="font-size:30px;font-weight:800" id="dreferrals">0</div><small>People referred</small></div>
+      <div style="background:#fff;border:1px solid #D8E2EF;border-radius:14px;padding:16px"><div style="font-size:30px;font-weight:800" id="dsales">0</div><small>Sales</small></div>
+      <div style="background:#fff;border:1px solid #D8E2EF;border-radius:14px;padding:16px"><div style="font-size:30px;font-weight:800" id="dearned">US$0.00</div><small>Earned so far</small></div>
+    </div>
+    <p id="dterms" style="max-width:640px;margin:12px auto 4px"></p>
+    <small>Your numbers are read from the house&rsquo;s records exactly as they stand. A zero here is a true zero — nothing is dressed up. Sales begin when the doors open on January 1, 2027, and every sale under your link is recorded by receipt.</small>
+  </section>
+
+  <section>
+    <p class="eyebrow">Your articles</p>
+    <h2>The stories the spinner dealt you</h2>
+    <div id="ddeals"></div>
+    <small style="margin-top:10px">Share Lucian&rsquo;s words as written, with your link. Every spin is on record — yours are listed here, and only here.</small>
+  </section>
+
+  <section style="background:#F5EFE3">
+    <p class="eyebrow">Your kits</p>
+    <h2>Pick a product — take its whole kit</h2>
+    <p>Banners in every size, the article, the audio and film where the house has them — one page per product.</p>
+    <div class="luxdoors" style="margin-top:8px">
+      <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Choose a product <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+      <div class="luxdoors-panel" hidden role="menu">
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../kit/patch/" role="menuitem"><span class="ic" aria-hidden="true">🛡️</span><span class="lb">The Patch</span></a>
+      <a class="luxdoor-tile" href="../kit/seamguard/" role="menuitem"><span class="ic" aria-hidden="true">🔗</span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../kit/school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../kit/spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../kit/verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../kit/receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../kit/identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../kit/behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../kit/chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../kit/front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../kit/caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../kit/fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../kit/verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      <a class="luxdoor-tile" href="../kit/customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Health &amp; Care</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../kit/ward-door/" role="menuitem"><span class="ic" aria-hidden="true">🏥</span><span class="lb">WardDoor</span></a>
+      <a class="luxdoor-tile" href="../kit/home-ward/" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">HomeWard</span></a>
+      <a class="luxdoor-tile" href="../kit/steady-home/" role="menuitem"><span class="ic" aria-hidden="true">🤲</span><span class="lb">SteadyHome</span></a>
+      <a class="luxdoor-tile" href="../kit/steady-hand/" role="menuitem"><span class="ic" aria-hidden="true">🦾</span><span class="lb">SteadyHand</span></a>
+      <a class="luxdoor-tile" href="../kit/play-check/" role="menuitem"><span class="ic" aria-hidden="true">🧸</span><span class="lb">PlayCheck</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Industry &amp; Machines</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../kit/machine-book/" role="menuitem"><span class="ic" aria-hidden="true">🏭</span><span class="lb">MachineBook</span></a>
+      <a class="luxdoor-tile" href="../kit/line-seam/" role="menuitem"><span class="ic" aria-hidden="true">⚙️</span><span class="lb">LineSeam</span></a>
+      <a class="luxdoor-tile" href="../kit/aisle-cross/" role="menuitem"><span class="ic" aria-hidden="true">🏬</span><span class="lb">AisleCross</span></a>
+      <a class="luxdoor-tile" href="../kit/field-door/" role="menuitem"><span class="ic" aria-hidden="true">🚜</span><span class="lb">FieldDoor</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Infrastructure &amp; Cities</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../kit/tap-check/" role="menuitem"><span class="ic" aria-hidden="true">🚰</span><span class="lb">TapCheck</span></a>
+      <a class="luxdoor-tile" href="../kit/tower-check/" role="menuitem"><span class="ic" aria-hidden="true">🏢</span><span class="lb">TowerCheck</span></a>
+      <a class="luxdoor-tile" href="../kit/depot-check/" role="menuitem"><span class="ic" aria-hidden="true">🚌</span><span class="lb">DepotCheck</span></a>
+      <a class="luxdoor-tile" href="../kit/ground-door/" role="menuitem"><span class="ic" aria-hidden="true">🛰️</span><span class="lb">GroundDoor</span></a>
+      <a class="luxdoor-tile" href="../kit/plug-check/" role="menuitem"><span class="ic" aria-hidden="true">🔌</span><span class="lb">PlugCheck</span></a>
+      <a class="luxdoor-tile" href="../kit/fleet-door/" role="menuitem"><span class="ic" aria-hidden="true">🚗</span><span class="lb">FleetDoor</span></a>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div class="btnrow" style="margin-top:22px">
+      <button class="btn" type="button" id="dlogout">Sign out</button>
+    </div>
+    <small style="margin-top:10px">Signing out closes this session. Your key still opens the door whenever you come back.</small>
+  </section>
+  </div>
+<script>
+(function(){
+  var TOKEN_KEY="luxAffToken";
+  var door=document.getElementById("door"), dash=document.getElementById("dash");
+  var form=document.getElementById("doorform"), msg=document.getElementById("doormsg"), btn=document.getElementById("doorbtn");
+  function token(){ try{return localStorage.getItem(TOKEN_KEY)||"";}catch(e){return "";} }
+  function setToken(t){ try{ if(t){localStorage.setItem(TOKEN_KEY,t);}else{localStorage.removeItem(TOKEN_KEY);} }catch(e){} }
+  function showDoor(note){ dash.hidden=true; dash.style.display="none"; door.hidden=false; if(note) msg.textContent=note; }
+  function money(cents){ return "US$"+(Number(cents||0)/100).toFixed(2); }
+  function esc(s){ var d=document.createElement("div"); d.textContent=String(s==null?"":s); return d.innerHTML; }
+  function load(){
+    var t=token(); if(!t){ showDoor(""); return; }
+    fetch("/api/affiliate-me",{headers:{"authorization":"Bearer "+t}})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.ok){ setToken(""); showDoor("Your session has closed — open the door again."); return; }
+      var a=j.affiliate, st=j.stats||{};
+      document.getElementById("dhello").textContent="Your door is open, "+a.name;
+      var since=""; try{ since=new Date(a.issuedAt).toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"}); }catch(e){}
+      document.getElementById("dmeta").textContent="Affiliate "+a.id+" · key "+a.keyId+(since?(" · with the house since "+since):"");
+      document.getElementById("dreflink").textContent=a.refLink;
+      document.getElementById("drefexample").textContent="ailux.ca/patch/?ref="+a.refCode;
+      document.getElementById("dclicks").textContent=Number(st.clicks||0);
+      document.getElementById("dreferrals").textContent=Number(st.referrals||0);
+      document.getElementById("dsales").textContent=Number(st.salesCount||0);
+      document.getElementById("dearned").textContent=money(st.earnedCents);
+      document.getElementById("dterms").textContent=j.terms||"";
+      var box=document.getElementById("ddeals");
+      if(j.deals&&j.deals.length){
+        var html='<ul class="plain" style="max-width:700px">';
+        j.deals.forEach(function(d){
+          var when=""; try{ when=new Date(d.when).toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"}); }catch(e){}
+          html+='<li><strong>“'+esc(d.story)+'”</strong> — for '+esc(d.product)+' · article '+d.position+' of 29, round '+d.round+(when?(" · dealt "+when):"")+'<br><a href="'+d.articleUrl+'">Read Lucian&rsquo;s original</a> · <a href="'+d.kitUrl+'">Open the full kit</a></li>';
+        });
+        html+="</ul>"; box.innerHTML=html;
+      }else{
+        box.innerHTML='<p>No articles dealt yet — <a href="../spin/">spin the wheel</a> and your first story lands here.</p>';
+      }
+      door.hidden=true; dash.hidden=false; dash.style.display="grid";
+      window.scrollTo({top:0});
+    })
+    .catch(function(){ showDoor("The door could not be reached — check your connection and try again."); });
+  }
+  form.addEventListener("submit",function(ev){
+    ev.preventDefault(); msg.textContent=""; btn.disabled=true; btn.textContent="Opening…";
+    var body={email:document.getElementById("demail").value, key:document.getElementById("dkey").value};
+    fetch("/api/affiliate-login",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body)})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      btn.disabled=false; btn.textContent="Open my dashboard";
+      if(j.ok&&j.token){ setToken(j.token); form.reset(); load(); }
+      else{ msg.textContent=j.error||"That email and key do not open this door."; }
+    })
+    .catch(function(){ btn.disabled=false; btn.textContent="Open my dashboard"; msg.textContent="The door could not be reached — check your connection and try again."; });
+  });
+  document.getElementById("dcopy").addEventListener("click",function(){
+    var t=document.getElementById("dreflink").textContent, m=document.getElementById("dcopymsg");
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(function(){m.textContent="Copied — paste it where your people are.";}).catch(function(){m.textContent="Copy did not work here — select the link above instead.";}); }
+    else{ m.textContent="Select the link above and copy it."; }
+  });
+  document.getElementById("dlogout").addEventListener("click",function(){
+    var t=token();
+    if(t){ fetch("/api/affiliate-me",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+t},body:JSON.stringify({action:"logout"})}).catch(function(){}); }
+    setToken(""); showDoor("You are signed out. Your key opens the door whenever you come back.");
+  });
+  load();
+})();
+</script>
+</main>
+
+<footer>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../../">Home</a>
+    <a href="../../workshop/">Business AI Workshop</a>
+    <a href="../../playground/">AI Playground</a>
+    <a href="../../cinema/">Free Cinema</a>
+    <a href="../../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="../../site-pages/membership.html">Membership</a>
+    <a href="../../school-in-a-box/">School in a Box</a>
+    <a href="../../patch/">Amos</a>
+    <a href="../../seamguard/">SeamGuard</a>
+    <a href="../../papers/">Papers</a>
+    <a href="../../articles/">Articles</a>
+    <a class="loyaltap" href="../../loyalty/">Loyalty</a>
+    <a href="../../affiliates/">Affiliates</a>
+  </nav>
+  <p class="flogo">Lux <em>Automations</em></p>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../../privacy/">Privacy</a> · <a href="../../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<div aria-hidden="true" style="text-align:right;padding:2px 16px 12px 0;line-height:0"><img src="/assets/shields/02-bolt.webp" alt="" width="40" height="27" style="opacity:.45"></div>
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+</body>
+</html>

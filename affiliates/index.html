@@ -299,7 +299,7 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     <p>When you join, <strong>your copies of these graphics carry your own link</strong> — so every sale they bring in is marked as yours, and the receipts follow it.</p>
     <ol class="steps">
       <li><strong>Pick your graphics</strong> from the share kit below.</li>
-      <li><strong>Apply below</strong> — we issue your link, and your linked copies, personally.</li>
+      <li><strong>Apply below</strong> — we issue your link, your linked copies and your dashboard key personally.</li>
       <li><strong>Post them</strong> where your people are.</li>
       <li><strong>Every payment</strong> your customers make on the site earns you 20% of the profit — for life.</li>
     </ol>
@@ -450,7 +450,7 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
   <section style="background:#EDF1F6">
     <p class="eyebrow">Joining</p>
     <h2>Apply to become an affiliate</h2>
-    <p>The affiliate desk opens with the products&rsquo; launch, and joining stays personal: fill in this application and it is on record with the house the moment you send it. We read every application ourselves and issue your link and your linked graphics personally — there is no instant dashboard, and we will not pretend there is.</p>
+    <p>The affiliate desk opens with the products&rsquo; launch, and joining stays personal: fill in this application and it is on record with the house the moment you send it. We read every application ourselves and issue your link, your linked graphics and your dashboard key personally — nothing is instant or automatic, and we will not pretend it is. Your key opens <a href="dashboard/">your own dashboard</a>: your link, the articles the spinner has dealt you, and your numbers — yours alone.</p>
     <form id="affform" style="margin-top:16px">
       <p><label for="aname"><strong>Your name</strong></label><br>
       <input id="aname" name="name" type="text" autocomplete="name" required maxlength="80" style="width:100%;max-width:520px;padding:12px 14px;border:1px solid #d2d2d7;border-radius:10px;font-size:16px;margin-top:6px"></p>
@@ -479,13 +479,23 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     .then(function(r){return r.json();})
     .then(function(j){
       btn.disabled=false; btn.textContent="Send my application";
-      if(j.ok){ form.reset(); msg.textContent="Application received — it is on record with the house. We read every one and reply personally with your link."; }
+      if(j.ok){ form.reset(); msg.textContent="Application received — it is on record with the house. We read every one and reply personally with your link and your dashboard key."; }
       else{ msg.textContent=(j.error||"The application could not be sent just now")+" — or write to patch@ailux.ca and we will set you up by email."; }
     })
     .catch(function(){ btn.disabled=false; btn.textContent="Send my application"; msg.textContent="The application could not be reached — or write to patch@ailux.ca and we will set you up by email."; });
   });
 })();
 </script>
+
+  <!-- ================= THE DOOR ================= -->
+  <section>
+    <p class="eyebrow">Already an affiliate?</p>
+    <h2>Open your dashboard</h2>
+    <p>Your key opens your door: your link, the articles dealt to you, and your numbers — yours alone.</p>
+    <div class="btnrow">
+      <a class="btn buy" href="dashboard/">Open my dashboard</a>
+    </div>
+  </section>
 
   <!-- ================= SMALL PRINT ================= -->
   <section>
@@ -496,6 +506,7 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
       <li><strong>Real, settled payments.</strong> You earn on payments that settle and stay settled. A payment that is refunded or charged back earns nothing.</li>
       <li><strong>Site-wide scope.</strong> If a customer arrives through your link and buys any product sold on ailux.ca, that purchase is under your link.</li>
       <li><strong>Receipts are the record.</strong> Every sale under your link is receipt-tracked, and the house&rsquo;s receipts are the record both sides can check.</li>
+      <li><strong>Your dashboard is yours alone.</strong> It opens with your personal key and shows only your own record — your link, your dealt articles, and your numbers exactly as the house&rsquo;s receipts record them.</li>
       <li><strong>Applications stay in the house.</strong> What you send in the application form is kept on the house&rsquo;s own list and used only to run the affiliate programme.</li>
       <li><strong>The products&rsquo; terms</strong> of sale and refunds live at <a href="../terms/">ailux.ca/terms</a>.</li>
     </ul>
