@@ -7,53 +7,53 @@
 <meta name="description" content="School in a Box: a whole school on one small computer — an offline AI teacher, the lessons, and tools that teach real skills. Placed where the need is greatest. Sponsor a box as a gift.">
 <style>
   :root{
-    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
-    --ice:#eaf2ff; --gold:#B9CCE6; --gold-deep:#84A3CC; --ink:#f6f3ec;
-    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --black:#1C1917; --panel:#ffffff; --panel-2:#ffffff; --line:rgba(28,25,23,.13);
+    --ice:#476B96; --gold:#B9CCE6; --gold-deep:#84A3CC; --ink:#1C1917;
+    --muted:#6f6a5e; --muted-2:#3f3a33;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
     --radius-section:26px; --radius-card:14px; --radius-pill:999px;
     --aura:
-      0 0 0 1px rgba(255,244,214,.65),
+      0 0 0 1px rgba(185,204,230,.9),
       0 0 6px rgba(255,255,255,.75),
-      0 0 18px rgba(234,242,255,.55),
-      0 0 38px rgba(132,163,204,.40),
-      0 0 72px rgba(160,195,255,.22);
+      0 10px 26px rgba(71,107,150,.28),
+      0 0 38px rgba(132,163,204,.35),
+      0 0 72px rgba(160,195,255,.20);
     --aura-soft:
-      0 0 0 1px rgba(255,244,214,.4),
-      0 0 12px rgba(234,242,255,.28),
-      0 0 30px rgba(132,163,204,.20);
+      0 0 0 1px rgba(185,204,230,.55),
+      0 1px 3px rgba(28,25,23,.06),
+      0 14px 34px rgba(28,25,23,.07);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   html,body{overflow-x:clip}
   body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
     background:
-      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
-      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
-      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
-    background-color:var(--black);background-attachment:fixed}
-  a{color:var(--gold)}
+      radial-gradient(120% 46% at 50% -6%, rgba(185,204,230,.38), rgba(185,204,230,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.10), rgba(132,163,204,0) 62%),
+      linear-gradient(180deg,#F4F8FC 0%, #fff 34%, #fff 100%);
+    background-color:#fff;background-attachment:fixed}
+  a{color:#476B96}
   img{display:block;max-width:100%}
   :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
 
   /* ---------- top bar ---------- */
-  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .topbar.bottom{position:static;margin-top:8px;border-bottom:0;border-top:1px solid var(--line)}
   .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
   .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
   nav.mainnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
   nav.mainnav a{color:var(--muted-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:9px 13px;border-radius:var(--radius-pill)}
-  nav.mainnav a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a:hover{background:#EFEAE0;color:var(--ink)}
   nav.mainnav a.goldlink{color:var(--gold);font-weight:700}
   nav.mainnav a.goldlink:hover{background:rgba(132,163,204,.12);color:var(--gold)}
-  nav.mainnav a.here{background:rgba(255,255,255,.08);color:var(--ink)}
+  nav.mainnav a.here{background:#EFEAE0;color:var(--ink)}
 
   main{display:grid;grid-template-columns:1fr;gap:16px;padding:16px;max-width:1080px;margin:0 auto}
   .roomtitle{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:700;letter-spacing:-.015em;line-height:1.05;margin:10px 2px 0;color:var(--ink)}
   .goldline{color:var(--gold)}
-  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
-  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  section{background:#fff;border:1px solid var(--line);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:#476B96;font-weight:800;text-transform:uppercase;letter-spacing:.22em}
   h1{font-family:var(--serif);font-size:clamp(28px,6.4vw,40px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0 0 12px}
   h2{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
   h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
@@ -61,12 +61,12 @@
   p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
   .secondary{color:var(--muted)}
   small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
-  .openline{display:inline-block;margin-top:6px;padding:10px 20px;border-radius:var(--radius-pill);background:#000;box-shadow:var(--aura-soft);color:var(--gold);font-weight:800;font-size:15px}
-  .hostline{display:flex;gap:12px;align-items:flex-start;background:#000;border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:14px 16px;margin-top:16px}
-  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#000;box-shadow:var(--aura-soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .openline{display:inline-block;margin-top:6px;padding:10px 20px;border-radius:var(--radius-pill);background:#EDF2F9;box-shadow:var(--aura-soft);color:#38587E;font-weight:800;font-size:15px}
+  .hostline{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);box-shadow:var(--aura-soft);padding:14px 16px;margin-top:16px}
+  .hostline .hi{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#EDF1F6;box-shadow:none;display:flex;align-items:center;justify-content:center;font-size:19px}
   .hostline p{margin:0;font-size:15.5px;line-height:1.5;color:var(--muted-2)}
   .hostline p strong{color:var(--ink)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 30px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease;text-align:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 30px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#1C1917;color:#F6F3EC;box-shadow:var(--aura);transition:box-shadow .25s ease;text-align:center}
   .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(160,195,255,.3)}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 
@@ -74,8 +74,9 @@
   .mission{font-family:var(--serif);font-size:clamp(24px,5.4vw,34px);font-weight:700;line-height:1.28;letter-spacing:-.01em;margin:0 0 14px;color:var(--ink)}
 
   /* ---------- the film slots ---------- */
-  .videobox{position:relative;width:100%;aspect-ratio:16/9;background:#0b0b0e;border-radius:12px;overflow:hidden;box-shadow:var(--aura-soft);margin-top:16px}
-  .videobox video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e}
+  /* .videobox was dead CSS on this page (no element uses it — the live
+     player is .videowrap below); removed in the light-theme conversion,
+     2026-11-17, so no unused black stage lingers in the page's own CSS. */
   .filmcap{font-size:14.5px;color:var(--muted);margin-top:8px;font-weight:600}
 
   /* ---------- the film — one player, near the top ---------- */
@@ -92,8 +93,8 @@
   figure.shot figcaption{font-size:14px;color:var(--muted);margin-top:7px;font-weight:700}
 
   /* ---------- layered depth ---------- */
-  details.detail{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:6px 18px;background:rgba(255,255,255,.03)}
-  details.detail summary{cursor:pointer;font-weight:800;color:var(--gold);min-height:48px;display:flex;align-items:center;font-size:16px}
+  details.detail{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:6px 18px;background:#F7FAFD}
+  details.detail summary{cursor:pointer;font-weight:800;color:#38587E;min-height:48px;display:flex;align-items:center;font-size:16px}
   details.detail p:last-child{margin-bottom:14px}
 
   /* ---------- the diagram ---------- */
@@ -113,11 +114,11 @@
 
   form.host{display:grid;gap:14px;margin-top:20px;max-width:620px}
   form.host label{font-size:14.5px;font-weight:700;display:grid;gap:7px;color:var(--ink)}
-  form.host input[type="text"],form.host input[type="email"],form.host textarea{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#000;color:var(--ink);padding:12px 16px;width:100%}
+  form.host input[type="text"],form.host input[type="email"],form.host textarea{font:inherit;font-size:16px;min-height:52px;border-radius:12px;border:1.5px solid #D8D3C6;background:#fff;color:var(--ink);padding:12px 16px;width:100%}
   form.host textarea{min-height:84px;resize:vertical}
   form.host .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   #hostMsg{font-size:15px;color:var(--gold);min-height:22px;margin:4px 0 0}
-  .honour-empty{margin:0;color:#e9dfc4;font-size:16px;line-height:1.55}
+  .honour-empty{margin:0;color:#38587E;font-size:16px;line-height:1.55}
   @media (max-width:560px){.honour-head{grid-template-columns:1fr 1fr}}
 
   .closeline{text-align:center;padding:28px 24px}
@@ -126,7 +127,7 @@
   footer{max-width:1080px;margin:0 auto;padding:8px 24px 36px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
   footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
   footer .doorlinks a{color:var(--muted-2);text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px}
-  footer .doorlinks a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  footer .doorlinks a:hover{background:#EFEAE0;color:var(--ink)}
   footer .doorlinks a.loyaltap{color:var(--gold);font-weight:700}
   @media (max-width:560px){
     main{padding:12px;gap:12px}
@@ -196,7 +197,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <!-- Shelf carousel component (the rolling squares, 2026-11-17): stylesheet here, mount + script at the strip slot in <main> -->
 <link rel="stylesheet" href="../assets/shelf-carousel.css">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -230,7 +231,7 @@
   .hostline{background:#fff;border:1px solid var(--line);box-shadow:var(--aura-soft)}
   .hostline .hi{background:#EDF1F6;box-shadow:none}
   .hostbubble{background:#fff;color:var(--ink)}
-  .openline{background:#1C1917;color:#B9CCE6}
+  .openline{background:#EDF2F9;color:#38587E}
   .soonline,.draftflag{color:#38587E}
   .cbtn{background:#fff;color:var(--ink);border-color:#D8D3C6}
   .cbtn:hover{background:#F3F0E7}
