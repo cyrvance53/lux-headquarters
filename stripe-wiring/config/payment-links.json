@@ -442,15 +442,15 @@
   "playground_credits": [
     {
       "id": "credits-starter",
-      "label": "Playground Credits — starter pack",
-      "price_display": "UNSTAMPED — no credit-pack prices on record; Vance's call",
+      "label": "Playground Credits — starter bundle",
+      "price_display": "UNSTAMPED — no credit-bundle prices on record; Vance's call",
       "status": "AWAITING_PRICE_STAMP_THEN_TAP",
       "url": null
     },
     {
       "id": "credits-maker",
-      "label": "Playground Credits — maker pack",
-      "price_display": "UNSTAMPED — no credit-pack prices on record; Vance's call",
+      "label": "Playground Credits — maker bundle",
+      "price_display": "UNSTAMPED — no credit-bundle prices on record; Vance's call",
       "status": "AWAITING_PRICE_STAMP_THEN_TAP",
       "url": null
     }
