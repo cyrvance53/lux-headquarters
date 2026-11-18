@@ -385,6 +385,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lux">
+<!-- Shelf carousel component (assets/shelf-carousel.css) — homepage drip, 2026-11-17 -->
+<link rel="stylesheet" href="assets/shelf-carousel.css">
 </head>
 <body>
 
@@ -545,6 +547,17 @@
       <a class="pbox" href="plug-check/"><svg class="mark" aria-hidden="true"><use href="#luxshield"/></svg><h3>PlugCheck</h3><span class="rule" aria-hidden="true"></span><p>Connected products checked for Europe's Cyber Resilience Act.</p></a>
       <a class="pbox" href="fleet-door/"><svg class="mark" aria-hidden="true"><use href="#luxshield"/></svg><h3>FleetDoor</h3><span class="rule" aria-hidden="true"></span><p>Connected vehicles checked, car by car.</p></a>
     </div>
+  </section>
+
+  <!-- ================= BROWSE THE SHELF — the rolling squares =================
+       The shelf carousel component (assets/shelf-carousel.js + .css), proved
+       on the Patch page 2026-11-17 and dripped onto the homepage on Vance's
+       word the same evening — the jade wall's moving companion, directly
+       below it. Tiles render from the component's ONE central product list;
+       on the homepage data-base is "" and paths drop the "../". -->
+  <section style="background:none;box-shadow:none;padding:0">
+    <div data-luxsc data-base=""></div>
+    <script src="assets/shelf-carousel.js" defer></script>
   </section>
 
   <!-- ============ THE TWO SHIELDS — THE PRODUCTS ============ -->
