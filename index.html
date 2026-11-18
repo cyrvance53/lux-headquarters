@@ -159,6 +159,12 @@
   .paytier .tname small{display:block;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--muted);margin-top:3px}
   .paycard .fineprint{margin-top:18px;color:var(--muted);font-size:14px}
   .paycard .fineprint a{color:var(--gold-text)}
+  /* What a membership is FOR (Vance, 2026-11-18): the two member rooms,
+     named at the top of the till so nobody has to guess. */
+  .paycard .roompanel{margin:18px 0 2px;max-width:640px;background:linear-gradient(180deg,#EDF3FA,#DCE8F6);border:1px solid #84A3CC;border-radius:16px;padding:18px 20px 16px}
+  .paycard .roompanel p{margin:0;color:#38587E;font-size:16px;line-height:1.55}
+  .paycard .roomchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .paycard .roomchip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #84A3CC;border-radius:999px;padding:8px 15px;font-weight:700;font-size:15px;color:#38587E;box-shadow:0 1px 4px rgba(71,107,150,.14)}
 
   /* ---------- the two shields — the products, on the front page
      at last (Vance, 2026-11-17: "those two products aren't even on
@@ -606,6 +612,13 @@
     <p class="dtag">The Till · Founders</p>
     <h3>Founding memberships — open now</h3>
     <p class="desc">Join before the house opens and you’re a founder: <strong style="color:var(--ink)">30% off, honoured for your whole first year.</strong></p>
+    <div class="roompanel">
+      <p><strong>Your membership is for the Workshop and the Playroom</strong> — the two member rooms of the house. Build and make in the Workshop; play and explore in the Playroom. Your credits are spent in the rooms, and your membership starts the day the house opens — January 1, 2027.</p>
+      <div class="roomchips">
+        <span class="roomchip">🔧 The Workshop — build and make</span>
+        <span class="roomchip">🎡 The Playroom — play and explore</span>
+      </div>
+    </div>
     <p class="fineprint">You can join now — your membership starts January 1, 2027.</p>
     <div class="paytier">
       <span class="tname">Basic<small>$9.94 a month · a starter bundle of credits</small></span>

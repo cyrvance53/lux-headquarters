@@ -47,6 +47,11 @@
   .status.house{background:var(--card);border:1px solid var(--gold-soft);color:#7a5c10}
   .tier p{margin:0}
   .tier p + p{margin-top:6px}
+  /* What a membership is FOR (Vance, 2026-11-18) — same panel as the front door's till. */
+  .roompanel{margin:12px 0 4px;background:linear-gradient(180deg,#EDF3FA,#DCE8F6);border:1px solid #84A3CC;border-radius:14px;padding:16px 18px 14px}
+  .roompanel p{margin:0;color:#38587E;font-size:16px;line-height:1.55}
+  .roomchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .roomchip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #84A3CC;border-radius:999px;padding:8px 15px;font-weight:700;font-size:15px;color:#38587E;box-shadow:0 1px 4px rgba(71,107,150,.14)}
   .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
   @media(min-width:680px){.grid{grid-template-columns:1fr 1fr}}
   .tile{background:var(--ground);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px}
@@ -261,6 +266,13 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
       <span class="status house">Founding circle · open now</span>
       <h3>Founding Membership</h3>
       <p>The founding circle is open for the January 1, 2027 opening — the first members through the door, a founding cohort whose place in the house is permanent. One membership covers the Workshop and the Playground, all tools included.</p>
+      <div class="roompanel">
+        <p><strong>Your membership is for the Workshop and the Playroom</strong> — the two member rooms of the house. Build and make in the Workshop; play and explore in the Playroom. Your credits are spent in the rooms, and your membership starts the day the house opens — January 1, 2027.</p>
+        <div class="roomchips">
+          <span class="roomchip">🔧 The Workshop — build and make</span>
+          <span class="roomchip">🎡 The Playroom — play and explore</span>
+        </div>
+      </div>
       <p><strong>Basic — $9.94 a month.</strong> A starter bundle of 500,000 credits. <strong>Pro — $27.97 a month.</strong> The big monthly credit bundle. <strong>Business — $69.99 a month.</strong> The tier for businesses and institutions.</p>
       <p><strong>Founders:</strong> join before January 1 and take <strong>30% off, honoured for your whole first year</strong> — the founder year is $83.50 (Basic) or $234.95 (Pro). Yearly memberships carry 25% off (Basic year $89.46 · Pro year $251.73). One discount per member — the best one that applies to you; discounts never stack.</p>
       <p>You can join now — your membership starts January 1, 2027.</p>
