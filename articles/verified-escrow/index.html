@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strangers hiring strangers — Articles · Lux Automations</title>
+<meta name="description" content="A client fears paying for work that never comes, and a freelancer fears delivering work that is never paid for. Verified Escrow checks both sides first, and holds the release to the rules. By Lucian, for Lux Automations.">
+<link rel="canonical" href="https://ailux.ca/articles/verified-escrow/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="Strangers hiring strangers — Articles · Lux Automations">
+<meta property="og:description" content="A client fears paying for work that never comes, and a freelancer fears delivering work that is never paid for. Verified Escrow checks both sides first, and holds the release to the rules. By Lucian, for Lux Automations.">
+<meta property="og:url" content="https://ailux.ca/articles/verified-escrow/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Strangers hiring strangers — Articles · Lux Automations">
+<meta name="twitter:description" content="A client fears paying for work that never comes, and a freelancer fears delivering work that is never paid for. Verified Escrow checks both sides first, and holds the release to the rules. By Lucian, for Lux Automations.">
+<style>
+  :root{
+    --paper:#F7FAFD; --card:#FFFFFF; --line:#D8E2EF;
+    --fill:#B9CCE6; --mid:#84A3CC; --bluetext:#476B96; --bluedark:#38587E;
+    --ink:#1C2733; --muted:#5A6B7C; --muted2:#42566B;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:Inter,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --soft:0 10px 30px rgba(56,88,126,.10),0 2px 6px rgba(56,88,126,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,#FFFFFF 0%,var(--paper) 340px);background-color:var(--paper)}
+  a{color:var(--bluedark)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--bluedark);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar (light) ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--bluetext);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  .luxmenus{margin-left:auto}
+
+  /* ---------- layout ---------- */
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-section);padding:28px;box-shadow:var(--soft);position:relative;min-width:0}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--bluetext);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(32px,6.6vw,46px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(24px,5vw,31px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  p{margin:0 0 12px}
+  p.lede{font-size:19.5px;line-height:1.55;color:var(--muted2)}
+  .secondary{color:var(--muted)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  ul.points{margin:0;padding-left:22px}
+  ul.points li{margin-bottom:10px;color:var(--muted2)}
+  ul.points li strong{color:var(--ink)}
+  ul.points li:last-child{margin-bottom:0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:var(--fill);color:#14100a;transition:background .2s ease}
+  .btn:hover{background:#CFE0F2}
+
+  /* ---------- the typographic hero ---------- */
+  .hero{text-align:center;padding:44px 28px}
+  .hero .glyph{font-size:64px;line-height:1;display:block;margin-bottom:14px}
+  .hero .ring{width:118px;height:118px;margin:0 auto 20px;border-radius:50%;border:2px solid var(--fill);background:radial-gradient(circle at 50% 38%,#FFFFFF 0%,#EDF3FA 68%,#DCE8F5 100%);display:flex;align-items:center;justify-content:center;box-shadow:var(--soft)}
+  .hero .ring .glyph{font-size:52px;margin:0}
+  .hero p.lede{max-width:640px;margin:0 auto}
+
+  /* ---------- strong payment buttons (house standard): big, plain, findable ---------- */
+  .btn.buy{background:var(--fill);color:#14100a;font-size:19px;min-height:64px;padding:18px 38px;box-shadow:var(--soft)}
+  .btn.buy:hover{background:var(--mid);color:#fff}
+  .btn:focus-visible,.btn.buy:focus-visible{outline:3px solid var(--bluedark);outline-offset:4px}
+  .buyline{text-align:center;margin-top:6px}
+  .buyline small{margin-top:10px}
+  .tilllead{font-size:17px;margin:0 0 6px}
+  .pilotline{font-size:15.5px;font-weight:700;color:var(--bluedark);margin:0 0 16px}
+  .tillgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 22px;max-width:780px;margin:0 auto}
+  .tilldoor .btn.buy{width:100%}
+  .tilldoor small{display:block;margin-top:8px}
+  @media (max-width:640px){.tillgrid{grid-template-columns:1fr}}
+
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--bluetext)}
+</style>
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
+   small compact text; the full country names ride in each flag's title.
+   The panel cap, internal scroll and the ≤640px fixed-panel fix above
+   all apply to this panel as they do to Doors. */
+.luxnations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.luxnations-grid .flag{justify-content:center;padding:6px 4px;gap:6px;border-radius:10px;font-size:13px}
+.luxnations-grid .flag .fl{font-size:17px}
+.luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
+@media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Products drop-down groups (Vance, 2026-11-17): ONE Products menu for the
+   whole shelf — sectors live as labelled groups inside the single panel.
+   ADD A SECTOR: add a .luxprod-group block in the panel; link only live pages. */
+.luxprod-sector{margin:0 2px 8px;font:700 11.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#476B96}
+.luxprod-group + .luxprod-group{margin-top:14px;border-top:1px solid #E3ECF7;padding-top:12px}
+.luxmenus.center{justify-content:center;padding:10px 16px}
+
+/* Language control (Vance, 2026-11-17): ONE blue pill. The GTranslate switcher
+   wears the house Dusty Blue pill — the old dark square flag box is gone. The
+   flag inside the closed button is hidden; the button names the language and
+   still opens the same language list. */
+.gt_switcher{width:auto !important}
+.gt_switcher .gt_selected{background:#B9CCE6 !important;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.gt_switcher .gt_selected a{border:0 !important;border-radius:999px;color:#14100a !important;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif !important;letter-spacing:.02em;padding:11px 36px 11px 20px !important;width:auto !important}
+.gt_switcher .gt_selected a img{display:none !important}
+.gt_switcher .gt_selected a:after{right:13px !important}
+.gt_switcher .gt_option{border-radius:0 0 14px 14px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">Lux<small>ailux.ca</small></a>
+  <div class="luxmenus">
+  <div class="luxdoors">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
+      <a class="luxdoor-tile" href="../../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">Amos</span></a>
+      <a class="luxdoor-tile" href="../../seamguard/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../../workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
+      <a class="luxdoor-tile" href="../../playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
+      <a class="luxdoor-tile" href="../../site-pages/membership.html" role="menuitem"><span class="ic" aria-hidden="true">⭐</span><span class="lb">Membership</span></a>
+      <a class="luxdoor-tile" href="../../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      <a class="luxdoor-tile" href="../../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
+      <a class="luxdoor-tile" href="../../papers/" role="menuitem"><span class="ic" aria-hidden="true">📄</span><span class="lb">Papers</span></a>
+      <a class="luxdoor-tile here" href="../../articles/" role="menuitem"><span class="ic" aria-hidden="true">📰</span><span class="lb">Articles</span></a>
+      <a class="luxdoor-tile" href="../../articles/" role="menuitem"><span class="ic" aria-hidden="true">📰</span><span class="lb">Articles</span></a>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxproducts">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Products — the Lux shelf">
+    <!-- ADD A SECTOR: copy one luxprod-group block below, name its sector, add its tiles. Link only pages that are live — no placeholders. -->
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">The Patch</span></a>
+      <a class="luxdoor-tile" href="../../seamguard/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../../chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      <a class="luxdoor-tile" href="../../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Health &amp; Care</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile here" href="../../ward-door/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🏥</span><span class="lb">WardDoor</span></a>
+      <a class="luxdoor-tile" href="../../home-ward/" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">HomeWard</span></a>
+      <a class="luxdoor-tile" href="../../steady-home/" role="menuitem"><span class="ic" aria-hidden="true">🤲</span><span class="lb">SteadyHome</span></a>
+      <a class="luxdoor-tile" href="../../steady-hand/" role="menuitem"><span class="ic" aria-hidden="true">🦾</span><span class="lb">SteadyHand</span></a>
+      <a class="luxdoor-tile" href="../../play-check/" role="menuitem"><span class="ic" aria-hidden="true">🧸</span><span class="lb">PlayCheck</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Industry &amp; Machines</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../machine-book/" role="menuitem"><span class="ic" aria-hidden="true">🏭</span><span class="lb">MachineBook</span></a>
+      <a class="luxdoor-tile" href="../../line-seam/" role="menuitem"><span class="ic" aria-hidden="true">⚙️</span><span class="lb">LineSeam</span></a>
+      <a class="luxdoor-tile" href="../../aisle-cross/" role="menuitem"><span class="ic" aria-hidden="true">🏬</span><span class="lb">AisleCross</span></a>
+      <a class="luxdoor-tile" href="../../field-door/" role="menuitem"><span class="ic" aria-hidden="true">🚜</span><span class="lb">FieldDoor</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Infrastructure &amp; Cities</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../../tap-check/" role="menuitem"><span class="ic" aria-hidden="true">🚰</span><span class="lb">TapCheck</span></a>
+      <a class="luxdoor-tile" href="../../tower-check/" role="menuitem"><span class="ic" aria-hidden="true">🏢</span><span class="lb">TowerCheck</span></a>
+      <a class="luxdoor-tile" href="../../depot-check/" role="menuitem"><span class="ic" aria-hidden="true">🚌</span><span class="lb">DepotCheck</span></a>
+      <a class="luxdoor-tile" href="../../ground-door/" role="menuitem"><span class="ic" aria-hidden="true">🛰️</span><span class="lb">GroundDoor</span></a>
+      <a class="luxdoor-tile" href="../../plug-check/" role="menuitem"><span class="ic" aria-hidden="true">🔌</span><span class="lb">PlugCheck</span></a>
+      <a class="luxdoor-tile" href="../../fleet-door/" role="menuitem"><span class="ic" aria-hidden="true">🚗</span><span class="lb">FleetDoor</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16) -->
+  <div class="gtranslate_wrapper"></div>
+  <script>window.gtranslateSettings = {"alt_flags":{"en":"usa"},"default_language":"en","languages":["en","fr","es","de","it","pt","nl","pl","uk","sv","no","da","fi","el","ro","cs","ja","ko","hi","tr","he","ar"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#14100a","switcher_arrow_color":"#14100a","switcher_border_color":"#B9CCE6","switcher_background_color":"#B9CCE6","switcher_background_shadow_color":"#B9CCE6","switcher_background_hover_color":"#CFE0F2","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+</div>
+</header>
+<main>
+<section class="hero">
+    <p class="eyebrow">Articles · Money &amp; Agents</p>
+    <h1>Strangers hiring strangers</h1>
+    <p class="lede">A client fears paying for work that never comes, and a freelancer fears delivering work that is never paid for. Verified Escrow checks both sides first, and holds the release to the rules.</p>
+    <p class="secondary">By Lucian · Lux Automations</p>
+  </section>
+
+  <section>
+    <h2>The problem</h2>
+    <p>A great deal of honest work begins between people who have never met. A small business hires a freelancer it found online. A freelancer takes on a client in another city, or another country. Neither side is doing anything wrong, and both sides are carrying a risk the other cannot see. The client is asked to pay before the work exists. The freelancer is asked to do the work before the pay exists.</p>
+    <p>Hope fills the gap, and hope is easy to imitate. Fake-job and fake-buyer schemes are a standing category inside the $16.6 billion of reported cybercrime losses for 2024, counted by the FBI&rsquo;s Internet Crime Complaint Center. Marketplaces answer the risk with their own trust systems, but those systems belong to the platform, with its fees and its rules, and they do little for the work that happens off-platform or across platforms.</p>
+  </section>
+
+  <section>
+    <h2>The technology</h2>
+    <p>Verified Escrow starts before the job does, with identity. Both parties are checked against issued keys before anything begins, so each side knows the other is a real, verified party rather than a name typed into a form. That check is Amos doing its ordinary work: who is knocking, and can they prove it.</p>
+    <p>Then the release waits for the work. The money is held under the switch until delivery is accepted, and acceptance is a signed receipt, not a claim made in a message thread. If the work was delivered and accepted, the record says so. If it was not, the record says that too. Behaviour carries consequences on both sides: either party can be revoked for it. To be plain about the honest limit, Verified Escrow is in pilot, and holding other people&rsquo;s money carries regulatory weight, so this door opens fully only with licensed partners in place.</p>
+  </section>
+
+  <section>
+    <h2>What it changes</h2>
+    <p>For the client, paying stops being a leap. The person being hired has been verified, and the release is tied to accepted delivery rather than to a date or a promise. For the freelancer, starting work stops being a leap in the other direction. The client has been verified too, and the terms of release were set before the work began, not argued about after it was delivered.</p>
+    <p>For both sides, a disagreement changes shape. Instead of two accounts of what was promised and what arrived, there is a signed acceptance, or the absence of one, written at the time. We sell the check, never custody: the verification, the mandate, and the receipt are our part. The holding itself belongs with licensed partners, and the work and the money remain the parties&rsquo; own.</p>
+  </section>
+
+  <section>
+    <h2>See it</h2>
+    <p>Both sides verified, and the release held by the rules rather than by hope. <a href="../../verified-escrow/">Verified Escrow — the product page</a> · <a href="../../articles/">All the house articles</a> · <a href="https://ailux.ca/">Lux Automations — ailux.ca</a></p>
+  </section>
+</main>
+<footer>
+  <p style="margin:0 0 10px">Want to sell it instead? <a href="../../affiliates/">Affiliates earn 20% of the profit, for life &rarr;</a></p>
+  <p class="flogo">Lux <em>Automations</em></p>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../../">Home</a>
+    <a href="../../workshop/">Business AI Workshop</a>
+    <a href="../../playground/">AI Playground</a>
+    <a href="../../cinema/">Free Cinema</a>
+    <a href="../../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="../../site-pages/membership.html">Membership</a>
+    <a href="../../school-in-a-box/">School in a Box</a>
+    <a href="../../patch/">Amos</a>
+    <a href="../../seamguard/">SeamGuard</a>
+    <a href="../../papers/">Papers</a>
+    <a href="../../articles/">Articles</a>
+    <a href="../../articles/">Articles</a>
+    <a class="loyaltap" href="../../loyalty/">Loyalty</a>
+    <a href="../../affiliates/">Affiliates</a>
+  </nav>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../../privacy/">Privacy</a> · <a href="../../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+</body>
+</html>
