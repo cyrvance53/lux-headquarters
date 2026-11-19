@@ -106,6 +106,10 @@
    beside Doors, with no header restructuring. The panel scrolls when the
    tile grid outgrows the screen, so new doors never push it off-page. */
 .luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* Buttons ride the RIGHT side of the topbar (Vance, 2026-11-19): the wide
+   drop-down panels hang off the buttons' right edge, so buttons on the right
+   keep every panel on the page — on the left they ran off the screen. */
+.topbar .luxmenus{margin-left:auto}
 .luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
 
 /* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
