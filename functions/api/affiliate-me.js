@@ -11,7 +11,7 @@
 // under their own email. No other affiliate's data is ever read into it.
 
 const ARTICLES = {
-  "patch": ["The Patch", "The stranger who was not a stranger"],
+  "patch": ["Amos", "The stranger who was not a stranger"],
   "seamguard": ["SeamGuard", "The leak was in the join"],
   "school-in-a-box": ["School in a Box", "The school the wires never reached"],
   "spending-power": ["Spending Power", "A company card in a machine’s hand"],

@@ -77,7 +77,7 @@ function issuanceNote(rec, key) {
     "Open your door with the email you applied with (" + rec.email + ") and your key. " +
     "Keep the key private — it opens your dashboard, and your dashboard shows only your own record.\n\n" +
     "Your link works site-wide: the same code rides on any page, so " +
-    "https://ailux.ca/patch/?ref=" + rec.refCode + " sends your people straight to the Patch with your mark on it. " +
+    "https://ailux.ca/patch/?ref=" + rec.refCode + " sends your people straight to Amos with your mark on it. " +
     "Your dashboard holds your link, the articles the spinner has dealt you, and your numbers: " +
     "you earn 20% of the profit on every payment your customers make, on settled payments, for as long as they stay. " +
     "Every sale under your link is recorded by receipt. Earnings begin when the doors open on January 1, 2027.\n\n" +

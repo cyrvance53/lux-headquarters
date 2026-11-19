@@ -11,9 +11,9 @@
 const ARTICLES = [
  {
   "slug": "patch",
-  "product": "The Patch",
+  "product": "Amos",
   "story": "The stranger who was not a stranger",
-  "share": "Agents are already buying, selling and settling payments while their owners sleep — and nobody on the other side can prove who they are dealing with. Lucian wrote the story, and the one question the Patch answers at the door."
+  "share": "Agents are already buying, selling and settling payments while their owners sleep — and nobody on the other side can prove who they are dealing with. Lucian wrote the story, and the one question Amos answers at the door."
  },
  {
   "slug": "seamguard",

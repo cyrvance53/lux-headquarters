@@ -30,7 +30,7 @@
      site-root relative), video (MEDIA SLOT: a real product video
      path, or null — the tile falls back to img, then to glyph). */
   var LUX_PRODUCTS = [
-    { no: 1,  name: "The Patch", slug: "patch",
+    { no: 1,  name: "Amos", slug: "patch",
       line: "Every AI agent shows ID at the door before it acts or pays. Rogues stop here.",
       img: "patch/assets/patch-hero-poster.jpg",
       video: "patch/assets/patch-hero-video-web.mp4" },
