@@ -79,10 +79,37 @@
      2026-11-17, so no unused black stage lingers in the page's own CSS. */
   .filmcap{font-size:14.5px;color:var(--muted);margin-top:8px;font-weight:600}
 
-  /* ---------- the film — one player, near the top ---------- */
-  .videowrap{max-width:720px;margin:18px auto 0}
-  .videowrap video{width:100%;aspect-ratio:16/9;display:block;border-radius:12px;background:#0b0b0e;box-shadow:var(--aura-soft)}
-  .videowrap + .filmcap{max-width:720px;margin-left:auto;margin-right:auto}
+  /* ---------- the film — the Cinema's player, cloned whole (Vance,
+     2026-11-19): a black 16:9 stage set BIG at the top of the page,
+     framed like a television floating off the wall (bezel + deep
+     layered shadow); the film's own picture covers the whole screen
+     until play is pressed; the Cinema's full control bar rides below
+     the stage ---------- */
+  .videowrap{max-width:1060px;margin:18px auto 0;min-width:0}
+  .videowrap + .filmcap{max-width:1060px;margin-left:auto;margin-right:auto}
+  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:22px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;border:6px solid #101014;outline:1px solid rgba(23,25,35,.30);box-shadow:0 2px 6px rgba(18,22,38,.18),0 18px 34px rgba(18,22,38,.28),0 42px 84px rgba(18,22,38,.34),0 90px 140px rgba(18,22,38,.16)}
+  .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:cover}
+  .bigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .bigplay:hover span{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.55)}
+  .bigplay[hidden]{display:none}
+  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .cbtn:hover{background:rgba(255,255,255,.08)}
+  .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
+  .cbtn:disabled{opacity:.45;cursor:default}
+  .cbtn:disabled:hover{background:#000}
+  .ctime{font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .vol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
+  .player{position:relative}
+  .player:fullscreen{background:#000;width:100%;height:100%}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0;border:0;outline:0}
+  .player:fullscreen .stage video{object-fit:contain}
+  .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .player:fullscreen.idle{cursor:none}
+  .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
 
   /* ---------- imagery ---------- */
   .photo{border-radius:12px;box-shadow:var(--aura-soft);width:100%;height:auto;margin-top:16px}
@@ -261,10 +288,131 @@
     <p class="eyebrow">The film</p>
     <h2>Watch the film</h2>
     <div class="videowrap">
-      <video src="assets/school-film.mp4" poster="assets/img-teacher.webp" controls autoplay muted playsinline preload="metadata" aria-label="School in a Box — the film: the need across the world, the box, the teacher, what the children can do, and the Wall of Heroes"></video>
+    <div class="player" id="player">
+    <div class="stage" id="stage">
+      <video id="schoolfilm" preload="none" playsinline poster="assets/img-teacher.webp" src="assets/school-film.mp4" aria-label="School in a Box — the film: the need across the world, the box, the teacher, what the children can do, and the Wall of Heroes"></video>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
     </div>
-    <p class="filmcap">The film plays on its own — tap the speaker for sound. An illustrated film: the children and places shown are generated images, not real students or schools.</p>
+    <div class="controls" role="group" aria-label="Player controls">
+      <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">2:14</span></span>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔊</button>
+      <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="speedsel" id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
+      <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    </div>
+    </div>
+    <p class="filmcap">Press play — the film plays with its sound on. An illustrated film: the children and places shown are generated images, not real students or schools.</p>
   </section>
+  <script>
+  /* The School film player — the Cinema's own player, cloned whole
+     (Vance, 2026-11-19): the film sits big at the top of the page from
+     the moment it opens, framed like a television off the wall, its
+     own picture covering the whole screen until play is pressed —
+     then it starts from the big play button, sound on. The full bar
+     rides below the stage: play, seek, time, sound, volume, speed,
+     captions, full screen. One fixed film: the School film. */
+  (function(){
+    var stage=document.getElementById('stage'),
+        video=document.getElementById('schoolfilm'),
+        bigplay=document.getElementById('bigplay'),
+        playbtn=document.getElementById('playbtn'),
+        seek=document.getElementById('seek'),
+        tcur=document.getElementById('tcur'),
+        ttot=document.getElementById('ttot'),
+        mutebtn=document.getElementById('mutebtn'),
+        vol=document.getElementById('vol'),
+        speed=document.getElementById('speed'),
+        ccbtn=document.getElementById('ccbtn'),
+        fsbtn=document.getElementById('fsbtn'),
+        playerEl=document.getElementById('player'),
+        seeking=false, ccOn=false;
+
+    function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+    /* this film carries no caption track yet — the CC button stays
+       dark, exactly as the Cinema shows it for a title whose captions
+       are still on their way */
+    function applyCC(){
+      var tracks=video.textTracks;
+      for(var i=0;i<tracks.length;i++){ tracks[i].mode = ccOn ? 'showing' : 'hidden'; }
+      ccbtn.setAttribute('aria-pressed', ccOn?'true':'false');
+    }
+
+    function togglePlay(){
+      if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+      else { video.pause(); }
+    }
+    playbtn.addEventListener('click', togglePlay);
+    bigplay.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+    video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+    video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+    video.addEventListener('loadedmetadata', function(){
+      ttot.textContent=fmt(video.duration);
+      if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+      applyCC();
+    });
+    video.addEventListener('timeupdate', function(){
+      if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+      tcur.textContent=fmt(video.currentTime);
+    });
+    seek.addEventListener('input', function(){
+      seeking=true;
+      if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+    });
+    seek.addEventListener('change', function(){
+      if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+      seeking=false;
+    });
+    mutebtn.addEventListener('click', function(){
+      video.muted=!video.muted;
+      mutebtn.textContent=video.muted?'🔇':'🔊';
+    });
+    vol.addEventListener('input', function(){
+      video.volume=vol.value/100;
+      if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+    });
+    speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+    ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+    fsbtn.addEventListener('click', function(){
+      if(document.fullscreenElement){ document.exitFullscreen(); return; }
+      var target=playerEl||stage;
+      var req=target.requestFullscreen||target.webkitRequestFullscreen;
+      if(req){ req.call(target); }
+    });
+    /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+    var idleTimer=null;
+    function poke(){
+      if(!document.fullscreenElement){ return; }
+      playerEl.classList.remove('idle');
+      if(idleTimer){ clearTimeout(idleTimer); }
+      idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+    }
+    ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+      playerEl.addEventListener(ev, poke, {passive:true});
+    });
+    document.addEventListener('fullscreenchange', function(){
+      if(document.fullscreenElement){ poke(); }
+      else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+    });
+    stage.addEventListener('keydown', function(ev){
+      if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+    });
+    stage.setAttribute('tabindex','0');
+  })();
+  </script>
 
   <!-- ============ THE MISSION ============ -->
   <section>
