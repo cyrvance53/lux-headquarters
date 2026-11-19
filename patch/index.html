@@ -128,10 +128,11 @@
   .seek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
   .vol{width:84px;accent-color:var(--gold);cursor:pointer}
   .speedsel{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);padding:6px 10px;cursor:pointer}
-  .hostchip{position:absolute;top:10px;right:10px;z-index:7;display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit;transition:opacity .35s ease}
+  .hostwrap{display:flex;flex-direction:column;align-items:flex-end;margin-top:10px}
+  .hostchip{display:flex;align-items:center;gap:7px;background:rgba(10,10,14,.85);border:1px solid rgba(23,25,35,.25);border-radius:var(--radius-pill);padding:4px 11px 4px 4px;cursor:pointer;color:#fff;font:inherit}
   .hostface{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#171106;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.85)}
   .hosttag{font-size:13.5px;font-weight:700;letter-spacing:.02em}
-  .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
+  .hostbubble{margin-top:8px;max-width:min(300px,100%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft);text-align:left}
   .player{position:relative}
   .player:fullscreen{background:#000;width:100%;height:100%}
   .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
@@ -140,6 +141,7 @@
   .player:fullscreen.idle{cursor:none}
   .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
   .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
+  .player:fullscreen .hostwrap{display:none}
   .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
 
   /* ---------- the schematic: scrolls inside its wrapper on narrow
@@ -505,10 +507,12 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     <div class="videowrap">
     <div class="player" id="player">
     <div class="stage" id="stage">
-      <video id="patchfilm" autoplay muted loop playsinline preload="metadata" poster="assets/patch-hero-poster.jpg" src="assets/patch-hero-video-web.mp4" aria-label="The Security Patch film: the attacks, the losses, and the fix"></video>
+      <video id="patchfilm" autoplay muted loop playsinline preload="metadata" poster="assets/patch-hero-poster-bright.jpg" src="assets/patch-hero-video-web.mp4" aria-label="The Security Patch film: the attacks, the losses, and the fix"></video>
       
-      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
       <div class="playerbar" id="playerbar"><button type="button" class="cbtn" id="playbtn" aria-label="Pause">&#10074;&#10074;</button><input type="range" class="seek" id="seekbar" value="0" min="0" max="100" step="0.1" aria-label="Seek"><span class="ctime" id="timelabel">0:00 / 0:00</span><button type="button" class="cbtn" id="soundbtn" aria-label="Turn sound on">&#128263;</button><button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">&#9974;</button></div>
+    </div>
+    <div class="hostwrap">
+      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
       <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome — this short film shows what&rsquo;s happening out there, and the fix we built. Everything it claims is written down further down this page, for anyone to check.</div>
     </div>
     </div>
