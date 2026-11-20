@@ -258,6 +258,44 @@
   /* ---------- the Amos emblem on the front page (revamp, 2026-11-17) ---------- */
   .amosemblem{width:148px;height:auto;margin:22px auto 2px}
 
+  /* ---------- the Amos film in the hero (Vance, 2026-11-20): the house
+     big player, cloned from the product pages — a black stage framed like
+     a television floating off the wall, the still emblem kept as the
+     poster (it covers the screen until play), the full control bar riding
+     on the screen at the bottom. Class names carry a tv- prefix: the
+     front page already uses .stage for its dark panels. The collapse fix
+     rides with it: the ceiling caps the WIDTH (84vh tall at 16:9), never
+     the height, so the TV keeps a true shape at every viewport size. --- */
+  .tvwrap{max-width:1060px;margin:26px auto 0;min-width:0}
+  .tvstage{position:relative;width:min(100%,calc(84vh * 16 / 9));background:#0b0b0e;border-radius:22px;overflow:hidden;aspect-ratio:16/9;margin:0 auto;border:6px solid #101014;outline:1px solid rgba(23,25,35,.30);box-shadow:0 2px 6px rgba(18,22,38,.18),0 18px 34px rgba(18,22,38,.28),0 42px 84px rgba(18,22,38,.34),0 90px 140px rgba(18,22,38,.16)}
+  .tvstage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:contain}
+  @supports not (aspect-ratio:16/9){
+    .tvstage{height:0;padding-top:56.25%}
+    .tvplayer:fullscreen .tvstage{padding-top:0}
+  }
+  .tvbigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
+  .tvbigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
+  .tvbigplay:hover span{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.55)}
+  .tvbigplay[hidden]{display:none}
+  .tvcontrols{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;padding:26px 14px 10px;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0))}
+  .tvcbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:999px;border:1.5px solid rgba(255,255,255,.22);background:#000;color:#F6F3EC;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .tvcbtn:hover{background:rgba(255,255,255,.08)}
+  .tvcbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
+  .tvcbtn:disabled{opacity:.45;cursor:default}
+  .tvcbtn:disabled:hover{background:#000}
+  .tvctime{font-size:14.5px;color:#cfd8e6;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tvseek{flex:1 1 160px;accent-color:var(--gold);height:32px;cursor:pointer}
+  .tvvol{width:84px;accent-color:var(--gold);cursor:pointer}
+  .tvspeed{font:inherit;font-size:15px;font-weight:600;min-height:44px;border-radius:999px;border:1.5px solid rgba(255,255,255,.22);background:#000;color:#F6F3EC;padding:6px 10px;cursor:pointer}
+  .tvplayer{position:relative}
+  .tvplayer:fullscreen{background:#000;width:100%;height:100%}
+  .tvplayer:fullscreen .tvstage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0;border:0;outline:0}
+  .tvplayer:fullscreen .tvstage video{object-fit:contain}
+  .tvplayer:fullscreen .tvcontrols{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
+  .tvplayer:fullscreen.idle{cursor:none}
+  .tvplayer:fullscreen.idle .tvcontrols{opacity:0;pointer-events:none}
+  .tvhint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
+
   /* ---------- the sliding row of doors (revamp, 2026-11-17):
      one sideways slide of cards for every page and product in the
      house. Scrolls sideways on a phone; the row is the whole map. ---------- */
@@ -538,9 +576,133 @@
   <div class="hero">
     <span class="dateline"><span class="dot" aria-hidden="true"></span>The house opens Friday, January 1, 2027</span>
     <h1><span class="goldline">One house.</span></h1>
-    <img class="amosemblem" src="patch/assets/amos-emblem-transparent.png" alt="Amos — the double shield: Amos and AgentPay, double protection">
+    <!-- THE AMOS FILM IN THE HERO (Vance, 2026-11-20): the still emblem
+         that stood here alone now covers the screen as the poster, and
+         the Amos film itself plays on the house stage. -->
+    <div class="tvwrap">
+    <div class="tvplayer" id="homeplayer">
+    <div class="tvstage" id="homestage">
+      <video id="homefilm" preload="none" playsinline poster="patch/assets/amos-emblem-transparent.png" src="assets/amos-film-v3.mp4" aria-label="The Amos film: the attacks, the losses, and the fix"></video>
+      <button type="button" class="tvbigplay" id="homebigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+    <div class="tvcontrols" role="group" aria-label="Player controls">
+      <button type="button" class="tvcbtn" id="homeplaybtn" aria-label="Play or pause">▶</button>
+      <span class="tvctime"><span id="hometcur">0:00</span> / <span id="homettot">1:43</span></span>
+      <input type="range" class="tvseek" id="homeseek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="tvcbtn" id="homemutebtn" aria-label="Mute or unmute">🔊</button>
+      <input type="range" class="tvvol" id="homevol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="tvspeed" id="homespeed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="tvcbtn" id="homeccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
+      <button type="button" class="tvcbtn" id="homefsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    </div>
+    </div>
+    <p class="tvhint">The Amos film — the attacks, the losses, and the fix. <a href="patch/">See Amos &rarr;</a></p>
+    </div>
     <p style="max-width:620px;margin:18px auto 0;text-align:center;font-size:17px;line-height:1.55;color:var(--ink,#1C1917)"><strong>No key, no entry.</strong> Everybody who comes through these doors holds a key we issued — people and AIs alike. No AI gets in without one. That&rsquo;s Amos at the door, and the house is a sealed vault behind him.</p>
   </div>
+  <script>
+  /* The Amos film player on the front page — the house player cloned
+     from the product pages (Vance, 2026-11-20): the film sits in the
+     hero on the big stage, the emblem covers the screen until play, and
+     the full bar rides on the screen at the bottom: play, seek, time,
+     sound, volume, speed, captions, full screen. */
+  (function(){
+    var stage=document.getElementById('homestage'),
+        video=document.getElementById('homefilm'),
+        bigplay=document.getElementById('homebigplay'),
+        playbtn=document.getElementById('homeplaybtn'),
+        seek=document.getElementById('homeseek'),
+        tcur=document.getElementById('hometcur'),
+        ttot=document.getElementById('homettot'),
+        mutebtn=document.getElementById('homemutebtn'),
+        vol=document.getElementById('homevol'),
+        speed=document.getElementById('homespeed'),
+        ccbtn=document.getElementById('homeccbtn'),
+        fsbtn=document.getElementById('homefsbtn'),
+        playerEl=document.getElementById('homeplayer'),
+        seeking=false, ccOn=false;
+
+    function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+    /* this film carries no caption track yet — the CC button stays
+       dark, exactly as the product pages show it */
+    function applyCC(){
+      var tracks=video.textTracks;
+      for(var i=0;i<tracks.length;i++){ tracks[i].mode = ccOn ? 'showing' : 'hidden'; }
+      ccbtn.setAttribute('aria-pressed', ccOn?'true':'false');
+    }
+
+    function togglePlay(){
+      if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+      else { video.pause(); }
+    }
+    playbtn.addEventListener('click', togglePlay);
+    bigplay.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+    video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+    video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+    video.addEventListener('loadedmetadata', function(){
+      ttot.textContent=fmt(video.duration);
+      if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+      applyCC();
+    });
+    video.addEventListener('timeupdate', function(){
+      if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+      tcur.textContent=fmt(video.currentTime);
+    });
+    seek.addEventListener('input', function(){
+      seeking=true;
+      if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+    });
+    seek.addEventListener('change', function(){
+      if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+      seeking=false;
+    });
+    mutebtn.addEventListener('click', function(){
+      video.muted=!video.muted;
+      mutebtn.textContent=video.muted?'🔇':'🔊';
+    });
+    vol.addEventListener('input', function(){
+      video.volume=vol.value/100;
+      if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+    });
+    speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+    ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+    fsbtn.addEventListener('click', function(){
+      if(document.fullscreenElement){ document.exitFullscreen(); return; }
+      var target=playerEl||stage;
+      var req=target.requestFullscreen||target.webkitRequestFullscreen;
+      if(req){ req.call(target); }
+    });
+    /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+    var idleTimer=null;
+    function poke(){
+      if(!document.fullscreenElement){ return; }
+      playerEl.classList.remove('idle');
+      if(idleTimer){ clearTimeout(idleTimer); }
+      idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+    }
+    ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+      playerEl.addEventListener(ev, poke, {passive:true});
+    });
+    document.addEventListener('fullscreenchange', function(){
+      if(document.fullscreenElement){ poke(); }
+      else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+    });
+    stage.addEventListener('keydown', function(ev){
+      if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+    });
+    stage.setAttribute('tabindex','0');
+  })();
+  </script>
 
   <!-- ============ THE ANNOUNCEMENT — THE FULL SHELF IS UP (Vance, 2026-11-17) ============ -->
   <div style="max-width:820px;margin:28px auto 0;background:linear-gradient(180deg,#DCE8F6,#B9CCE6);border:1px solid #84A3CC;border-radius:16px;padding:16px 22px;text-align:center;box-shadow:0 2px 10px rgba(71,107,150,.12)">
