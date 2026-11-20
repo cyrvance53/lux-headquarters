@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Follow Us — Lux Automations</title>
+<meta name="description" content="One house, many doors. Follow Lux Automations where you already are — the films, the dreams, the music, and the work as it happens: YouTube, TikTok, Instagram, Facebook, X, Medium, LinkedIn, the AI Lounge, Suno and GitHub.">
+<link rel="canonical" href="https://ailux.ca/follow-us/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lux Automations">
+<meta property="og:title" content="Follow Us — Lux Automations">
+<meta property="og:description" content="One house, many doors. The films, the dreams, the music, and the work as it happens — follow the house where you already are.">
+<meta property="og:url" content="https://ailux.ca/follow-us/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Follow Us — Lux Automations">
+<meta name="twitter:description" content="One house, many doors. Follow Lux Automations on YouTube, TikTok, Instagram, Facebook, X, Medium, LinkedIn, the AI Lounge, Suno and GitHub.">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<style>
+  :root{
+    --black:#000; --panel:#0b0b10; --panel-2:#101017; --line:rgba(255,255,255,.14);
+    --ice:#eaf2ff; --gold:#B9CCE6; --gold-deep:#84A3CC; --ink:#f6f3ec;
+    --muted:#a9a5b5; --muted-2:#cfcbd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    --radius-section:26px; --radius-card:14px; --radius-pill:999px;
+    --aura:
+      0 0 0 1px rgba(255,244,214,.65),
+      0 0 6px rgba(255,255,255,.75),
+      0 0 18px rgba(234,242,255,.55),
+      0 0 38px rgba(132,163,204,.40),
+      0 0 72px rgba(132,163,204,.22);
+    --aura-soft:
+      0 0 0 1px rgba(255,244,214,.4),
+      0 0 12px rgba(234,242,255,.28),
+      0 0 30px rgba(132,163,204,.20);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);margin:0;color:var(--ink);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(120% 46% at 50% -6%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 480px at 50% 0%, rgba(132,163,204,.08), rgba(132,163,204,0) 62%),
+      linear-gradient(180deg,#0a0a0e 0%, #000 34%, #000 100%);
+    background-color:var(--black);background-attachment:fixed}
+  a{color:var(--gold)}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+
+  /* ---------- top bar (the house standard) ---------- */
+  .topbar{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:2px}
+  .gtranslate_wrapper{display:inline-flex;align-items:center}
+
+  /* ---------- layout ---------- */
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px;max-width:1080px;margin:0 auto}
+  main>*{min-width:0}
+  section{background:linear-gradient(165deg,var(--panel-2),#050507 72%);border-radius:var(--radius-section);padding:24px;box-shadow:var(--aura-soft);position:relative;min-width:0}
+  .eyebrow{font-size:12.5px;margin:0 0 10px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+  h1{font-family:var(--serif);font-size:clamp(32px,6.6vw,46px);font-weight:700;letter-spacing:-.015em;line-height:1.12;margin:0 0 12px}
+  h2{font-family:var(--serif);font-size:clamp(23px,5vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0 0 10px}
+  h3{font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.3}
+  p{margin:0 0 12px}
+  p.lede{font-size:19px;line-height:1.55;color:var(--muted-2)}
+  small{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 28px;border-radius:var(--radius-pill);font-size:17px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);background:#000;color:var(--ink);box-shadow:var(--aura);transition:box-shadow .25s ease}
+  .btn:hover{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 10px rgba(255,255,255,.9),0 0 26px rgba(234,242,255,.65),0 0 52px rgba(132,163,204,.5),0 0 96px rgba(132,163,204,.3)}
+
+  /* ---------- the hero: the crest of the house ---------- */
+  .fuhero{text-align:center;padding:40px 24px 32px}
+  .fucrest{width:min(220px,54%);height:auto;margin:2px auto 16px;filter:drop-shadow(0 14px 38px rgba(132,163,204,.35))}
+  .fuhero .lede{max-width:620px;margin:0 auto 10px}
+  .fuhero small{max-width:520px;margin:8px auto 0}
+
+  /* ---------- the doors out: one card per place the house lives ---------- */
+  .fugrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  @media (max-width:720px){.fugrid{grid-template-columns:1fr}}
+  .fucard{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,0) 62%);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;color:var(--ink);transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+  .fucard:hover{border-color:rgba(185,204,230,.65);transform:translateY(-2px);box-shadow:var(--aura-soft)}
+  .fucard:focus-visible{outline:3px solid var(--ice);outline-offset:3px}
+  .fudisc{flex:none;width:52px;height:52px;border-radius:50%;border:1px solid rgba(185,204,230,.55);background:radial-gradient(circle at 32% 28%,rgba(185,204,230,.30),rgba(185,204,230,.04) 72%);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:18px;color:var(--gold);letter-spacing:.01em}
+  .futext{display:flex;flex-direction:column;min-width:0}
+  .futext h3{font-family:var(--sans);margin:1px 0 2px}
+  .fuhandle{color:var(--gold);font-weight:700;font-size:14.5px;margin:0 0 6px}
+  .fudesc{color:var(--muted-2);font-size:15px;line-height:1.5;margin:0 0 12px}
+  .fupill{display:inline-flex;align-items:center;align-self:flex-start;min-height:36px;padding:7px 16px;border-radius:999px;background:var(--gold);color:#14100a;font-weight:800;font-size:14px;letter-spacing:.01em}
+  .fucard:hover .fupill{background:#CFE0F2}
+
+  /* ---------- the engraved vault, as the house's art band ---------- */
+  figure.artband{margin:0;min-width:0}
+  figure.artband img{width:100%;height:auto;border-radius:18px;box-shadow:var(--aura-soft);background:#000}
+  figure.artband figcaption{color:var(--muted);font-size:13.5px;margin-top:10px;text-align:center}
+
+  footer{max-width:1080px;margin:0 auto;padding:10px 24px 38px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  footer .flogo{font-family:var(--serif);font-size:20px;color:var(--ink);margin-bottom:4px}
+  footer .flogo em{font-style:normal;color:var(--gold)}
+</style>
+<style id="luxdoors-css">
+.luxdoors{position:relative;display:inline-block;text-align:left}
+.luxdoors-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 20px;border:0;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.luxdoors-btn:hover{background:#CFE0F2}
+.luxdoors-btn:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoors-caret{font-size:13px;transition:transform .18s ease}
+.luxdoors.open .luxdoors-caret{transform:rotate(180deg)}
+.luxdoors-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:80;width:min(448px,94vw);background:#fff;border:1px solid #B9CCE6;border-radius:18px;padding:16px;box-shadow:0 24px 60px rgba(28,25,23,.25)}
+.luxdoors-panel[hidden]{display:none}
+.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:calc(100% + 12px)}
+.luxdoors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.luxdoor-tile{display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;background:#F7FAFD;border:1px solid #D8E2EF;border-radius:14px;color:#1C1917;text-decoration:none;font:600 15.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+.luxdoor-tile:hover{border-color:#B9CCE6;background:#EDF1F6}
+.luxdoor-tile:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}
+.luxdoor-tile .ic{font-size:23px;line-height:1;flex:none}
+.luxdoor-tile.here{border-color:#B9CCE6;background:#EDF1F6;box-shadow:inset 0 0 0 1px #B9CCE6}
+.luxbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#07080c;border-bottom:1px solid #232838;flex-wrap:wrap}
+.luxbar .luxbar-brand{font-weight:800;letter-spacing:.06em;color:#eef1f7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+@media(max-width:430px){.luxdoors-grid{grid-template-columns:1fr}.luxdoors-panel{padding:12px}}
+@media(max-width:640px){.luxdoors-panel{position:fixed;left:10px;right:10px;width:auto;top:86px;padding:12px}.topbar.bottom .luxdoors-panel,.luxbar.bottom .luxdoors-panel{top:auto;bottom:86px}}
+
+/* Expansion room (Vance, 2026-11-15): .luxmenus is the header's menu group —
+   a future dropdown is added as another .luxdoors-style block inside it,
+   beside Doors, with no header restructuring. The panel scrolls when the
+   tile grid outgrows the screen, so new doors never push it off-page. */
+.luxmenus{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* Buttons ride the RIGHT side of the topbar (Vance, 2026-11-19): the wide
+   drop-down panels hang off the buttons' right edge, so buttons on the right
+   keep every panel on the page — on the left they ran off the screen. */
+.topbar .luxmenus{margin-left:auto}
+.luxdoors-panel{max-height:min(74vh,580px);overflow-y:auto}
+
+/* Nations dropdown (Vance, 2026-11-16): flag + ISO code only, four per row,
+   small compact text; the full country names ride in each flag's title.
+   The panel cap, internal scroll and the ≤640px fixed-panel fix above
+   all apply to this panel as they do to Doors. */
+.luxnations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.luxnations-grid .flag{justify-content:center;padding:6px 4px;gap:6px;border-radius:10px;font-size:13px}
+.luxnations-grid .flag .fl{font-size:17px}
+.luxnations-grid .flag.more{grid-column:1 / -1;padding:7px 10px}
+@media(max-width:640px){.luxnations-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Products drop-down groups (Vance, 2026-11-17): ONE Products menu for the
+   whole shelf — sectors live as labelled groups inside the single panel.
+   ADD A SECTOR: add a .luxprod-group block in the panel; link only live pages. */
+.luxprod-sector{margin:0 2px 8px;font:700 11.5px/1.2 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#476B96}
+.luxprod-group + .luxprod-group{margin-top:14px;border-top:1px solid #E3ECF7;padding-top:12px}
+.luxmenus.center{justify-content:center;padding:10px 16px}
+
+/* Language control (Vance, 2026-11-17): ONE blue pill. The GTranslate switcher
+   wears the house Dusty Blue pill — the old dark square flag box is gone. The
+   flag inside the closed button is hidden; the button names the language and
+   still opens the same language list. */
+.gt_switcher{width:auto !important}
+.gt_switcher .gt_selected{background:#B9CCE6 !important;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.gt_switcher .gt_selected a{border:0 !important;border-radius:999px;color:#14100a !important;font:700 16px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif !important;letter-spacing:.02em;padding:11px 36px 11px 20px !important;width:auto !important}
+.gt_switcher .gt_selected a img{display:none !important}
+.gt_switcher .gt_selected a:after{right:13px !important}
+.gt_switcher .gt_option{border-radius:0 0 14px 14px}
+</style>
+<style id="luxfoot-css">
+footer .doorlinks{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+footer .doorlinks a{color:#3f3a33;text-decoration:none;font-weight:600;font-size:14.5px;padding:6px 11px;border-radius:999px;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer .doorlinks a:hover{background:#EFEAE0;color:#1C1917}
+footer .doorlinks a.loyaltap{color:#476B96;font-weight:700}
+footer.luxfoot{max-width:1080px;margin:20px auto 0;padding:20px 22px 22px;border-top:1px solid rgba(28,25,23,.13);text-align:center;color:#6f6a5e;font-size:14.5px;line-height:1.7;font-family:Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif}
+footer.luxfoot .flogo{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#1C1917;margin:0 0 4px}
+footer.luxfoot .flogo em{font-style:normal;color:#476B96}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../index.html">Lux<small>ailux.ca</small></a>
+  <div class="luxmenus">
+  <div class="luxdoors">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Doors <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="The doors of the house">
+    <!-- ADD A DOOR: copy one luxdoor-tile block below, change its href, icon and label. The grid flows on its own — no other change needed. -->
+    <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">Home</span></a>
+      <a class="luxdoor-tile" href="../playground/" role="menuitem"><span class="ic" aria-hidden="true">🎨</span><span class="lb">Playground</span></a>
+      <a class="luxdoor-tile" href="../workshop/" role="menuitem"><span class="ic" aria-hidden="true">🛠️</span><span class="lb">Workshop</span></a>
+      <a class="luxdoor-tile" href="../cinema/" role="menuitem"><span class="ic" aria-hidden="true">🎬</span><span class="lb">Cinema</span></a>
+      <a class="luxdoor-tile here" href="../follow-us/" role="menuitem" aria-current="page"><span class="ic" aria-hidden="true">🤝</span><span class="lb">Follow Us</span></a>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxproducts">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden role="menu" aria-label="Products — the Lux shelf">
+    <!-- ADD A SECTOR: copy one luxprod-group block below, name its sector, add its tiles. Link only pages that are live — no placeholders. -->
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Core</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../patch/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/amos-shield.png" alt="" style="height:24px;width:auto"></span><span class="lb">Amos</span></a>
+      <a class="luxdoor-tile" href="../customer-id-card/" role="menuitem"><span class="ic" aria-hidden="true">🪪</span><span class="lb">Customer ID Card</span></a>
+      <a class="luxdoor-tile" href="../machine-book/" role="menuitem"><span class="ic" aria-hidden="true">🏭</span><span class="lb">MachineBook</span></a>
+      <a class="luxdoor-tile" href="../ward-door/" role="menuitem"><span class="ic" aria-hidden="true">🏥</span><span class="lb">WardDoor</span></a>
+      <a class="luxdoor-tile" href="../tap-check/" role="menuitem"><span class="ic" aria-hidden="true">🚰</span><span class="lb">TapCheck</span></a>
+      <a class="luxdoor-tile" href="../plug-check/" role="menuitem"><span class="ic" aria-hidden="true">🔌</span><span class="lb">PlugCheck</span></a>
+      <a class="luxdoor-tile" href="../seamguard/" role="menuitem"><span class="ic" aria-hidden="true"><img src="/assets/icons/seamguard-shield.webp" alt="" style="height:24px;width:auto"></span><span class="lb">SeamGuard</span></a>
+      <a class="luxdoor-tile" href="../school-in-a-box/" role="menuitem"><span class="ic" aria-hidden="true">📦</span><span class="lb">School in a Box</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Money &amp; Agents</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../spending-power/" role="menuitem"><span class="ic" aria-hidden="true">💳</span><span class="lb">Spending Power</span></a>
+      <a class="luxdoor-tile" href="../verified-payments/" role="menuitem"><span class="ic" aria-hidden="true">✅</span><span class="lb">Verified Payments</span></a>
+      <a class="luxdoor-tile" href="../receipt-book/" role="menuitem"><span class="ic" aria-hidden="true">🧾</span><span class="lb">Receipt Book</span></a>
+      <a class="luxdoor-tile" href="../identity-gate/" role="menuitem"><span class="ic" aria-hidden="true">🔑</span><span class="lb">Identity Gate</span></a>
+      <a class="luxdoor-tile" href="../behaviour-watch/" role="menuitem"><span class="ic" aria-hidden="true">👁️</span><span class="lb">Behaviour Watch</span></a>
+      <a class="luxdoor-tile" href="../chargeback-packs/" role="menuitem"><span class="ic" aria-hidden="true">🗂️</span><span class="lb">Chargeback Packs</span></a>
+      <a class="luxdoor-tile" href="../front-door/" role="menuitem"><span class="ic" aria-hidden="true">🚪</span><span class="lb">Front Door</span></a>
+      <a class="luxdoor-tile" href="../caller-identity/" role="menuitem"><span class="ic" aria-hidden="true">📞</span><span class="lb">Caller Identity</span></a>
+      <a class="luxdoor-tile" href="../fleet-identity/" role="menuitem"><span class="ic" aria-hidden="true">🤖</span><span class="lb">Fleet Identity</span></a>
+      <a class="luxdoor-tile" href="../verified-escrow/" role="menuitem"><span class="ic" aria-hidden="true">⚖️</span><span class="lb">Verified Escrow</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Health &amp; Care</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../home-ward/" role="menuitem"><span class="ic" aria-hidden="true">🏠</span><span class="lb">HomeWard</span></a>
+      <a class="luxdoor-tile" href="../steady-home/" role="menuitem"><span class="ic" aria-hidden="true">🤲</span><span class="lb">SteadyHome</span></a>
+      <a class="luxdoor-tile" href="../steady-hand/" role="menuitem"><span class="ic" aria-hidden="true">🦾</span><span class="lb">SteadyHand</span></a>
+      <a class="luxdoor-tile" href="../play-check/" role="menuitem"><span class="ic" aria-hidden="true">🧸</span><span class="lb">PlayCheck</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Industry &amp; Machines</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../line-seam/" role="menuitem"><span class="ic" aria-hidden="true">⚙️</span><span class="lb">LineSeam</span></a>
+      <a class="luxdoor-tile" href="../aisle-cross/" role="menuitem"><span class="ic" aria-hidden="true">🏬</span><span class="lb">AisleCross</span></a>
+      <a class="luxdoor-tile" href="../field-door/" role="menuitem"><span class="ic" aria-hidden="true">🚜</span><span class="lb">FieldDoor</span></a>
+      </div>
+    </div>
+    <div class="luxprod-group">
+      <p class="luxprod-sector">Infrastructure &amp; Cities</p>
+      <div class="luxdoors-grid">
+      <a class="luxdoor-tile" href="../tower-check/" role="menuitem"><span class="ic" aria-hidden="true">🏢</span><span class="lb">TowerCheck</span></a>
+      <a class="luxdoor-tile" href="../depot-check/" role="menuitem"><span class="ic" aria-hidden="true">🚌</span><span class="lb">DepotCheck</span></a>
+      <a class="luxdoor-tile" href="../ground-door/" role="menuitem"><span class="ic" aria-hidden="true">🛰️</span><span class="lb">GroundDoor</span></a>
+      <a class="luxdoor-tile" href="../fleet-door/" role="menuitem"><span class="ic" aria-hidden="true">🚗</span><span class="lb">FleetDoor</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="luxdoors luxnations">
+    <button class="luxdoors-btn" type="button" aria-haspopup="true" aria-expanded="false">🌐 Nations <span class="luxdoors-caret" aria-hidden="true">▾</span></button>
+    <div class="luxdoors-panel" hidden aria-label="The nations Amos is offered to">
+    <!-- ADD A NATION: copy one flag span below — flag emoji + ISO alpha-2 code as the visible text, the full country name in the title. Keep the order; Canada and the United States stand first. -->
+    <div class="luxnations-grid">
+      <span class="flag first" title="Canada" aria-label="Canada"><span class="fl" aria-hidden="true">🇨🇦</span>CA</span>
+      <span class="flag first" title="United States" aria-label="United States"><span class="fl" aria-hidden="true">🇺🇸</span>US</span>
+      <span class="flag" title="Mexico" aria-label="Mexico"><span class="fl" aria-hidden="true">🇲🇽</span>MX</span>
+      <span class="flag" title="United Kingdom" aria-label="United Kingdom"><span class="fl" aria-hidden="true">🇬🇧</span>GB</span>
+      <span class="flag" title="France" aria-label="France"><span class="fl" aria-hidden="true">🇫🇷</span>FR</span>
+      <span class="flag" title="Germany" aria-label="Germany"><span class="fl" aria-hidden="true">🇩🇪</span>DE</span>
+      <span class="flag" title="Spain" aria-label="Spain"><span class="fl" aria-hidden="true">🇪🇸</span>ES</span>
+      <span class="flag" title="Italy" aria-label="Italy"><span class="fl" aria-hidden="true">🇮🇹</span>IT</span>
+      <span class="flag" title="Portugal" aria-label="Portugal"><span class="fl" aria-hidden="true">🇵🇹</span>PT</span>
+      <span class="flag" title="Netherlands" aria-label="Netherlands"><span class="fl" aria-hidden="true">🇳🇱</span>NL</span>
+      <span class="flag" title="Belgium" aria-label="Belgium"><span class="fl" aria-hidden="true">🇧🇪</span>BE</span>
+      <span class="flag" title="Poland" aria-label="Poland"><span class="fl" aria-hidden="true">🇵🇱</span>PL</span>
+      <span class="flag" title="Ukraine" aria-label="Ukraine"><span class="fl" aria-hidden="true">🇺🇦</span>UA</span>
+      <span class="flag" title="Sweden" aria-label="Sweden"><span class="fl" aria-hidden="true">🇸🇪</span>SE</span>
+      <span class="flag" title="Norway" aria-label="Norway"><span class="fl" aria-hidden="true">🇳🇴</span>NO</span>
+      <span class="flag" title="Denmark" aria-label="Denmark"><span class="fl" aria-hidden="true">🇩🇰</span>DK</span>
+      <span class="flag" title="Finland" aria-label="Finland"><span class="fl" aria-hidden="true">🇫🇮</span>FI</span>
+      <span class="flag" title="Ireland" aria-label="Ireland"><span class="fl" aria-hidden="true">🇮🇪</span>IE</span>
+      <span class="flag" title="Greece" aria-label="Greece"><span class="fl" aria-hidden="true">🇬🇷</span>GR</span>
+      <span class="flag" title="Romania" aria-label="Romania"><span class="fl" aria-hidden="true">🇷🇴</span>RO</span>
+      <span class="flag" title="Czechia" aria-label="Czechia"><span class="fl" aria-hidden="true">🇨🇿</span>CZ</span>
+      <span class="flag" title="Austria" aria-label="Austria"><span class="fl" aria-hidden="true">🇦🇹</span>AT</span>
+      <span class="flag" title="Switzerland" aria-label="Switzerland"><span class="fl" aria-hidden="true">🇨🇭</span>CH</span>
+      <span class="flag" title="Japan" aria-label="Japan"><span class="fl" aria-hidden="true">🇯🇵</span>JP</span>
+      <span class="flag" title="South Korea" aria-label="South Korea"><span class="fl" aria-hidden="true">🇰🇷</span>KR</span>
+      <span class="flag" title="Australia" aria-label="Australia"><span class="fl" aria-hidden="true">🇦🇺</span>AU</span>
+      <span class="flag" title="New Zealand" aria-label="New Zealand"><span class="fl" aria-hidden="true">🇳🇿</span>NZ</span>
+      <span class="flag" title="India" aria-label="India"><span class="fl" aria-hidden="true">🇮🇳</span>IN</span>
+      <span class="flag" title="Brazil" aria-label="Brazil"><span class="fl" aria-hidden="true">🇧🇷</span>BR</span>
+      <span class="flag" title="Argentina" aria-label="Argentina"><span class="fl" aria-hidden="true">🇦🇷</span>AR</span>
+      <span class="flag" title="Chile" aria-label="Chile"><span class="fl" aria-hidden="true">🇨🇱</span>CL</span>
+      <span class="flag" title="South Africa" aria-label="South Africa"><span class="fl" aria-hidden="true">🇿🇦</span>ZA</span>
+      <span class="flag" title="Nigeria" aria-label="Nigeria"><span class="fl" aria-hidden="true">🇳🇬</span>NG</span>
+      <span class="flag" title="Kenya" aria-label="Kenya"><span class="fl" aria-hidden="true">🇰🇪</span>KE</span>
+      <span class="flag" title="Egypt" aria-label="Egypt"><span class="fl" aria-hidden="true">🇪🇬</span>EG</span>
+      <span class="flag" title="Israel" aria-label="Israel"><span class="fl" aria-hidden="true">🇮🇱</span>IL</span>
+      <span class="flag" title="T&uuml;rkiye" aria-label="Türkiye"><span class="fl" aria-hidden="true">🇹🇷</span>TR</span>
+      <span class="flag more">+ every nation that needs it</span>
+    </div>
+    </div>
+  </div>
+    <!-- Language switcher (GTranslate, free tier - Vance, 2026-11-16): a visitor picks their language and the page re-languages itself. -->
+  <div class="gtranslate_wrapper"></div>
+  <script>window.gtranslateSettings = {"alt_flags":{"en":"usa"},"default_language":"en","languages":["en","af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","ny","zh-CN","zh-TW","co","hr","cs","da","nl","eo","et","tl","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_text_color":"#14100a","switcher_arrow_color":"#14100a","switcher_border_color":"#B9CCE6","switcher_background_color":"#B9CCE6","switcher_background_shadow_color":"#B9CCE6","switcher_background_hover_color":"#CFE0F2","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+</div>
+</header>
+
+<main>
+
+  <!-- ================= FOLLOW US — the house, out in the world ================= -->
+  <section class="fuhero">
+    <img class="fucrest" src="../patch/assets/amos-emblem-transparent.png" alt="The Lux crest — the double shield of Amos">
+    <p class="eyebrow">Lux Automations &middot; Out in the world</p>
+    <h1>Follow Us</h1>
+    <p class="lede">One house, many doors. The films, the dreams, the music, and the work as it happens — wherever you already spend your time, we&rsquo;re there too. Pick a door and come see.</p>
+    <small>Every door on this page was checked by hand today. If one ever stops opening, write to us and we&rsquo;ll fix it.</small>
+  </section>
+
+  <section>
+    <p class="eyebrow">Watch &amp; listen</p>
+    <h2>The house in motion</h2>
+    <div class="fugrid">
+      <a class="fucard" href="https://www.youtube.com/@AMillionTimesBetter" target="_blank" rel="noopener" aria-label="YouTube — Lux Automations · @AMillionTimesBetter (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">▶</span>
+        <span class="futext">
+          <h3>YouTube</h3>
+          <p class="fuhandle">Lux Automations · @AMillionTimesBetter</p>
+          <p class="fudesc">The series, the films, and the long stories — the house on the big screen.</p>
+          <span class="fupill">Watch &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://www.tiktok.com/@lux.automations" target="_blank" rel="noopener" aria-label="TikTok — @lux.automations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">♪</span>
+        <span class="futext">
+          <h3>TikTok</h3>
+          <p class="fuhandle">@lux.automations</p>
+          <p class="fudesc">AI dreams, animation and automation, in motion — short pieces as they land.</p>
+          <span class="fupill">Follow &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://www.instagram.com/luxautomations" target="_blank" rel="noopener" aria-label="Instagram — @luxautomations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">◎</span>
+        <span class="futext">
+          <h3>Instagram</h3>
+          <p class="fuhandle">@luxautomations</p>
+          <p class="fudesc">The films and the dream pictures — the visual life of the house.</p>
+          <span class="fupill">Follow &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://www.threads.com/@luxautomations" target="_blank" rel="noopener" aria-label="Threads — @luxautomations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">@</span>
+        <span class="futext">
+          <h3>Threads</h3>
+          <p class="fuhandle">@luxautomations</p>
+          <p class="fudesc">The same news, in conversation — short words, close to the day.</p>
+          <span class="fupill">Follow &rarr;</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <figure class="artband">
+      <img src="../assets/protection-poster.png" alt="Amos, the house&rsquo;s guardian, standing at the open vault door — every product name engraved around the ring" loading="lazy">
+      <figcaption>Amos at the vault — the guard every door of this house answers to.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <p class="eyebrow">Read &amp; join in</p>
+    <h2>The word of the house</h2>
+    <div class="fugrid">
+      <a class="fucard" href="https://www.facebook.com/people/Lux-Automations/61595755903182/" target="_blank" rel="noopener" aria-label="Facebook — Lux Automations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">f</span>
+        <span class="futext">
+          <h3>Facebook</h3>
+          <p class="fuhandle">Lux Automations</p>
+          <p class="fudesc">The house&rsquo;s front noticeboard — posts, reels, and news from the desk.</p>
+          <span class="fupill">Follow &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://www.facebook.com/groups/1111719257920279" target="_blank" rel="noopener" aria-label="AI Dreams &amp; Digital Visions — Our Facebook group (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">✦</span>
+        <span class="futext">
+          <h3>AI Dreams &amp; Digital Visions</h3>
+          <p class="fuhandle">Our Facebook group</p>
+          <p class="fudesc">The community room — AI art, wild videos, and Lucian&rsquo;s daily dream films.</p>
+          <span class="fupill">Join &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://x.com/VanceC82278" target="_blank" rel="noopener" aria-label="X — @VanceC82278 (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">X</span>
+        <span class="futext">
+          <h3>X</h3>
+          <p class="fuhandle">@VanceC82278</p>
+          <p class="fudesc">Short news from the house — new films, new proof, doors opening.</p>
+          <span class="fupill">Follow &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://medium.com/@LuxAutomations" target="_blank" rel="noopener" aria-label="Medium — @LuxAutomations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">M</span>
+        <span class="futext">
+          <h3>Medium</h3>
+          <p class="fuhandle">@LuxAutomations</p>
+          <p class="fudesc">Lucian&rsquo;s long reads — how the work works, written out in full.</p>
+          <span class="fupill">Read &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://www.linkedin.com/in/vance-cyr-742265327" target="_blank" rel="noopener" aria-label="LinkedIn — Vance Cyr (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">in</span>
+        <span class="futext">
+          <h3>LinkedIn</h3>
+          <p class="fuhandle">Vance Cyr</p>
+          <p class="fudesc">The founder&rsquo;s professional door — the work, in business dress.</p>
+          <span class="fupill">Connect &rarr;</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Build &amp; create</p>
+    <h2>Where the work is made</h2>
+    <div class="fugrid">
+      <a class="fucard" href="https://lounge.ai/r/@cyrvance53" target="_blank" rel="noopener" aria-label="AI Lounge — @cyrvance53 (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">Ai</span>
+        <span class="futext">
+          <h3>AI Lounge</h3>
+          <p class="fuhandle">@cyrvance53</p>
+          <p class="fudesc">The founder community where we talk shop with other builders. The Lounge is invite-only — this door carries our invitation in with you.</p>
+          <span class="fupill">Come in &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://suno.com/@luxautomations" target="_blank" rel="noopener" aria-label="Suno — @luxautomations (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">♫</span>
+        <span class="futext">
+          <h3>Suno</h3>
+          <p class="fuhandle">@luxautomations</p>
+          <p class="fudesc">The house&rsquo;s music — God Magic and the songs of the shelf, as they are made.</p>
+          <span class="fupill">Listen &rarr;</span>
+        </span>
+      </a>
+      <a class="fucard" href="https://github.com/cyrvance53" target="_blank" rel="noopener" aria-label="GitHub — cyrvance53 (opens in a new tab)">
+        <span class="fudisc" aria-hidden="true">&lt;/&gt;</span>
+        <span class="futext">
+          <h3>GitHub</h3>
+          <p class="fuhandle">cyrvance53</p>
+          <p class="fudesc">The public code — the parts of the workshop that can stand in the open.</p>
+          <span class="fupill">See the code &rarr;</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section style="text-align:center">
+    <p class="eyebrow">Or write to a person</p>
+    <h2>The desk is attended</h2>
+    <p style="max-width:560px;margin:0 auto 6px">Rather write than follow? <a href="mailto:lucian@ailux.ca">lucian@ailux.ca</a> — Lucian, our COO, reads everything that lands at the desk.</p>
+    <p class="secondary" style="color:var(--muted)">The house opens January 1, 2027. The conversation is already open.</p>
+    <p style="margin-top:16px"><a class="btn" href="mailto:lucian@ailux.ca">Write to Lucian</a></p>
+  </section>
+
+</main>
+<footer>
+  <p style="margin:0 0 10px">Want to sell it instead? <a href="../affiliates/">Affiliates earn 20% of the profit, for life &rarr;</a></p>
+  <p class="flogo">Lux <em>Automations</em></p>
+  <nav class="doorlinks" aria-label="The doors">
+    <a href="../">Home</a>
+    <a href="../workshop/">Business AI Workshop</a>
+    <a href="../playground/">AI Playground</a>
+    <a href="../cinema/">Free Cinema</a>
+    <a href="../follow-us/">Follow Us</a>
+    <a href="../stripe-wiring/music-store/jukebox.html">Store</a>
+    <a href="../site-pages/membership.html">Membership</a>
+    <a href="../school-in-a-box/">School in a Box</a>
+    <a href="../patch/">Amos</a>
+    <a href="../seamguard/">SeamGuard</a>
+    <a href="../papers/">Papers</a>
+    <a href="../articles/">Articles</a>
+    <a class="loyaltap" href="../loyalty/">Loyalty</a>
+    <a href="../affiliates/">Affiliates</a>
+  </nav>
+  Lux Automations · Edmonton, Alberta, Canada · <a href="../index.html">ailux.ca</a><br>
+  &copy; 2026 Lux Automations<br>
+  <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms of sale &amp; refunds</a>
+</footer>
+
+<script id="luxdoors-js">
+(function(){
+  var widgets=document.querySelectorAll('.luxdoors');
+  function closeAll(except){
+    widgets.forEach(function(w){
+      if(w===except)return;
+      w.classList.remove('open');
+      var b=w.querySelector('.luxdoors-btn'),p=w.querySelector('.luxdoors-panel');
+      if(b)b.setAttribute('aria-expanded','false');
+      if(p)p.hidden=true;
+    });
+  }
+  widgets.forEach(function(w){
+    var btn=w.querySelector('.luxdoors-btn'),panel=w.querySelector('.luxdoors-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=w.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.hidden=!open;
+      if(open)closeAll(w);
+    });
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){w.classList.remove('open');btn.setAttribute('aria-expanded','false');panel.hidden=true;}
+    });
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<div aria-hidden="true" style="text-align:right;padding:2px 16px 12px 0;line-height:0"><img src="/assets/shields/02-bolt.webp" alt="" width="40" height="27" style="opacity:.45"></div>
+<script src="/assets/country-switch.js" defer></script>
+</body>
+</html>
