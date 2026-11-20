@@ -6,7 +6,10 @@
    US-dollar checkout, whose page prints the US total plainly.
    Rates live in /assets/rates.json, refreshed daily by machine from
    published sources (average of the going rates, set a little below),
-   fenced by the Rate Guard — never hand-typed. */
+   fenced by the Rate Guard — never hand-typed.
+   A visitor can also pick their country/currency by hand (the pill in
+   the topbar): the pick is stored on their device and overrides the
+   auto-read — the correction door for a misread connection. */
 (function () {
   "use strict";
   if (window.__luxCountrySwitch) return;
@@ -117,20 +120,102 @@
     return changed;
   }
 
+  function convertWith(currency) {
+    return fetch("/assets/rates.json", { cache: "no-cache" })
+      .then(function (r) { return r.json(); })
+      .then(function (table) {
+        var rate = table && table.rates && table.rates[currency];
+        if (!rate || !isFinite(rate) || rate <= 0) return;
+        switchPrices(rate, currency);
+      });
+  }
+
+  /* ---------- The manual pick (Vance's order, 2026-11-20) ----------
+     The auto-read stands or falls on the connection's geolocation, and
+     a visitor it misreads (Vance, in Edmonton, read as Poland) had no
+     way to correct it. This control is that way: a small pill in the
+     topbar, in the Doors design language. The pick is stored on the
+     visitor's own device and overrides the auto-read on every page and
+     every later visit; "Automatic" hands the wheel back to detection.
+     A United States pick shows the untouched US face. */
+  var PICK_KEY = "luxCurrencyPick";
+  var PICK_ORDER = [
+    "USD", "CAD", "PLN", "EUR", "GBP", "AUD", "NZD", "CHF", "JPY",
+    "CNY", "INR", "BRL", "MXN", "ZAR", "SGD", "HKD", "KRW", "SEK",
+    "NOK", "DKK", "CZK", "HUF", "RON", "ISK", "THB", "IDR", "PHP",
+    "MYR", "TRY", "ILS"
+  ];
+  var PICK_COUNTRY = { USD: "United States", CAD: "Canada", PLN: "Poland" };
+
+  function buildPicker(pick) {
+    if (document.getElementById("luxcurr")) return;
+    var bar =
+      document.querySelector(".topbar .luxmenus") ||
+      document.querySelector(".topbar") ||
+      document.querySelector(".luxbar");
+    if (!bar) return; // No topbar on this page; the stored pick still rules.
+    if (!document.getElementById("luxcurr-css")) {
+      var style = document.createElement("style");
+      style.id = "luxcurr-css";
+      style.textContent =
+        ".luxcurr{display:inline-flex;align-items:center;gap:8px}" +
+        ".luxcurr label{font:700 13px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;color:#14100a;letter-spacing:.02em;white-space:nowrap}" +
+        ".luxcurr select{min-height:44px;padding:8px 14px;border:1px solid #9db8da;border-radius:999px;background:#B9CCE6;color:#14100a;font:700 15px/1.1 Inter,system-ui,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em;cursor:pointer;max-width:250px;box-shadow:0 2px 10px rgba(0,0,0,.18)}" +
+        ".luxcurr select:hover{background:#CFE0F2}" +
+        ".luxcurr select:focus-visible{outline:3px solid #7fd4ff;outline-offset:2px}";
+      document.head.appendChild(style);
+    }
+    var wrap = document.createElement("div");
+    wrap.className = "luxcurr";
+    wrap.id = "luxcurr";
+    var label = document.createElement("label");
+    label.setAttribute("for", "luxcurr-select");
+    label.textContent = "Country / currency";
+    var select = document.createElement("select");
+    select.id = "luxcurr-select";
+    select.setAttribute("aria-label", "Country / currency");
+    var auto = document.createElement("option");
+    auto.value = "";
+    auto.textContent = "Automatic (detected)";
+    select.appendChild(auto);
+    PICK_ORDER.forEach(function (code) {
+      var opt = document.createElement("option");
+      opt.value = code;
+      var name = currencyName(code);
+      opt.textContent = PICK_COUNTRY[code]
+        ? PICK_COUNTRY[code] + " — " + name
+        : name + " (" + code + ")";
+      select.appendChild(opt);
+    });
+    select.value = pick || "";
+    select.addEventListener("change", function () {
+      try {
+        if (select.value) window.localStorage.setItem(PICK_KEY, select.value);
+        else window.localStorage.removeItem(PICK_KEY);
+      } catch (e) {}
+      window.location.reload();
+    });
+    wrap.appendChild(label);
+    wrap.appendChild(select);
+    bar.appendChild(wrap);
+  }
+
   function run() {
+    var pick = null;
+    try { pick = window.localStorage.getItem(PICK_KEY); } catch (e) {}
+    buildPicker(pick);
+    if (pick) {
+      if (pick === "USD") return; // The untouched US face, by the visitor's word.
+      convertWith(pick).catch(function () { /* The US face stands. */ });
+      return;
+    }
     fetch("/api/country", { headers: { accept: "application/json" } })
       .then(function (r) { return r.json(); })
       .then(function (info) {
         var country = (info && info.country) || "";
         var currency = COUNTRY_CURRENCY[country];
         if (!currency || currency === "USD") return; // US face untouched.
-        return fetch("/assets/rates.json", { cache: "no-cache" })
-          .then(function (r) { return r.json(); })
-          .then(function (table) {
-            var rate = table && table.rates && table.rates[currency];
-            if (!rate || !isFinite(rate) || rate <= 0) return;
-            switchPrices(rate, currency);
-          });
+        return convertWith(currency);
       })
       .catch(function () { /* Any failure: the US face stands. */ });
   }
