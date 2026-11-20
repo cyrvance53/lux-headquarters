@@ -129,7 +129,7 @@
   /* the control bar rides ON the screen, at the bottom, so the whole
      player — film and buttons — is right there in the TV the moment the
      page opens; nothing waits below the fold */
-  .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;padding:26px 14px 10px;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0))}
+  .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;padding:26px 14px 10px;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));transition:opacity .35s ease}
   .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
   .cbtn:hover{background:rgba(255,255,255,.08)}
   .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
@@ -151,6 +151,9 @@
   .player:fullscreen.idle{cursor:none}
   .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
   .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
+  .player.idle{cursor:none}
+  .player.idle .controls{opacity:0;pointer-events:none}
+  .player.idle .hostchip{opacity:0;pointer-events:none}
   .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
   /* the bar rides on the black screen, so inside the stage the buttons
      wear the screen's own dark dress, not this page's light one (the
@@ -644,20 +647,42 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
       var req=target.requestFullscreen||target.webkitRequestFullscreen;
       if(req){ req.call(target); }
     });
-    /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+    /* the bar: shows the moment you move or touch, fades after five quiet
+       seconds — on the page as well as in fullscreen (Vance, 2026-11-20:
+       it must lift off the film's words when nobody is using it, and come
+       back the moment a hand hovers over the player again). While the film
+       is paused or finished, or a control holds the keyboard focus, the
+       bar stays — nobody gets stranded without it. */
     var idleTimer=null;
-    function poke(){
-      if(!document.fullscreenElement){ return; }
+    function clearIdle(){
+      if(idleTimer){ clearTimeout(idleTimer); idleTimer=null; }
       playerEl.classList.remove('idle');
-      if(idleTimer){ clearTimeout(idleTimer); }
-      idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+    }
+    function focusInControls(){
+      var ae=document.activeElement;
+      return !!(ae && ae!==video && ae!==stage && playerEl.contains(ae));
+    }
+    function poke(){
+      playerEl.classList.remove('idle');
+      if(idleTimer){ clearTimeout(idleTimer); idleTimer=null; }
+      if(video.paused||video.ended){ return; }
+      idleTimer=setTimeout(function(){
+        idleTimer=null;
+        if(focusInControls()){ poke(); return; }
+        playerEl.classList.add('idle');
+      }, 5000);
     }
     ['mousemove','touchstart','click','keydown'].forEach(function(ev){
       playerEl.addEventListener(ev, poke, {passive:true});
     });
+    playerEl.addEventListener('focusin', poke);
+    playerEl.addEventListener('focusout', poke);
+    video.addEventListener('pause', clearIdle);
+    video.addEventListener('ended', clearIdle);
+    video.addEventListener('play', poke);
     document.addEventListener('fullscreenchange', function(){
       if(document.fullscreenElement){ poke(); }
-      else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+      else { clearIdle(); }
     });
     stage.addEventListener('keydown', function(ev){
       if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
