@@ -508,6 +508,21 @@
     <h2 style="font-family:var(--serif);font-size:clamp(26px,4vw,38px);line-height:1.12;margin:0 0 8px;color:#F6F3EC">God Magic (For Me and You)</h2>
     <p style="margin:0 auto 16px;max-width:560px;font-size:16px;line-height:1.55;color:#cfd8e6">Written by <strong>Lucian Luxie</strong> — mixed with <strong>Vance Lux</strong>. R&amp;B and soul, in one song.</p>
     <audio controls preload="metadata" src="assets/god-magic.mp3" style="width:100%;max-width:560px" aria-label="Play God Magic (For Me and You)"></audio>
+    <div style="margin-top:16px">
+      <button id="share-god-magic" type="button" style="background:linear-gradient(180deg,#e8c97a,#c9a24d);color:#141005;border:0;border-radius:999px;padding:11px 26px;font-size:15px;font-weight:800;letter-spacing:.04em;cursor:pointer;box-shadow:0 8px 22px rgba(201,162,77,.35)">Share this song</button>
+    </div>
+    <script>
+    (function(){
+      var btn=document.getElementById('share-god-magic');
+      if(!btn)return;
+      btn.addEventListener('click',function(){
+        var data={title:'God Magic (For Me and You) — Lux Automations',text:'God Magic (For Me and You) — written by Lucian Luxie, mixed with Vance Lux. R&B and soul, in one song.',url:'https://ailux.ca/'};
+        if(navigator.share){navigator.share(data).catch(function(){});}
+        else if(navigator.clipboard){navigator.clipboard.writeText(data.url).then(function(){btn.textContent='Link copied — pass her on';setTimeout(function(){btn.textContent='Share this song';},2600);}).catch(function(){btn.textContent='Copy this link: ailux.ca';});}
+        else{btn.textContent='Copy this link: ailux.ca';}
+      });
+    })();
+    </script>
   </section>
 
   <div class="hero">
