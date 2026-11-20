@@ -341,6 +341,27 @@
   .filmshield img{display:block;margin:0 auto;width:min(210px,58%);height:auto}
   .shieldline{margin:12px auto 0;font-weight:800;font-size:22px;letter-spacing:.05em;text-transform:uppercase;color:#1C1917;line-height:1.35;max-width:300px}
   .doorline{margin:10px auto 0;font-size:15px;color:#476B96;line-height:1.45;max-width:320px}
+  /* ---------- the shield wall: the 100% list, by name (Vance, 2026-11-20) ----------
+     Honours on a shield wall: the page's own double-shield emblem stands at
+     the side and rests behind the names; big, bold, high-contrast lettering —
+     nothing small or faint. */
+  .shieldwall{position:relative;max-width:880px;margin:28px auto 8px;background:linear-gradient(160deg,#182C47,#0B1524 72%);border:2px solid #B9973F;border-radius:20px;padding:30px 32px 26px;overflow:hidden;box-shadow:0 18px 40px rgba(12,22,38,.35);text-align:left}
+  .shieldwall .wallshield{position:absolute;right:-36px;top:50%;transform:translateY(-50%);width:360px;height:auto;opacity:.13;pointer-events:none}
+  .shieldwall .wallhead{display:flex;align-items:center;gap:22px;position:relative;text-align:left}
+  .shieldwall .wallhead img{width:106px;height:auto;flex:none}
+  .shieldwall h3{font-family:var(--serif);color:#F6F3EC;font-size:clamp(23px,4.6vw,29px);font-weight:700;margin:0;line-height:1.2}
+  .shieldwall .wallsub{color:#B9CCE6;font-size:17px;font-weight:600;margin:7px 0 0;line-height:1.45}
+  .shieldwall ul.wallnames{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;position:relative}
+  .shieldwall ul.wallnames li{color:#F6F3EC;font-size:19px;font-weight:800;line-height:1.3;padding:11px 14px;border:1px solid rgba(185,204,230,.38);border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;gap:10px}
+  .shieldwall ul.wallnames li .tick{color:#9DBBDD;font-weight:900;flex:none}
+  .shieldwall .wallcap{position:relative;color:#E7DFCE;font-size:16.5px;line-height:1.55;margin:22px 0 0;text-align:left}
+  @media (max-width:640px){.shieldwall{padding:24px 18px 20px}.shieldwall ul.wallnames{grid-template-columns:1fr}.shieldwall .wallhead img{width:78px}.shieldwall .wallshield{width:250px;right:-70px}}
+  /* ---------- the fresh suite numbers on the proof shelf ---------- */
+  .shelfstats{max-width:880px;margin:20px auto 4px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .shelfstat{background:#FFFFFF;border:1px solid #E1DCCF;border-left:6px solid #476B96;border-radius:14px;padding:16px 18px;text-align:left;box-shadow:0 4px 14px rgba(28,25,23,.06)}
+  .shelfstat .big{font-family:var(--serif);font-size:27px;font-weight:700;color:#1C1917;line-height:1.15}
+  .shelfstat .lbl{font-size:15.5px;color:#3E3A34;margin-top:4px;line-height:1.45}
+  @media (max-width:640px){.shelfstats{grid-template-columns:1fr}}
   .eyebrow{color:#476B96}
   .watchline{font-size:22px;letter-spacing:.16em;margin-bottom:14px}
   p.lede{color:#3E3A34}
@@ -757,6 +778,39 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     <div style="max-width:640px;margin:22px auto 6px">
       <div style="display:flex;justify-content:space-between;font-size:13px;letter-spacing:.04em"><span><strong>Systems passed at 100%</strong></span><span>16 systems</span></div>
       <div style="height:14px;border-radius:999px;background:#E7DFCE;margin-top:8px;overflow:hidden"><div style="height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#476B96,#84A3CC)"></div></div>
+    </div>
+    <div class="shieldwall">
+      <img class="wallshield" src="assets/amos-emblem-transparent.png" alt="" aria-hidden="true">
+      <div class="wallhead">
+        <img src="assets/amos-emblem-transparent.png" alt="Amos — the double shield: Amos and AgentPay, double protection">
+        <div>
+          <h3>Passed at 100% — all sixteen, by name</h3>
+          <p class="wallsub">Each one is a financial sandbox where our full payment ceremony passed every step.</p>
+        </div>
+      </div>
+      <ul class="wallnames">
+        <li><span class="tick" aria-hidden="true">✓</span>HashKey Chain testnet</li>
+        <li><span class="tick" aria-hidden="true">✓</span>XRP Ledger testnet</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Plaid</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Stripe</li>
+        <li><span class="tick" aria-hidden="true">✓</span>M-Pesa Daraja</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Wise</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Authorize.net</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Coinbase CDP</li>
+        <li><span class="tick" aria-hidden="true">✓</span>U.S. Bank</li>
+        <li><span class="tick" aria-hidden="true">✓</span>PayU</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Moneris</li>
+        <li><span class="tick" aria-hidden="true">✓</span>SecurePay</li>
+        <li><span class="tick" aria-hidden="true">✓</span>SSLCommerz</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Transbank</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Redsys</li>
+        <li><span class="tick" aria-hidden="true">✓</span>Stellar testnet</li>
+      </ul>
+      <p class="wallcap">Every name on this wall is a financial sandbox — that provider&rsquo;s own test ground. Inside each one we ran the full payment ceremony: the known key passed the door with a signed receipt, the unknown key bounced, and a test payment ran end to end. Every step passed at 100%. The Sandbox Proof Tour, November 16, 2026.</p>
+    </div>
+    <div class="shelfstats">
+      <div class="shelfstat"><div class="big">67 of 67</div><div class="lbl"><strong>Amos test suite</strong> — passed in full on Nov 17 and again on Nov 20, 2026.</div></div>
+      <div class="shelfstat"><div class="big">160 of 160</div><div class="lbl"><strong>Client ID suite</strong> — the identity machinery under Amos, passed in full.</div></div>
     </div>
   </section>
 

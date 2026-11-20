@@ -341,6 +341,12 @@
   .filmshield img{display:block;margin:0 auto;width:min(210px,58%);height:auto}
   .shieldline{margin:12px auto 0;font-weight:800;font-size:19px;letter-spacing:.05em;text-transform:uppercase;color:#1C1917;line-height:1.35;max-width:300px}
   .doorline{margin:10px auto 0;font-size:15px;color:#476B96;line-height:1.45;max-width:320px}
+  /* ---------- the numbers so far, beside the plain statement (2026-11-20) ---------- */
+  .sgstats{max-width:880px;margin:22px auto 6px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .sgstat{background:#F4F2EC;border:1px solid #E1DCCF;border-top:6px solid #476B96;border-radius:14px;padding:16px 16px 14px;text-align:center}
+  .sgstat .big{font-family:var(--serif);font-size:28px;font-weight:700;color:#1C1917;line-height:1.15}
+  .sgstat .lbl{font-size:15px;color:#3E3A34;margin-top:5px;line-height:1.45}
+  @media (max-width:760px){.sgstats{grid-template-columns:1fr}}
   .eyebrow{color:#476B96}
   p.lede{color:#3E3A34}
   .secondary,small,figure.beatfig figcaption,.diagramcap,.legend,.ctime,.videohint{color:#6B665C}
@@ -768,6 +774,12 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
     <h2>Stated plainly</h2>
     <p>SeamGuard stands on the same machinery as <a href="../patch/">Amos</a> — the identity check and the signed receipt behind the sixteen systems passed at 100% in the proof list on the Amos page. The seam guard itself is at prototype stage in our own house: it is not yet live for outside customers, and it has not yet had its outside audit.</p>
     <p>It rolls out in stages, the same way Amos does: first it watches and reports, and only then does it step in and enforce. Orders taken now join that rollout — you are buying your place in it, on its own monthly package.</p>
+    <div class="sgstats">
+      <div class="sgstat"><div class="big">100 of 100</div><div class="lbl"><strong>Volume attack run</strong> — attacks blocked with the guard up. The second full run in a row, Nov 20, 2026.</div></div>
+      <div class="sgstat"><div class="big">0 of 100</div><div class="lbl">Attacks blocked with the guard down — the same attacks crossed unchecked, every one.</div></div>
+      <div class="sgstat"><div class="big">40 of 40</div><div class="lbl">Honest traffic passed — real hand-offs cross clean, checked and receipted.</div></div>
+    </div>
+    <p>Those are machinery runs in our own house. SeamGuard&rsquo;s full seam-clause test is still in progress — and its result will be published here when it is done, whatever it says.</p>
   </section>
 
   <!-- ================= ORDER ================= -->
