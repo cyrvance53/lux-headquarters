@@ -104,17 +104,32 @@
   details.detail .dwrap{padding-bottom:16px}
   details.detail .dwrap p:last-child,details.detail .dwrap ol:last-child,details.detail .dwrap ul:last-child{margin-bottom:0}
 
-  /* ---------- the film, on the house stage (Vance, 2026-11-16): the Cinema's
-     own player frame — a black 16:9 stage, the film filling it — capped a
-     little smaller than the Cinema's screen, centred, first on the page ---------- */
-  .videowrap{max-width:720px;margin:0 auto;min-width:0}
-  .stage{position:relative;width:100%;background:#0b0b0e;border-radius:12px;overflow:hidden;aspect-ratio:16/9;max-height:84vh;margin:0 auto;box-shadow:var(--aura-soft)}
+  /* ---------- the film, on the house stage: the same big player as the
+     Amos page (Vance, 2026-11-20) — a black 16:9 stage set BIG, the full
+     width of the section, first on the page, framed like a television
+     floating off the wall (bezel + deep layered shadow); the full control
+     bar rides on the screen, at the bottom ---------- */
+  .videowrap{max-width:1060px;margin:0 auto;min-width:0}
+  /* collapse fix (2026-11-20): the height ceiling caps the WIDTH instead
+     (84vh tall at 16:9), so the stage keeps a true 16:9 shape at every
+     viewport size — the old max-height clamp flattened it in short windows */
+  .stage{position:relative;width:min(100%,calc(84vh * 16 / 9));background:#0b0b0e;border-radius:22px;overflow:hidden;aspect-ratio:16/9;margin:0 auto;border:6px solid #101014;outline:1px solid rgba(23,25,35,.30);box-shadow:0 2px 6px rgba(18,22,38,.18),0 18px 34px rgba(18,22,38,.28),0 42px 84px rgba(18,22,38,.34),0 90px 140px rgba(18,22,38,.16)}
   .stage video{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0b0e;object-fit:contain}
+  /* and if a browser ever drops aspect-ratio altogether, the stage still
+     holds a 16:9 height from its own padding — every child of the stage is
+     positioned, so with no height of its own it would fall flat to a sliver */
+  @supports not (aspect-ratio:16/9){
+    .stage{height:0;padding-top:56.25%}
+    .player:fullscreen .stage{padding-top:0}
+  }
   .bigplay{position:absolute;inset:0;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(5,5,10,.28);border:0;cursor:pointer;padding:0}
   .bigplay span{width:84px;height:84px;border-radius:50%;background:#000;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:34px;padding-left:5px;box-shadow:var(--aura)}
   .bigplay:hover span{box-shadow:0 0 0 1px rgba(240,245,252,.9),0 0 14px rgba(255,255,255,.9),0 0 34px rgba(132,163,204,.55)}
   .bigplay[hidden]{display:none}
-  .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  /* the control bar rides ON the screen, at the bottom, so the whole
+     player — film and buttons — is right there in the TV the moment the
+     page opens; nothing waits below the fold */
+  .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;padding:26px 14px 10px;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0))}
   .cbtn{font:inherit;font-size:15px;font-weight:700;min-height:44px;min-width:44px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid rgba(255,255,255,.22);background:#000;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
   .cbtn:hover{background:rgba(255,255,255,.08)}
   .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
@@ -130,13 +145,22 @@
   .hostbubble{position:absolute;top:58px;right:10px;z-index:7;max-width:min(300px,82%);background:#101017;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45;box-shadow:var(--aura-soft)}
   .player{position:relative}
   .player:fullscreen{background:#000;width:100%;height:100%}
-  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0}
+  .player:fullscreen .stage{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0;border:0;outline:0}
   .player:fullscreen .stage video{object-fit:contain}
   .player:fullscreen .controls{position:absolute;left:0;right:0;bottom:0;z-index:6;margin:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));transition:opacity .35s ease}
   .player:fullscreen.idle{cursor:none}
   .player:fullscreen.idle .controls{opacity:0;pointer-events:none}
   .player:fullscreen.idle .hostchip{opacity:0;pointer-events:none}
   .videohint{text-align:center;margin:12px 0 0;color:var(--muted);font-size:14px}
+  /* the bar rides on the black screen, so inside the stage the buttons
+     wear the screen's own dark dress, not this page's light one (the
+     light-theme overrides further down would otherwise whiten them) */
+  .stage .cbtn{background:#000;color:var(--ink);border-color:rgba(255,255,255,.22)}
+  .stage .cbtn:hover{background:rgba(255,255,255,.08)}
+  .stage .cbtn[aria-pressed="true"]{background:rgba(132,163,204,.16);border-color:var(--gold);color:var(--gold)}
+  .stage .cbtn:disabled:hover{background:#000}
+  .stage .speedsel{background:#000;color:var(--ink);border-color:rgba(255,255,255,.22)}
+  .stage .ctime{color:var(--muted-2)}
 
   /* ---------- the schematic: scrolls inside its wrapper on narrow
      screens, never the page (same containment as the table) ---------- */
@@ -306,13 +330,14 @@
   main>section:nth-of-type(9){background:#EAF3EF}
   main>section:nth-of-type(10){background:#F7EDE6}
   .amosemblem{width:min(300px,78%);height:auto;margin:2px auto 12px}
-  .filmrow{display:flex;gap:22px;align-items:center;max-width:1060px;margin:0 auto}
-  .filmrow .videowrap{flex:1 1 auto;max-width:none;margin:0;min-width:0}
-  .filmshield{flex:0 0 240px;text-align:center}
-  .filmshield img{width:100%;height:auto}
-  .filmshield{text-align:center}
+  .filmrow{max-width:1060px;margin:0 auto}
+  /* the film sits in a plain white panel like this page's other boxes —
+     the black stage inside it is the picture, not the page */
+  .filmsec{background:#FFFFFF;border-radius:26px;padding:0 24px 24px;box-shadow:0 1px 3px rgba(28,25,23,.05),0 14px 34px rgba(28,25,23,.05);position:relative;min-width:0;margin-top:-6px}
+  .filmshield{margin:26px auto 0;text-align:center;max-width:640px}
+  .filmshield img{display:block;margin:0 auto;width:min(210px,58%);height:auto}
   .shieldline{margin:12px auto 0;font-weight:800;font-size:19px;letter-spacing:.05em;text-transform:uppercase;color:#1C1917;line-height:1.35;max-width:300px}
-  @media(max-width:820px){.filmrow{flex-direction:column}.filmshield{order:-1;flex:none;width:min(210px,58%)}}
+  .doorline{margin:10px auto 0;font-size:15px;color:#476B96;line-height:1.45;max-width:320px}
   .eyebrow{color:#476B96}
   p.lede{color:#3E3A34}
   .secondary,small,figure.beatfig figcaption,.diagramcap,.legend,.ctime,.videohint{color:#6B665C}
@@ -497,6 +522,149 @@ footer.luxfoot .flogo em{font-style:normal;color:#476B96}
 </header>
 
 <main>
+
+  <!-- ================= THE FILM — first thing on the page (Vance, 2026-11-20),
+       on the house's own big stage: the same player as the Amos page, cloned
+       whole — big like a television off the wall, one fixed film ================= -->
+  <div class="filmsec">
+    <div class="filmrow">
+    <div class="videowrap">
+    <div class="player" id="player">
+    <div class="stage" id="stage">
+      <video id="seamguardfilm" preload="none" playsinline poster="assets/seamguard-film-poster.jpg" src="assets/seamguard-film.mp4" aria-label="The SeamGuard film: the leak at the joins between agents, and the guard that checks every hand-off"></video>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play"><span aria-hidden="true">▶</span></button>
+      <button type="button" class="hostchip" id="hostchip" aria-label="Aimée, your host" aria-expanded="false"><span class="hostface" aria-hidden="true">A</span><span class="hosttag">Aimée</span></button>
+      <div class="hostbubble" id="hostbubble" hidden><strong>Aimée, your host:</strong> Welcome — this short film shows what&rsquo;s happening out there, and the fix we built. Everything it claims is written down further down this page, for anyone to check.</div>
+    <div class="controls" role="group" aria-label="Player controls">
+      <button type="button" class="cbtn" id="playbtn" aria-label="Play or pause">▶</button>
+      <span class="ctime"><span id="tcur">0:00</span> / <span id="ttot">1:45</span></span>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <button type="button" class="cbtn" id="mutebtn" aria-label="Mute or unmute">🔊</button>
+      <input type="range" class="vol" id="vol" min="0" max="100" value="100" step="1" aria-label="Volume">
+      <select class="speedsel" id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+      <button type="button" class="cbtn" id="ccbtn" aria-pressed="false" disabled title="Captions are on their way for this title">CC</button>
+      <button type="button" class="cbtn" id="fsbtn" aria-label="Full screen">⛶</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="filmshield"><img src="../assets/icons/seamguard-shield.webp" alt="SeamGuard — the shield at the seams between agents"><p class="shieldline">Stop the leak.</p><p class="doorline">SeamGuard checks every hand-off — who is passing it, and whether it is allowed to — before the work moves.</p></div>
+    </div>
+  </div>
+  <script>
+  /* The SeamGuard film player — the same player as the Amos page, cloned
+     whole (Vance, 2026-11-20): the film sits big at the top of the page
+     from the moment it opens, framed like a television off the wall, and
+     starts from the big play button in the middle of the screen — sound
+     on, no tapping tricks. The full bar rides on the screen, at the
+     bottom: play, seek, time, sound, volume, speed, captions, full screen.
+     Aimée's chip stays in the stage corner as her own welcome button;
+     it is not the film's door. One fixed film: the SeamGuard film. */
+  (function(){
+    var stage=document.getElementById('stage'),
+        video=document.getElementById('seamguardfilm'),
+        bigplay=document.getElementById('bigplay'),
+        playbtn=document.getElementById('playbtn'),
+        seek=document.getElementById('seek'),
+        tcur=document.getElementById('tcur'),
+        ttot=document.getElementById('ttot'),
+        mutebtn=document.getElementById('mutebtn'),
+        vol=document.getElementById('vol'),
+        speed=document.getElementById('speed'),
+        ccbtn=document.getElementById('ccbtn'),
+        fsbtn=document.getElementById('fsbtn'),
+        playerEl=document.getElementById('player'),
+        hostchip=document.getElementById('hostchip'),
+        hostbubble=document.getElementById('hostbubble'),
+        seeking=false, ccOn=false;
+
+    function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.round(s); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+    /* this film carries no caption track yet — the CC button stays
+       dark, exactly as the Cinema shows it for a title whose captions
+       are still on their way */
+    function applyCC(){
+      var tracks=video.textTracks;
+      for(var i=0;i<tracks.length;i++){ tracks[i].mode = ccOn ? 'showing' : 'hidden'; }
+      ccbtn.setAttribute('aria-pressed', ccOn?'true':'false');
+    }
+
+    function togglePlay(){
+      if(video.paused||video.ended){ var p=video.play(); if(p&&p.catch) p.catch(function(){}); }
+      else { video.pause(); }
+    }
+    playbtn.addEventListener('click', togglePlay);
+    bigplay.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    video.addEventListener('play', function(){ playbtn.textContent='❚❚'; bigplay.hidden=true; });
+    video.addEventListener('pause', function(){ playbtn.textContent='▶'; });
+    video.addEventListener('ended', function(){ playbtn.textContent='▶'; bigplay.hidden=false; });
+    video.addEventListener('loadedmetadata', function(){
+      ttot.textContent=fmt(video.duration);
+      if(video.videoWidth&&video.videoHeight){ stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight; }
+      applyCC();
+    });
+    video.addEventListener('timeupdate', function(){
+      if(!seeking && video.duration){ seek.value=Math.round(video.currentTime/video.duration*1000); }
+      tcur.textContent=fmt(video.currentTime);
+    });
+    seek.addEventListener('input', function(){
+      seeking=true;
+      if(video.duration){ var t=seek.value/1000*video.duration; tcur.textContent=fmt(t); }
+    });
+    seek.addEventListener('change', function(){
+      if(video.duration){ video.currentTime=seek.value/1000*video.duration; }
+      seeking=false;
+    });
+    mutebtn.addEventListener('click', function(){
+      video.muted=!video.muted;
+      mutebtn.textContent=video.muted?'🔇':'🔊';
+    });
+    vol.addEventListener('input', function(){
+      video.volume=vol.value/100;
+      if(video.volume>0 && video.muted){ video.muted=false; mutebtn.textContent='🔊'; }
+    });
+    speed.addEventListener('change', function(){ video.playbackRate=parseFloat(speed.value)||1; });
+    ccbtn.addEventListener('click', function(){ ccOn=!ccOn; applyCC(); });
+    hostchip.addEventListener('click', function(){
+      var open=hostbubble.hidden;
+      hostbubble.hidden=!open;
+      hostchip.setAttribute('aria-expanded', open?'true':'false');
+    });
+    fsbtn.addEventListener('click', function(){
+      if(document.fullscreenElement){ document.exitFullscreen(); return; }
+      var target=playerEl||stage;
+      var req=target.requestFullscreen||target.webkitRequestFullscreen;
+      if(req){ req.call(target); }
+    });
+    /* the bar: shows the moment you move or touch, fades after five quiet seconds */
+    var idleTimer=null;
+    function poke(){
+      if(!document.fullscreenElement){ return; }
+      playerEl.classList.remove('idle');
+      if(idleTimer){ clearTimeout(idleTimer); }
+      idleTimer=setTimeout(function(){ playerEl.classList.add('idle'); }, 5000);
+    }
+    ['mousemove','touchstart','click','keydown'].forEach(function(ev){
+      playerEl.addEventListener(ev, poke, {passive:true});
+    });
+    document.addEventListener('fullscreenchange', function(){
+      if(document.fullscreenElement){ poke(); }
+      else { playerEl.classList.remove('idle'); if(idleTimer){ clearTimeout(idleTimer); } }
+    });
+    stage.addEventListener('keydown', function(ev){
+      if(ev.key===' '||ev.key==='k'){ ev.preventDefault(); togglePlay(); }
+    });
+    stage.setAttribute('tabindex','0');
+  })();
+  </script>
 
   <!-- ================= HEADER — THE LOCKUP ================= -->
   <section>
