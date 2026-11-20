@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /trap-door/
 
 Sitemap: https://ailux.ca/sitemap.xml
